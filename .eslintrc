@@ -1,0 +1,71 @@
+{
+  "extends": "airbnb",
+
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype"
+  ],
+
+  rules: {
+
+    "arrow-parens": [0],
+
+    "new-cap": [2, {
+      "capIsNewExceptions": [
+        "List",
+        "Map",
+        "Seq",
+        "Set",
+        "Range",
+        "Immutable.Map",
+        "Immutable.Set",
+        "Immutable.List",
+        "Immutable.Seq",
+        "Immutable.Range"
+      ]
+    }],
+
+    "import/prefer-default-export": [0],
+    "react/jsx-no-bind": [1],
+    "react/jsx-filename-extension": [0],
+    "import/no-extraneous-dependencies": "off",
+    "react/forbid-prop-types": [1],
+
+    "flowtype/define-flow-type": 1,
+    "flowtype/require-parameter-type": 1,
+    "flowtype/require-return-type": [
+        1,
+        "always",
+        {
+            "annotateUndefined": "never"
+        }
+    ],
+    "flowtype/space-after-type-colon": [
+        1,
+        "always"
+    ],
+    "flowtype/space-before-type-colon": [
+        1,
+        "never"
+    ],
+    "flowtype/type-id-match": [
+        1,
+        "^(([A-Z][a-z0-9]+)+Type)$|^Props$"
+    ],
+    "flowtype/use-flow-type": 1,
+    "flowtype/valid-syntax": 1
+  },
+
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
+  },
+
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
+  }
+
+}

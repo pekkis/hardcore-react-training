@@ -1,0 +1,49 @@
+@import '../variables.pcss';
+
+:global {
+
+  @import '../../node_modules/normalize.css/normalize.css';
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-size: $fontSize;
+    padding: 0;
+    font-family: Helvetica, sans-serif;
+    font-weight: 300;
+
+    &.wf-active {
+      font-family: "Source Sans Pro";
+      font-weight: 300;
+    }
+  }
+
+  p:first-child {
+    margin-top: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+
+  }
+
+}
+
+
+.root {
+
+  header {
+    background-color: rgba(0, 0, 0, .5);
+    color: rgb(255, 255, 255);
+    margin-bottom: 1em;
+  }
+
+  main {
+
+  }
+
+}
