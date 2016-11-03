@@ -60,8 +60,6 @@ Use as you wish, but still read the license from LICENSE.
 
 ### develop
 
-Until yarn run works correctly, we default to npm.
-
 - `yarn run start`
   - open browser and go to http://localhost:8888
 - `yarn run storybook`

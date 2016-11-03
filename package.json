@@ -6,16 +6,12 @@
   "scripts": {
     "clean": "rimraf ./dist",
     "build:client": "NODE_ENV=production webpack --progress -p",
-    "build:server": "NODE_ENV=production webpack --config webpack.config.server.babel.js --progress -p",
-    "build": "yarn run clean && yarn run build:client && yarn run build:server",
+    "build": "yarn run clean && yarn run build:client",
     "lint": "eslint src --ext js --ext jsx",
     "babel-node": "babel-node",
     "start": "NODE_ENV=development ./node_modules/.bin/nodemon --exec yarn run babel-node -w src/dev.js -- src/dev.js",
-    "dev:server": "NODE_ENV=development ./node_modules/.bin/webpack --config=webpack.config.server.babel.js --watch --progress",
     "test": "NODE_ENV=test mocha --compilers js:babel-register -r ignore-styles -r jsdom-global/register \"./src/**/*.tests.js\"",
     "flow": "flow",
-    "serve": "nodemon -w dist/server.js dist/server.js",
-    "api": "NODE_ENV=development ./node_modules/.bin/nodemon --exec yarn run babel-node -w src/api.js -- src/api.js",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "repository": {

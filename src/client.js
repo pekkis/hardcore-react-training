@@ -1,35 +1,20 @@
 /* global document */
 /* eslint global-require: "off" */
 
-import React from 'react';
-import { render } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import Root from './Root';
-import promiseMiddleware from 'redux-promise-middleware';
-import thunk from 'redux-thunk';
-import { createStore } from './utils/redux';
-import * as reducers from './ducks';
-import routes from './routes';
-import { match, browserHistory } from 'react-router';
-import { trigger } from 'redial';
-import config from '../config.server';
-import { addLocaleData } from 'react-intl';
-import fi from 'react-intl/locale-data/fi';
+console.log('Suckling on a duckling.');
 
-addLocaleData([...fi]);
+//import React from 'react';
+// import { render } from 'react-dom';
 
-function getInitialState() {
-  try {
-    return JSON.parse(
-      document.getElementById('__HTMLDOCUMENT__UNIVERSAL_STATE').textContent
-    );
-  } catch(e) {
-    return undefined;
-  }
-}
+// import { AppContainer } from 'react-hot-loader';
+// import Root from './Root';
 
-const initialState = getInitialState();
+// import promiseMiddleware from 'redux-promise-middleware';
+// import thunk from 'redux-thunk';
+// import { createStore } from './utils/redux';
+// import * as reducers from './ducks';
 
+/*
 let middleware = [
   thunk,
   promiseMiddleware(),
@@ -40,6 +25,7 @@ if (true || __DEVELOPMENT__) {
   middleware = middleware.concat([createLogger()]);
 }
 
+
 const { store, history } = createStore(
   reducers,
   browserHistory,
@@ -47,46 +33,14 @@ const { store, history } = createStore(
   [],
   initialState || undefined
 );
+*/
 
-let isInitial = true;
 
-console.log(initialState, 'initialState');
-
-history.listen(() => {
-
-  match({ routes, history }, (error, redirectLocation, renderProps) => {
-    const { components } = renderProps;
-
-    const locals = {
-      path: renderProps.location.pathname,
-      query: renderProps.location.query,
-      params: renderProps.params,
-      dispatch: store.dispatch,
-    };
-
-    if (isInitial && initialState) {
-      isInitial = false;
-    } else {
-      console.log('trigger fetch');
-      trigger('fetch', components, locals);
-    }
-
-    console.log('trigger defer');
-    trigger('defer', components, locals);
-
-  });
-});
-
-const webfonts = {
-  google: {
-    families: ['Source Sans Pro:300,600'],
-  }
-};
-
+/*
 const root = document.getElementById('app');
 render(
   <AppContainer>
-     <Root routes={routes} store={store} history={history} webfonts={webfonts} />
+     <Root />
   </AppContainer>,
   root
 );
@@ -97,9 +51,10 @@ if (module.hot) {
     const Root = require('./Root').default;
     render(
       <AppContainer>
-        <Root routes={routes} store={store} history={history} webfonts={webfonts} />
+        <Root />
       </AppContainer>,
       root
     );
   });
 }
+*/
