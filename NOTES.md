@@ -8,7 +8,7 @@
   * yksinkertainen
   * JSX - lähestymistapa vs Angular (HTML vs JS)
 
-* NPM
+* NPM & Jarno
 * Webpack
 * Babel
 
@@ -27,11 +27,12 @@
 * rendataan Root (moi)
   * root on olemassa vain bootstrappaystä varten. Appi appiin.
 
-## komponentit
+## mega app mvp
 
 * tehdään appissa personeita fakerilla
 * yksinkertainen tilaton komponentti (Person)
 * komponenttien kompositointi (PersonList)
+  * listat ja key!!!
 * komponenttien tyylitys (css-modulit ja postcss)
 * filtteröinti (miehet ja naiset esim) ja komponenttien uusiokäyttö
 * immutable.js ja paremmat tietorakenteet
@@ -41,3 +42,57 @@
 * tyyppien lisäys (lomakkeiden "vaikeus")
 * knappi
 * storybook ja knappi! (primary & secondary)
+
+## refaktoroidaan mega apps
+
+* tila asuu reduxissa, yhdessä ainoassa paikassa.
+* selitä flow: äksönit dispätsätään, reducerit kuuntelee, muokkaa tilaa.
+* ducks: säästä aikaa ja energiaa
+* devtoolssit chrome storesta
+* typerät ja fiksut komponentit
+  * fiksuissa ei hötskää
+  * tyhmissä ei tilaa
+  * HOC
+
+## alasivut mega appsiin
+
+* react router
+  * index
+  * gender
+  * single person
+* containerit pageille
+* oma HOC
+* pagetus-HOC?
+* recompose
+
+## koodinhuolto, debuggaus ja performanssi
+
+* linttaus
+* testaus
+* selitä että usein ei tartte tehdä mitään.
+* selitä puren konsepti ja immutable
+* perf tools käyttö
+* mankelointi, source mapit ja debuggaus
+
+## vanhojen softien refaktorointi
+
+* pala kerrallaan mahdollista
+
+## flow
+
+* lussuta tyypityksestä
+* typescript
+* jos kiinnostusta löytyy, käy läpi
+
+## serverirendaus
+
+* case: diktaattoripörssi
+  * webpackataan serveripuolikin
+  * redial acyncciin
+  * aloitustila mukaan jsonina
+  * react osaa napata tilanteen lennosta
+
+## best practices
+
+* redux containerien rohkea käyttö
+* säilytä yksi tila, derivoi subsetit.
