@@ -102,6 +102,7 @@
     "react-addons-test-utils": "^15.3.2",
     "react-html-document": "^3.1.0",
     "react-inspector": "^1.1.0",
+    "redux-devtools-extension": "^1.0.0",
     "redux-logger": "^2.7.0",
     "rimraf": "^2.5.4",
     "sinon": "^1.17.6",
