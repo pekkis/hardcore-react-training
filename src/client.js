@@ -1,13 +1,11 @@
 /* global document */
 /* eslint global-require: "off" */
 
-console.log('Suckling on a duckling.');
+import React from 'react';
+import { render } from 'react-dom';
 
-//import React from 'react';
-// import { render } from 'react-dom';
-
-// import { AppContainer } from 'react-hot-loader';
-// import Root from './Root';
+import { AppContainer } from 'react-hot-loader';
+import Root from './Root';
 
 // import promiseMiddleware from 'redux-promise-middleware';
 // import thunk from 'redux-thunk';
@@ -35,8 +33,6 @@ const { store, history } = createStore(
 );
 */
 
-
-/*
 const root = document.getElementById('app');
 render(
   <AppContainer>
@@ -57,4 +53,3 @@ if (module.hot) {
     );
   });
 }
-*/
