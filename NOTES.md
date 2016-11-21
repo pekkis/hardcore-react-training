@@ -35,13 +35,13 @@
   * listat ja key!!!
 * komponenttien tyylitys (css-modulit ja postcss)
 * filtteröinti (miehet ja naiset esim) ja komponenttien uusiokäyttö
-* immutable.js ja paremmat tietorakenteet
 * tilallinen komponentti (App) ja lifecycle-metodit
 * datan haku palvelimelta (axios)
 * tyypin poisto, callbackkien kuletus
 * tyyppien lisäys (lomakkeiden "vaikeus")
 * knappi
 * storybook ja knappi! (primary & secondary)
+* immutable.js ja paremmat tietorakenteet
 
 ## refaktoroidaan mega apps
 

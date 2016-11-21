@@ -41,4 +41,8 @@ class PersonAddForm extends React.Component {
   }
 }
 
+PersonAddForm.propTypes = {
+  addPerson: React.PropTypes.func.isRequired,
+};
+
 export default PersonAddForm;

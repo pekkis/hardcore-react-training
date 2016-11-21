@@ -18,7 +18,9 @@ createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
     .map(personService.generatePerson);
 
   app.get('/person', (req, res) => {
-    res.send(persons);
+    setTimeout(() => {
+      res.send(persons);
+    }, 500);
   });
 
   app.get('*', (req, res) => {

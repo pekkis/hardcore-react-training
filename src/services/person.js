@@ -10,6 +10,7 @@ export default {
       id: uuid.v4(),
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
+      email: faker.internet.email(),
       gender: r.pick(['m', 'f']),
       age: r.integer(15, 100),
     };

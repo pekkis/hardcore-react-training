@@ -5868,6 +5868,10 @@ rc@^1.0.1, rc@^1.1.2, rc@~1.1.0:
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
 
+react-addons-perf:
+  version "15.3.2"
+  resolved "https://registry.yarnpkg.com/react-addons-perf/-/react-addons-perf-15.3.2.tgz#bbdbebe8649f936f9636a5750ac145bf5c620213"
+
 react-addons-test-utils@^15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.3.2.tgz#c09a44f583425a4a9c1b38444d7a6c3e6f0f41f6"
@@ -5916,9 +5920,9 @@ react-fuzzy@^0.3.3:
     classnames "^2.2.3"
     fuse.js "^2.2.0"
 
-react-gravatar@^2.5.2:
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/react-gravatar/-/react-gravatar-2.5.2.tgz#cbc94bd2c8d3c50f8d9507d0b523f6d37204c667"
+react-gravatar:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/react-gravatar/-/react-gravatar-2.6.1.tgz#7df02aaa9a5f89d1ffc3d58f5d8140c901ea5f2b"
   dependencies:
     is-retina "^1.0.3"
     md5 "^2.1.0"

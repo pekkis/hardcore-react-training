@@ -2,6 +2,9 @@ import React from 'react';
 import styles from './Person.pcss';
 import cx from 'classnames';
 import Button from './Button';
+import Gravatar from 'react-gravatar';
+import { Link, browserHistory } from 'react-router';
+import { pure } from 'recompose';
 
 const Person = props => {
 
@@ -17,7 +20,13 @@ const Person = props => {
   return (
     <div className={classes}>
       <div>
-        First Name: {person.firstName}
+
+        <Gravatar email={person.email} />
+
+        First Name:
+        <Link to={`/user/${person.id}`}>{person.firstName}</Link>
+        <button onClick={e => browserHistory.push(`/user/${person.id}`)}>GO GO GO</button>
+
       </div>
       <div>
         Last Name: {person.lastName}
@@ -36,4 +45,4 @@ const Person = props => {
 
 };
 
-export default Person;
+export default pure(Person);
