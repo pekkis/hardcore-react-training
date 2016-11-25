@@ -11,7 +11,7 @@ const Root = props => {
   const { store, history, webfonts } = props;
 
   const callback = (tussi) => {
-    console.log(tussi, 'tussi');
+    
   };
 
   return (

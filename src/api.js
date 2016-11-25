@@ -4,6 +4,7 @@ import config from '../config.server';
 import express from 'express';
 import cors from 'cors';
 import faker from 'faker';
+import r from './utils/random';
 
 const app = express();
 app.use(cors());
@@ -12,8 +13,12 @@ app.use(bodyParser.json());
 
 function generate() {
   return {
+    id: uuid.v4(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
+    title: faker.name.jobTitle(),
+    email: faker.internet.email(),
+    gender: r.pick(['m', 'f']),
   };
 }
 

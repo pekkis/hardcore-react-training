@@ -6,7 +6,7 @@ const App = props => {
   const { children } = props;
 
   return (
-    <div>
+    <div className={styles.root}>
       <Helmet
         htmlAttributes={{ "lang": "fi" }}
         titleTemplate="%s - Hardcore React Training"
@@ -23,16 +23,11 @@ const App = props => {
       />
 
       <header>
-        <h1>Hardcore Broilerplate</h1>
+        <h1>Hardcore App</h1>
       </header>
 
       <main>
-        <p>
-          Roxors so hard!
-        </p>
-
         {children}
-
       </main>
 
       <footer>
