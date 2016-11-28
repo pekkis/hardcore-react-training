@@ -1,26 +1,29 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import PersonList from '../components/PersonList';
+import PersonList from '../components/container/PersonListContainer';
+import styles from './IndexPage.pcss';
 
 const IndexPage = props => {
   const { persons } = props;
   return (
-    <section>
+    <section className={styles.root}>
 
-      <h2>Males</h2>
+      <div className={styles.column}>
+        <h2>Males</h2>
+        <PersonList persons={persons.filter(p => p.gender === 'm')} />
+      </div>
 
-      <PersonList persons={persons.filter(p => p.gender === 'm')} />
-
-      <h2>Females</h2>
-
-      <PersonList persons={persons.filter(p => p.gender === 'f')} />
+      <div className={styles.column}>
+        <h2>Females</h2>
+        <PersonList persons={persons.filter(p => p.gender === 'f')} />
+      </div>
 
     </section>
   );
 };
 
 IndexPage.propTypes = {
-  persons: React.PropTypes.array.isRequired,
+  
 };
 
 export default IndexPage;

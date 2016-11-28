@@ -11,9 +11,9 @@ app.use(cors());
 app.set('json spaces', 2);
 app.use(bodyParser.json());
 
-let persons = Array.from('lorem ipsum dolor sit amet sic transit gloria mundi los tussiposcos').map(a => {
-  return generatePerson();
-})
+const generator = generatePerson();
+
+let persons = Array.from('lorem ipsum dolor sit amet sic transit gloria mundi los tussiposcos').map(generator);
 
 console.log(persons);
 

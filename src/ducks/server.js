@@ -1,9 +1,9 @@
-import R from 'ramda';
+import { Map } from 'immutable';
 
-const defaultState = {
+const defaultState = Map({
   userAgent: undefined,
   statusCode: 200,
-};
+});
 
 export function setUserAgent(userAgent) {
   return {
@@ -24,10 +24,10 @@ export default function (state = defaultState, action) {
 
   switch (type) {
     case 'SERVER_SET_USERAGENT':
-      return R.assoc('userAgent', payload, state);
+      return state.set('userAgent', payload);
 
     case 'SERVER_SET_STATUS_CODE':
-      return R.assoc('statusCode', payload, state);
+      return state.set('statusCode', payload);
 
     default:
       return state;

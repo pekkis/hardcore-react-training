@@ -16,6 +16,11 @@ import config from '../config.server';
 import { addLocaleData } from 'react-intl';
 import fi from 'react-intl/locale-data/fi';
 
+if (__DEVELOPMENT__) {
+  const Perf = require('react-addons-perf');
+  window.Perf = Perf;
+}
+
 addLocaleData([...fi]);
 
 function getInitialState() {

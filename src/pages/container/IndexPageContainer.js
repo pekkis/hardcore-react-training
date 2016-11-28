@@ -8,7 +8,7 @@ import { compose } from 'recompose';
 export default compose(
   connect(
     state => ({
-      persons: state.person.persons,
+      persons: state.person.get('persons'),
     }),
   ),
   provideHooks({
