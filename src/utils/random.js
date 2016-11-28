@@ -1,4 +1,24 @@
 import Random from 'random-js';
+import uuid from 'node-uuid';
+import faker from 'faker';
 
-const random = new Random(Random.engines.mt19937().autoSeed());
-export default random;
+export const random = new Random(Random.engines.mt19937().autoSeed());
+
+export function generatePerson(postProcessor) {
+
+  return () => {
+    const generated = {
+      id: uuid.v4(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      title: faker.name.jobTitle(),
+      email: faker.internet.email(),
+      gender: random.pick(['m', 'f']),
+      avatar: faker.image.avatar(),
+    };
+
+    console.log(postProcessor, 'pp');
+    return postProcessor ? postProcessor(generated) : generated;
+  };
+
+};
