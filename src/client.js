@@ -3,9 +3,8 @@
 
 console.log('Suckling on a duckling.');
 
-//import React from 'react';
+// import React from 'react';
 // import { render } from 'react-dom';
-
 // import { AppContainer } from 'react-hot-loader';
 // import Root from './Root';
 
@@ -13,6 +12,11 @@ console.log('Suckling on a duckling.');
 // import thunk from 'redux-thunk';
 // import { createStore } from './utils/redux';
 // import * as reducers from './ducks';
+
+if (__DEVELOPMENT__) {
+  const Perf = require('react-addons-perf');
+  window.Perf = Perf;
+}
 
 /*
 let middleware = [
