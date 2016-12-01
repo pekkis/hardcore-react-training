@@ -7,6 +7,7 @@ import uuid from 'node-uuid';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import faker from 'faker';
+import personService from './services/person';
 
 createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
 
@@ -14,19 +15,17 @@ createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
   app.set('json spaces', 2);
   app.use(bodyParser.json());
 
-  function generate() {
-    return {
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-    };
-  }
 
-  let persons = Array.from('lorem ipsum dolor sit amet sic transit gloria mundi los tussiposcos').map(a => {
-    return generate();
-  })
+  const persons = Array
+    .from('tussenlussiwatussi')
+    .map(personService.generatePerson);
 
   app.get('/person', (req, res) => {
-    res.send(persons);
+
+    setTimeout(() => {
+      res.send(persons);
+    }, Math.random() * 500 + 100);
+
   });
 
   app.get('*', (req, res) => {

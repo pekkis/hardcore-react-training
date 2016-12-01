@@ -44,7 +44,7 @@ Use as you wish, but still read the license from LICENSE.
   -What about TypeScript
 - Linting
 - Testing
-  - Mocha, Chai and Enzyme
+  - Mocha, Chai, Sinon and Enzyme
 
 ## Howto
 

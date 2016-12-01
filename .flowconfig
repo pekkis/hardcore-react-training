@@ -1,5 +1,6 @@
 [libs]
 ./node_modules/fbjs/flow/lib
+decls/
 
 [options]
 suppress_type=$FlowIssue
@@ -9,4 +10,4 @@ module.name_mapper.extension='jpg' -> '<PROJECT_ROOT>/ImageModule.js.flow'
 module.name_mapper.extension='gif' -> '<PROJECT_ROOT>/ImageModule.js.flow'
 
 [version]
-0.34.0
+0.36.0

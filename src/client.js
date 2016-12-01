@@ -3,22 +3,23 @@
 
 console.log('Suckling on a duckling.');
 
-// import React from 'react';
-// import { render } from 'react-dom';
-// import { AppContainer } from 'react-hot-loader';
-// import Root from './Root';
+import React from 'react';
+import { render } from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import Root from './Root';
 
-// import promiseMiddleware from 'redux-promise-middleware';
-// import thunk from 'redux-thunk';
-// import { createStore } from './utils/redux';
-// import * as reducers from './ducks';
+import promiseMiddleware from 'redux-promise-middleware';
+import thunk from 'redux-thunk';
+import { createStore } from './utils/redux';
+import * as reducers from './ducks';
+import { browserHistory } from 'react-router';
 
 if (__DEVELOPMENT__) {
   const Perf = require('react-addons-perf');
   window.Perf = Perf;
 }
 
-/*
+
 let middleware = [
   thunk,
   promiseMiddleware(),
@@ -29,22 +30,20 @@ if (true || __DEVELOPMENT__) {
   middleware = middleware.concat([createLogger()]);
 }
 
+console.log(reducers, 'reduseeers');
 
 const { store, history } = createStore(
   reducers,
   browserHistory,
   middleware,
   [],
-  initialState || undefined
+  undefined
 );
-*/
 
-
-/*
 const root = document.getElementById('app');
 render(
   <AppContainer>
-     <Root />
+     <Root store={store} history={history} />
   </AppContainer>,
   root
 );
@@ -55,10 +54,9 @@ if (module.hot) {
     const Root = require('./Root').default;
     render(
       <AppContainer>
-        <Root />
+        <Root store={store} history={history} />
       </AppContainer>,
       root
     );
   });
 }
-*/

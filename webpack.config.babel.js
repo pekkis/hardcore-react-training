@@ -132,7 +132,7 @@ const envs = {
   },
 
   development: {
-    devtool: '#eval-source-map',
+    devtool: '#inline-source-map',
     entry: {
       client: [
         'react-hot-loader/patch',
