@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Wrapped from '../IndexPage';
 import { provideHooks } from 'redial';
-import { getPersons } from '../../ducks/person';
+import { getPersons, deletePerson } from '../../ducks/person';
 import { compose } from 'recompose';
 
 export default compose(
@@ -10,6 +10,9 @@ export default compose(
     state => ({
       persons: state.person.get('persons'),
     }),
+    dispatch => bindActionCreators({
+      deletePerson,
+    }, dispatch)
   ),
   provideHooks({
     fetch: ({ dispatch }) => dispatch(getPersons()),

@@ -6,8 +6,6 @@ import { pure } from 'recompose';
 const PersonList = props => {
   const { persons, deletePerson } = props;
 
-  console.log(deletePerson);
-
   return (
     <div className={styles.root}>
       {persons.map(person =>

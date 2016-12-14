@@ -15,9 +15,8 @@ export function generatePerson(postProcessor) {
       email: faker.internet.email(),
       gender: random.pick(['m', 'f']),
       avatar: faker.image.avatar(),
+      age: random.integer(20, 80),
     };
-
-    console.log(postProcessor, 'pp');
     return postProcessor ? postProcessor(generated) : generated;
   };
 
