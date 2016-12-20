@@ -5,8 +5,8 @@
   "main": "src",
   "scripts": {
     "clean": "rimraf ./dist",
-    "build:client": "NODE_ENV=production webpack --progress -p",
-    "build:server": "NODE_ENV=production webpack --config webpack.config.server.babel.js --progress -p",
+    "build:client": "NODE_ENV=production webpack --progress",
+    "build:server": "NODE_ENV=production webpack --config webpack.config.server.babel.js --progress",
     "build": "yarn run clean && yarn run build:client && yarn run build:server",
     "lint": "eslint src --ext js --ext jsx",
     "babel-node": "babel-node",

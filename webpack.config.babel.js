@@ -191,6 +191,36 @@ const envs = {
 
 const ret = {
 
+  plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    // new ExtractTextPlugin("styles.[contenthash].css"),
+    new webpack.DefinePlugin({
+      __DEVELOPMENT__: process.env.NODE_ENV === 'development',
+      __DEVTOOLS__: false,
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+    }),
+    new CopyWebpackPlugin([
+      { from: 'assets/web/*.*', flatten: true },
+    ]),
+
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlCreatorPlugin({
+      title: 'Hardcore React Training',
+      css: [],
+      favicon: 'assets/web/favicon.png',
+    }),
+
+    /*
+    new HtmlWebpackPlugin({
+      title: 'Trollo',
+      template: 'web/index.html',
+      favicon: 'web/favicon.ico',
+      inject: 'body'
+    }),
+    */
+  ],
+
+
   context: path.join(__dirname, 'src'),
 
   entry: {
