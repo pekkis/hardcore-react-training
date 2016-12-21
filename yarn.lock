@@ -11,6 +11,13 @@
     react-dom "^15"
     react-html-document "^3.1.0"
 
+"@dr-kobros/react-webfont-loader@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@dr-kobros/react-webfont-loader/-/react-webfont-loader-0.1.0.tgz#4b4fb68b29a5099399d900964091b0f19e47187b"
+  dependencies:
+    react "^15"
+    webfontloader "^1.6.27"
+
 "@kadira/react-split-pane@^1.4.0":
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/@kadira/react-split-pane/-/react-split-pane-1.4.7.tgz#6d753d4a9fe62fe82056e323a6bcef7f026972b5"
@@ -7437,6 +7444,10 @@ watchpack@^1.0.0:
 webfontloader:
   version "1.6.26"
   resolved "https://registry.yarnpkg.com/webfontloader/-/webfontloader-1.6.26.tgz#04909e273e913c9d7e4856f42c4e69fd7b3d5f28"
+
+webfontloader@^1.6.27:
+  version "1.6.27"
+  resolved "https://registry.yarnpkg.com/webfontloader/-/webfontloader-1.6.27.tgz#c3899649b0653aa57d0a23388f82409e0df224ba"
 
 webidl-conversions@^3.0.0, webidl-conversions@^3.0.1:
   version "3.0.1"
