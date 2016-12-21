@@ -30,20 +30,23 @@ export function getPostCss() {
 }
 
 export function getCommonLoaders(ENV) {
+
   return List([
     getStyleLoader(
       ENV,
       'browser',
       {
-        test: /\.p?css$/,
-        include: [
-          PATHS.src,
-        ],
-        loaders: [
-          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-          'postcss-loader'
+        test: /\.pcss$/,
+        loader: [
+          {
+            loader: 'css-loader',
+            options: { modules: true, importLoaders: 2, localIdentName: '[name]__[local]__[hash:base64:5]' }
+          },
+          {
+            loader: 'postcss-loader'
+          },
         ]
-      },
+      }
     ),
     getStyleLoader(
       ENV,
@@ -53,28 +56,49 @@ export function getCommonLoaders(ENV) {
         include: [
           PATHS.modules,
         ],
-        loaders: [
-          'css-loader'
+        loader: [
+          {
+            loader: 'css-loader',
+            options: { modules: true, importLoaders: 2, localIdentName: '[name]__[local]__[hash:base64:5]' }
+          }
         ]
-      },
+      }
     ),
     {
       test: /\.(png|jpg|gif|ico|svg)$/,
-      loaders: [
-        'file?name=[path][name]-[hash].[ext]',
-        (ENV === 'production ') ? 'img?minimize&optimizationLevel=5&progressive=true' : 'img',
-      ],
       include: [
         PATHS.src
-      ]
+      ],
+      loader: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name]-[hash].[ext]',
+          }
+        },
+        {
+          loader: 'img-loader',
+          options: {
+            minimize: true,
+            optimizationLevel: 5,
+            progressive: true,
+          }
+        }
+      ],
     },
     {
       test: /font.*\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'url-loader?limit=10000&name=[path][name]-[hash].[ext]',
       include: [
         PATHS.src,
         PATHS.modules
-      ]
+      ],
+      loaders: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: '[path][name]-[hash].[ext]'
+        }
+      }]
     }
   ]);
 }
@@ -89,20 +113,16 @@ const common = {
         exclude: [
           PATHS.modules,
         ]
-      }
+      },
     ).toJS()
   },
-  postcss: getPostCss(),
   resolve: {
-    modulesDirectories: ['node_modules'],
-    root: [
+    modules: [
       PATHS.src,
+      'node_modules'
     ],
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
   },
-  resolveLoader: {
-    root: PATHS.modules
-  }
 };
 
 const plugins = [
@@ -116,14 +136,6 @@ const plugins = [
   new CopyWebpackPlugin([
     { from: 'assets/web/*.*', flatten: true },
   ]),
-  /*
-  new HtmlWebpackPlugin({
-    title: 'Trollo',
-    template: 'web/index.html',
-    favicon: 'web/favicon.ico',
-    inject: 'body'
-  }),
-  */
 ];
 
 const envs = {
@@ -188,7 +200,7 @@ const envs = {
   }
 }
 
-
+/*
 const ret = {
 
   plugins: [
@@ -209,15 +221,12 @@ const ret = {
       css: [],
       favicon: 'assets/web/favicon.png',
     }),
-
-    /*
     new HtmlWebpackPlugin({
       title: 'Trollo',
       template: 'web/index.html',
       favicon: 'web/favicon.ico',
       inject: 'body'
     }),
-    */
   ],
 
 
@@ -239,72 +248,15 @@ const ret = {
   module: {
 
     rules: [
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-        exclude: [
-          PATHS.modules,
-        ]
-      },
-      {
-        test: /\.p?css$/,
-        loader: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: { modules: true, importLoaders: 2, localIdentName: '[name]__[local]__[hash:base64:5]' }
-          },
-          {
-            loader: 'postcss-loader'
-          },
-        ]
-
-      },
-
-      {
-        test: /\.(png|jpg|gif|ico|svg)$/,
-        include: [
-          PATHS.src
-        ],
-        loader: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[path][name]-[hash].[ext]',
-            }
-          },
-          {
-            loader: 'img-loader',
-            options: {
-              minimize: true,
-              optimizationLevel: 5,
-              progressive: true,
-            }
-          }
-        ],
-      },
-      {
-        test: /font.*\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        include: [
-          PATHS.src,
-          PATHS.modules
-        ],
-        loaders: [{
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: '[path][name]-[hash].[ext]'
-          }
-        }]
-      }
     ]
   }
 
 };
+*/
 
 
-export default ret;
+// export default ret;
 
 
 
-// export default merge(common, envs[ENV]);
+export default merge(common, envs[ENV]);

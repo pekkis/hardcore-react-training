@@ -34,12 +34,6 @@ const PATHS = {
   test: path.resolve(__dirname, './test')
 };
 
-export function getPostCss() {
-  return function () {
-    return [autoprefixer, precss];
-  }
-}
-
 export function getCommonLoaders(ENV) {
   return List([
     getStyleLoader(
@@ -50,23 +44,39 @@ export function getCommonLoaders(ENV) {
         include: [
           PATHS.src,
         ],
-        loaders: [
-          'css-loader/locals?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-          'postcss-loader'
+        loader: [
+          {
+            loader: 'css-loader',
+            options: { modules: true, importLoaders: 2, localIdentName: '[name]__[local]__[hash:base64:5]' }
+          },
+          {
+            loader: 'postcss-loader'
+          },
         ]
       },
     ),
     {
       test: /\.css$/,
-      loaders: [
+      loader: [
         'null-loader'
       ],
     },
     {
       test: /\.(png|jpg|gif|ico|svg)$/,
-      loaders: [
-        'file?emitFile=false&name=[path][name]-[hash].[ext]',
-        'img',
+      loader: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name]-[hash].[ext]',
+            emitFile: false,
+          }
+        },
+        {
+          loader: 'img-loader',
+          options: {
+            minimize: false,
+          }
+        }
       ],
       include: [
         PATHS.src
@@ -74,16 +84,15 @@ export function getCommonLoaders(ENV) {
     },
     {
       test: /font.*\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'url-loader?emitFile=false&limit=10000&name=[path][name]-[hash].[ext]',
-      include: [
-        PATHS.src,
-        PATHS.modules
-      ]
+      loader: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: '[path][name]-[hash].[ext]',
+          emitFile: false,
+        }
+      }],
     },
-    {
-      test: /\.(json)$/,
-      loader: 'json-loader',
-    }
   ]);
 }
 
@@ -102,21 +111,14 @@ const common = {
       }
     ).toJS()
   },
-  postcss: getPostCss(),
   resolve: {
-    modulesDirectories: ['node_modules'],
-    root: [
-      PATHS.src,
-    ],
-    extensions: ['', '.js', '.jsx'],
-  },
-  resolveLoader: {
-    root: PATHS.modules
+    modules: ['node_modules'],
+    extensions: ['.js', '.jsx'],
   }
 };
 
 const plugins = [
-  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.DefinePlugin({
     __DEVELOPMENT__: process.env.NODE_ENV === 'development',
     __DEVTOOLS__: false,

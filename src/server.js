@@ -4,7 +4,6 @@ import { createServer } from './utils/express';
 import config from '../config.server';
 import webpackConfig from '../webpack.config.babel';
 import { List, Range, Map } from 'immutable';
-import { createPerson } from './utils/person';
 import * as reducers from './ducks';
 
 import React from 'react';

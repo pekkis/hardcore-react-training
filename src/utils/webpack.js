@@ -10,21 +10,19 @@ export function getStyleLoader(env, target, base) {
 
     case 'development':
       if (target === 'browser') {
-        ret.loaders = [
+        ret.loader = [
           'style-loader',
-          ...ret.loaders,
+          ...ret.loader,
         ];
       }
       break;
 
     case 'production':
-
       if (target === 'browser') {
-        ret.loader = ExtractTextPlugin.extract(
-          'style-loader',
-          base.loaders
-        );
-        delete ret.loaders;
+        ret.loader = ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: base.loader,
+        });
       }
       break;
   }
