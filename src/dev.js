@@ -3,7 +3,6 @@ import config from '../config.server';
 import webpackConfig from '../webpack.config.babel';
 import path from 'path';
 import util from 'util';
-// import proxy from 'express-http-proxy';
 
 createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
 
@@ -14,6 +13,5 @@ createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
     res.end(index);
   });
 
-  // app.get('*', proxy('localhost:' + (config.port + 1)));
   return Promise.resolve();
 });

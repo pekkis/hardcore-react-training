@@ -12,6 +12,8 @@ import WebpackAssetsManifest from 'webpack-assets-manifest';
 import HtmlCreatorPlugin from '@dr-kobros/html-document-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import config from './config.server';
+import CustomHtmlDocument from './src/CustomHtmlDocument';
+import React from 'react';
 
 const ENV = process.env.NODE_ENV;
 const rootAssetPath = './src/assets';
@@ -163,6 +165,8 @@ const envs = {
         title: 'Hardcore React Training',
         css: [],
         favicon: 'assets/web/favicon.png',
+        content: <span>Loading The Most Hardcore App</span>,
+        // component: CustomHtmlDocument
       }),
     ]),
   },

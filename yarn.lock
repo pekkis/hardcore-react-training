@@ -11,9 +11,9 @@
     react-dom "^15"
     react-html-document "^3.1.0"
 
-"@dr-kobros/react-webfont-loader@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@dr-kobros/react-webfont-loader/-/react-webfont-loader-0.1.0.tgz#4b4fb68b29a5099399d900964091b0f19e47187b"
+"@dr-kobros/react-webfont-loader@^2.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@dr-kobros/react-webfont-loader/-/react-webfont-loader-2.0.0.tgz#e3d46e78a2f01977e633474463a4c6582c410890"
   dependencies:
     react "^15"
     webfontloader "^1.6.27"
