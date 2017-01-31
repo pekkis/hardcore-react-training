@@ -80,7 +80,7 @@ history.listen(() => {
 
 const webfonts = {
   google: {
-    families: ['Source Sans Pro:300,600'],
+    families: ['Quicksand:300,600'],
   }
 };
 

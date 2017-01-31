@@ -10,6 +10,8 @@
 
   html {
     background-color: rgb(255, 255, 255);
+    background-image: url('../assets/weather/weather.png');
+    background-repeat: repeat;
     color: rgb(0, 0, 0);
     font-size: $fontSize;
     padding: 0;
@@ -17,7 +19,7 @@
     font-weight: 300;
 
     &.wf-active {
-      font-family: "Source Sans Pro";
+      font-family: "Quicksand";
       font-weight: 300;
     }
   }
@@ -35,8 +37,11 @@
 
 
 .root {
+  max-width: 800px;
+  margin: 0 auto;
+}
 
-  margin: 1em;
+.inner {
 
   header {
     margin-bottom: 1em;

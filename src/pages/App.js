@@ -7,6 +7,7 @@ const App = props => {
 
   return (
     <div className={styles.root}>
+
       <Helmet
         htmlAttributes={{ "lang": "fi" }}
         titleTemplate="%s - Hardcore React Training"
@@ -22,23 +23,23 @@ const App = props => {
         onChangeClientState={(newState) => console.log(newState)}
       />
 
-      <header>
-        <h1>Hardcore App</h1>
-      </header>
+      <div className={styles.inner}>
+        <header>
+          <h1>Hardcore App</h1>
+        </header>
 
-      <main>
-        {children}
-      </main>
+        <main>
+          {children}
+        </main>
 
-      <footer>
-        Copyright Dr. Kobros Foundation
-      </footer>
-
-
+        <footer>
+          Copyright Dr. Kobros Foundation
+        </footer>
+      </div>
 
     </div>
 
-  )
+  );
 };
 
 App.propTypes = {
