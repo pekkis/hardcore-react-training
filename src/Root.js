@@ -14,12 +14,8 @@ const Root = props => {
     store.dispatch(setStatus(status));
   };
 
-  const fontCallback = (font, variation, status) => {
-    store.dispatch(setFontStatus(font, variation, status));
-  };
-
   return (
-    <WebfontLoader config={webfonts} onStatus={callback} onFontStatus={fontCallback}>
+    <WebfontLoader config={webfonts} onStatus={callback}>
       <Provider store={store}>
           <Router history={history}>
             <Route path="/" component={App}>

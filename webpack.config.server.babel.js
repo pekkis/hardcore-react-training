@@ -150,7 +150,7 @@ const envs = {
           global_defs: {}
         }
       }),
-      new webpack.NoErrorsPlugin()
+      new webpack.NoEmitOnErrorsPlugin()
     ])
   }
 }

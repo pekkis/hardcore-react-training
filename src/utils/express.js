@@ -21,7 +21,7 @@ export function createServer(config, webpackConfig, callback) {
 
   if (ENV === 'development') {
     devMiddleware = require('webpack-dev-middleware')(compiler, {
-      noInfo: true,
+      noInfo: false,
       publicPath: webpackConfig.output.publicPath,
       serverSideRender: true,
     });

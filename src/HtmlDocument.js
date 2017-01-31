@@ -22,6 +22,8 @@ const HtmlDocument = props => {
           type="application/json"
           dangerouslySetInnerHTML={innerHTML}
         />
+        <script src={'/' + manifest['meta.js']} />
+        <script src={'/' + manifest['vendor.js']} />
         <script src={'/' + manifest['client.js']} />
 
         {webfonts && <WebFontLoader config={webfonts} />}

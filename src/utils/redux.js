@@ -1,5 +1,6 @@
 import { createStore as reduxCreateStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 export function createStore(
   reducers,
@@ -8,7 +9,7 @@ export function createStore(
   enhancers = [],
   initialState = undefined,
 ) {
-  const createStoreWithMiddleware = compose(
+  const createStoreWithMiddleware = composeWithDevTools(
     applyMiddleware(
       ...middlewares
     ),

@@ -2,18 +2,15 @@ import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import merge from 'merge';
-import autoprefixer from 'autoprefixer';
-import precss from 'precss';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import serverConf from './config.server';
 import { getStyleLoader } from './src/utils/webpack';
 import { List } from 'immutable';
 import WebpackAssetsManifest from 'webpack-assets-manifest';
-import HtmlCreatorPlugin from '@dr-kobros/html-document-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import config from './config.server';
-import CustomHtmlDocument from './src/CustomHtmlDocument';
 import React from 'react';
+import pkg from './package.json';
 
 const ENV = process.env.NODE_ENV;
 const rootAssetPath = './src/assets';
@@ -24,12 +21,6 @@ const PATHS = {
   modules: path.resolve(__dirname, './node_modules'),
   test: path.resolve(__dirname, './test')
 };
-
-export function getPostCss() {
-  return function () {
-    return [autoprefixer, precss];
-  }
-}
 
 export function getCommonLoaders(ENV) {
 
@@ -138,6 +129,17 @@ const plugins = [
   new CopyWebpackPlugin([
     { from: 'assets/web/*.*', flatten: true },
   ]),
+  new webpack.NamedModulesPlugin(),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: "vendor",
+    filename: 'vendor.[chunkhash].js',
+    minChunks: Infinity,
+  }),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'meta',
+    chunks: ['vendor'],
+    filename: 'meta.[hash].js'
+  }),
 ];
 
 const envs = {
@@ -152,28 +154,40 @@ const envs = {
         'react-hot-loader/patch',
         'webpack-hot-middleware/client',
         './client.js'
-      ]
+      ],
+      vendor: [
+        // 'babel-polyfill' // de-comment if polyfill is needed
+      ].concat(
+        Object.keys(pkg.dependencies)
+      ),
     },
     output: {
       path: path.join(__dirname, 'dist'),
       publicPath: '/',
-      filename: 'client.[hash].js'
+      filename: 'client.[chunkhash].js'
     },
     plugins: plugins.concat([
       new webpack.HotModuleReplacementPlugin(),
-      new HtmlCreatorPlugin({
-        title: 'Hardcore React Training',
-        css: [],
-        favicon: 'assets/web/favicon.png',
-        content: <span>Loading The Most Hardcore App</span>,
-        // component: CustomHtmlDocument
+      new HtmlWebpackPlugin({
+        title: 'Hardcorest React App',
+        template: 'index.html',
+        favicon: 'favicon.png',
+        inject: 'body',
+        chunksSortMode: 'dependency',
       }),
     ]),
   },
   production: {
     devtool: 'source-map',
     entry: {
-      client: './client.js',
+      client: [
+        './client.js',
+      ],
+      vendor: [
+        // 'babel-polyfill' // de-comment if polyfill is needed
+      ].concat(
+        Object.keys(pkg.dependencies)
+      ),
     },
 
     output: {
@@ -193,7 +207,7 @@ const envs = {
           global_defs: {}
         }
       }),
-      new webpack.NoErrorsPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
       new WebpackAssetsManifest({
         output: 'manifest.json',
         writeToDisk: true,
