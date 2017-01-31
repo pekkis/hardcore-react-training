@@ -128,6 +128,13 @@ const plugins = [
   new CopyWebpackPlugin([
     { from: 'assets/web/*.*', flatten: true },
   ]),
+  new HtmlWebpackPlugin({
+    title: 'Hardcorest React App',
+    template: 'index.html',
+    favicon: 'favicon.png',
+    inject: 'body',
+    chunksSortMode: 'dependency',
+  }),
   new webpack.NamedModulesPlugin(),
   new webpack.optimize.CommonsChunkPlugin({
     name: "vendor",
@@ -167,13 +174,6 @@ const envs = {
     },
     plugins: plugins.concat([
       new webpack.HotModuleReplacementPlugin(),
-      new HtmlWebpackPlugin({
-        title: 'Hardcorest React App',
-        template: 'index.html',
-        favicon: 'favicon.png',
-        inject: 'body',
-        chunksSortMode: 'dependency',
-      }),
     ]),
   },
   production: {
