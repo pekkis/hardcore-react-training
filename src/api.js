@@ -1,4 +1,4 @@
-import uuid from 'node-uuid';
+import uuid from 'uuid';
 import bodyParser from 'body-parser';
 import config from '../config.server';
 import express from 'express';

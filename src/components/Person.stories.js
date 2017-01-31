@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import Person from './Person';
 import faker from 'faker';
-import uuid from 'node-uuid';
+import uuid from 'uuid';
 
 const male = {
   firstName: 'Ville',

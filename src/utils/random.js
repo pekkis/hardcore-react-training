@@ -1,5 +1,5 @@
 import Random from 'random-js';
-import uuid from 'node-uuid';
+import uuid from 'uuid';
 import faker from 'faker';
 
 export const random = new Random(Random.engines.mt19937().autoSeed());
