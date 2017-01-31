@@ -8,8 +8,8 @@
   * yksinkertainen
   * JSX - lähestymistapa vs Angular (HTML vs JS)
 
-* NPM & Jarno
-* Webpack
+* Jarno
+* Webpack (päivitin kakkoseen)
 * Babel
 
 ## verryttelyä
@@ -42,6 +42,8 @@
 * tyyppien lisäys (lomakkeiden "vaikeus")
 * knappi
 * storybook ja knappi! (primary & secondary)
+* pure
+* perf tools
 
 ## refaktoroidaan mega apps
 
@@ -61,8 +63,7 @@
   * gender
   * single person
 * containerit pageille
-* oma HOC
-* pagetus-HOC?
+* oma HOC?
 * recompose
 
 ## koodinhuolto, debuggaus ja performanssi
@@ -70,8 +71,6 @@
 * linttaus
 * testaus
 * selitä että usein ei tartte tehdä mitään.
-* selitä puren konsepti ja immutable
-* perf tools käyttö
 * mankelointi, source mapit ja debuggaus
 
 ## vanhojen softien refaktorointi
@@ -95,4 +94,4 @@
 ## best practices
 
 * redux containerien rohkea käyttö
-* säilytä yksi tila, derivoi subsetit.
+* säilytä yksi tila, derivoi subsetit, optimoi reselectillä jos tarttee
