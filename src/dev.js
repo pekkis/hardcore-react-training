@@ -3,7 +3,7 @@ import config from '../config.server';
 import webpackConfig from '../webpack.config.babel';
 import path from 'path';
 import util from 'util';
-import uuid from 'node-uuid';
+import uuid from 'uuid';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import faker from 'faker';

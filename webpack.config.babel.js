@@ -13,6 +13,8 @@ import HtmlCreatorPlugin from '@dr-kobros/html-document-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import config from './config.server';
 
+import React from 'react';
+
 const ENV = process.env.NODE_ENV;
 const rootAssetPath = './src/assets';
 
@@ -30,20 +32,23 @@ export function getPostCss() {
 }
 
 export function getCommonLoaders(ENV) {
+
   return List([
     getStyleLoader(
       ENV,
       'browser',
       {
-        test: /\.p?css$/,
-        include: [
-          PATHS.src,
-        ],
-        loaders: [
-          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-          'postcss-loader'
+        test: /\.pcss$/,
+        loader: [
+          {
+            loader: 'css-loader',
+            options: { modules: true, importLoaders: 2, localIdentName: '[name]__[local]__[hash:base64:5]' }
+          },
+          {
+            loader: 'postcss-loader'
+          },
         ]
-      },
+      }
     ),
     getStyleLoader(
       ENV,
@@ -53,28 +58,49 @@ export function getCommonLoaders(ENV) {
         include: [
           PATHS.modules,
         ],
-        loaders: [
-          'css-loader'
+        loader: [
+          {
+            loader: 'css-loader',
+            options: { modules: true, importLoaders: 2, localIdentName: '[name]__[local]__[hash:base64:5]' }
+          }
         ]
-      },
+      }
     ),
     {
       test: /\.(png|jpg|gif|ico|svg)$/,
-      loaders: [
-        'file?name=[path][name]-[hash].[ext]',
-        (ENV === 'production ') ? 'img?minimize&optimizationLevel=5&progressive=true' : 'img',
-      ],
       include: [
         PATHS.src
-      ]
+      ],
+      loader: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name]-[hash].[ext]',
+          }
+        },
+        {
+          loader: 'img-loader',
+          options: {
+            minimize: true,
+            optimizationLevel: 5,
+            progressive: true,
+          }
+        }
+      ],
     },
     {
       test: /font.*\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'url-loader?limit=10000&name=[path][name]-[hash].[ext]',
       include: [
         PATHS.src,
         PATHS.modules
-      ]
+      ],
+      loaders: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: '[path][name]-[hash].[ext]'
+        }
+      }]
     }
   ]);
 }
@@ -89,24 +115,20 @@ const common = {
         exclude: [
           PATHS.modules,
         ]
-      }
+      },
     ).toJS()
   },
-  postcss: getPostCss(),
   resolve: {
-    modulesDirectories: ['node_modules'],
-    root: [
+    modules: [
       PATHS.src,
+      'node_modules'
     ],
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
   },
-  resolveLoader: {
-    root: PATHS.modules
-  }
 };
 
 const plugins = [
-  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.optimize.OccurrenceOrderPlugin(),
   new ExtractTextPlugin("styles.[contenthash].css"),
   new webpack.DefinePlugin({
     __DEVELOPMENT__: process.env.NODE_ENV === 'development',
@@ -116,14 +138,6 @@ const plugins = [
   new CopyWebpackPlugin([
     { from: 'assets/web/*.*', flatten: true },
   ]),
-  /*
-  new HtmlWebpackPlugin({
-    title: 'Trollo',
-    template: 'web/index.html',
-    favicon: 'web/favicon.ico',
-    inject: 'body'
-  }),
-  */
 ];
 
 const envs = {
@@ -151,6 +165,7 @@ const envs = {
         title: 'Hardcore React Training',
         css: [],
         favicon: 'assets/web/favicon.png',
+        content: <span>Loading The Most Hardcore App</span>,
       }),
     ]),
   },
@@ -187,5 +202,64 @@ const envs = {
     ])
   }
 }
+
+/*
+const ret = {
+
+  plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    // new ExtractTextPlugin("styles.[contenthash].css"),
+    new webpack.DefinePlugin({
+      __DEVELOPMENT__: process.env.NODE_ENV === 'development',
+      __DEVTOOLS__: false,
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+    }),
+    new CopyWebpackPlugin([
+      { from: 'assets/web/*.*', flatten: true },
+    ]),
+
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlCreatorPlugin({
+      title: 'Hardcore React Training',
+      css: [],
+      favicon: 'assets/web/favicon.png',
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Trollo',
+      template: 'web/index.html',
+      favicon: 'web/favicon.ico',
+      inject: 'body'
+    }),
+  ],
+
+
+  context: path.join(__dirname, 'src'),
+
+  entry: {
+    client: [
+      'react-hot-loader/patch',
+      'webpack-hot-middleware/client',
+      './client.js'
+    ]
+  },
+  output: {
+    path: path.join(__dirname, 'dist'),
+    publicPath: '/',
+    filename: 'client.[hash].js'
+  },
+
+  module: {
+
+    rules: [
+    ]
+  }
+
+};
+*/
+
+
+// export default ret;
+
+
 
 export default merge(common, envs[ENV]);

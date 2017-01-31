@@ -2,7 +2,6 @@ import http from 'http';
 import express from 'express';
 import webpack from 'webpack';
 import path from 'path';
-import proxy from 'express-http-proxy';
 
 /* eslint no-console:0, global-require: 0 */
 
