@@ -5,9 +5,7 @@ import path from 'path';
 import util from 'util';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import faker from 'faker';
-import uuid from 'uuid';
-import { random } from './utils/random';
+import personService from './services/person';
 
 createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
 
@@ -15,20 +13,16 @@ createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
   app.set('json spaces', 2);
   app.use(bodyParser.json());
 
-  function createPerson() {
-    return {
-      id: uuid(),
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      age: random.integer(10, 100),
-      gender: random.pick(['m', 'f']),
-    };
-  }
-
-  let persons = Array.from('tussiposkionparas').map(createPerson);
+  let persons = Array
+    .from('tussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparas')
+    .map(personService.createPerson);
 
   app.get('/person', (req, res) => {
-    res.send(persons);
+
+    setTimeout(() => {
+        res.send(persons);
+    }, Math.random() * 1000);
+
   });
 
   app.get('*', (req, res) => {

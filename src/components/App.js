@@ -1,6 +1,7 @@
 import React from 'react';
 import PersonList from './PersonList';
 import personService from '../services/person';
+import AddPersonForm from './AddPersonForm';
 
 class App extends React.Component {
 
@@ -25,6 +26,20 @@ class App extends React.Component {
     });
   }
 
+  handleDelete = (id) => {
+    this.setState(prevState => ({
+        persons: prevState.persons.filter(p => p.id !== id)
+      })
+    );
+  }
+
+  handleAdd = (person) => {
+    this.setState(prevState => ({
+        persons: prevState.persons.concat([person])
+      })
+    );
+  }
+
   render() {
 
     const { persons } = this.state;
@@ -32,13 +47,18 @@ class App extends React.Component {
     return (
       <div>
 
+        <AddPersonForm onAdd={this.handleAdd} />
+
+
         <h2>Young ones</h2>
 
-        <PersonList persons={persons.filter(p => p.age < 30)} />
+        <PersonList onDelete={this.handleDelete} persons={persons.filter(p => p.age < 30)} />
 
         <h2>Old ones</h2>
 
-        <PersonList persons={persons.filter(p => p.age >= 30)} />
+        <PersonList onDelete={this.handleDelete} persons={persons.filter(p => p.age >= 30)} />
+
+        <AddPersonForm onAdd={this.handleAdd} />
 
       </div>
     );
