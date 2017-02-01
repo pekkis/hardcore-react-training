@@ -3,10 +3,11 @@ import config from '../config.server';
 import webpackConfig from '../webpack.config.babel';
 import path from 'path';
 import util from 'util';
-import uuid from 'uuid';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import faker from 'faker';
+import uuid from 'uuid';
+import { random } from './utils/random';
 
 createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
 
@@ -14,16 +15,17 @@ createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
   app.set('json spaces', 2);
   app.use(bodyParser.json());
 
-  function generate() {
+  function createPerson() {
     return {
+      id: uuid(),
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
+      age: random.integer(10, 100),
+      gender: random.pick(['m', 'f']),
     };
   }
 
-  let persons = Array.from('lorem ipsum dolor sit amet sic transit gloria mundi los tussiposcos').map(a => {
-    return generate();
-  })
+  let persons = Array.from('tussiposkionparas').map(createPerson);
 
   app.get('/person', (req, res) => {
     res.send(persons);
