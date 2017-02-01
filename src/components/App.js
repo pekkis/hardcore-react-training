@@ -1,20 +1,48 @@
 import React from 'react';
 import PersonList from './PersonList';
+import personService from '../services/person';
 
-const App = props => {
-  return (
-    <div>
+class App extends React.Component {
 
-      <h2>Young ones</h2>
+  state = {
+    persons: [],
+  }
 
-      <PersonList persons={persons.filter(p => p.age < 30)} />
+  /*
+  constructor(props) {
+    super(props);
+    this.state = {
+      persons: [],
+    }
+  }
+  */
 
-      <h2>Old ones</h2>
+  componentDidMount() {
+    personService.all().then(persons => {
+      this.setState({
+        persons,
+      });
+    });
+  }
 
-      <PersonList persons={persons.filter(p => p.age >= 30)} />
+  render() {
 
-    </div>
-  );
+    const { persons } = this.state;
+
+    return (
+      <div>
+
+        <h2>Young ones</h2>
+
+        <PersonList persons={persons.filter(p => p.age < 30)} />
+
+        <h2>Old ones</h2>
+
+        <PersonList persons={persons.filter(p => p.age >= 30)} />
+
+      </div>
+    );
+  }
 };
 
 export default App;
