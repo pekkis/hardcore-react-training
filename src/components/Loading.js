@@ -4,11 +4,9 @@ import styles from './Loading.pcss';
 
 import logo from '../assets/trollo.png';
 
-const Loading = () => {
-  return (<div className={styles.root}>
-      <img src={logo} />
-    </div>
+const Loading = () => (<div className={styles.root}>
+  <img src={logo} />
+</div>
   );
-};
 
 export default Loading;

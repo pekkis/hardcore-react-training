@@ -33,7 +33,7 @@ const { store, history } = createStore(
   browserHistory,
   middleware,
   [],
-  undefined
+  undefined,
 );
 
 
@@ -42,9 +42,9 @@ const { store, history } = createStore(
 const root = document.getElementById('app');
 render(
   <AppContainer>
-     <Root store={store} history={history} />
+    <Root store={store} history={history} />
   </AppContainer>,
-  root
+  root,
 );
 
 // No I don't understand what happens under the hood but it works :)
@@ -55,7 +55,7 @@ if (module.hot) {
       <AppContainer>
         <Root store={store} history={history} />
       </AppContainer>,
-      root
+      root,
     );
   });
 }

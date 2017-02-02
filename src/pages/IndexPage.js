@@ -3,7 +3,6 @@ import PersonList from '../components/PersonList';
 import AddPersonForm from '../components/AddPersonForm';
 
 const IndexPage = props => {
-
   const { persons, addPerson, deletePerson } = props;
 
   return (

@@ -9,21 +9,21 @@ export function getPersons() {
   return {
     type: 'PERSON_GET_PERSONS',
     payload: personService.all(),
-  }
+  };
 }
 
 export function addPerson(person) {
   return {
     type: 'PERSON_ADD_PERSON',
     payload: person,
-  }
+  };
 }
 
 export function deletePerson(id) {
   return {
     type: 'PERSON_DELETE_PERSON',
     payload: id,
-  }
+  };
 }
 
 export default function (state = defaultState, action) {
@@ -39,7 +39,7 @@ export default function (state = defaultState, action) {
     case 'PERSON_DELETE_PERSON':
       return state.update(
         'persons',
-        persons => persons.filterNot(p => p.id === payload)
+        persons => persons.filterNot(p => p.id === payload),
       );
 
     default:

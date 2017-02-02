@@ -5,7 +5,6 @@ import faker from 'faker';
 export const random = new Random(Random.engines.mt19937().autoSeed());
 
 export function generatePerson(postProcessor) {
-
   return () => {
     const generated = {
       id: uuid.v4(),
@@ -19,5 +18,4 @@ export function generatePerson(postProcessor) {
     };
     return postProcessor ? postProcessor(generated) : generated;
   };
-
-};
+}

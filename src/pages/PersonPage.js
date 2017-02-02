@@ -9,7 +9,7 @@ const needsPerson = Component => props => {
   return (
     <Component {...props} />
   );
-}
+};
 
 const PersonPage = props => {
   const { person } = props;
@@ -22,5 +22,5 @@ const PersonPage = props => {
 
 export default compose(
   needsPerson,
-  pure
+  pure,
 )(PersonPage);

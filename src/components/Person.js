@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import styles from './Person.pcss';
 import cx from 'classnames';
@@ -12,7 +14,7 @@ const Person = props => {
     styles.root, {
       [styles.male]: person.gender === 'm',
       [styles.female]: person.gender === 'f',
-    }
+    },
   );
 
   return (
@@ -24,6 +26,8 @@ const Person = props => {
 
       <Button
         type="button"
+        role="tussiposki"
+        block
         onClick={e => onDelete(person.id)}
       >
         delete

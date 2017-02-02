@@ -11,9 +11,9 @@ export function createStore(
 ) {
   const createStoreWithMiddleware = composeWithDevTools(
     applyMiddleware(
-      ...middlewares
+      ...middlewares,
     ),
-    ...enhancers
+    ...enhancers,
   )(reduxCreateStore);
 
   const reducer = combineReducers({

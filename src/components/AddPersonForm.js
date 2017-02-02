@@ -28,7 +28,7 @@ class AddPersonForm extends React.PureComponent {
             onChange={e => {
               this.setState({
                 firstName: e.target.value,
-              })
+              });
             }}
           />
         </div>
@@ -39,7 +39,7 @@ class AddPersonForm extends React.PureComponent {
             onChange={e => {
               this.setState({
                 lastName: e.target.value,
-              })
+              });
             }}
           />
         </div>

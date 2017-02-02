@@ -1,7 +1,6 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 export function getStyleLoader(env, target, base) {
-
   const ret = {
     ...base,
   };

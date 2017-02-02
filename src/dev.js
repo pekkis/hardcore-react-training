@@ -8,26 +8,23 @@ import cors from 'cors';
 import personService from './services/person';
 
 createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
-
   app.use(cors());
   app.set('json spaces', 2);
   app.use(bodyParser.json());
 
-  let persons = Array
+  const persons = Array
     .from('tussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparastussiposkionparas')
     .map(personService.createPerson);
 
   app.get('/person', (req, res) => {
-
     setTimeout(() => {
-        res.send(persons);
+      res.send(persons);
     }, 500 + Math.random() * 3000);
-
   });
 
   app.get('*', (req, res) => {
     const index = devMiddleware.fileSystem.readFileSync(
-      path.join(webpackConfig.output.path, 'index.html')
+      path.join(webpackConfig.output.path, 'index.html'),
     );
     res.end(index);
   });

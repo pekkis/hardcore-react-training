@@ -18,14 +18,12 @@ const PersonList = props => {
         .sortBy(p => p.lastName)
         .filterNot(p => p.lastName === 'Ondricka')
         .groupBy(p => p.lastName[0])
-        .map((persons, letter) => {
-          return (
-            <div key={letter}>
-              <h3>{letter}</h3>
-              {persons.map(person => <Person key={person.id} person={person} onDelete={onDelete} />)}
-            </div>
-          );
-        }).toList()
+        .map((persons, letter) => (
+          <div key={letter}>
+            <h3>{letter}</h3>
+            {persons.map(person => <Person key={person.id} person={person} onDelete={onDelete} />)}
+          </div>
+          )).toList()
       }
 
     </div>

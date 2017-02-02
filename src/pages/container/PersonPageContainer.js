@@ -9,5 +9,5 @@ export default connect(
   }),
   dispatch => bindActionCreators({
     deletePerson,
-  }, dispatch)
+  }, dispatch),
 )(PersonPage);

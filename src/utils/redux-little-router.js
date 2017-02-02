@@ -10,10 +10,9 @@ export function createStore(
   enhancers = [],
   initialState = undefined,
 ) {
-
   const {
     routerEnhancer,
-    routerMiddleware
+    routerMiddleware,
   } = routerForBrowser({
     // The configured routes. Required.
     routes,
@@ -26,9 +25,9 @@ export function createStore(
 
   const createStoreWithMiddleware = composeWithDevTools(
     applyMiddleware(
-      ...middlewares
+      ...middlewares,
     ),
-    ...enhancers
+    ...enhancers,
   )(reduxCreateStore);
 
   const store = createStoreWithMiddleware(reducers, initialState);

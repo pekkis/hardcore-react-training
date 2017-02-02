@@ -1,9 +1,16 @@
+// @flow
+
 import React from 'react';
 import cx from 'classnames';
 import styles from './Button.pcss';
 
-const Button = props => {
+type Props = {
+  role: 'primary' | 'secondary',
+  block: Boolean,
+  children: React.Element<>,
+};
 
+const Button = (props: Props) => {
   const { role, block, children, ...rest } = props;
 
   const classes = cx(
@@ -12,7 +19,7 @@ const Button = props => {
       [styles.block]: block === true,
       [styles.primary]: role === 'primary',
       [styles.secondary]: role === 'secondary',
-    }
+    },
   );
 
   return (

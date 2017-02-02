@@ -10,5 +10,5 @@ export default connect(
   dispatch => bindActionCreators({
     addPerson,
     deletePerson,
-  }, dispatch)
+  }, dispatch),
 )(IndexPage);
