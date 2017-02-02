@@ -4,13 +4,10 @@ import PersonPage from '../PersonPage';
 import { getPersons, addPerson, deletePerson } from '../../ducks/person';
 
 export default connect(
-  state => ({
-    persons: state.person.get('persons'),
-    loading: state.generic.get('loading'),
+  (state, props) => ({
+    person: state.person.get('persons').find(p => p.id === props.params.id),
   }),
   dispatch => bindActionCreators({
-    getPersons,
-    addPerson,
     deletePerson,
   }, dispatch)
 )(PersonPage);

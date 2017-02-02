@@ -3,6 +3,7 @@ import styles from './Person.pcss';
 import cx from 'classnames';
 import { pure } from 'recompose';
 import Button from './Button';
+import { Link } from 'react-router';
 
 const Person = props => {
   const { person, onDelete } = props;
@@ -16,8 +17,10 @@ const Person = props => {
 
   return (
     <div className={classes}>
-      {person.lastName}, {person.firstName} ({person.age}) [{person.gender}]
 
+      <Link to={`/person/${person.id}`}>
+        {person.lastName}, {person.firstName} ({person.age}) [{person.gender}]
+      </Link>
 
       <Button
         type="button"

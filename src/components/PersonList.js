@@ -13,7 +13,21 @@ const PersonList = props => {
         Average age: {averageAge.toFixed(2)}
       </p>
 
-      {persons.map(person => <Person key={person.id} person={person} onDelete={onDelete} />)}
+      {persons
+        .sortBy(p => p.firstName)
+        .sortBy(p => p.lastName)
+        .filterNot(p => p.lastName === 'Ondricka')
+        .groupBy(p => p.lastName[0])
+        .map((persons, letter) => {
+          return (
+            <div key={letter}>
+              <h3>{letter}</h3>
+              {persons.map(person => <Person key={person.id} person={person} onDelete={onDelete} />)}
+            </div>
+          );
+        }).toList()
+      }
+
     </div>
   );
 };
