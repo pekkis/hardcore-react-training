@@ -4,7 +4,7 @@ import styles from './PersonList.pcss';
 
 const PersonList = props => {
   const { persons, onDelete } = props;
-  const averageAge = persons.reduce((sum, p) => sum + p.age, 0) / persons.length;
+  const averageAge = persons.reduce((sum, p) => sum + p.age, 0) / persons.count();
 
   return (
     <div className={styles.root}>

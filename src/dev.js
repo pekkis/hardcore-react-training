@@ -21,7 +21,7 @@ createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
 
     setTimeout(() => {
         res.send(persons);
-    }, Math.random() * 1000);
+    }, 500 + Math.random() * 3000);
 
   });
 
