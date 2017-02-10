@@ -11,7 +11,7 @@ Use as you wish, but still read the license from LICENSE.
 
 ## Requirements
 
-- MacOS or Linux. Might work in Windows too, but I don't know. Please report if it doesn't
+- MacOS or Linux (though see the "In case of problems" section). Might work in Windows too, but I don't know. Please report if it doesn't
 - For training, you can always download and use the ready-to-use [the prebuilt virtual machine](http://dr-kobros.com/lib/hardcore-react-training-vm.zip). It's ready for action.
 - A new Node.js. 6.x nowadays.
 - The [Yarn package manager](https://yarnpkg.com) (or NPM version 3.x)
@@ -74,3 +74,7 @@ Until yarn run works correctly, we default to npm.
 Builds to `dist/` folder.
 
 - `yarn run build`
+
+## In case of problems
+
+- Saving files does not automatically trigger compiling files and you're running Linux? Configure `fs.inotify.max_user_watches=524288` with sysctl. See https://webpack.github.io/docs/troubleshooting.html#not-enough-watchers. This seems to be a problem at least with default settings on Fedora 25.
