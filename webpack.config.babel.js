@@ -79,9 +79,8 @@ export function getCommonLoaders(ENV) {
       ],
     },
     {
-      test: /font.*\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      test: /\.(woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       include: [
-        PATHS.src,
         PATHS.modules
       ],
       loaders: [{

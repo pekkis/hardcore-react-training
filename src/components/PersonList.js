@@ -4,6 +4,7 @@ import Person from './Person';
 
 const PersonList = props => {
   const { persons, deletePerson } = props;
+
   const averageAge = persons.reduce((r, p) => r + p.age, 0) / persons.count();
 
   return (

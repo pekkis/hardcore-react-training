@@ -20,11 +20,9 @@ createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
   app.use(bodyParser.json());
 
   app.get('/person', (req, res) => {
-
     setTimeout(() => {
       res.send(persons);
     }, 1000);
-
   });
 
 

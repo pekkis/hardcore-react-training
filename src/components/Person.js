@@ -3,6 +3,7 @@ import styles from './Person.pcss';
 import cx from 'classnames';
 import Button from './Button';
 import { pure } from 'recompose';
+import { Link } from 'react-router';
 
 const Person = props => {
   const { person, deletePerson } = props;
@@ -22,7 +23,7 @@ const Person = props => {
         Let go
       </Button>
 
-      {person.lastName}, {person.firstName} ({person.age})
+      <Link to={`/detail/${person.id}`}>{person.lastName}, {person.firstName}</Link> ({person.age})
     </div>
   );
 };
