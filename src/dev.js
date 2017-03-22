@@ -7,6 +7,11 @@ import uuid from 'uuid';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import faker from 'faker';
+import { createPerson } from './services/personService';
+
+const persons = Array
+  .from('tussihovixxdsggsdgsdgdsdsgsdggsdsgdgsdgdgsdgsdx')
+  .map(createPerson);
 
 createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
 
@@ -14,20 +19,15 @@ createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
   app.set('json spaces', 2);
   app.use(bodyParser.json());
 
-  function generate() {
-    return {
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-    };
-  }
-
-  let persons = Array.from('lorem ipsum dolor sit amet sic transit gloria mundi los tussiposcos').map(a => {
-    return generate();
-  })
-
   app.get('/person', (req, res) => {
-    res.send(persons);
+
+    setTimeout(() => {
+      res.send(persons);
+    }, 1000);
+
   });
+
+
 
   app.get('*', (req, res) => {
     const index = devMiddleware.fileSystem.readFileSync(
