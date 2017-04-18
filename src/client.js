@@ -1,64 +1,55 @@
-/* global document */
+/* global document, __DEVELOPMENT__, window */
 /* eslint global-require: "off" */
 
-console.log('Suckling on a duckling.');
-
 // import React from 'react';
-// import { render } from 'react-dom';
+// import ReactDOM from 'react-dom';
 // import { AppContainer } from 'react-hot-loader';
+// import { initializeCurrentLocation } from 'redux-little-router';
 // import Root from './Root';
-
-// import promiseMiddleware from 'redux-promise-middleware';
-// import thunk from 'redux-thunk';
 // import { createStore } from './utils/redux';
-// import * as reducers from './ducks';
+// import { getMiddlewares, getRoutes, getReducers, getEnhancers } from './config/redux';
 
 if (__DEVELOPMENT__) {
   const Perf = require('react-addons-perf');
   window.Perf = Perf;
 }
 
+console.log('Suckling on a duckling!');
+
 /*
-let middleware = [
-  thunk,
-  promiseMiddleware(),
-];
+const initialState = undefined;
 
-if (true || __DEVELOPMENT__) {
-  const createLogger = require('redux-logger');
-  middleware = middleware.concat([createLogger()]);
-}
-
-
-const { store, history } = createStore(
-  reducers,
-  browserHistory,
-  middleware,
-  [],
-  initialState || undefined
+const store = createStore(
+  getReducers(),
+  getRoutes(),
+  getMiddlewares(),
+  getEnhancers(),
+  initialState,
 );
+
+const initialLocation = store.getState().router;
+if (initialLocation) {
+  store.dispatch(initializeCurrentLocation(initialLocation));
+}
 */
 
-
 /*
-const root = document.getElementById('app');
-render(
-  <AppContainer>
-     <Root />
-  </AppContainer>,
-  root
-);
+function render(RootComponent, rootElement) {
+  ReactDOM.render(
+    <AppContainer>
+      <RootComponent />
+    </AppContainer>,
+    rootElement,
+  );
+}
 
-// No I don't understand what happens under the hood but it works :)
+const rootElement = document.getElementById('app');
+render(Root, rootElement);
+
 if (module.hot) {
   module.hot.accept('./Root', () => {
-    const Root = require('./Root').default;
-    render(
-      <AppContainer>
-        <Root />
-      </AppContainer>,
-      root
-    );
+    const HotReloadedRoot = require('./Root').default;
+    render(HotReloadedRoot, rootElement);
   });
 }
 */

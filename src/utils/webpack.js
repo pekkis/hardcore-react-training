@@ -1,13 +1,11 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 export function getStyleLoader(env, target, base) {
-
   const ret = {
     ...base,
   };
 
   switch (env) {
-
     case 'development':
       if (target === 'browser') {
         ret.loader = [
@@ -20,7 +18,7 @@ export function getStyleLoader(env, target, base) {
     case 'production':
       if (target === 'browser') {
         ret.loader = ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
+          fallback: 'style-loader',
           loader: base.loader,
         });
       }

@@ -11,14 +11,24 @@ Use as you wish, but still read the license from LICENSE.
 
 ## Requirements
 
-- MacOS or Linux. Might work in Windows too, but I don't know. Please report if it doesn't
+- MacOS and Linux are grade A citizens. Should work in Windows too, but I don't always
+  test because I'm not a Windows man.
 - For training, you can always download and use the ready-to-use [the prebuilt virtual machine](http://dr-kobros.com/lib/hardcore-react-training-vm.zip). It's ready for action.
-- A new Node.js. 6.x nowadays.
-- The [Yarn package manager](https://yarnpkg.com) (or NPM version 3.x)
+- An LTS or current version of Node.js (6.x or 7.x)
+- The [Yarn package manager](https://yarnpkg.com)
 
 ## Training requirements
 
-- A good editor / IDE that supports Flow real-time. I use [Nuclide](https://nuclide.io/) myself because I think it's great!
+- A good editor / IDE that supports our stuff in real-time. I use [Nuclide](https://nuclide.io/) (Atom) myself because it's free and good!
+- Some alternatives: Visual Studio Code, WebStorm.
+
+If you decide to use Atom, install at least the following packages:
+
+- nuclide
+- linter
+- linter-eslint
+- language-babel
+- language-postcss
 
 ## Good to know
 
@@ -41,7 +51,7 @@ Use as you wish, but still read the license from LICENSE.
 - Webpack
   - To hot reload or not?
 - Flow
-  -What about TypeScript
+  -What about TypeScript?
 - Linting
 - Testing
   - Mocha, Chai and Enzyme

@@ -1,7 +1,6 @@
 import http from 'http';
 import express from 'express';
 import webpack from 'webpack';
-import path from 'path';
 
 /* eslint no-console:0, global-require: 0 */
 
@@ -23,7 +22,11 @@ export function createServer(config, webpackConfig, callback) {
     devMiddleware = require('webpack-dev-middleware')(compiler, {
       noInfo: false,
       publicPath: webpackConfig.output.publicPath,
-      serverSideRender: true,
+      serverSideRender: false,
+      color: true,
+      stats: {
+        colors: true,
+      },
     });
 
     app.use(devMiddleware);
@@ -32,7 +35,6 @@ export function createServer(config, webpackConfig, callback) {
 
   return new Promise((resolve) => {
     callback(app, httpServer, devMiddleware).then(() => {
-
       httpServer.listen(port, () => {
         console.log(`Listening at http://localhost:${port}`);
       });

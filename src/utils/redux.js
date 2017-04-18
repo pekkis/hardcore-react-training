@@ -1,27 +1,37 @@
-import { createStore as reduxCreateStore, applyMiddleware, combineReducers, compose } from 'redux';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { createStore as reduxCreateStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import { routerForBrowser } from 'redux-little-router';
 
 export function createStore(
   reducers,
-  rawHistory,
+  routes,
   middlewares = [],
   enhancers = [],
   initialState = undefined,
 ) {
+  // React little router stuff
+  const {
+    reducer,
+    middleware,
+    enhancer,
+  } = routerForBrowser({
+    routes,
+  });
+
+  middlewares.push(middleware);
+
   const createStoreWithMiddleware = composeWithDevTools(
     applyMiddleware(
-      ...middlewares
+      ...middlewares,
     ),
-    ...enhancers
+    ...enhancers,
+    enhancer,
   )(reduxCreateStore);
 
-  const reducer = combineReducers({
+  const combinedReducer = combineReducers({
     ...reducers,
-    routing: routerReducer,
+    router: reducer,
   });
-  const store = createStoreWithMiddleware(reducer, initialState);
-  const history = syncHistoryWithStore(rawHistory, store);
 
-  return { history, store };
+  return createStoreWithMiddleware(combinedReducer, initialState);
 }
