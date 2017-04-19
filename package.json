@@ -32,6 +32,7 @@
     "axios": "^0.16.1",
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
+    "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-addons-perf": "^15.4.1",
     "react-dom": "^15.5.4",
@@ -54,6 +55,7 @@
   },
   "devDependencies": {
     "@kadira/storybook": "^2.35.0",
+    "array-differ": "^2.0.3",
     "autoprefixer": "^6.7.7",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.2",

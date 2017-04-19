@@ -1,11 +1,13 @@
 /* global document, __DEVELOPMENT__, window */
 /* eslint global-require: "off" */
 
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import { AppContainer } from 'react-hot-loader';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import { AppContainer } from 'react-hot-loader';
+import Root from './Root';
+
 // import { initializeCurrentLocation } from 'redux-little-router';
-// import Root from './Root';
 // import { createStore } from './utils/redux';
 // import { getMiddlewares, getRoutes, getReducers, getEnhancers } from './config/redux';
 
@@ -33,7 +35,6 @@ if (initialLocation) {
 }
 */
 
-/*
 function render(RootComponent, rootElement) {
   ReactDOM.render(
     <AppContainer>
@@ -52,4 +53,3 @@ if (module.hot) {
     render(HotReloadedRoot, rootElement);
   });
 }
-*/
