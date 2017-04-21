@@ -4,7 +4,9 @@ import { addLocaleData, IntlProvider } from 'react-intl';
 import fi from 'react-intl/locale-data/fi';
 import en from 'react-intl/locale-data/en';
 import no from 'react-intl/locale-data/no';
-import App from './components/App';
+import App from './components/container/AppContainer';
+import { Provider } from 'react-redux';
+import { RouterProvider } from 'redux-little-router';
 
 addLocaleData([...fi, ...en, ...no]);
 
@@ -19,12 +21,19 @@ const callback = status => {
 };
 
 const Root = props => {
+
+  const { store } = props;
+
   return (
-    <WebfontLoader config={config} onStatus={callback}>
-      <IntlProvider locale="fi">
-        <App />
-      </IntlProvider>
-    </WebfontLoader>
+    <RouterProvider store={store}>
+      <Provider store={store}>
+        <WebfontLoader config={config} onStatus={callback}>
+          <IntlProvider locale="fi">
+            <App />
+          </IntlProvider>
+        </WebfontLoader>
+      </Provider>
+    </RouterProvider>
   );
 };
 

@@ -1,0 +1,8 @@
+- Remove user from person page -> redirect to front? DONE!
+- Reduxify the form
+- Flow / TypeScript
+- Deploy
+- Animations
+- Testing
+- Storybook
+- Server side rendering

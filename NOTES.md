@@ -66,6 +66,8 @@
 * oma HOC?
 * recompose
 
+## redux form
+
 ## koodinhuolto, debuggaus ja performanssi
 
 * linttaus

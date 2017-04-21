@@ -27,3 +27,8 @@ export function getPersons() {
       throw e;
     });
 }
+
+export default {
+  createPerson,
+  getPersons,
+};

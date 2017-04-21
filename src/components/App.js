@@ -1,56 +1,33 @@
 import React from 'react';
+import { Fragment } from 'redux-little-router';
 import styles from './App.pcss';
-import PersonList from './PersonList';
-import { getPersons } from '../services/personService';
-import AddPersonForm from './AddPersonForm';
-import { List } from 'immutable';
+import Loading from './Loading';
+import PersonPage from './container/PersonPageContainer';
+import HomePage from './container/HomePageContainer';
 
 class App extends React.PureComponent {
 
-  state = {
-    persons: List(),
-  };
-
   componentWillMount() {
-    getPersons().then(persons => {
-      this.setState({
-        persons: List(persons),
-      });
-    });
-  }
-
-  deletePerson = id => {
-    this.setState({
-      persons: this.state.persons.filter(p => p.id !== id),
-    });
-  }
-
-  addPerson = person => {
-    this.setState({
-      persons: this.state.persons.push(person),
-    });
+    const { getPersons } = this.props;
+    getPersons();
   }
 
   render() {
-    const { persons } = this.state;
+    const { loading } = this.props;
     return (
       <div>
 
-        <AddPersonForm addPerson={this.addPerson} />
+        <h1>Super Application</h1>
 
-        <h2>Good Employees</h2>
+        {(loading > 0) && <Loading />}
 
-        <PersonList
-          persons={persons.filter(p => p.gender === 'm').filter(p => p.age < 30)}
-          deletePerson={this.deletePerson}
-        />
+        <Fragment forRoute="/person/:id">
+          <PersonPage />
+        </Fragment>
 
-        <h2>Bad Employees</h2>
-
-        <PersonList
-          persons={persons.filter(p => p.age >= 30)}
-          deletePerson={this.deletePerson}
-        />
+        <Fragment forRoute="/home">
+          <HomePage />
+        </Fragment>
 
       </div>
     );

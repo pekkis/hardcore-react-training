@@ -7,18 +7,15 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import Root from './Root';
 
-// import { initializeCurrentLocation } from 'redux-little-router';
-// import { createStore } from './utils/redux';
-// import { getMiddlewares, getRoutes, getReducers, getEnhancers } from './config/redux';
+import { initializeCurrentLocation } from 'redux-little-router';
+import { createStore } from './utils/redux';
+import { getMiddlewares, getRoutes, getReducers, getEnhancers } from './config/redux';
 
 if (__DEVELOPMENT__) {
   const Perf = require('react-addons-perf');
   window.Perf = Perf;
 }
 
-console.log('Suckling on a duckling!');
-
-/*
 const initialState = undefined;
 
 const store = createStore(
@@ -33,12 +30,11 @@ const initialLocation = store.getState().router;
 if (initialLocation) {
   store.dispatch(initializeCurrentLocation(initialLocation));
 }
-*/
 
 function render(RootComponent, rootElement) {
   ReactDOM.render(
     <AppContainer>
-      <RootComponent />
+      <RootComponent store={store} />
     </AppContainer>,
     rootElement,
   );

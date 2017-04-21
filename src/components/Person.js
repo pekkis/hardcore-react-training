@@ -6,6 +6,7 @@ import { FormattedDate, FormattedNumber } from 'react-intl';
 import Button from './Button';
 import Icon from 'react-fa';
 import Gravatar from 'react-gravatar';
+import { Link } from 'redux-little-router';
 
 const Person = props => {
   const { person, deletePerson } = props;
@@ -23,7 +24,9 @@ const Person = props => {
 
       <Gravatar email={person.email} />
 
-      {person.lastName}, {person.firstName} [{person.gender}] ({person.age})
+      <Link href={`/person/${person.id}`}>
+        {person.lastName}, {person.firstName} [{person.gender}] ({person.age})
+      </Link>
 
       <p>
         <FormattedNumber value={person.salary} style="currency" currency="nok" />
@@ -39,4 +42,4 @@ const Person = props => {
   );
 };
 
-export default pure(Person);
+export default Person;

@@ -1,10 +1,21 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import Person from './Person';
 import { pure } from 'recompose';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { List } from 'immutable';
 
-const PersonList = props => {
+export type PersonType = {
+  firstName: string,
+  age: number,
+}
+
+type Props = {
+  persons: List<PersonType>,
+  deletePerson: Function,
+};
+
+const PersonList = (props: Props): React.Element<> => {
   const { persons, deletePerson } = props;
 
   const averageAge = persons.reduce((r, p) => r + p.age, 0) / persons.count();
@@ -19,11 +30,6 @@ const PersonList = props => {
       {persons.map(p => <Person deletePerson={deletePerson} key={p.id} person={p} />)}
     </div>
   );
-};
-
-PersonList.propTypes = {
-  persons: ImmutablePropTypes.list.isRequired,
-  deletePerson: PropTypes.func.isRequired,
 };
 
 export default pure(PersonList);

@@ -3,6 +3,8 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import * as reducers from '../ducks';
 
+console.log(reducers);
+
 export function getMiddlewares() {
   let middleware = [
     thunk,
@@ -19,7 +21,15 @@ export function getMiddlewares() {
 export function getRoutes() {
   const routes = {
     '/': {
-      title: 'Home',
+      title: 'Main',
+
+      '/home': {
+        title: 'lubs',
+      },
+
+      '/person/:id': {
+        title: 'Person page',
+      },
     },
   };
 

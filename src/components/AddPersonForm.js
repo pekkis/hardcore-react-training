@@ -1,57 +1,48 @@
 import React from 'react';
-import { createPerson } from '../services/personService';
 import Button from './Button';
+import { Field, reduxForm } from 'redux-form';
+import { Map, List } from 'immutable';
 
-class AddPersonForm extends React.PureComponent {
-
-  state = {
-    firstName: 'Gaylord',
-    lastName: 'Lohiposki',
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    const { addPerson } = this.props;
-
-    addPerson({
-      ...createPerson(),
-      ...this.state,
-    });
-  };
+class AddPersonForm extends React.Component {
 
   render() {
-
-    const { firstName, lastName } = this.state;
+    const { handleSubmit, valid } = this.props;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={handleSubmit}>
 
         <div>
           <label>First name</label>
-          <input
-            type="text"
-            value={firstName}
-            onChange={e => this.setState({ firstName: e.target.value })}
-          />
+          <Field className="lussutilus" name="firstName" component="input" type="text" />
         </div>
 
         <div>
           <label>Last name</label>
-          <input
-            type="text"
-            value={lastName}
-            onChange={e => this.setState({ lastName: e.target.value })}
-          />
+          <Field name="lastName" component="input" type="text" />
         </div>
 
-        <Button type="submit" plump>
+        <Button disabled={!valid} type="submit" plump>
           <span>lubs</span> HIRE!
         </Button>
 
       </form>
     );
   }
-
 };
 
-export default AddPersonForm;
+const validate = fields => {
+
+  return Map(
+    List.of('firstName', 'lastName').filter(f => {
+      if (!fields[f]) {
+        return true;
+      }
+      return (fields[f].length < 1);
+    }).map(field => [field, 'must enter something'])
+  ).toJS();
+}
+
+export default reduxForm({
+  form: 'addPerson',
+  validate,
+})(AddPersonForm);
