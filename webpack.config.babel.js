@@ -10,6 +10,12 @@ import { getStyleLoader } from './src/utils/webpack';
 import pkg from './package.json';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin';
+import {
+  processCommonLoaders,
+  processEnvLoaders,
+  processCommonPlugins,
+  processEnvPlugins
+} from './src/config/webpack';
 
 const ENV = process.env.NODE_ENV;
 
@@ -21,7 +27,7 @@ const PATHS = {
 };
 
 export function getCommonLoaders() {
-  return List([
+  const commonLoaders = List([
     getStyleLoader(
       ENV,
       'browser',
@@ -76,9 +82,7 @@ export function getCommonLoaders() {
         {
           loader: 'img-loader',
           options: {
-            minimize: true,
-            optimizationLevel: 5,
-            progressive: true,
+            enabled: ENV === 'production'
           },
         },
       ],
@@ -97,24 +101,21 @@ export function getCommonLoaders() {
         },
       }],
     },
+    {
+      test: /\.jsx?$/,
+      use: [{
+        loader: 'babel-loader'
+      }],
+      exclude: [
+        PATHS.modules,
+      ],
+    },
   ]);
+  return processCommonLoaders(commonLoaders);
 }
 
 const common = {
   context: path.join(__dirname, 'src'),
-  module: {
-    rules: getCommonLoaders().concat(
-      {
-        test: /\.jsx?$/,
-        use: [{
-          loader: 'babel-loader'
-        }],
-        exclude: [
-          PATHS.modules,
-        ],
-      },
-    ).toJS(),
-  },
   resolve: {
     modules: [
       PATHS.src,
@@ -124,49 +125,64 @@ const common = {
   },
 };
 
-const plugins = [
-  new webpack.optimize.ModuleConcatenationPlugin(),
+export function getCommonPlugins() {
+  const commonPlugins = List.of(
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new CaseSensitivePathsPlugin(),
+    new WatchMissingNodeModulesPlugin(PATHS.modules),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 
-  new CaseSensitivePathsPlugin(),
-  new WatchMissingNodeModulesPlugin(PATHS.modules),
-  new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new ExtractTextPlugin('styles.[contenthash].css'),
+    new webpack.DefinePlugin({
+      __DEVELOPMENT__: process.env.NODE_ENV === 'development',
+      __DEVTOOLS__: false,
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    }),
+    new CopyWebpackPlugin([
+      { from: 'assets/web/*.*', flatten: true },
+    ]),
+    new HtmlWebpackPlugin({
+      title: 'Hardcorest React App',
+      template: 'assets/index.html',
+      favicon: 'assets/favicon.png',
+      inject: 'body',
+      chunksSortMode: 'dependency',
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.[chunkhash].js',
+      minChunks: Infinity,
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'meta',
+      chunks: ['vendor'],
+      filename: 'meta.[hash].js',
+    })
+  );
 
-  new webpack.optimize.OccurrenceOrderPlugin(),
-  new ExtractTextPlugin('styles.[contenthash].css'),
-  new webpack.DefinePlugin({
-    __DEVELOPMENT__: process.env.NODE_ENV === 'development',
-    __DEVTOOLS__: false,
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-  }),
-  new CopyWebpackPlugin([
-    { from: 'assets/web/*.*', flatten: true },
-  ]),
-  new HtmlWebpackPlugin({
-    title: 'Hardcorest React App',
-    template: 'assets/index.html',
-    favicon: 'assets/favicon.png',
-    inject: 'body',
-    chunksSortMode: 'dependency',
-  }),
-  new webpack.NamedModulesPlugin(),
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'vendor',
-    filename: 'vendor.[chunkhash].js',
-    minChunks: Infinity,
-  }),
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'meta',
-    chunks: ['vendor'],
-    filename: 'meta.[hash].js',
-  }),
-];
+  return processCommonPlugins(commonPlugins);
+}
 
 const envs = {
   test: {
+    module: {
+      rules: processEnvLoaders(
+        'test',
+        getCommonLoaders()
+      ).toJS()
+    },
     devtool: '#inline-source-map',
   },
 
   development: {
+    module: {
+      rules: processEnvLoaders(
+        'development',
+        getCommonLoaders()
+      ).toJS()
+    },
     devtool: '#eval-source-map',
     entry: {
       client: [
@@ -185,11 +201,20 @@ const envs = {
       publicPath: '/',
       filename: 'client.[chunkhash].js',
     },
-    plugins: plugins.concat([
-      new webpack.HotModuleReplacementPlugin(),
-    ]),
+    plugins: processEnvPlugins(
+      'development',
+      getCommonPlugins().concat([
+        new webpack.HotModuleReplacementPlugin(),
+      ])
+    ).toJS(),
   },
   production: {
+    module: {
+      rules: processEnvLoaders(
+        'production',
+        getCommonLoaders()
+      ).toJS()
+    },
     devtool: 'source-map',
     entry: {
       client: [
@@ -207,26 +232,29 @@ const envs = {
       publicPath: '/',
       filename: '[name].[chunkhash].js',
     },
-    plugins: plugins.concat([
-      new webpack.optimize.UglifyJsPlugin({
-        mangle: false,
-        compress: {
-          dead_code: true,
-          unsafe: false,
-          unused: false,
-          hoist_vars: false,
-          side_effects: false,
-          global_defs: {},
-        },
-      }),
-      new webpack.NoEmitOnErrorsPlugin(),
-      new WebpackAssetsManifest({
-        output: 'manifest.json',
-        writeToDisk: true,
-        sortManifest: true,
-        merge: true,
-      }),
-    ]),
+    plugins: processEnvPlugins(
+      'production',
+      getCommonPlugins().concat([
+        new webpack.optimize.UglifyJsPlugin({
+          mangle: false,
+          compress: {
+            dead_code: true,
+            unsafe: false,
+            unused: false,
+            hoist_vars: false,
+            side_effects: false,
+            global_defs: {},
+          },
+        }),
+        new webpack.NoEmitOnErrorsPlugin(),
+        new WebpackAssetsManifest({
+          output: 'manifest.json',
+          writeToDisk: true,
+          sortManifest: true,
+          merge: true,
+        }),
+      ])
+    ).toJS(),
   },
 };
 

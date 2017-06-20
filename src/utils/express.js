@@ -33,16 +33,14 @@ export function createServer(config, webpackConfig, callback) {
     app.use(require('webpack-hot-middleware')(compiler));
   }
 
-  return new Promise((resolve) => {
-    callback(app, httpServer, devMiddleware).then(() => {
-      httpServer.listen(port, () => {
-        console.log(`Listening at http://localhost:${port}`);
-      });
-
-      resolve({
-        app,
-        httpServer,
-      });
+  return callback(app, httpServer, devMiddleware).then(() => {
+    httpServer.listen(port, () => {
+      console.log(`Listening at http://localhost:${port}`);
     });
+
+    return {
+      app,
+      httpServer,
+    }
   });
 }
