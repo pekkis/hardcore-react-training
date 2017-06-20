@@ -14,7 +14,7 @@ if (__DEVELOPMENT__) {
   window.Perf = Perf;
 }
 
-console.log('Suckling on a duckling!');
+console.log('Suckling on a big duckling!');
 
 /*
 const initialState = undefined;

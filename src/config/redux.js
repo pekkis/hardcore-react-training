@@ -1,3 +1,5 @@
+/* global __DEVELOPMENT__ */
+
 import promiseMiddleware from 'redux-promise-middleware';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -10,20 +12,12 @@ export function getMiddlewares() {
   ];
 
   if (__DEVELOPMENT__) {
-    middleware = middleware.concat([logger]);
+    middleware = middleware.concat([
+      logger
+    ]);
   }
 
   return middleware;
-}
-
-export function getRoutes() {
-  const routes = {
-    '/': {
-      title: 'Home',
-    },
-  };
-
-  return routes;
 }
 
 export function getReducers() {

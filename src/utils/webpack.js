@@ -8,18 +8,18 @@ export function getStyleLoader(env, target, base) {
   switch (env) {
     case 'development':
       if (target === 'browser') {
-        ret.loader = [
+        ret.use = [
           'style-loader',
-          ...ret.loader,
+          ...ret.use,
         ];
       }
       break;
 
     case 'production':
       if (target === 'browser') {
-        ret.loader = ExtractTextPlugin.extract({
+        ret.use = ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          loader: base.loader,
+          use: base.use,
         });
       }
       break;

@@ -8,6 +8,8 @@ import WebpackAssetsManifest from 'webpack-assets-manifest';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { getStyleLoader } from './src/utils/webpack';
 import pkg from './package.json';
+import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
+import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin';
 
 const ENV = process.env.NODE_ENV;
 
@@ -25,7 +27,7 @@ export function getCommonLoaders() {
       'browser',
       {
         test: /\.pcss$/,
-        loader: [
+        use: [
           {
             loader: 'css-loader',
             options: {
@@ -48,10 +50,13 @@ export function getCommonLoaders() {
         include: [
           PATHS.modules,
         ],
-        loader: [
+        use: [
           {
             loader: 'css-loader',
-            options: { modules: false, importLoaders: 2 },
+            options: {
+              modules: false,
+              importLoaders: 2,
+            },
           },
         ],
       },
@@ -61,7 +66,7 @@ export function getCommonLoaders() {
       include: [
         PATHS.src,
       ],
-      loader: [
+      use: [
         {
           loader: 'file-loader',
           options: {
@@ -84,7 +89,7 @@ export function getCommonLoaders() {
         PATHS.src,
         PATHS.modules,
       ],
-      loaders: [{
+      use: [{
         loader: 'url-loader',
         options: {
           limit: 10000,
@@ -98,10 +103,12 @@ export function getCommonLoaders() {
 const common = {
   context: path.join(__dirname, 'src'),
   module: {
-    loaders: getCommonLoaders().concat(
+    rules: getCommonLoaders().concat(
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
+        use: [{
+          loader: 'babel-loader'
+        }],
         exclude: [
           PATHS.modules,
         ],
@@ -118,6 +125,12 @@ const common = {
 };
 
 const plugins = [
+  new webpack.optimize.ModuleConcatenationPlugin(),
+
+  new CaseSensitivePathsPlugin(),
+  new WatchMissingNodeModulesPlugin(PATHS.modules),
+  new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+
   new webpack.optimize.OccurrenceOrderPlugin(),
   new ExtractTextPlugin('styles.[contenthash].css'),
   new webpack.DefinePlugin({
