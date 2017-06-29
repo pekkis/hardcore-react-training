@@ -1,5 +1,4 @@
 node_modules/
-config.client.js
-config.server.js
+.env
 dist/*
 coverage/
