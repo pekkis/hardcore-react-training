@@ -2,8 +2,11 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { createServer } from './utils/express';
-import config from '../config.server';
 import webpackConfig from '../webpack.config.babel';
+
+const config = {
+  port: process.argv.pop(),
+};
 
 createServer(config, webpackConfig, (app, httpServer, devMiddleware) => {
   app.use(cors());

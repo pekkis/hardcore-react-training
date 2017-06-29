@@ -1,39 +1,27 @@
 /* global document, __DEVELOPMENT__, window */
 /* eslint global-require: "off" */
 
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import { AppContainer } from 'react-hot-loader';
-// import { initializeCurrentLocation } from 'redux-little-router';
-// import Root from './Root';
-// import { createStore } from './utils/redux';
-// import { getMiddlewares, getRoutes, getReducers, getEnhancers } from './config/redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import Root from './Root';
+import { createStore } from './utils/redux';
+import { getMiddlewares, getReducers, getEnhancers, getInitialState } from './config/redux';
 
 if (__DEVELOPMENT__) {
   const Perf = require('react-addons-perf');
   window.Perf = Perf;
 }
 
-console.log('Suckling on a big duckling!');
-
-/*
-const initialState = undefined;
+const initialState = getInitialState();
 
 const store = createStore(
   getReducers(),
-  getRoutes(),
   getMiddlewares(),
   getEnhancers(),
   initialState,
 );
 
-const initialLocation = store.getState().router;
-if (initialLocation) {
-  store.dispatch(initializeCurrentLocation(initialLocation));
-}
-*/
-
-/*
 function render(RootComponent, rootElement) {
   ReactDOM.render(
     <AppContainer>
@@ -52,4 +40,3 @@ if (module.hot) {
     render(HotReloadedRoot, rootElement);
   });
 }
-*/

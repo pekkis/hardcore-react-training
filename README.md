@@ -1,6 +1,6 @@
 # Hardcore React Training
 
-Welcome, friend, to my two-day hardcore React Workshop. You'll grow some real bones instead of the Backbone.js (pun intended) your rib cage is attached now.
+Welcome, friend, to my two-day hardcore React Workshop. You'll grow some real bones instead of the backbone.js (pun intended) your rib cage is attached to now.
 
 This repo also acts as a broilerplate to kickstart a React project with sane defaults, necessary tooling and
 some reusable, copy-paste-preventing boilerplate stuff. It's exactly the same stuff I build my stuff on.
@@ -62,11 +62,6 @@ If you decide to use Atom, install at least the following packages:
 
 - install yarn
 - `yarn`
-
-#### Common steps
-
-- `cp config.client.example.js config.client.js`
-- `cp config.server.example.js config.server.js`
 
 ### develop
 

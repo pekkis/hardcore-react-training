@@ -16,6 +16,9 @@ import {
   processCommonPlugins,
   processEnvPlugins
 } from './src/config/webpack';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const ENV = process.env.NODE_ENV;
 
@@ -138,6 +141,7 @@ export function getCommonPlugins() {
       __DEVELOPMENT__: process.env.NODE_ENV === 'development',
       __DEVTOOLS__: false,
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.API': JSON.stringify(process.env.API),
     }),
     new CopyWebpackPlugin([
       { from: 'assets/web/*.*', flatten: true },

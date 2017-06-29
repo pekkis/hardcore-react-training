@@ -5,6 +5,10 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import * as reducers from '../ducks';
 
+export function getInitialState() {
+  return undefined;
+}
+
 export function getMiddlewares() {
   let middleware = [
     thunk,

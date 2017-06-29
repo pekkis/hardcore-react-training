@@ -13,14 +13,11 @@ export function processCommonPlugins(plugins) {
 }
 
 export function processEnvPlugins(env, plugins) {
-
-  return plugins;
-
   if (env === 'production') {
     return plugins.update(-3, plugin => {
+      // Still experimenting with this :)
       return new BabiliPlugin();
     });
   }
-
   return plugins;
 }
