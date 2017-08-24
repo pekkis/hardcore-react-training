@@ -13,5 +13,19 @@
     "babel-plugin-transform-object-rest-spread",
     "babel-plugin-transform-decorators",
     "babel-plugin-transform-react-jsx"
-  ]
+  ],
+
+  "env": {
+    "test": {
+      "presets": [
+        ["env", {
+          "targets": {
+            "browsers": ["last 2 versions"],
+            "node": "current"
+          },
+          "modules": "commonjs",
+        }]
+      ],
+    }
+  }
 }

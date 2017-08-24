@@ -1,0 +1,25 @@
+{
+  "name": "hardcore-react-training-server",
+  "version": "1.0.0",
+  "description": "Hardcore React Training Server",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-watch src/index.js",
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4",
+    "faker": "^4.1.0",
+    "immutable": "^3.8.1",
+    "random-js": "^1.0.8"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-watch": "^2.0.7"
+  }
+}
