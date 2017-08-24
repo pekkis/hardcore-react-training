@@ -1,18 +1,18 @@
-import BabiliPlugin from 'babili-webpack-plugin';
+const BabiliPlugin = require('babili-webpack-plugin');
 
-export function processCommonLoaders(loaders) {
+function processCommonLoaders(loaders) {
   return loaders;
 }
 
-export function processEnvLoaders(env, loaders) {
+function processEnvLoaders(env, loaders) {
   return loaders;
 }
 
-export function processCommonPlugins(plugins) {
+function processCommonPlugins(plugins) {
   return plugins;
 }
 
-export function processEnvPlugins(env, plugins) {
+function processEnvPlugins(env, plugins) {
   if (env === 'production') {
     return plugins.update(-3, plugin => {
       // Still experimenting with this :)
@@ -20,4 +20,11 @@ export function processEnvPlugins(env, plugins) {
     });
   }
   return plugins;
+}
+
+module.exports = {
+  processCommonLoaders,
+  processEnvLoaders,
+  processCommonPlugins,
+  processEnvPlugins,
 }

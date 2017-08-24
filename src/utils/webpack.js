@@ -1,6 +1,6 @@
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-export function getStyleLoader(env, target, base) {
+function getStyleLoader(env, target, base) {
   const ret = {
     ...base,
   };
@@ -25,4 +25,8 @@ export function getStyleLoader(env, target, base) {
       break;
   }
   return ret;
+}
+
+module.exports = {
+  getStyleLoader,
 }

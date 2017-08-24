@@ -3,7 +3,6 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
 import Root from './Root';
 import { createStore } from './utils/redux';
 import { getMiddlewares, getReducers, getEnhancers, getInitialState } from './config/redux';
@@ -24,10 +23,8 @@ const store = createStore(
 
 function render(RootComponent, rootElement) {
   ReactDOM.render(
-    <AppContainer>
-      <RootComponent />
-    </AppContainer>,
-    rootElement,
+    <RootComponent />,
+    rootElement
   );
 }
 
@@ -36,7 +33,7 @@ render(Root, rootElement);
 
 if (module.hot) {
   module.hot.accept('./Root', () => {
-    const HotReloadedRoot = require('./Root').default;
-    render(HotReloadedRoot, rootElement);
-  });
+    const NextRoot = require('./Root').default;
+    render(NextRoot, rootElement);
+  })
 }

@@ -1,8 +1,12 @@
-import { Map } from 'immutable';
+const { Map } = require('immutable');
 
-export function getEnvironmentVariables() {
+function getEnvironmentVariables() {
   return Map(process.env)
     .filter((v, k) => k === 'NODE_ENV' || k.startsWith('REACT_APP_'))
     .map((v, k) => JSON.stringify(v))
     .toJS();
 }
+
+module.exports = {
+  getEnvironmentVariables,
+};

@@ -1,9 +1,10 @@
 import React from 'react';
+import App from './components/App';
 
 const Root = props => {
   return (
     <div>
-      Hello Pekkis, our glorious leader!
+      <App />
     </div>
   );
 };
