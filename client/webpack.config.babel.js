@@ -1,29 +1,31 @@
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import path from 'path';
-import merge from 'merge';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import { List } from 'immutable';
-import WebpackAssetsManifest from 'webpack-assets-manifest';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import { getStyleLoader } from './src/utils/webpack';
-import pkg from './package.json';
-import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
-import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin';
-import {
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const merge = require('merge');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const { List } = require('immutable');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { getStyleLoader } = require('./src/utils/webpack');
+const pkg = require('./package.json');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
+const {
   processCommonLoaders,
   processEnvLoaders,
   processCommonPlugins,
   processEnvPlugins
-} from './src/config/webpack';
+} = require('./src/config/webpack');
+const BabiliPlugin = require('babili-webpack-plugin');
 
-import { getEnvironmentVariables } from './src/utils/env';
-import dotenv from 'dotenv';
+const { getEnvironmentVariables } = require('./src/utils/env');
+const dotenv = require('dotenv');
 dotenv.config();
 
 const envVars = getEnvironmentVariables();
 
-console.log(envVars);
+
+console.log('environment variables', envVars);
 
 
 const ENV = process.env.NODE_ENV;
@@ -35,7 +37,7 @@ const PATHS = {
   test: path.resolve(__dirname, './test'),
 };
 
-export function getCommonLoaders() {
+function getCommonLoaders() {
   const commonLoaders = List([
     getStyleLoader(
       ENV,
@@ -134,7 +136,7 @@ const common = {
   },
 };
 
-export function getCommonPlugins() {
+function getCommonPlugins() {
   const commonPlugins = List.of(
     new webpack.optimize.ModuleConcatenationPlugin(),
     new CaseSensitivePathsPlugin(),
@@ -162,13 +164,17 @@ export function getCommonPlugins() {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.[chunkhash].js',
-      minChunks: Infinity,
+      minChunks(module, count) {
+        var context = module.context;
+        return context && context.indexOf('node_modules') >= 0;
+      },
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'meta',
       chunks: ['vendor'],
       filename: 'meta.[hash].js',
-    })
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin()
   );
 
   return processCommonPlugins(commonPlugins);
@@ -195,15 +201,8 @@ const envs = {
     devtool: '#eval-source-map',
     entry: {
       client: [
-        'react-hot-loader/patch',
-        'webpack-hot-middleware/client',
         './client.js',
       ],
-      vendor: [
-        // 'babel-polyfill' // de-comment if polyfill is needed
-      ].concat(
-        Object.keys(pkg.dependencies),
-      ),
     },
     output: {
       path: path.join(__dirname, 'dist'),
@@ -212,9 +211,7 @@ const envs = {
     },
     plugins: processEnvPlugins(
       'development',
-      getCommonPlugins().concat([
-        new webpack.HotModuleReplacementPlugin(),
-      ])
+      getCommonPlugins()
     ).toJS(),
   },
   production: {
@@ -229,11 +226,6 @@ const envs = {
       client: [
         './client.js',
       ],
-      vendor: [
-        // 'babel-polyfill' // de-comment if polyfill is needed
-      ].concat(
-        Object.keys(pkg.dependencies),
-      ),
     },
 
     output: {
@@ -244,17 +236,7 @@ const envs = {
     plugins: processEnvPlugins(
       'production',
       getCommonPlugins().concat([
-        new webpack.optimize.UglifyJsPlugin({
-          mangle: false,
-          compress: {
-            dead_code: true,
-            unsafe: false,
-            unused: false,
-            hoist_vars: false,
-            side_effects: false,
-            global_defs: {},
-          },
-        }),
+        new BabiliPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new WebpackAssetsManifest({
           output: 'manifest.json',
@@ -267,4 +249,4 @@ const envs = {
   },
 };
 
-export default merge(common, envs[ENV]);
+module.exports = merge(common, envs[ENV]);

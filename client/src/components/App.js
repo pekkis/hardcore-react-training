@@ -6,7 +6,7 @@ const App = props => {
   return (
     <div className={styles.root}>
       <img src={logo} />
-        <h2>Hello Pekkis, our glorious leader!!! You rock so much!!!</h2>
+        <h2>Hello Pekkis, our glorious leader! You rock so much!</h2>
     </div>
   );
 }

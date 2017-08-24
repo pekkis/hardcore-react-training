@@ -5,7 +5,7 @@
         "browsers": ["last 2 versions"],
         "node": "current"
       },
-      "modules": "commonjs"
+      "modules": false,
     }]
   ],
   "plugins": [
