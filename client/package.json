@@ -37,7 +37,10 @@
     "@dr-kobros/react-webfont-loader": "^2.0.1",
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
+    "faker": "^4.1.0",
     "immutable": "^3.8.1",
+    "prop-types": "^15.5.10",
+    "random-js": "^1.0.8",
     "react": "next",
     "react-addons-perf": "^15.4.1",
     "react-dom": "next",
@@ -56,9 +59,7 @@
     "redux-thunk": "^2.1.0",
     "styled-components": "^2.1.2",
     "uuid": "^3.1.0",
-    "webfontloader": "^1.6.28",
-    "faker": "^4.1.0",
-    "random-js": "^1.0.8"
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -8,7 +8,7 @@ class App extends React.Component {
   render() {
     return (
       <div className={styles.root}>
-        <img src={logo} />
+        <img src={logo} alt="trollo" />
           <h2>Hello Pekkis, our glorious leader! You rock so much!</h2>
       </div>
     );
