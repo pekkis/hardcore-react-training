@@ -9,7 +9,7 @@
   * JSX - lähestymistapa vs Angular (HTML vs JS)
 
 * Jarno
-* Webpack (päivitin kakkoseen)
+* Webpack (päivitin koloseen)
 * Babel
 
 ## verryttelyä
@@ -41,7 +41,7 @@
 * tyypin poisto, callbackkien kuletus
 * tyyppien lisäys (lomakkeiden "vaikeus")
 * knappi
-* storybook ja knappi! (primary & secondary)
+* knappi! (primary & secondary)
 * pure
 * perf tools
 

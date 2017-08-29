@@ -16,7 +16,7 @@ const {
   processCommonPlugins,
   processEnvPlugins
 } = require('./src/config/webpack');
-const BabiliPlugin = require('babili-webpack-plugin');
+const BabelMinifyPlugin = require('babel-minify-webpack-plugin');
 
 const { getEnvironmentVariables } = require('./src/utils/env');
 const dotenv = require('dotenv');
@@ -238,7 +238,7 @@ const envs = {
     plugins: processEnvPlugins(
       'production',
       getCommonPlugins().concat([
-        new BabiliPlugin(),
+        new BabelMinifyPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new WebpackAssetsManifest({
           output: 'manifest.json',
