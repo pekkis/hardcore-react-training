@@ -23,7 +23,7 @@ const store = createStore(
 
 function render(RootComponent, rootElement) {
   ReactDOM.render(
-    <RootComponent />,
+    <RootComponent store={store} />,
     rootElement
   );
 }
