@@ -6516,7 +6516,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4:
+prop-types@15.5.10, prop-types@^15.5.10, prop-types@^15.5.4:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -6949,6 +6949,20 @@ redux-devtools-extension@^2.13.2:
   version "2.13.2"
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.2.tgz#e0f9a8e8dfca7c17be92c7124958a3b94eb2911d"
 
+redux-first-router-link@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/redux-first-router-link/-/redux-first-router-link-1.3.0.tgz#c6be71fcc2318f49b9470abf82d5fd3ad1abbbe7"
+  dependencies:
+    path-to-regexp "^1.7.0"
+    prop-types "15.5.10"
+    rudy-match-path "^0.1.0"
+
+redux-first-router@^1.9.19:
+  version "1.9.19"
+  resolved "https://registry.yarnpkg.com/redux-first-router/-/redux-first-router-1.9.19.tgz#6f670e40837efcefdcc117361b9d20628e33c097"
+  dependencies:
+    path-to-regexp "^1.7.0"
+
 redux-logger@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-3.0.6.tgz#f7555966f3098f3c88604c449cf0baf5778274bf"
@@ -7197,6 +7211,12 @@ rimraf@~2.5.1, rimraf@~2.5.4:
 ripemd160@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-1.0.1.tgz#93a4bbd4942bc574b69a8fa57c71de10ecca7d6e"
+
+rudy-match-path@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/rudy-match-path/-/rudy-match-path-0.1.0.tgz#5811458b234cab3502a4e548a5dedf527549a294"
+  dependencies:
+    path-to-regexp "^1.7.0"
 
 run-async@^2.2.0:
   version "2.3.0"

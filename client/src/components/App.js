@@ -1,43 +1,24 @@
 import React from 'react';
 import logo from '../assets/trollo.png';
 import styles from './App.pcss';
-import PersonList from './PersonList';
-import Loading from './Loading';
+import Link from 'redux-first-router-link';
+import IndexPage from './container/IndexPageContainer';
+import UserPage from './container/UserPageContainer';
 
 class App extends React.Component {
 
-  componentDidMount() {
-    const { getPersons } = this.props;
-    getPersons();
-  }
-
   render() {
-    const { persons } = this.props;
 
-    console.log(persons);
-
-    if (persons.count() === 0) {
-      return (
-        <Loading />
-      );
-    }
-
-    const oldPeoples = persons.filter(p => p.age > 30);
-    const youngPeoples = persons.filter(p => p.age <= 30);
+    const { location } = this.props;
 
     return (
       <div className={styles.root}>
         <h1>
-          <img src={logo} alt="trollo" /> Trollo
+          <img src={logo} alt="trollo" /> <Link to={{ type: 'HOME' }}>Trollo</Link>
         </h1>
 
-        <h2>Good Peoples</h2>
-
-        <PersonList persons={youngPeoples} />
-
-        <h2>Bad Peoples</h2>
-
-        <PersonList persons={oldPeoples} />
+        {location.type === 'HOME' && <IndexPage />}
+        {location.type === 'USER' && <UserPage id={location.payload.id} />}
 
       </div>
     );

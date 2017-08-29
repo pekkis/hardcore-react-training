@@ -6,14 +6,17 @@ export function createStore(
   middlewares = [],
   enhancers = [],
   initialState = undefined,
+  history
 ) {
   // React little router stuff
 
+  console.log(enhancers, 'eeee');
+
   const createStoreWithMiddleware = composeWithDevTools(
+    ...enhancers,
     applyMiddleware(
       ...middlewares,
     ),
-    ...enhancers,
   )(reduxCreateStore);
 
   const combinedReducer = combineReducers({

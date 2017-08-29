@@ -188,7 +188,7 @@ const envs = {
         getCommonLoaders()
       ).toJS()
     },
-    devtool: '#inline-source-map',
+    devtool: 'eval',
   },
 
   development: {
@@ -208,6 +208,7 @@ const envs = {
       path: path.join(__dirname, 'dist'),
       publicPath: '/',
       filename: 'client.[chunkhash].js',
+      // devtoolModuleFilenameTemplate: '/[absolute-resource-path]',
     },
     plugins: processEnvPlugins(
       'development',
@@ -232,6 +233,7 @@ const envs = {
       path: path.join(__dirname, 'dist'),
       publicPath: '/',
       filename: '[name].[chunkhash].js',
+      devtoolModuleFilenameTemplate: '/[absolute-resource-path]',
     },
     plugins: processEnvPlugins(
       'production',

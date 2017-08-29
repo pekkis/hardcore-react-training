@@ -6,6 +6,15 @@ import ReactDOM from 'react-dom';
 import Root from './Root';
 import { createStore } from './utils/redux';
 import { getMiddlewares, getReducers, getEnhancers, getInitialState } from './config/redux';
+import Redbox from 'redbox-react';
+import { connectRoutes } from 'redux-first-router';
+import createHistory from 'history/createBrowserHistory';
+import routes from './routes';
+
+const history = createHistory();
+const { reducer, middleware, enhancer } = connectRoutes(history, routes);
+
+
 
 if (__DEVELOPMENT__) {
   const Perf = require('react-addons-perf');
@@ -15,17 +24,41 @@ if (__DEVELOPMENT__) {
 const initialState = getInitialState();
 
 const store = createStore(
-  getReducers(),
-  getMiddlewares(),
-  getEnhancers(),
+  {
+    ...getReducers(),
+    location: reducer,
+  },
+  [
+    ...getMiddlewares(),
+    middleware,
+  ],
+  [
+    ...getEnhancers(),
+    enhancer,
+  ],
   initialState,
 );
 
-function render(RootComponent, rootElement) {
-  ReactDOM.render(
-    <RootComponent store={store} />,
-    rootElement
-  );
+function render(Component, rootElement) {
+
+  if (__DEVELOPMENT__) {
+    try {
+      ReactDOM.render(
+        <Component store={store} />,
+        rootElement
+      );
+    } catch (e) {
+      ReactDOM.render(
+        <Redbox error={e} />,
+        rootElement
+      );
+    }
+  } else {
+    ReactDOM.render(
+      <Component store={store} />,
+      rootElement
+    );
+  }
 }
 
 const rootElement = document.getElementById('app');
