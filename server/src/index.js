@@ -12,7 +12,9 @@ const app = express();
 app.use(cors());
 
 app.get('/person', function (req, res, next) {
-  res.json(persons);
+  setTimeout(function() {
+    res.json(persons);
+  }, Math.random() * 2000);
 });
 
 app.listen(process.env.PORT, () => {

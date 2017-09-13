@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="person male"
+>
+  <strong>
+    Naator
+  </strong>
+  , 
+  Pekka
+  <div>
+    m
+    , 
+    40
+  </div>
+  <button
+    className="sc-bdVaJa hlmQtC"
+    onClick={[Function]}
+  >
+    :) Erota :)
+  </button>
+</div>
+`;
