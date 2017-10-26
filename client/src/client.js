@@ -13,12 +13,10 @@ import { createStore } from './utils/redux';
 import { getMiddlewares, getReducers, getEnhancers, getInitialState } from './config/redux';
 */
 
-if (__DEVELOPMENT__) {
-  const Perf = require('react-addons-perf');
-  window.Perf = Perf;
-}
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Root from './Root';
 
-console.log('All your base are belong to us. Prepare for great justice.');
 
 /*
 const initialState = getInitialState();
@@ -31,38 +29,13 @@ const store = createStore(
 );
 */
 
-/*
 function render(Component, rootElement) {
 
-  if (__DEVELOPMENT__) {
-    try {
-      ReactDOM.render(
-        <Component />,
-        rootElement
-      );
-    } catch (e) {
-      ReactDOM.render(
-        <Redbox error={e} />,
-        rootElement
-      );
-    }
-  } else {
-    ReactDOM.render(
-      <Component store={store} />,
-      rootElement
-    );
-  }
+  ReactDOM.render(
+    <Component />,
+    rootElement
+  );
 }
 
 const rootElement = document.getElementById('app');
 render(Root, rootElement);
-*/
-
-/*
-if (module.hot) {
-  module.hot.accept('./Root', () => {
-    const NextRoot = require('./Root').default;
-    render(NextRoot, rootElement);
-  })
-}
-*/

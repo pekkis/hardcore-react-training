@@ -1,31 +1,21 @@
 {
   "presets": [
     ["env", {
+      debug: true,
+      "useBuiltIns": "entry",
       "targets": {
-        "browsers": ["last 2 versions"],
+        "browsers": ["last 2 versions", "not ie <= 10"],
         "node": "current"
       },
-      "modules": false,
+      "modules": false
     }]
   ],
   "plugins": [
+    "syntax-dynamic-import",
+    "transform-flow-strip-types",
     "babel-plugin-transform-class-properties",
     "babel-plugin-transform-object-rest-spread",
     "babel-plugin-transform-decorators",
     "babel-plugin-transform-react-jsx"
-  ],
-
-  "env": {
-    "test": {
-      "presets": [
-        ["env", {
-          "targets": {
-            "browsers": ["last 2 versions"],
-            "node": "current"
-          },
-          "modules": "commonjs",
-        }]
-      ],
-    }
-  }
+  ]
 }

@@ -138,7 +138,6 @@ const common = {
 
 function getCommonPlugins() {
   const commonPlugins = List.of(
-    new webpack.optimize.ModuleConcatenationPlugin(),
     new CaseSensitivePathsPlugin(),
     new WatchMissingNodeModulesPlugin(PATHS.modules),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
@@ -174,7 +173,6 @@ function getCommonPlugins() {
       chunks: ['vendor'],
       filename: 'meta.[hash].js',
     }),
-    new webpack.optimize.ModuleConcatenationPlugin()
   );
 
   return processCommonPlugins(commonPlugins);
@@ -238,6 +236,7 @@ const envs = {
     plugins: processEnvPlugins(
       'production',
       getCommonPlugins().concat([
+        new webpack.optimize.ModuleConcatenationPlugin(),
         new BabelMinifyPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new WebpackAssetsManifest({
