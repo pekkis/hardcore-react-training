@@ -9,7 +9,6 @@ export function getInitialState() {
   return undefined;
 }
 
-
 export function getMiddlewares() {
   let middlewares = [
     thunk,

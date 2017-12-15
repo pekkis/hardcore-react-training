@@ -1,6 +1,6 @@
-import React from 'react';
-import App from './components/container/AppContainer';
-import { Provider } from 'react-redux';
+import React from "react";
+import App from "./pages/container/AppContainer";
+import { Provider } from "react-redux";
 
 const Root = props => {
   const { store } = props;

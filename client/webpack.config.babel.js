@@ -115,7 +115,31 @@ function getCommonLoaders() {
     {
       test: /\.jsx?$/,
       use: [{
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        options: {
+          babelrc: false,
+          "presets": [
+            ["env", {
+              "debug": true,
+              "useBuiltIns": "entry",
+              "targets": {
+                "browsers": ["last 2 versions", "not ie <= 10"],
+              },
+              "modules": false
+            }]
+          ],
+          "plugins": [
+            ["babel-plugin-styled-components", {
+              "ssr": true
+            }],
+            "syntax-dynamic-import",
+            "transform-flow-strip-types",
+            "babel-plugin-transform-class-properties",
+            "babel-plugin-transform-object-rest-spread",
+            "babel-plugin-transform-decorators",
+            "babel-plugin-transform-react-jsx"
+          ]
+        }
       }],
       exclude: [
         PATHS.modules,
@@ -138,7 +162,6 @@ const common = {
 
 function getCommonPlugins() {
   const commonPlugins = List.of(
-    new webpack.optimize.ModuleConcatenationPlugin(),
     new CaseSensitivePathsPlugin(),
     new WatchMissingNodeModulesPlugin(PATHS.modules),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
@@ -174,7 +197,6 @@ function getCommonPlugins() {
       chunks: ['vendor'],
       filename: 'meta.[hash].js',
     }),
-    new webpack.optimize.ModuleConcatenationPlugin()
   );
 
   return processCommonPlugins(commonPlugins);
@@ -238,6 +260,7 @@ const envs = {
     plugins: processEnvPlugins(
       'production',
       getCommonPlugins().concat([
+        new webpack.optimize.ModuleConcatenationPlugin(),
         new BabelMinifyPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new WebpackAssetsManifest({
