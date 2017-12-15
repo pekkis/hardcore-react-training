@@ -1,6 +1,6 @@
-import React from 'react';
-import App from './pages/App';
-import { Provider } from 'react-redux';
+import React from "react";
+import App from "./pages/container/AppContainer";
+import { Provider } from "react-redux";
 
 const Root = props => {
   const { store } = props;
@@ -9,6 +9,6 @@ const Root = props => {
       <App />
     </Provider>
   );
-}
+};
 
 export default Root;

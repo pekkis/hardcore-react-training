@@ -65,6 +65,7 @@
 * containerit pageille
 * oma HOC?
 * recompose
+* modaali-protaali
 
 ## koodinhuolto, debuggaus ja performanssi
 
@@ -90,6 +91,10 @@
   * redial acyncciin
   * aloitustila mukaan jsonina
   * react osaa napata tilanteen lennosta
+
+## graphql
+
+* demonstroi d-pörssillä
 
 ## best practices
 

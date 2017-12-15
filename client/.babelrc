@@ -1,21 +1,14 @@
 {
   "presets": [
     ["env", {
-      debug: true,
-      "useBuiltIns": "entry",
+      debug: false,
       "targets": {
-        "browsers": ["last 2 versions", "not ie <= 10"],
         "node": "current"
       },
-      "modules": false
+      "modules": "commonjs"
     }]
   ],
   "plugins": [
-    "syntax-dynamic-import",
-    "transform-flow-strip-types",
-    "babel-plugin-transform-class-properties",
-    "babel-plugin-transform-object-rest-spread",
-    "babel-plugin-transform-decorators",
-    "babel-plugin-transform-react-jsx"
+    "babel-plugin-transform-object-rest-spread"
   ]
 }

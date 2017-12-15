@@ -6,7 +6,7 @@ import personService from './services/person';
 
 dotenv.config();
 
-let persons = Range(1, 21).map(personService.createPerson).toList();
+let persons = Range(1, 51).map(personService.createPerson).toList();
 
 const app = express();
 app.use(cors());

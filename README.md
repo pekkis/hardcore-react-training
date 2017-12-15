@@ -21,23 +21,23 @@ Use as you wish, but still read the license from LICENSE.
 
 - MacOS and Linux are grade A citizens. Should work in Windows too, but I don't always
   test because I'm not a Windows man.
-- For the training, you can also download and use the ready-to-use [the prebuilt virtual machine](http://dr-kobros.com/lib/hardcore-react-training-vm.zip).
-- The current version of Node.js (8.x). Might work on older ones, but no guarantee!
+- If it doesn't work, just use a Unix virtual machine.
+- The current version of Node.js (8.x). Might work on older ones, but no guarantees!
 - The [Yarn package manager](https://yarnpkg.com).
 
 ## Training requirements
 
-- A good editor / IDE that supports our stuff in real-time. I use [Nuclide](https://nuclide.io/) (Atom)
+- A good editor / IDE that supports our stuff in real-time. I use [Atom](https://atom.io/) (Atom)
   myself because it's free and good!
-- Some alternatives: Visual Studio Code, WebStorm.
+- Some alternatives: VSCode, Nuclide, WebStorm.
 
 If you decide to use Atom, install at least the following packages:
 
-- nuclide
 - linter
 - linter-eslint
 - language-babel
 - language-postcss
+- prettier-atom
 
 ## Good to know
 
@@ -47,7 +47,7 @@ If you decide to use Atom, install at least the following packages:
 
 - React
 - routing
-  - React Router v4
+  - React Router
   - alternatives (Redux-first routing)
 - Application state management
   - Redux

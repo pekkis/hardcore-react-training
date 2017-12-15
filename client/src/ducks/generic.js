@@ -1,13 +1,28 @@
-import { Map } from "immutable";
+import { List, Map } from "immutable";
+import personService from "../services/personService";
 
 const defaultState = Map({
-  genericOption: false,
+  persons: List()
 });
 
-export function setGenericOption(value) {
+export function getPersons() {
   return {
-    type: "GENERIC_SET_OPTION",
-    payload: value
+    type: "GET_PERSONS",
+    payload: personService.getPersons()
+  };
+}
+
+export function deletePerson(person) {
+  return {
+    type: "DELETE_PERSON",
+    payload: person
+  };
+}
+
+export function addPerson(person) {
+  return {
+    type: "ADD_PERSON",
+    payload: person
   };
 }
 
@@ -15,8 +30,16 @@ export default function(state = defaultState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case "GENERIC_SET_OPTION":
-      return state.set("genericOption", payload);
+    case "ADD_PERSON":
+      return state.update("persons", persons => persons.push(payload));
+
+    case "DELETE_PERSON":
+      return state.update("persons", persons =>
+        persons.filterNot(p => p.id === payload.id)
+      );
+
+    case "GET_PERSONS_FULFILLED":
+      return state.set("persons", List(payload));
 
     default:
       return state;
