@@ -1,32 +1,21 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-function getStyleLoader(env, target, base) {
-  const ret = {
-    ...base,
-  };
-
-  switch (env) {
-    case 'development':
-      if (target === 'browser') {
-        ret.use = [
-          'style-loader',
-          ...ret.use,
-        ];
-      }
-      break;
-
-    case 'production':
-      if (target === 'browser') {
-        ret.use = ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: base.use,
-        });
-      }
-      break;
+function getStyleLoader(env, target, options) {
+  if (target === "browser") {
+    if (env === "development") {
+      return options.update("use", u => u.unshift("style-loader"));
+    }
+    return options.update("use", u =>
+      ExtractTextPlugin.extract({
+        fallback: "style-loader",
+        use: u.toJS()
+      })
+    );
   }
-  return ret;
+
+  return options;
 }
 
 module.exports = {
-  getStyleLoader,
-}
+  getStyleLoader
+};
