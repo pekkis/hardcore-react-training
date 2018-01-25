@@ -2,7 +2,7 @@ const { List, fromJS } = require("immutable");
 const Plugin = require("html-webpack-plugin");
 
 module.exports = {
-  isEnabled: (env, target) => true,
+  isEnabled: (env, target) => target === "client",
   defaults: (env, target, paths) =>
     List.of(
       fromJS({

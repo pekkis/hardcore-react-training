@@ -4,9 +4,11 @@
   "description": "An example / training project broilerplate utilizing React et al.",
   "main": "src",
   "scripts": {
-    "clean": "rimraf ./dist",
+    "clean": "rimraf ./dist && rimraf ./dist-server",
     "build:client": "cross-env NODE_ENV=production webpack --progress --display-optimization-bailout",
-    "build": "yarn run clean && yarn run build:client",
+    "build:server": "cross-env NODE_ENV=production webpack --progress --config webpack.server.config.babel.js --display-optimization-bailout",
+    "build:node": "cross-env NODE_ENV=production babel src/index.js > dist-server/index.js",
+    "build": "yarn run clean && yarn run build:client && yarn run build:server && yarn run build:node",
     "lint": "eslint src --ext js",
     "stats": "NODE_ENV=production ./node_modules/.bin/webpack --json > stats.json",
     "babel-node": "babel-node",
@@ -63,6 +65,8 @@
     "redux-promise-middleware": "^5.0.0",
     "redux-thunk": "^2.1.0",
     "styled-components": "^2.2.4",
+    "transit-immutable-js": "^0.7.0",
+    "transit-js": "^0.8.846",
     "uuid": "^3.1.0",
     "webfontloader": "^1.6.28"
   },
@@ -121,10 +125,12 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
     "rimraf": "^2.6.2",
+    "stats-webpack-plugin": "^0.6.2",
     "style-loader": "^0.19.1",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
     "webpack-assets-manifest": "^1.0.0",
-    "webpack-dev-server": "^2.9.7"
+    "webpack-dev-server": "^2.9.7",
+    "webpack-node-externals": "^1.6.0"
   }
 }

@@ -1,14 +1,4 @@
-const loaderOverrides = {
-  babelLoader: (env, target, paths, defaults) => {
-    return defaults;
-    /*
-    return defaults.setIn(
-      ["use", 0, "options", "presets", 0, 1, "targets", "browsers"],
-      "tussihovi"
-    );
-    */
-  }
-};
+const loaderOverrides = {};
 
 const pluginOverrides = {
   htmlPlugin: (env, target, paths, values) =>
@@ -35,8 +25,8 @@ function overridePlugin(defaults, env, target, paths, configKey) {
     : defaults;
 }
 
-function overrideWebpackConfiguration(env, target, paths, config) {
-  return config;
+function overrideWebpackConfiguration(defaults, env, target, paths) {
+  return defaults;
 }
 
 module.exports = {

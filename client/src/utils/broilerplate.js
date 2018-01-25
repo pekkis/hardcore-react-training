@@ -8,14 +8,14 @@ const {
   configureWebpack
 } = require("./configure");
 
-const { compose } = require("recompose");
-
 const broilerplate = (env, target, paths, overrides) => {
   let features = OrderedSet.of(
     "babelFeature",
+    "babelMinifyFeature",
     "basicDevelopmentFeature",
     "basicOptimizationFeature",
     "clientRenderFeature",
+    "serverRenderFeature",
     "codeSplittingFeature",
     "manifestFeature",
     "pekkisHybridCssFeature",
@@ -93,6 +93,16 @@ const broilerplate = (env, target, paths, overrides) => {
           )
       );
 
+      const overrideForWebpack = List.of(
+        overrideWebpackConfiguration,
+        (values, env, target, paths, name) =>
+          features.reduce(
+            (r, f) =>
+              f.overrideWebpackConfiguration(r, env, target, paths, name),
+            values
+          )
+      );
+
       const runLoaders = loaders
         .filter(l => isLoaderEnabled(env, target, l))
         .map(l => configureLoader(env, target, paths, l, overrideForLoaders))
@@ -102,12 +112,19 @@ const broilerplate = (env, target, paths, overrides) => {
         .filter(p => isPluginEnabled(env, target, p))
         .map(p => configurePlugin(env, target, paths, p, overrideForPlugins));
 
+      const config = overrideForWebpack.reduce(
+        (v, o) => o(v, env, target, paths),
+        configureWebpack(env, target, paths, runLoaders, runPlugins)
+      );
+
+      /*
       const config = overrideWebpackConfiguration(
         env,
         target,
         paths,
         configureWebpack(env, target, paths, runLoaders, runPlugins)
       );
+      */
 
       return config.toJS();
     }

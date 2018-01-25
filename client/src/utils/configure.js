@@ -93,29 +93,51 @@ const configureWebpack = (env, target, paths, loaders, plugins) => {
     .set("plugins", plugins);
 };
 
+const getEntry = (env, target) => {
+  return target === "client" ? "./client.js" : "./server.js";
+};
+
+const getFilename = (env, target) => {
+  if (env === "development" || target === "server") {
+    return "[name].js";
+  }
+
+  return "[name].[chunkhash].js";
+};
+
 const baseConfig = (env, target, paths) => {
-  return fromJS({
+  let baseConfig = fromJS({
     devtool: env === "development" ? "#eval-source-map" : "source-map",
     context: paths.src,
     module: {
       rules: []
     },
+    externals: [],
     resolve: {
       modules: [paths.src, "node_modules"],
       extensions: [".js", ".jsx"]
     },
     entry: {
-      client: ["./client.js"]
+      [target]: [getEntry(env, target)]
     },
 
     output: {
       path: paths.build,
       publicPath: "/",
-      filename: env === "production" ? "[name].[chunkhash].js" : "[name].js",
+      filename: getFilename(env, target),
       devtoolModuleFilenameTemplate: "/[absolute-resource-path]"
     },
     plugins: []
   });
+
+  if (target === "server") {
+    baseConfig = baseConfig
+      .set("target", "node")
+      .setIn(["output", "library"], "app")
+      .setIn(["output", "libraryTarget"], "commonjs2");
+  }
+
+  return baseConfig;
 };
 
 module.exports = {

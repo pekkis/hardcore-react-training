@@ -3,7 +3,7 @@ const webpack = require("webpack");
 const Plugin = webpack.optimize.CommonsChunkPlugin;
 
 module.exports = {
-  isEnabled: (env, target) => true,
+  isEnabled: (env, target) => target === "client",
   defaults: (env, target, paths) =>
     List.of(
       fromJS({

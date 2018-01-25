@@ -8,8 +8,11 @@ import PersonPage from "./container/PersonPageContainer";
 
 class App extends React.PureComponent {
   componentDidMount() {
-    const { fetchPersons } = this.props;
-    fetchPersons();
+    const { fetchPersons, persons } = this.props;
+    console.log(persons.toJS());
+    if (persons.count() === 0) {
+      fetchPersons();
+    }
   }
 
   render() {

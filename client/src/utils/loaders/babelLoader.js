@@ -9,6 +9,18 @@ const getBrowsers = root => {
   return browserFile.split("\n").map(b => b.trim()).filter(b => b);
 };
 
+const getTargets = (env, target, paths) => {
+  if (target === "client") {
+    return {
+      browsers: getBrowsers(paths.root)
+    };
+  }
+
+  return {
+    node: "current"
+  };
+};
+
 module.exports = {
   isEnabled: (env, target) => true,
   defaults: (env, target, paths) => {
@@ -25,9 +37,7 @@ module.exports = {
                 {
                   debug: env === "development",
                   useBuiltIns: "entry",
-                  targets: {
-                    browsers: getBrowsers(paths.root)
-                  },
+                  targets: getTargets(env, target, paths),
                   modules: false
                 }
               ]

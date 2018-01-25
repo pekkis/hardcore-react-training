@@ -8,9 +8,11 @@ module.exports = {
       "noEmitOnErrorsPlugin",
       "definePlugin",
       "namedModulesPlugin",
-      "namedChunksPlugin"
+      "namedChunksPlugin",
+      "statsPlugin"
     ),
   loaders: () => OrderedSet.of(),
   overrideLoader: (values, env, target, paths, key) => values,
-  overridePlugin: (values, env, target, paths, key) => values
+  overridePlugin: (values, env, target, paths, key) => values,
+  overrideWebpackConfiguration: (values, env, target, paths) => values
 };

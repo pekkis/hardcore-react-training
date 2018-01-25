@@ -11,7 +11,7 @@ module.exports = {
           loader: "file-loader",
           options: {
             name: "[path][name]-[hash].[ext]",
-            emitFile: target === "browser"
+            emitFile: target === "client"
           }
         },
         {

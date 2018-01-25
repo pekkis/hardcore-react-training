@@ -10,7 +10,7 @@ module.exports = {
         {
           loader: "url-loader",
           options: {
-            emitFile: target === "browser",
+            emitFile: target === "client",
             limit: 10000,
             name: "[path][name]-[hash].[ext]"
           }
