@@ -1,2 +1,1 @@
-const broilerplate = require("./broilerplate");
-module.exports = broilerplate("server");
+module.exports = require("./broilerplate")("server");

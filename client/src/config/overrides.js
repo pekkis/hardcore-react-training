@@ -1,8 +1,9 @@
 const loaderOverrides = {};
 
 const pluginOverrides = {
-  htmlPlugin: (env, target, paths, values) =>
-    values.setIn([0, "title"], "Fraktio ERP 3000")
+  htmlPlugin: (values, env, target, paths) => {
+    return values.setIn([0, "title"], "Fraktio ERP 3000");
+  }
 };
 
 function processCommonPlugins(plugins) {
@@ -15,13 +16,13 @@ function processEnvPlugins(env, plugins) {
 
 function overrideLoader(defaults, env, target, paths, configKey) {
   return loaderOverrides[configKey]
-    ? loaderOverrides[configKey](env, target, paths, defaults)
+    ? loaderOverrides[configKey](defaults, env, target, paths)
     : defaults;
 }
 
 function overridePlugin(defaults, env, target, paths, configKey) {
   return pluginOverrides[configKey]
-    ? pluginOverrides[configKey](env, target, paths, defaults)
+    ? pluginOverrides[configKey](defaults, env, target, paths)
     : defaults;
 }
 

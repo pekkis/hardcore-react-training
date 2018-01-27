@@ -1,21 +1,15 @@
-const path = require("path");
-const broilerplate = require("./src/utils/broilerplate");
+const { broilerplate, defaultPaths } = require("@dr-kobros/broilerplate");
 const overrides = require("./src/config/overrides");
 const dotenv = require("dotenv");
 dotenv.config();
 
 module.exports = target => {
-  const buildDir = target === "client" ? "./dist" : "./dist-server";
   const env = process.env.NODE_ENV;
-  const paths = {
-    root: path.resolve(__dirname),
-    src: path.resolve(__dirname, "./src"),
-    build: path.resolve(__dirname, buildDir),
-    modules: path.resolve(__dirname, "./node_modules"),
-    test: path.resolve(__dirname, "./test")
-  };
+  const paths = defaultPaths(env, target, __dirname);
 
-  const bp = broilerplate(env, target, paths, overrides).run();
+  const bp = broilerplate(env, target, paths, overrides)
+    .removeFeature("codeSplittingFeature")
+    .run();
   return bp;
 
   // // .removeFeature("codeSplittingFeature")

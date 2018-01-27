@@ -6,6 +6,11 @@ const respond = require(path.resolve(__dirname, "../dist-server/server.js"))
   .default;
 const app = express();
 
+app.use(
+  express.static(path.resolve(__dirname, "../dist"), {
+    index: false
+  })
+);
 app.use(respond(stats));
 
 app.listen(8080, () => {
