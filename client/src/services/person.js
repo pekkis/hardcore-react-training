@@ -3,7 +3,7 @@ import uuid from "uuid";
 import axios from "axios";
 import faker from "faker";
 
-export function createPerson() {
+function createPerson() {
   return {
     id: uuid(),
     firstName: faker.name.firstName(),
@@ -14,6 +14,11 @@ export function createPerson() {
   };
 }
 
-export function getPersons() {
+function getPersons() {
   return axios.get("http://localhost:8889/person").then(ret => ret.data);
 }
+
+export default {
+  createPerson,
+  getPersons
+};

@@ -1,5 +1,5 @@
 import { Map, List } from "immutable";
-import { getPersons } from "../services/person";
+import personService from "../services/person";
 
 const defaultState = Map({
   persons: List(),
@@ -23,7 +23,7 @@ export function deletePerson(id) {
 export function fetchPersons() {
   return {
     type: "FETCH_PERSONS",
-    payload: getPersons
+    payload: personService.getPersons
   };
 }
 
@@ -31,23 +31,21 @@ export default function genericReducer(state = defaultState, action) {
   const { type, payload } = action;
 
   switch (type) {
-
     case "FETCH_PERSONS_PENDING":
       return state.update("loading", l => l + 1);
 
     case "FETCH_PERSONS_FULFILLED":
-      return state
-        .set("persons", List(payload))
-        .update("loading", l => l - 1)
+      return state.set("persons", List(payload)).update("loading", l => l - 1);
 
     case "ADD_PERSON":
       return state.update("persons", persons => persons.push(payload));
 
     case "DELETE_PERSON":
-      return state.update("persons", persons => persons.filter(p => p.id !== payload));
+      return state.update("persons", persons =>
+        persons.filter(p => p.id !== payload)
+      );
 
     default:
       return state;
-
   }
 }

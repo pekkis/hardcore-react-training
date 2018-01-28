@@ -2,23 +2,23 @@ import React from "react";
 import PersonList from "./PersonList";
 import AddPersonForm from "./AddPersonForm";
 import ShadowedBox from "./ShadowedBox";
-import { createPerson } from "../services/person";
+import personService from "../services/person";
 
 const IndexPage = props => {
-
   const { persons, deletePerson, addPerson } = props;
 
   return (
     <section>
-
       <ShadowedBox>
-        <AddPersonForm onSubmit={values => {
+        <AddPersonForm
+          onSubmit={values => {
             const personToBeAdded = {
-              ...createPerson(),
+              ...personService.createPerson(),
               ...values
             };
             addPerson(personToBeAdded);
-        }} />
+          }}
+        />
       </ShadowedBox>
 
       <h2>Good Employees</h2>
@@ -32,9 +32,8 @@ const IndexPage = props => {
         deletePerson={deletePerson}
         persons={persons.filter(p => p.age >= 30)}
       />
-
     </section>
   );
-}
+};
 
 export default IndexPage;

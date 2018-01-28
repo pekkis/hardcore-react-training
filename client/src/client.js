@@ -18,12 +18,12 @@ const store = createStore(
   initialState
 );
 
-function render(Component, rootElement) {
-  ReactDOM.render(<Component store={store} />, rootElement);
+function render(Component, rootElement, method = "render") {
+  ReactDOM[method](<Component store={store} />, rootElement);
 }
 
 const rootElement = document.getElementById("app");
-render(Root, rootElement);
+render(Root, rootElement, initialState === undefined ? "render" : "hydrate");
 
 if (module.hot) {
   module.hot.accept("./Root", () => {

@@ -8,15 +8,7 @@ module.exports = target => {
   const paths = defaultPaths(env, target, __dirname);
 
   const bp = broilerplate(env, target, paths, overrides)
-    .removeFeature("codeSplittingFeature")
+    .addFeature("babelMinifyFeature")
     .run();
   return bp;
-
-  // // .removeFeature("codeSplittingFeature")
-  // .addFeature("babelMinifyFeature")
-  // .removeFeature("codeSplittingFeature")
-  //.removeFeature("pekkisHybridCssFeature")
-  //.addFeature("assetFeature")
-  //.addPlugin(() => new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
-  //.removeLoader("externalcssLoader")
 };

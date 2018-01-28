@@ -1,18 +1,12 @@
 const loaderOverrides = {};
 
 const pluginOverrides = {
+  /*
   htmlPlugin: (values, env, target, paths) => {
-    return values.setIn([0, "title"], "Fraktio ERP 3000");
+    return values.setIn([0, "favicon"], "favicon.ico");
   }
+  */
 };
-
-function processCommonPlugins(plugins) {
-  return plugins;
-}
-
-function processEnvPlugins(env, plugins) {
-  return plugins;
-}
 
 function overrideLoader(defaults, env, target, paths, configKey) {
   return loaderOverrides[configKey]
@@ -28,11 +22,18 @@ function overridePlugin(defaults, env, target, paths, configKey) {
 
 function overrideWebpackConfiguration(defaults, env, target, paths) {
   return defaults;
+
+  /*
+  if (target === "server") {
+    return defaults;
+  }
+  return defaults.updateIn(["entry", "client"], e =>
+    e.unshift("babel-polyfill")
+  );
+  */
 }
 
 module.exports = {
-  processCommonPlugins,
-  processEnvPlugins,
   overrideLoader,
   overridePlugin,
   overrideWebpackConfiguration
