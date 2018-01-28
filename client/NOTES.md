@@ -44,6 +44,7 @@
 * knappi! (primary & secondary)
 * pure
 * perf tools
+* form!
 
 ## refaktoroidaan mega apps
 
@@ -66,6 +67,7 @@
 * oma HOC?
 * recompose
 * modaali-protaali
+* error boundary
 
 ## koodinhuolto, debuggaus ja performanssi
 
