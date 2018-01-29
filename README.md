@@ -4,12 +4,12 @@
 
 Welcome, friend, to my two-day hardcore React Workshop. You'll grow some real bones instead of the backbone.js (pun intended) your rib cage is attached to now.
 
-This repo also acts as my broilerplate to kickstart a React project with sane defaults, necessary tooling and
-some reusable, copy-paste-preventing boilerplate stuff. It's exactly the same stuff I build my own stuff on.
+This repo also acts as a starter project for my [broilerplate](https://github.com/pekkis/broilerplate)
+to kickstart a React project with sane defaults, necessary tooling and reusable, copy-paste-preventing boilerplate stuff. It's exactly the same kit I build my own stuff on.
 
 I recommend to check out the [create-react-app](https://github.com/facebookincubator/create-react-app) boilerplate
 instead of my broilerplate. If it suits you, you might want to use it. Personally, I think it's inadequate.
-You always have to eject, and then you're just as on your own as here.
+You always have to eject, and then you're on your own as here. With Broilerplate, this is not the case.
 
 ## Branches
 
@@ -101,6 +101,12 @@ root folder.
 
 ### build (client)
 
-Builds to `dist/` folder.
+Builds to `dist/` (client code) and `dist-server` (server SSR code) folder.
 
 - `yarn run build`
+
+### serve (node)
+
+- `cd client`
+- `yarn run build`
+- `node dist-server/index.js`

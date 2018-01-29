@@ -1,7 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import Root from "./Root";
+console.log("suckling on a duckling");
 
+// import React from "react";
+// import ReactDOM from "react-dom";
+// import Root from "./Root";
+
+/*
 import { createStore } from "./utils/redux";
 import {
   getMiddlewares,
@@ -17,13 +20,15 @@ const store = createStore(
   getEnhancers(),
   initialState
 );
+*/
 
-function render(Component, rootElement, method = "render") {
-  ReactDOM[method](<Component store={store} />, rootElement);
+/*
+function render(Component, rootElement) {
+  ReactDOM.render(<Component />, rootElement);
 }
 
 const rootElement = document.getElementById("app");
-render(Root, rootElement, initialState === undefined ? "render" : "hydrate");
+render(Root, rootElement);
 
 if (module.hot) {
   module.hot.accept("./Root", () => {
@@ -31,3 +36,4 @@ if (module.hot) {
     render(HotReloadedRoot, rootElement);
   });
 }
+*/
