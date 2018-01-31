@@ -9,23 +9,24 @@
   * JSX - lähestymistapa vs Angular (HTML vs JS)
 
 * Jarno
-* Webpack (päivitin koloseen)
+* Webpack
 * Babel
 
 ## verryttelyä
 
+* broilerplate (https://github.com/pekkis/broilerplate)
 * rakenne
-  * juuressa konffiripuli
-  * src:ssä kaikki lähdekoodi
-  * tähdennä että kyseessä mun näkemys siitä miten asiat voi tehdä fiksusti.
+  * juuressa konffit
+  * src:ssä kaikki lähdekoodi (client.js ja server.js entryt)
+  * tähdennä että kyseessä oma näkemys siitä miten asiat voi tehdä fiksusti.
 * yarn
 
 ## kood kood
 
 * client.js
-* export, import, var, const, let
+* export, import, var, const, let, ES6
 * rendataan Root (moi)
-  * root on olemassa vain bootstrappaystä varten. Appi appiin.
+  * root on olemassa vain bootsträppäystä varten. Appi appiin.
 
 ## mega app mvp
 
@@ -35,16 +36,24 @@
   * listat ja key!!!
 * komponenttien tyylitys (css-modulit ja postcss)
 * filtteröinti (miehet ja naiset esim) ja komponenttien uusiokäyttö
-* immutable.js ja paremmat tietorakenteet
 * tilallinen komponentti (App) ja lifecycle-metodit
 * datan haku palvelimelta (axios)
 * tyypin poisto, callbackkien kuletus
-* tyyppien lisäys (lomakkeiden "vaikeus")
 * knappi
 * knappi! (primary & secondary)
+* PropTypes
+
+* immutable.js ja paremmat tietorakenteet
 * pure
+
+
+* Extra huomiselle!
+
+* error boundary ?
+* tyyppien lisäys (lomakkeiden "vaikeus")
 * perf tools
-* form!
+* form
+
 
 ## refaktoroidaan mega apps
 
@@ -61,13 +70,11 @@
 
 * react router
   * index
-  * gender
   * single person
 * containerit pageille
-* oma HOC?
+* HOC / render props
 * recompose
-* modaali-protaali
-* error boundary
+* modaali-protaali!
 
 ## koodinhuolto, debuggaus ja performanssi
 
@@ -82,21 +89,20 @@
 
 ## flow
 
-* lussuta tyypityksestä
-* typescript
+* lussuta tyypityksestä?
+* typescript / flow?
 * jos kiinnostusta löytyy, käy läpi
 
 ## serverirendaus
 
-* case: diktaattoripörssi
-  * webpackataan serveripuolikin
-  * redial acyncciin
-  * aloitustila mukaan jsonina
-  * react osaa napata tilanteen lennosta
+* webpackataan serveripuolikin
+* reititys / thunkkailu
+* aloitustila mukaan jsonina
+* react osaa "napata" tilanteen lennosta (ReactDOM.hydrate)
 
 ## graphql
 
-* demonstroi d-pörssillä
+* demonstroi d-pörssillä pikaisesti
 
 ## best practices
 
