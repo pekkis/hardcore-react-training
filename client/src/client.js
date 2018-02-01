@@ -1,10 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Root from "./Root";
-
-console.log("suckling on a duckling");
-
-/*
 import { createStore } from "./utils/redux";
 import {
   getMiddlewares,
@@ -14,16 +10,16 @@ import {
 } from "./config/redux";
 
 const initialState = getInitialState();
+
 const store = createStore(
   getReducers(),
   getMiddlewares(),
   getEnhancers(),
   initialState
 );
-*/
 
 function render(Component, rootElement) {
-  ReactDOM.render(<Component />, rootElement);
+  ReactDOM.hydrate(<Component store={store} />, rootElement);
 }
 
 const rootElement = document.getElementById("app");

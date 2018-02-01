@@ -1,47 +1,59 @@
 import React from "react";
-import personService from "../services/person";
-import PersonList from "./PersonList";
 import styles from "./App.pcss";
-import { List } from "immutable";
+import IndexPage from "./IndexPage";
+import PersonPage from "./PersonPage";
+import { Switch, Route } from "react-router";
 
 class App extends React.Component {
-  state = {
-    persons: List()
-  };
-
-  firePerson = id => {
-    this.setState({
-      persons: this.state.persons.filter(p => p.id !== id)
-    });
-  };
-
-  componentDidMount() {
-    personService.getPersons().then(persons => {
-      this.setState({
-        persons: List(persons)
-      });
-    });
-    // what happen here?
-  }
 
   render() {
-    const { persons } = this.state;
-
-    const goodPersons = persons.filter(p => p.age < 30);
-    const badPersons = persons.filter(p => p.age >= 30);
-
+    const { persons, hirePerson, firePerson } = this.props;
     return (
       <div>
         <h1>Fraktio Tussimestari ERP 3.0</h1>
 
-        <h2>Hyvät työntekijät</h2>
-        <PersonList firePerson={this.firePerson} persons={goodPersons} />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props => {
+              return (
+                <IndexPage
+                  persons={persons}
+                  hirePerson={hirePerson}
+                  firePerson={firePerson}
+                />
+              );
+            }}
+          />
 
-        <h2>Pahat työntekijät</h2>
-        <PersonList firePerson={this.firePerson} persons={badPersons} />
+          <Route
+            exact
+            path="/person/:id"
+            render={props => {
+              const { id } = props.match.params;
+              const person = persons.find(p => p.id === id);
+              return (
+                <PersonPage
+                  person={person}
+                />
+              );
+            }}
+          />
+
+
+        </Switch>
+
+
       </div>
     );
   }
+
+  componentDidMount() {
+    const { getPersons } = this.props;
+    getPersons();
+  }
+
 }
 
 export default App;

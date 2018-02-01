@@ -12,6 +12,7 @@
 * Webpack
 * Babel
 
+
 ## verryttelyä
 
 * broilerplate (https://github.com/pekkis/broilerplate)
@@ -46,14 +47,12 @@
 * immutable.js ja paremmat tietorakenteet
 * pure
 
-
 * Extra huomiselle!
 
 * error boundary ?
 * tyyppien lisäys (lomakkeiden "vaikeus")
 * perf tools
 * form
-
 
 ## refaktoroidaan mega apps
 
@@ -65,6 +64,8 @@
   * fiksuissa ei hötskää
   * tyhmissä ei tilaa
   * HOC
+
+
 
 ## alasivut mega appsiin
 

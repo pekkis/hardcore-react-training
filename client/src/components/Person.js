@@ -3,6 +3,7 @@ import styles from "./Person.pcss";
 import cx from "classnames";
 import Button from "./Button";
 import Icon from "react-fa";
+import { Link } from "react-router-dom";
 
 const Person = props => {
   const { person, firePerson } = props;
@@ -15,7 +16,10 @@ const Person = props => {
   );
   return (
     <div className={classes}>
-      <strong>{person.lastName}</strong>, {person.firstName} ({person.age})
+
+      <Link to={`/person/${person.id}`}>
+        <strong>{person.lastName}</strong>, {person.firstName} ({person.age})
+      </Link>
 
       <Button
         block

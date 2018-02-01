@@ -20,7 +20,7 @@ const getPersons = () => {
     .get("http://localhost:8889/person")
     .then(ret => ret.data).catch(err => {
       console.log(err);
-    })
+    });
 }
 
 export default {

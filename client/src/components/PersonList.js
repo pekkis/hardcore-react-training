@@ -15,7 +15,10 @@ const PersonList = props => {
         Keski-ikä: {averageAge.toFixed(2)} vuotta
       </p>
 
-      {persons.map(person =>
+      {persons
+        .sortBy(p => p.firstName)
+        .sortBy(p => p.lastName)
+        .map(person =>
         <Person
           firePerson={firePerson}
           key={person.id}
