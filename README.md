@@ -2,14 +2,18 @@
 
 ## Introduction
 
-Welcome, friend, to my two-day hardcore React Workshop. You'll grow some real bones instead of the backbone.js (pun intended) your rib cage is attached to now.
+Welcome, friend, to my two-day hardcore React Workshop v1. You'll grow some real bones instead of the backbone.js (pun intended, even though the joke is getting old)
+your rib cage is attached to now.
 
-This repo also acts as my broilerplate to kickstart a React project with sane defaults, necessary tooling and
-some reusable, copy-paste-preventing boilerplate stuff. It's exactly the same stuff I build my own stuff on.
+This repo also currently acts as a starter project for my [broilerplate](https://github.com/pekkis/broilerplate)
+to kickstart a React project with sane defaults, necessary tooling and reusable, copy-paste-preventing stuff. It's exactly the same kit I build my own stuff on.
 
-I recommend to check out the [create-react-app](https://github.com/facebookincubator/create-react-app) boilerplate
-instead of my broilerplate. If it suits you, you might want to use it. Personally, I think it's inadequate.
-You always have to eject, and then you're just as on your own as here.
+I recommend, though, to check out the [create-react-app](https://github.com/facebookincubator/create-react-app) boilerplate
+instead of my broilerplate. If it suits you, you might want to use it. Personally, I think it's inadequate. and do not agree with it's philosophy.
+You always have to eject, and then you're on your own as here.
+
+With Broilerplate, I aim to get all the advantages and none of the disadvantages.
+Only future will tell whether this is sane.
 
 ## Branches
 
@@ -19,8 +23,8 @@ Use as you wish, but still read the license from LICENSE.
 
 ## Requirements
 
-- MacOS and Linux are grade A citizens. Should work in Windows too, but I don't always
-  test because I'm not a Windows man.
+- MacOS and Linux are grade A citizens. Should work in Windows too, but I don't
+  always test because I'm not a Windows man.
 - If it doesn't work, just use a Unix virtual machine.
 - The current version of Node.js (8.x). Might work on older ones, but no guarantees!
 - The [Yarn package manager](https://yarnpkg.com).
@@ -41,32 +45,44 @@ If you decide to use Atom, install at least the following packages:
 
 ## Good to know
 
-- If you want to try production mode, an [example configuration file](docs/nginx.conf) for Nginx is included.
+If you want to try production mode, an [example configuration file](docs/nginx.conf) for Nginx is included. Or you can just deploy everything to CloudFront very easily.
 
-## Keywords
+## Keywords and links
 
-- React
-- routing
-  - React Router
-  - alternatives (Redux-first routing)
-- Application state management
-  - Redux
-  - Alternatives (MobX)
+These are not all in use and can easily be changed to be something else.
+Just buzzwords for students.
+
+- React (uses)
+- Server Side rendering
+  - Zero-configuration idiot-proof support.
+  - `src/index.js`
+  - `src/server.js` (your own code goes here!)
+- Routing
+  - React Router (uses)
+  - Redux First router (alternative)
+- State management
+  - Redux (uses)
+  - MobX (alternative)
 - Functional programming
-  - Lodash
-  - Ramda
+  - Immutable.js (uses)
+  - Lodash (alternative)
+  - Ramda (alternative)
 - Immutable data
-  - Immutable.js
-- Component based styling
-  - PostCSS and CSS modules
-  - Styled Components
+  - Immutable.js (uses)
+- Styling
+  - PostCSS and CSS modules (uses)
+  - Styled Components (uses)
 - Component development with designer-friendly methods
-  - React Storybook
+  - Storybook (alternative)
 - Babel
+  - preset-env (uses)
 - Webpack
-- Flow & TypeScript
-- REST & GraphQL
+- Flow & TypeScript (mentioned)
+- REST
+- GraphQL
 - Linting
+  - Prettier
+  - eslint
 - Testing
   - Jest
 
@@ -79,7 +95,6 @@ a backend for our training session.
 Commands are always run in either of these folders. Not in the common
 root folder.
 
-
 ### develop (client)
 
 - `cd client`
@@ -87,10 +102,6 @@ root folder.
 - `cp .env.example .env`
 - `yarn run start`
   - open browser and go to http://localhost:8888
-
-- `yarn run test`
-- `yarn run flow`
-- `yarn run lint`
 
 ### develop (server)
 
@@ -101,6 +112,12 @@ root folder.
 
 ### build (client)
 
-Builds to `dist/` folder.
+Builds to `dist/` (client code) and `dist-server` (server side rendering) folder.
 
 - `yarn run build`
+
+### serve (server side rendering)
+
+- `cd client`
+- `yarn run build`
+- `node dist-server/index.js`
