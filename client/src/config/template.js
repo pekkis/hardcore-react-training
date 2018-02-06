@@ -12,7 +12,7 @@ const template = (html, scripts, styles, sheets, state) => {
   </head>
   <body>
     <div id="app">${html}</div>
-    <script>window.REDUX_STATE = '${state}';</script>
+    <script id="state" type="application/transit+json">${state}</script>
     ${scripts}
   </body>
   </html>

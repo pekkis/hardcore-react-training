@@ -10,8 +10,8 @@ import {
   getMiddlewares,
   getReducers,
   getEnhancers,
-  getInitialState
 } from "./config/redux";
+import { getInitialState } from "./config/state";
 
 const initialState = getInitialState();
 const store = createStore(
