@@ -1,16 +1,8 @@
-console.log("suckling on a duckling");
-
-// import React from "react";
-// import ReactDOM from "react-dom";
-// import Root from "./Root";
-
-/*
+import React from "react";
+import ReactDOM from "react-dom";
+import Root from "./Root";
 import { createStore } from "./utils/redux";
-import {
-  getMiddlewares,
-  getReducers,
-  getEnhancers,
-} from "./config/redux";
+import { getMiddlewares, getReducers, getEnhancers } from "./config/redux";
 import { getInitialState } from "./config/state";
 
 const initialState = getInitialState();
@@ -20,11 +12,9 @@ const store = createStore(
   getEnhancers(),
   initialState
 );
-*/
 
-/*
 function render(Component, rootElement) {
-  ReactDOM.render(<Component />, rootElement);
+  ReactDOM.hydrate(<Component store={store} />, rootElement);
 }
 
 const rootElement = document.getElementById("app");
@@ -36,4 +26,3 @@ if (module.hot) {
     render(HotReloadedRoot, rootElement);
   });
 }
-*/

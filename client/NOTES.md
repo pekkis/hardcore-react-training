@@ -35,13 +35,13 @@
   * listat ja key!!!
 * komponenttien tyylitys (css-modulit ja postcss)
 * filtteröinti (miehet ja naiset esim) ja komponenttien uusiokäyttö
-* immutable.js ja paremmat tietorakenteet
 * tilallinen komponentti (App) ja lifecycle-metodit
 * datan haku palvelimelta (axios)
 * tyypin poisto, callbackkien kuletus
 * tyyppien lisäys (lomakkeiden "vaikeus")
 * knappi
 * knappi! (primary & secondary)
+* immutable.js ja paremmat tietorakenteet
 * pure
 * perf tools
 * form!
@@ -61,10 +61,10 @@
 
 * react router
   * index
-  * gender
+  * gender?
   * single person
 * containerit pageille
-* oma HOC?
+* oma HOC? JOO!
 * recompose
 * modaali-protaali
 * error boundary
@@ -76,29 +76,29 @@
 * selitä että usein ei tartte tehdä mitään.
 * mankelointi, source mapit ja debuggaus
 
-## vanhojen softien refaktorointi
-
-* pala kerrallaan mahdollista
-
-## flow
+## flow (optionaalinen)
 
 * lussuta tyypityksestä
 * typescript
 * jos kiinnostusta löytyy, käy läpi
 
-## serverirendaus
+## serverirendaus (optionaalinen)
 
 * case: diktaattoripörssi
-  * webpackataan serveripuolikin
-  * redial acyncciin
-  * aloitustila mukaan jsonina
+  * aloitustila mukaan json-blobina
   * react osaa napata tilanteen lennosta
+  * hydrate
 
-## graphql
+## graphql (optionaalinen)
 
 * demonstroi d-pörssillä
+
+## vanhojen softien refaktorointi
+
+* pala kerrallaan mahdollista
 
 ## best practices
 
 * redux containerien rohkea käyttö
-* säilytä yksi tila, derivoi subsetit, optimoi reselectillä jos tarttee
+* säilytä yksi tila, derivoi subsetit, optimoi jos tarttee
+* reselect

@@ -41,6 +41,7 @@
     "faker": "^4.1.0",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
+    "luxon": "^0.4.0",
     "polished": "^1.9.0",
     "prop-types": "^15.6.0",
     "random-js": "^1.0.8",

@@ -1,19 +1,20 @@
+import r from "./random";
 import faker from "faker";
 import uuid from "uuid";
-import random from "./random";
 
-function createPerson() {
+const createPerson = () => {
   return {
     id: uuid(),
-    lastName: faker.name.lastName(),
     firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    birthDay: faker.date.past(60, '1995-01-01'),
+    gender: r.pick(["m", "f"]),
+    handedness: r.pick(["l", "r"]),
     email: faker.internet.email(),
-    age: random.integer(16, 70),
-    gender: random.pick(["m", "f"]),
-    relatedToCEO: (random.integer(0, 100) > 90),
-  };
-}
+    relatedToCEO: r.pick([true, false, false, false, false, false, false, false]),
+  }
+};
 
 export default {
   createPerson
-};
+}

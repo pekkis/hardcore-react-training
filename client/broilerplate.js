@@ -10,5 +10,12 @@ module.exports = target => {
   const bp = broilerplate(env, target, paths, overrides)
     .addFeature("babelMinifyFeature")
     .run();
+
+    /*
+    const util = require("util");
+    console.log(util.inspect(bp, { depth: 666 }));
+    process.exit();
+    */
+
   return bp;
 };
