@@ -14,14 +14,14 @@ const Person = props => {
     [styles.male]: person.gender === "m"
   });
 
-  debugger;
-
   return (
     <div className={classes}>
-      <Link to={`/person/${person.id}`}>
-        <strong>{person.lastName}</strong>, {person.firstName} ({person.age}{" "}
-        vuotta)
-      </Link>
+      <div className={styles.name}>
+        <Link to={`/person/${person.id}`}>
+          <strong>{person.lastName}</strong>, {person.firstName}
+        </Link>
+      </div>
+      <div className={styles.age}>{person.age.toFixed(2)} vuotta</div>
       <p>
         <Button
           disabled={isBeingFired}

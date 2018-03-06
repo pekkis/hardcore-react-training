@@ -1,61 +1,84 @@
 import React from "react";
 import personService from "../services/person";
+import { Form, Field } from "react-final-form";
+import { DateTime } from "luxon";
+
+const required = value => (value ? undefined : "Required");
+const mustBeDate = value => {
+  const dt = DateTime.fromISO(value);
+  return dt.invalid && "Must be a date";
+};
+const composeValidators = (...validators) => value =>
+  validators.reduce((error, validator) => error || validator(value), undefined);
 
 class AddPersonForm extends React.Component {
-
-  state = {
-    firstName: "Adam",
-    lastName: "Adamsson"
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-
+  handleSubmit = async values => {
     const { hirePerson } = this.props;
-
     const newPerson = {
       ...personService.createPerson(),
-      ...this.state
+      ...values
     };
-
     hirePerson(newPerson);
-  }
+  };
 
   render() {
-    const { firstName, lastName } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <input
-            placeholder="etunimi"
-            value={firstName}
-            onChange={e => {
-              this.setState({
-                firstName: e.target.value
-              });
-            }}
-          />
-        </div>
-
-        <div>
-          <input
-            placeholder="sukunimi"
-            value={lastName}
-            onChange={e => {
-              this.setState({
-                lastName: e.target.value
-              });
-            }}
-          />
-        </div>
-
-        <button type="submit">palkkaa</button>
-
-      </form>
+      <Form
+        initialValues={{
+          firstName: "Adam",
+          lastName: "Adamnssohn"
+        }}
+        onSubmit={this.handleSubmit}
+        render={({ handleSubmit, reset, submitting, pristine, values }) => (
+          <form onSubmit={handleSubmit}>
+            <Field name="firstName" validate={required}>
+              {({ input, meta }) => (
+                <div>
+                  <label>First Name</label>
+                  <input {...input} type="text" placeholder="First Name" />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <Field name="lastName" validate={required}>
+              {({ input, meta }) => (
+                <div>
+                  <label>Last Name</label>
+                  <input {...input} type="text" placeholder="Last Name" />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <Field
+              name="birthDay"
+              validate={composeValidators(required, mustBeDate)}
+            >
+              {({ input, meta }) => (
+                <div>
+                  <label>Birthday</label>
+                  <input {...input} type="text" placeholder="Birthday" />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <div className="buttons">
+              <button type="submit" disabled={submitting}>
+                Submit
+              </button>
+              <button
+                type="button"
+                onClick={reset}
+                disabled={submitting || pristine}
+              >
+                Reset
+              </button>
+            </div>
+            <pre>{JSON.stringify(values, 0, 2)}</pre>
+          </form>
+        )}
+      />
     );
   }
-
-
 }
 
 export default AddPersonForm;

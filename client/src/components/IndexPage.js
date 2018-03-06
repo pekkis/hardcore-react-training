@@ -1,31 +1,40 @@
 import React from "react";
 import PersonList from "./PersonList";
 import AddPersonForm from "./AddPersonForm";
+import Filters from "./Filters";
 
 class IndexPage extends React.PureComponent {
   render() {
-    let { persons, firing, hirePerson, firePerson } = this.props;
-    persons = persons.sortBy(p => p.firstName).sortBy(p => p.lastName);
+    let {
+      persons,
+      firing,
+      hirePerson,
+      firePerson,
+      filters,
+      setFilter
+    } = this.props;
 
-    const goodPersons = persons.filter(p => p.gender === "m" && p.age < 30);
-    const badPersons = persons.filter(p => p.gender === "f" || p.age >= 30);
+    persons = persons
+      .filter(p => filters.get("gender").includes(p.gender))
+      .filter(p => {
+        return p.age >= filters.get("ageMin") && p.age <= filters.get("ageMax");
+      })
+      .sortBy(p => p.firstName)
+      .sortBy(p => p.lastName);
 
     return (
       <div>
+        <h2>Palkkaa sukulainen</h2>
+
         <AddPersonForm hirePerson={hirePerson} />
 
-        <PersonList
-          firing={firing}
-          firePerson={firePerson}
-          persons={goodPersons}
-          title="Hyvät ihmiset"
-        />
-        <PersonList
-          firing={firing}
-          firePerson={firePerson}
-          persons={badPersons}
-          title="Pahat ihmiset"
-        />
+        <hr />
+
+        <Filters filters={filters} setFilter={setFilter} />
+
+        <h2>Palkkalista</h2>
+
+        <PersonList firing={firing} firePerson={firePerson} persons={persons} />
       </div>
     );
   }

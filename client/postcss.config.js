@@ -1,10 +1,8 @@
 module.exports = {
   plugins: {
+    "postcss-import": {},
     "postcss-preset-env": {},
-    "postcss-partial-import": {},
     "postcss-advanced-variables": {},
-    "postcss-color-function": {},
-    "postcss-nesting": {},
     "postcss-nested": {},
     autoprefixer: {}
   }

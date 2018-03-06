@@ -19,7 +19,7 @@ export const firePerson = id => {
 export const hirePerson = person => {
   return {
     type: "HIRE_PERSON",
-    payload: person
+    payload: personService.hirePerson(person)
   };
 };
 
@@ -63,7 +63,7 @@ export default function personReducer(state = defaultState, action) {
     case "FIRE_PERSON_PENDING":
       return state.update("firing", firing => firing.add(payload));
 
-    case "HIRE_PERSON":
+    case "HIRE_PERSON_FULFILLED":
       return state.update("persons", persons => persons.push(payload));
 
     case "FIRE_PERSON_FULFILLED":

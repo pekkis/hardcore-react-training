@@ -1,1 +1,1 @@
-module.exports = require("./broilerplate")("client");
+module.exports = require("./.broilerplate")("client");

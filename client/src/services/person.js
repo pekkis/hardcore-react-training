@@ -44,16 +44,20 @@ const getPersons = () => {
 };
 
 const firePerson = id => {
-  return new Promise((resolve, reject) => {
-    const timeout = r.integer(1000, 60000);
-    setTimeout(() => {
-      resolve(id);
-    }, timeout);
-  });
+  return axios
+    .delete(`${process.env.REACT_APP_API}/person/${id}`)
+    .then(() => id);
+};
+
+const hirePerson = person => {
+  return axios
+    .post(`${process.env.REACT_APP_API}/person`, person)
+    .then(ret => calculateAge(ret.data));
 };
 
 export default {
   createPerson,
   getPersons,
-  firePerson
+  firePerson,
+  hirePerson
 };

@@ -5,7 +5,7 @@ const defaultState = Map({
 });
 
 export default function genericReducer(state = defaultState, action) {
-  const { type, payload } = action;
+  const { type } = action;
 
   if (type.endsWith("_PENDING")) {
     state = state.update("loading", loading => loading + 1);

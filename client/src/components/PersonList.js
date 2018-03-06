@@ -6,16 +6,12 @@ import { pure } from "recompose";
 import styles from "./PersonList.pcss";
 
 const PersonList = props => {
-  const { persons, title, firePerson, firing } = props;
+  const { persons, firePerson, firing } = props;
 
   const averageAge = persons.reduce((r, p) => r + p.age, 0) / persons.count();
 
   return (
     <div>
-      <h2>
-        {title}
-      </h2>
-
       <p>
         Henkilömäärä: {persons.count()} henkilöä.
         <br />

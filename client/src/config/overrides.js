@@ -1,37 +1,30 @@
-const loaderOverrides = {};
-
-const pluginOverrides = {
-  /*
-  htmlPlugin: (values, env, target, paths) => {
-    return values.setIn([0, "favicon"], "favicon.ico");
+const loaderOverrides = {
+  babelLoader: (loader, env, target, paths) => {
+    return loader;
   }
-  */
 };
 
-function overrideLoader(defaults, env, target, paths, configKey) {
-  return loaderOverrides[configKey]
-    ? loaderOverrides[configKey](defaults, env, target, paths)
-    : defaults;
-}
-
-function overridePlugin(defaults, env, target, paths, configKey) {
-  return pluginOverrides[configKey]
-    ? pluginOverrides[configKey](defaults, env, target, paths)
-    : defaults;
-}
-
-function overrideWebpackConfiguration(defaults, env, target, paths) {
-  return defaults;
-
-  /*
-  if (target === "server") {
-    return defaults;
+const pluginOverrides = {
+  htmlPlugin: (plugin, env, target, paths) => {
+    return plugin;
   }
-  return defaults.updateIn(["entry", "client"], e =>
-    e.unshift("babel-polyfill")
-  );
-  */
-}
+};
+
+const overrideLoader = (loader, env, target, paths) => {
+  return loaderOverrides[loader.name()]
+    ? loaderOverrides[loader.name()](loader, env, target, paths)
+    : loader;
+};
+
+const overridePlugin = (plugin, env, target, paths) => {
+  return pluginOverrides[plugin.name()]
+    ? pluginOverrides[plugin.name()](plugin, env, target, paths)
+    : plugin;
+};
+
+const overrideWebpackConfiguration = (base, env, target, paths) => {
+  return base;
+};
 
 module.exports = {
   overrideLoader,

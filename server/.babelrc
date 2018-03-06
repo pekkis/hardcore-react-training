@@ -1,5 +1,15 @@
 {
-  "presets": ["env"],
-  "plugins": [
-  ]
+  "presets": [
+    [
+      "env",
+      {
+        "debug": false,
+        "targets": {
+          "node": "current"
+        },
+        "modules": "commonjs"
+      }
+    ]
+  ],
+  "plugins": ["babel-plugin-transform-object-rest-spread"]
 }

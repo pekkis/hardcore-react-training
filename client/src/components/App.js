@@ -15,7 +15,15 @@ class App extends React.PureComponent {
   }
 
   render() {
-    let { persons, firing, loading, hirePerson, firePerson } = this.props;
+    let {
+      persons,
+      firing,
+      loading,
+      hirePerson,
+      firePerson,
+      filters,
+      setFilter
+    } = this.props;
     persons = persons.sortBy(p => p.firstName).sortBy(p => p.lastName);
 
     return (
@@ -41,6 +49,8 @@ class App extends React.PureComponent {
                   firing={firing}
                   hirePerson={hirePerson}
                   firePerson={firePerson}
+                  filters={filters}
+                  setFilter={setFilter}
                 />
               );
             }}
