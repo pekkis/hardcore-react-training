@@ -2,6 +2,7 @@ const path = require("path");
 const util = require("util");
 const {
   pipe,
+  empty,
   ensureFiles,
   defaultFeatures,
   defaultPaths,
@@ -31,6 +32,7 @@ module.exports = target => {
   const env = process.env.NODE_ENV;
 
   const config = pipe(
+    empty,
     defaultPaths(env, target, __dirname),
     defaultBaseConfig(env, target),
     babelPolyfill,

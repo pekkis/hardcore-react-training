@@ -22,12 +22,12 @@ const overridePlugin = (plugin, env, target, paths) => {
     : plugin;
 };
 
-const overrideWebpackConfiguration = (base, env, target, paths) => {
+const overrideBase = (base, env, target, paths) => {
   return base;
 };
 
 module.exports = {
   overrideLoader,
   overridePlugin,
-  overrideWebpackConfiguration
+  overrideBase
 };

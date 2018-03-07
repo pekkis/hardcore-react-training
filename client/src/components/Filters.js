@@ -24,7 +24,7 @@ class Filters extends React.Component {
         <div>
           <label>Genders</label>
           {["m", "f"].map(g => (
-            <div>
+            <div key={g}>
               <input
                 type="checkbox"
                 checked={filters.get("gender").includes(g)}

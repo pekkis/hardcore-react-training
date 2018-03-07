@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.pcss";
 import Spinner from "./Spinner";
-import IndexPage from "./IndexPage";
-import PersonPage from "./PersonPage";
+import IndexPage from "./async/AsyncIndexPage";
+import PersonPage from "./async/AsyncPersonPage";
 import { Switch, Route } from "react-router";
 
 class App extends React.PureComponent {

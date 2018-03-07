@@ -53,6 +53,7 @@
     "react-final-form": "^3.1.2",
     "react-helmet": "^5.2.0",
     "react-immutable-proptypes": "^2.1.0",
+    "react-loadable": "^5.3.1",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.0",
@@ -66,9 +67,9 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "@dr-kobros/broilerplate": "^0.13.6",
-    "@dr-kobros/broilerplate-postcss": "^0.13.9",
-    "@dr-kobros/broilerplate-styled-components": "^0.13.8",
+    "@dr-kobros/broilerplate": "^0.14.0",
+    "@dr-kobros/broilerplate-postcss": "^0.14.0",
+    "@dr-kobros/broilerplate-styled-components": "^0.14.1",
     "ajv": "^6.2.1",
     "autoprefixer": "^8.1.0",
     "babel-cli": "^6.26.0",

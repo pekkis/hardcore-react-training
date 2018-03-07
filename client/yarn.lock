@@ -32,24 +32,24 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@csstools/sass-import-resolve/-/sass-import-resolve-1.0.0.tgz#32c3cdb2f7af3cd8f0dca357b592e7271f3831b5"
 
-"@dr-kobros/broilerplate-postcss@^0.13.9":
-  version "0.13.9"
-  resolved "https://registry.yarnpkg.com/@dr-kobros/broilerplate-postcss/-/broilerplate-postcss-0.13.9.tgz#7ae3061e103fea6a19f046de274186fce7fda81e"
+"@dr-kobros/broilerplate-postcss@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@dr-kobros/broilerplate-postcss/-/broilerplate-postcss-0.14.0.tgz#461f21f59200edf0be471b5e8e784961a72554c3"
   dependencies:
     autoprefixer "^8.0.0"
     immutable "4.0.0-rc.9"
     postcss-loader "^2.1.1"
     postcss-preset-env "^2.1.0"
 
-"@dr-kobros/broilerplate-styled-components@^0.13.8":
-  version "0.13.8"
-  resolved "https://registry.yarnpkg.com/@dr-kobros/broilerplate-styled-components/-/broilerplate-styled-components-0.13.8.tgz#0e99fb6da86827695d81058ebdb8b66cb55df3ed"
+"@dr-kobros/broilerplate-styled-components@^0.14.1":
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/@dr-kobros/broilerplate-styled-components/-/broilerplate-styled-components-0.14.1.tgz#ede8dc4dc73e9949f92d801d148c23d7b3460640"
   dependencies:
     immutable "4.0.0-rc.9"
 
-"@dr-kobros/broilerplate@^0.13.6":
-  version "0.13.6"
-  resolved "https://registry.yarnpkg.com/@dr-kobros/broilerplate/-/broilerplate-0.13.6.tgz#00351d9c7d6f2a2f5dcf0f42b6d0e6f48f85ee0e"
+"@dr-kobros/broilerplate@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@dr-kobros/broilerplate/-/broilerplate-0.14.0.tgz#c0f87d7d0bcf3a2c0fa518c3cf40978023dc41d3"
   dependencies:
     case-sensitive-paths-webpack-plugin "^2.1.1"
     clean-webpack-plugin "^0.1.18"
@@ -7883,7 +7883,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.x, prop-types@^15.5.10, prop-types@^15.6.1:
+prop-types@15.x, prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
   dependencies:
@@ -8175,6 +8175,12 @@ react-inspector@^2.2.2:
   dependencies:
     babel-runtime "^6.26.0"
     is-dom "^1.0.9"
+
+react-loadable@^5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/react-loadable/-/react-loadable-5.3.1.tgz#9699e9a08fed49bacd69caaa282034b62a76bcdd"
+  dependencies:
+    prop-types "^15.5.0"
 
 react-redux@^5.0.7:
   version "5.0.7"
