@@ -15,18 +15,14 @@ const {
 } = require("@dr-kobros/broilerplate");
 
 const postCssFeature = require("@dr-kobros/broilerplate-postcss");
+const babelPolyfillFeature = require("@dr-kobros/broilerplate/lib/features/babelPolyfillFeature");
+const nodeExternalsFeature = require("@dr-kobros/broilerplate/lib/features/nodeExternalsFeature");
 const styledComponentsFeature = require("@dr-kobros/broilerplate-styled-components");
 
 const dotenv = require("dotenv");
 dotenv.config();
 
 const { Map } = require("immutable");
-
-const babelPolyfill = build => {
-  return build.updateIn(["base", "entry", "client"], e =>
-    e.unshift("babel-polyfill")
-  );
-};
 
 module.exports = target => {
   const env = process.env.NODE_ENV;
@@ -35,9 +31,15 @@ module.exports = target => {
     empty,
     defaultPaths(env, target, __dirname),
     defaultBaseConfig(env, target),
-    babelPolyfill,
     defaultFeatures,
-    addFeatures(postCssFeature, styledComponentsFeature),
+    addFeatures(
+      postCssFeature,
+      styledComponentsFeature,
+      babelPolyfillFeature,
+      nodeExternalsFeature({
+        whitelist: [/^react-fa/, /^font-awesome/]
+      })
+    ),
     ensureFiles(false),
     compile(env, target),
     override(path.join(__dirname, "./src/config/overrides")),
