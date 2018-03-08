@@ -35,7 +35,7 @@ class App extends React.PureComponent {
             alt="Tussinaama ERP LOGO"
             src={require("../assets/trollo.png")}
           />
-          Fraktio Tussinaama ERP 5.0
+          Fraktio Tussinaama ERP 6.66
         </h1>
 
         <Switch>
