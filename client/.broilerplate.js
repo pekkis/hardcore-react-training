@@ -42,6 +42,7 @@ module.exports = target => {
         whitelist: [/^react-fa/, /^font-awesome/]
       })
     ),
+    build => build.setIn(["base", "devtool"], "cheap-module-eval-source-map"),
     ensureFiles(false),
     compile(env, target),
     override(path.join(__dirname, "./src/config/overrides")),
