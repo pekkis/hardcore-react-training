@@ -8,12 +8,12 @@ import styles from "./PersonList.pcss";
 const PersonList = props => {
   const { persons, firePerson, firing } = props;
 
-  const averageAge = persons.reduce((r, p) => r + p.age, 0) / persons.count();
+  const averageAge = persons.reduce((r, p) => r + p.age, 0) / persons.length;
 
   return (
     <div>
       <p>
-        Henkilömäärä: {persons.count()} henkilöä.
+        Henkilömäärä: {persons.length} henkilöä.
         <br />
         Keski-ikä: {averageAge.toFixed(4)}
       </p>

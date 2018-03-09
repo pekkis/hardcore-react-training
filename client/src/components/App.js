@@ -4,17 +4,28 @@ import Spinner from "./Spinner";
 import IndexPage from "./async/AsyncIndexPage";
 import PersonPage from "./async/AsyncPersonPage";
 import { Switch, Route } from "react-router";
+import { observer } from "mobx-react";
 
-class App extends React.PureComponent {
+@observer
+class App extends React.Component {
   componentDidMount() {
+    this.props.store.getPersons();
+
+    /*
     const { getPersons, persons } = this.props;
     if (persons.count() > 0) {
       return;
     }
     getPersons();
+    */
   }
 
   render() {
+    const { store } = this.props;
+
+    console.log(this.props.store.persons, "puuppas");
+
+    /*
     let {
       persons,
       firing,
@@ -25,10 +36,11 @@ class App extends React.PureComponent {
       setFilter
     } = this.props;
     persons = persons.sortBy(p => p.firstName).sortBy(p => p.lastName);
+    */
 
     return (
       <div>
-        {loading > 0 && <Spinner />}
+        {false && <Spinner />}
 
         <h1>
           <img
@@ -43,16 +55,7 @@ class App extends React.PureComponent {
             exact
             path="/"
             render={props => {
-              return (
-                <IndexPage
-                  persons={persons}
-                  firing={firing}
-                  hirePerson={hirePerson}
-                  firePerson={firePerson}
-                  filters={filters}
-                  setFilter={setFilter}
-                />
-              );
+              return <IndexPage persons={store.persons} firing={false} />;
             }}
           />
           <Route
@@ -60,7 +63,7 @@ class App extends React.PureComponent {
             path="/person/:id"
             render={props => {
               const id = props.match.params.id;
-              const person = persons.find(p => p.id === id);
+              const person = store.persons.find(p => p.id === id);
               return <PersonPage person={person} />;
             }}
           />

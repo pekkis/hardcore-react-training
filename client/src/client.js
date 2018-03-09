@@ -4,15 +4,19 @@ import Root from "./Root";
 import { createStore } from "./utils/redux";
 import { getMiddlewares, getReducers, getEnhancers } from "./config/redux";
 import { getInitialState } from "./config/state";
+import store from "./config/mobx";
 import "rc-slider/assets/index.css";
 
 const initialState = getInitialState();
+
+/*
 const store = createStore(
   getReducers(),
   getMiddlewares(),
   getEnhancers(),
   initialState
 );
+*/
 
 function render(Component, rootElement, method = "render") {
   ReactDOM[method](<Component store={store} />, rootElement);

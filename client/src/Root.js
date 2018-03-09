@@ -1,14 +1,15 @@
 import React from "react";
-import App from "./components/containers/AppContainer";
-import { Provider } from "react-redux";
+import App from "./components/App";
+import { Provider } from "mobx-react";
 import { BrowserRouter } from "react-router-dom";
 
 const Root = props => {
   const { store } = props;
+
   return (
-    <Provider store={store}>
+    <Provider puuppaStore={store}>
       <BrowserRouter>
-        <App />
+        <App store={store} />
       </BrowserRouter>
     </Provider>
   );
