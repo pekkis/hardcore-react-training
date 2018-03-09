@@ -15,7 +15,7 @@
     "lint": "eslint src",
     "babel-node": "babel-node",
     "start":
-      "cross-env NODE_ENV=development webpack-dev-server --port 10001 --history-api-fallback --hot --inline",
+      "cross-env NODE_ENV=development webpack-dev-server --port 8888 --history-api-fallback --hot --inline",
     "flow": "flow",
     "test": "jest"
   },

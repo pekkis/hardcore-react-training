@@ -1,11 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Root from "./Root";
+/*
 import { createStore } from "./utils/redux";
 import { getMiddlewares, getReducers, getEnhancers } from "./config/redux";
 import { getInitialState } from "./config/state";
-import "rc-slider/assets/index.css";
+*/
 
+const initialState = undefined;
+
+/*
 const initialState = getInitialState();
 const store = createStore(
   getReducers(),
@@ -13,9 +17,10 @@ const store = createStore(
   getEnhancers(),
   initialState
 );
+*/
 
 function render(Component, rootElement, method = "render") {
-  ReactDOM[method](<Component store={store} />, rootElement);
+  ReactDOM[method](<Component />, rootElement);
 }
 
 const rootElement = document.getElementById("app");
