@@ -8,6 +8,7 @@ const {
   defaultPaths,
   defaultBaseConfig,
   addFeatures,
+  mergeOptions,
   compile,
   override,
   run,
@@ -32,6 +33,11 @@ module.exports = target => {
     empty,
     defaultPaths(env, target, __dirname),
     defaultBaseConfig(env, target),
+    mergeOptions(
+      Map({
+        debug: true
+      })
+    ),
     defaultFeatures,
     addFeatures(
       postCssFeature,
