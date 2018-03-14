@@ -4,6 +4,9 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 
 import personService from "./services/person";
+import schema from "./schema";
+import { graphqlExpress, graphiqlExpress } from "apollo-server-express";
+
 // import customerService from "./services/customer";
 // import projectService from "./services/project";
 // import officeService from "./services/office";
@@ -14,6 +17,22 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use(
+  "/graphql",
+  graphqlExpress(req => {
+    return {
+      schema
+    };
+  })
+);
+
+app.use(
+  "/graphiql",
+  graphiqlExpress({
+    endpointURL: "/graphql"
+  })
+);
 
 app.get("/person", async (req, res, next) => {
   const persons = await personService.all();
