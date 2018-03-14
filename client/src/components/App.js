@@ -1,32 +1,71 @@
 import React from "react";
-import PersonList from "./PersonList";
-import AddPersonForm from "./AddPersonForm";
+import Loading from "./Loading";
+import IndexPage from "./IndexPage";
+import PersonPage from "./PersonPage";
+import { Switch, Route } from "react-router";
 import "./App.pcss";
 
-const App = props => {
-  const { persons, firePerson, hirePerson } = props;
+class App extends React.Component {
+  state = {
+    error: undefined
+  };
 
-  const goodPersons = persons.filter(p => p.age <= 30 && p.gender === "m");
-  const badPersons = persons.filter(p => p.age > 30 || p.gender === "f");
+  componentDidCatch(e) {
+    this.setState((state, props) => {
+      return {
+        error: e
+      };
+    });
+  }
 
-  return (
-    <div>
-      <h1>
-        <img src={require("../assets/trollo.png")} alt="Trollo!" />
-        Fraktio Tussinaama ERP 777.7
-      </h1>
+  render() {
+    const { persons, firePerson, hirePerson, loading, firing } = this.props;
+    const { error } = this.state;
 
-      <AddPersonForm hirePerson={hirePerson} />
+    if (error) {
+      return (
+        <div>
+          <h2>Oh noes! Something went wrong! Pls reload da page!</h2>
+        </div>
+      );
+    }
 
+    return (
       <div>
-        <h2>Hyvät henkilöt</h2>
-        <PersonList firePerson={firePerson} persons={goodPersons} showAverage />
+        {loading > 0 && <Loading />}
 
-        <h2>Pahat henkilöt</h2>
-        <PersonList firePerson={firePerson} persons={badPersons} />
+        <h1>
+          <img src={require("../assets/trollo.png")} alt="Trollo!" />
+          Fraktio Tussinaama ERP 777.7
+        </h1>
+
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={props => {
+              return (
+                <IndexPage
+                  persons={persons}
+                  firePerson={firePerson}
+                  hirePerson={hirePerson}
+                  firing={firing}
+                />
+              );
+            }}
+          />
+          <Route
+            path="/person/:id"
+            exact
+            render={props => {
+              const person = persons.find(p => p.id === props.match.params.id);
+              return <PersonPage person={person} />;
+            }}
+          />
+        </Switch>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default App;

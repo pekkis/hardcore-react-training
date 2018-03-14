@@ -8,7 +8,11 @@ const defaultState = Map({
 export const firePerson = id => {
   return {
     type: "FIRE_PERSON",
-    payload: personService.firePerson(id)
+    payload: {
+      promise: personService.firePerson(id),
+      data: id
+    }
+    // payload: personService.firePerson(id)
   };
 };
 

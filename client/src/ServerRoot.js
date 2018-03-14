@@ -1,18 +1,18 @@
 import React from "react";
 import { Provider } from "react-redux";
 import App from "./components/containers/AppContainer";
-import { BrowserRouter } from "react-router-dom";
+import { StaticRouter } from "react-router";
 
-const Root = props => {
-  const { store } = props;
+const ServerRoot = props => {
+  const { store, location } = props;
 
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <StaticRouter location={location}>
         <App />
-      </BrowserRouter>
+      </StaticRouter>
     </Provider>
   );
 };
 
-export default Root;
+export default ServerRoot;

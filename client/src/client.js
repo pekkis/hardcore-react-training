@@ -5,10 +5,12 @@ import Root from "./Root";
 import { createStore } from "./utils/redux";
 import { getMiddlewares, getReducers, getEnhancers } from "./config/redux";
 import { getInitialState } from "./config/state";
-
 import { getPersons } from "./ducks/person";
+// import createSagaMiddleware from "redux-saga";
+// import personSaga from "./sagas/personSaga";
 
 const initialState = getInitialState();
+//const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   getReducers(),
@@ -17,7 +19,9 @@ const store = createStore(
   initialState
 );
 
-store.dispatch(getPersons());
+// sagaMiddleware.run(personSaga);
+
+// store.dispatch(getPersons());
 
 function render(Component, rootElement, method = "render") {
   ReactDOM[method](<Component store={store} />, rootElement);

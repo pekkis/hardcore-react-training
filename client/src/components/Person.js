@@ -3,9 +3,11 @@ import styles from "./Person.pcss";
 import cx from "classnames";
 import Button from "./Button";
 import Icon from "react-fa";
+import { pure } from "recompose";
+import { Link } from "react-router-dom";
 
 const Person = props => {
-  const { person, firePerson } = props;
+  const { person, firePerson, firing } = props;
 
   const classes = cx(styles.root, {
     [styles.male]: person.gender === "m",
@@ -14,10 +16,13 @@ const Person = props => {
 
   return (
     <div className={classes}>
-      <strong>{person.lastName}</strong>, {person.firstName} ({person.age.toFixed(
-        4
-      )})
+      <Link to={`/person/${person.id}`}>
+        <strong>{person.lastName}</strong>, {person.firstName} ({person.age.toFixed(
+          4
+        )})
+      </Link>
       <Button
+        disabled={firing.includes(person.id)}
         block
         onClick={() => {
           firePerson(person.id);
@@ -30,4 +35,4 @@ const Person = props => {
   );
 };
 
-export default Person;
+export default pure(Person);
