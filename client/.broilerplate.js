@@ -17,7 +17,7 @@ const {
 const postCssFeature = require("@dr-kobros/broilerplate-postcss");
 const babelPolyfillFeature = require("@dr-kobros/broilerplate/lib/features/babelPolyfillFeature");
 const nodeExternalsFeature = require("@dr-kobros/broilerplate/lib/features/nodeExternalsFeature");
-// const extractCssFeature = require("@dr-kobros/broilerplate/lib/features/extractCssFeature");
+const extractCssFeature = require("@dr-kobros/broilerplate/lib/features/extractCssFeature");
 const styledComponentsFeature = require("@dr-kobros/broilerplate-styled-components");
 
 const dotenv = require("dotenv");
@@ -37,7 +37,7 @@ module.exports = target => {
       postCssFeature,
       styledComponentsFeature,
       babelPolyfillFeature,
-      //extractCssFeature,
+      extractCssFeature,
       nodeExternalsFeature({
         whitelist: [/^react-fa/, /^font-awesome/]
       })
@@ -50,7 +50,7 @@ module.exports = target => {
     toJS
   )(Map());
 
-  console.log("config", util.inspect(config, { depth: 666 }));
+  // console.log("config", util.inspect(config, { depth: 666 }));
   // process.exit();
 
   return config;

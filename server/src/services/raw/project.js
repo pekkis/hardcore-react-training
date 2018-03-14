@@ -18,7 +18,6 @@ const projects = List.of(
 ).map(name => {
   const customers = customerService.all();
 
-  console.log(customers, "c");
   let customer;
   if (["Embezzlement", "Fraktio ERP"].includes(name)) {
     customer = customers.find(c => c.name === "Fraktio");
