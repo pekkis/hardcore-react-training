@@ -7,6 +7,7 @@ const {
   defaultFeatures,
   defaultPaths,
   defaultBaseConfig,
+  mergeOptions,
   addFeatures,
   compile,
   override,
@@ -17,7 +18,7 @@ const {
 const postCssFeature = require("@dr-kobros/broilerplate-postcss");
 const babelPolyfillFeature = require("@dr-kobros/broilerplate/lib/features/babelPolyfillFeature");
 const nodeExternalsFeature = require("@dr-kobros/broilerplate/lib/features/nodeExternalsFeature");
-const extractCssFeature = require("@dr-kobros/broilerplate/lib/features/extractCssFeature");
+const extractCssFeature = require("@dr-kobros/broilerplate-mini-css-extract");
 const styledComponentsFeature = require("@dr-kobros/broilerplate-styled-components");
 
 const dotenv = require("dotenv");
@@ -32,6 +33,11 @@ module.exports = target => {
     empty,
     defaultPaths(env, target, __dirname),
     defaultBaseConfig(env, target),
+    mergeOptions(
+      Map({
+        debug: env === "development" ? true : false
+      })
+    ),
     defaultFeatures,
     addFeatures(
       postCssFeature,
@@ -42,7 +48,12 @@ module.exports = target => {
         whitelist: [/^react-fa/, /^font-awesome/]
       })
     ),
-    build => build.setIn(["base", "devtool"], "cheap-module-eval-source-map"),
+    build => {
+      if (env === "production") {
+        return build;
+      }
+      return build.setIn(["base", "devtool"], "cheap-module-eval-source-map");
+    },
     ensureFiles(false),
     compile(env, target),
     override(path.join(__dirname, "./src/config/overrides")),
