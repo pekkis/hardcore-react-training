@@ -3,6 +3,7 @@
 ## alkujaaritus
 
 * React
+
   * komponenttipohjaisuus
   * DOM on implementaatiodetalji
   * yksinkertainen

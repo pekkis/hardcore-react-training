@@ -16,6 +16,7 @@
     "express": "^4.16.3",
     "faker": "^4.1.0",
     "immutable": "4.0.0-rc.9",
+    "luxon": "^1.0.0",
     "ramda": "^0.25.0",
     "random-js": "^1.0.8",
     "uuid": "^3.2.1"
