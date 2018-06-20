@@ -3,7 +3,7 @@ import styles from "./Person.pcss";
 import cx from "classnames";
 
 const Person = props => {
-  const { person } = props;
+  const { person, handleFirePerson } = props;
 
   const classes = cx(styles.person, {
     [styles.male]: person.gender === "m",
@@ -13,6 +13,7 @@ const Person = props => {
   return (
     <div className={classes}>
       {person.lastName}, {person.firstName}
+      <button onClick={() => handleFirePerson(person.id)}>Fire</button>
     </div>
   );
 };

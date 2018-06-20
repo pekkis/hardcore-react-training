@@ -1,6 +1,7 @@
 import faker from "faker";
 import random from "../utils/random";
 import uuid from "uuid";
+import axios from "axios";
 
 const createPerson = () => {
   return {
@@ -13,6 +14,11 @@ const createPerson = () => {
   };
 };
 
+const getPersons = () => {
+  return axios.get("http://localhost:8889/person");
+};
+
 export default {
-  createPerson
+  createPerson,
+  getPersons
 };
