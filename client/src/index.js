@@ -7,6 +7,7 @@ dotenv.config();
 const port = parseInt(process.env.SSR_PORT, 10);
 
 const stats = require(path.resolve(__dirname, "../dist/stats.json"));
+
 const respond = require(path.resolve(__dirname, "../dist-server/server.js"))
   .default;
 const app = express();
