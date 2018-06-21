@@ -10,25 +10,13 @@ const createPerson = () => {
     id: uuid(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
-    birthDay: faker.date.past(70, "1999-01-01"),
+    birthDay: faker.date.between("1900-01-01", "2008-12-31"),
     gender: r.pick(["m", "f"]),
-    handedness: r.pick(["l", "r"]),
-    salary: r.integer(2000, 10000),
-    email: faker.internet.email(),
-    relatedToCEO: r.pick([
-      true,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false
-    ])
+    email: faker.internet.email()
   };
 };
 
-const persons = Range(1, 201)
+const persons = Range(10, 30)
   .map(createPerson)
   //.map(augmentPerson)
   .toList();
