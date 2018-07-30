@@ -4,7 +4,7 @@
 
 Welcome, friend, to my two-day hardcore React Workshop.
 
-This repository my own [broilerplate](https://github.com/pekkis/broilerplate)
+This repository uses my own [broilerplate](https://github.com/pekkis/broilerplate)
 to kickstart a React project with sane defaults, necessary tooling and reusable,
 copy-paste-preventing stuff. It's exactly the same kit I build my own stuff on.
 
@@ -24,7 +24,7 @@ Use as you wish, but still read the license from LICENSE.
 
 ## Branches
 
-`training` is the default branch (don't ask) that contains the starting point for
+`training` is the default branch that contains the starting point for
 our course. The `master` branch contains a fuller example application that might be
 up to date or not, depending on stuff.
 
@@ -35,11 +35,11 @@ up to date or not, depending on stuff.
 - If it doesn't work, just use a Unix virtual machine.
 - The current version of Node.js (8+). Might work on older ones, but no guarantees!
 - The [Yarn package manager](https://yarnpkg.com).
-- A good editor / IDE that supports the good stuff. I use [Atom](https://atom.io/)
-  myself because it's free and good!
+- An editor / IDE that supports the good stuff. I use [Atom](https://atom.io/)
+  myself.
   - Many of my colleagues use [VSCode](https://code.visualstudio.com/). They say it's even better.
   - Some alternatives: Nuclide, WebStorm, Eclipse, Sublime Text, whatever.
-- Chrome browser. Or some other good browser.
+- Chrome browser. Or some other good dev browser.
 
 ### Browser extensions
 
@@ -66,15 +66,6 @@ If you use VSCode, you must install at least the following packages.
 - prettier code format
 
 [Check this screenshot!](https://www.dropbox.com/s/mujeklatlr30ciy/Screenshot%202018-07-30%2013.39.07.png?dl=0)
-
-## Good to know
-
-If you want to try production mode, an [example configuration file](docs/nginx.conf) for Nginx is included. Or you can just deploy everything to CloudFront or similar very easily.
-
-## Keywords and links
-
-These are not all in use and can easily be changed to be something else.
-Just buzzwords for students.
 
 ## Howto
 
