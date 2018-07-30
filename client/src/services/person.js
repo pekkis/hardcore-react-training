@@ -15,10 +15,15 @@ const createPerson = () => {
 };
 
 const getPersons = () => {
-  return axios.get("http://localhost:8889/person");
+  return axios.get("http://localhost:8889/person").then(ret => ret.data);
+};
+
+const firePerson = id => {
+  return axios.delete(`http://localhost:8889/person/${id}`).then(() => id);
 };
 
 export default {
   createPerson,
-  getPersons
+  getPersons,
+  firePerson
 };

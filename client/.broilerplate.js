@@ -61,8 +61,5 @@ module.exports = target => {
     toJS
   )(Map());
 
-  // console.log("config", util.inspect(config, { depth: 666 }));
-  // process.exit();
-
   return config;
 };
