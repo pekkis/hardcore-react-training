@@ -5,30 +5,33 @@
 Welcome, friend, to my two-day hardcore React Workshop. It is very important
 that you read and follow these instructions before the actual two training days.
 
-## Branches
+## Installation
+
+Start by forking / cloning this repository. If you don't want to use git, just
+download it.
 
 `training` is the default branch that contains the starting point for
 our course. The `master` branch contains a fuller example application that might be
 up to date or not, depending on stuff.
-
-## System Requirements
-
-- MacOS and Linux are grade A citizens. Should work in Windows too, but I don't
-  always test because I'm not a Windows man myself.
-- If it doesn't work, just use a Unix virtual machine.
-- The current version of Node.js (8+). Might work on older ones, but no guarantees!
-- The [Yarn package manager](https://yarnpkg.com).
-- An editor / IDE that supports the good stuff. I use [Atom](https://atom.io/)
-  myself.
-  - Many of my colleagues use [VSCode](https://code.visualstudio.com/). They say it's even better.
-  - Some alternatives: Nuclide, WebStorm, Eclipse, Sublime Text, whatever.
-- Chrome browser. Or some other good dev browser.
 
 ## Human Requirements
 
 - You are a developer, devsigner or such.
 - You have working professional knowledge on JavaScript, HTML and CSS. You don't have to be a guru,
   but the course is not suitable for beginners.
+
+## Computer Requirements
+
+- MacOS and Linux are grade A citizens. Should work in Windows too, but I don't
+  always test because I'm not a Windows man myself.
+- If it doesn't work, just use a Unix virtual machine.
+- The current version of node.js (8+). Might work on older ones, but no guarantees!
+- The [Yarn package manager](https://yarnpkg.com).
+- An editor / IDE that supports the good stuff. I use [Atom](https://atom.io/)
+  myself.
+  - Many of my colleagues use [VSCode](https://code.visualstudio.com/). They say it's even better.
+  - Some alternatives: Nuclide, WebStorm, Eclipse, Sublime Text, whatever.
+- Chrome browser. Or some other good dev browser.
 
 ### Browser extensions
 
