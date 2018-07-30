@@ -1,26 +1,9 @@
-# Hardcore React Training Broilerplate
+# Hardcore React Training
 
 ## Introduction
 
-Welcome, friend, to my two-day hardcore React Workshop.
-
-This repository uses my own [broilerplate](https://github.com/pekkis/broilerplate)
-to kickstart a React project with sane defaults, necessary tooling and reusable,
-copy-paste-preventing stuff. It's exactly the same kit I build my own stuff on.
-
-I recommend, though, to also check out the [create-react-app](https://github.com/facebookincubator/create-react-app) boilerplate
-instead of my broilerplate. If it suits you, you might want to use it. Personally, I think it's inadequate, and do not agree with it's philosophy.
-You basically always have to eject, and then you're on your own as here.
-
-With Broilerplate, I aim to get all the advantages and none of the disadvantages.
-Only future will tell whether this is sane.
-
-[react-app-rewired](https://github.com/timarney/react-app-rewired) tries to
-do the same. You might want to check it too.
-
-## Licensing
-
-Use as you wish, but still read the license from LICENSE.
+Welcome, friend, to my two-day hardcore React Workshop. It is very important
+that you read and follow these instructions before the actual two training days.
 
 ## Branches
 
@@ -28,7 +11,7 @@ Use as you wish, but still read the license from LICENSE.
 our course. The `master` branch contains a fuller example application that might be
 up to date or not, depending on stuff.
 
-## Requirements
+## System Requirements
 
 - MacOS and Linux are grade A citizens. Should work in Windows too, but I don't
   always test because I'm not a Windows man myself.
@@ -40,6 +23,12 @@ up to date or not, depending on stuff.
   - Many of my colleagues use [VSCode](https://code.visualstudio.com/). They say it's even better.
   - Some alternatives: Nuclide, WebStorm, Eclipse, Sublime Text, whatever.
 - Chrome browser. Or some other good dev browser.
+
+## Human Requirements
+
+- You are a developer, devsigner or such.
+- You have working professional knowledge on JavaScript, HTML and CSS. You don't have to be a guru,
+  but the course is not suitable for beginners.
 
 ### Browser extensions
 
@@ -109,3 +98,23 @@ The app builds to `dist/` (client code) and `dist-server` (server side rendering
 - `cd client`
 - `yarn run build`
 - `node dist-server/index.js`
+
+## Food for thought
+
+This repository uses my own [broilerplate](https://github.com/pekkis/broilerplate)
+to kickstart a React project with sane defaults, necessary tooling and reusable,
+copy-paste-preventing stuff. It's exactly the same kit I build my own stuff on.
+
+I recommend, though, to also check out the [create-react-app](https://github.com/facebookincubator/create-react-app) boilerplate
+instead of my broilerplate. If it suits you, you might want to use it. Personally, I think it's inadequate, and do not agree with it's philosophy.
+You basically always have to eject, and then you're on your own as here.
+
+With Broilerplate, I aim to get all the advantages and none of the disadvantages.
+Only future will tell whether this is sane.
+
+[react-app-rewired](https://github.com/timarney/react-app-rewired) tries to
+do the same. You might want to check it too.
+
+## Licensing
+
+Use as you wish. Read the license from LICENSE.
