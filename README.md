@@ -7,8 +7,11 @@ that you read and follow these instructions before the actual two training days.
 
 ## Installation
 
-Start by forking / cloning this repository. If you don't want to use git, just
-download it.
+Start by forking / cloning this repository.
+
+If you don't know how to use git, you should spend an hour to [https://guides.github.com/introduction/git-handbook/](learn the basics)!
+
+If you really don't want to use git, just download the repo.
 
 `training` is the default branch that contains the starting point for
 our course. The `master` branch contains a fuller example application that might be
