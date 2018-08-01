@@ -21,6 +21,8 @@ const nodeExternalsFeature = require("@dr-kobros/broilerplate/lib/features/nodeE
 const extractCssFeature = require("@dr-kobros/broilerplate-mini-css-extract");
 const styledComponentsFeature = require("@dr-kobros/broilerplate-styled-components");
 
+const myFeature = require("./src/config/feature");
+
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -45,8 +47,15 @@ module.exports = target => {
       babelPolyfillFeature,
       extractCssFeature,
       nodeExternalsFeature({
-        whitelist: [/^react-fa/, /^font-awesome/]
-      })
+        whitelist: [
+          /^react-fa/,
+          /^font-awesome/,
+          /^babel-plugin-universal-import/,
+          /^react-universal-component/,
+          /^webpack-flush-chunks/
+        ]
+      }),
+      myFeature
     ),
     build => {
       if (env === "production") {

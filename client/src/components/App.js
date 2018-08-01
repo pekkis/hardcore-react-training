@@ -4,6 +4,7 @@ import Loading from "./Loading";
 import IndexPage from "./IndexPage";
 import PersonPage from "./PersonPage";
 import { Switch, Route } from "react-router";
+import LicensesPage from "./AsyncLicensesPage";
 
 class App extends React.PureComponent {
   state = {
@@ -55,6 +56,14 @@ class App extends React.PureComponent {
             render={props => {
               const person = persons.find(p => p.id === props.match.params.id);
               return <PersonPage person={person} />;
+            }}
+          />
+
+          <Route
+            path="/licenses"
+            exact
+            render={() => {
+              return <LicensesPage />;
             }}
           />
         </Switch>
