@@ -4,9 +4,17 @@ import uuid from "uuid/v4";
 import { augmentPerson } from "./augmentor";
 import { Range } from "immutable";
 import { servicify } from "../util";
+import { DateTime } from "luxon";
 
 const createPerson = () => {
   return {
+    get age() {
+      const d = DateTime.fromJSDate(this.birthDay);
+      const now = DateTime.local();
+      const diff = now.diff(d, "years").toObject();
+      return diff.years;
+    },
+
     id: uuid(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
