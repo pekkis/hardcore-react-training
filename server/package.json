@@ -4,7 +4,7 @@
   "description": "Hardcore React Training Server",
   "main": "index.js",
   "scripts": {
-    "start": "babel-watch src/index.js",
+    "start": "nodemon --watch src --exec babel-node ./src/index.js",
     "test": "jest"
   },
   "author": "",
@@ -22,20 +22,21 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
+    "@babel/cli": "^7.0.0-rc.1",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/node": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
     "babel-eslint": "^7.2.3",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-watch": "^2.0.7",
-    "eslint": "^4.19.1",
-    "eslint-config-prettier": "^2.9.0",
+    "eslint": "^4.1.1",
+    "eslint-config-prettier": "^3.0.1",
     "eslint-config-react-app": "^2.1.0",
     "eslint-plugin-flowtype": "^2.49.3",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.10.0",
+    "nodemon": "^1.18.3",
     "prettier": "^1.14.0"
   }
 }

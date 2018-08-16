@@ -18,6 +18,7 @@ const {
 const postCssFeature = require("@dr-kobros/broilerplate-postcss");
 const babelPolyfillFeature = require("@dr-kobros/broilerplate/lib/features/babelPolyfillFeature");
 const nodeExternalsFeature = require("@dr-kobros/broilerplate/lib/features/nodeExternalsFeature");
+const externalCssFeature = require("@dr-kobros/broilerplate/lib/features/externalCssFeature");
 const extractCssFeature = require("@dr-kobros/broilerplate-mini-css-extract");
 const styledComponentsFeature = require("@dr-kobros/broilerplate-styled-components");
 
@@ -43,6 +44,7 @@ module.exports = target => {
       postCssFeature,
       styledComponentsFeature,
       babelPolyfillFeature,
+      externalCssFeature,
       extractCssFeature,
       nodeExternalsFeature({
         whitelist: [/^react-fa/, /^font-awesome/]

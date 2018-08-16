@@ -16,7 +16,7 @@ class App extends React.PureComponent {
 
     return (
       <div>
-        <h1>Hello Broilerplate</h1>
+        <h1>Hello Broilerplate Les Miserablessssddsdsd 222</h1>
 
         {loading > 0 && <Loading />}
 

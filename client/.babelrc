@@ -1,8 +1,9 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
+        "ignoreBrowserslistConfig": true,
         "debug": false,
         "targets": {
           "node": "current"
@@ -11,5 +12,5 @@
       }
     ]
   ],
-  "plugins": ["babel-plugin-transform-object-rest-spread"]
+  "plugins": ["@babel/plugin-proposal-object-rest-spread"]
 }
