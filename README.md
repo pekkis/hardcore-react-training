@@ -75,7 +75,7 @@ Commands are always run in either of these folders. Not in the common
 root folder.
 
 While preparing for the training session, you must follow the _development mode_ path
-until you reach the situation in [this screenshot](https://www.dropbox.com/s/seccmd5cgzd2xuj/Screenshot%202018-07-30%2013.44.02.png?dl=0).
+until you reach the situation in [this screenshot](https://www.dropbox.com/s/np9dsnil0p7jny7/Screenshot%202018-08-16%2014.07.12.png?dl=0).
 
 ## Development mode
 
