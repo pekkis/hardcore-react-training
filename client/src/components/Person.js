@@ -4,6 +4,7 @@ import cx from "classnames";
 import Button from "./Button";
 import PropTypes from "prop-types";
 import { pure } from "recompose";
+import { Link } from "react-router-dom";
 
 const Person = props => {
   const { person, firePerson } = props;
@@ -17,12 +18,14 @@ const Person = props => {
 
   return (
     <div className={classes}>
-      <strong>{person.lastName}</strong>, {person.firstName} (
-      {person.age.toFixed(2)} v.)
+      <Link to={`/person/${person.id}`}>
+        <strong>{person.lastName}</strong>, {person.firstName} (
+        {person.age.toFixed(2)} v.)
+      </Link>
       <div>
         <Button
           block
-          disabled={person.relatedToCEO === true}
+          disabled={person.relatedToCEO === true || person.firing}
           onClick={() => {
             firePerson(person.id);
           }}

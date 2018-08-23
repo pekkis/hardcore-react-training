@@ -1,69 +1,50 @@
 import React from "react";
-import personService from "../services/person";
-import PersonList from "./PersonList";
 import "./App.pcss";
-import { List } from "immutable";
-import HirePersonForm from "./HirePersonForm";
+import Loading from "./Loading";
+import IndexPage from "./IndexPage";
+import PersonPage from "./PersonPage";
+import { Switch, Route } from "react-router";
 
 class App extends React.Component {
-  state = {
-    persons: List()
-  };
-
   componentDidMount() {
-    personService.getPersons().then(persons => {
-      this.setState(state => {
-        return {
-          persons: List(persons)
-        };
-      });
-    });
+    const { getPersons } = this.props;
+    getPersons();
   }
 
-  firePerson = id => {
-    this.setState(state => {
-      return {
-        persons: state.persons.filter(p => p.id !== id)
-      };
-    });
-  };
-
-  hirePerson = person => {
-    this.setState(state => {
-      return {
-        persons: state.persons.push(person)
-      };
-    });
-  };
-
   render() {
-    const { persons } = this.state;
-
-    const goodPersons = persons
-      .filter(p => p.gender === "m" && p.age < 30)
-      .sortBy(p => p.firstName)
-      .sortBy(p => p.lastName);
-
-    const badPersons = persons
-      .filter(p => p.gender !== "m" || p.age >= 30)
-      .sortBy(p => p.firstName)
-      .sortBy(p => p.lastName);
+    const { persons, firePerson, hirePerson, loading } = this.props;
 
     return (
       <div>
-        <h1>Hello hello</h1>
+        {loading > 0 && <Loading />}
 
-        <HirePersonForm hirePerson={this.hirePerson} />
+        <header>
+          <h1>Fraktio ERP 6000</h1>
+        </header>
 
-        <h2>Pahat henkilöt</h2>
-        <PersonList
-          showMetaData
-          persons={badPersons}
-          firePerson={this.firePerson}
-        />
-
-        <h2>Hyvät henkilöt</h2>
-        <PersonList persons={goodPersons} firePerson={this.firePerson} />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return (
+                <IndexPage
+                  persons={persons}
+                  firePerson={firePerson}
+                  hirePerson={hirePerson}
+                />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/person/:id"
+            render={props => {
+              const person = persons.get(props.match.params.id);
+              return <PersonPage person={person} />;
+            }}
+          />
+        </Switch>
       </div>
     );
   }

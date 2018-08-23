@@ -27,6 +27,8 @@ const overridePlugin = (plugin, env, target, paths) => {
 };
 
 const overrideBase = (base, env, target, paths) => {
+  return base;
+
   if (env !== "development") {
     return base;
   }

@@ -9,6 +9,18 @@ const getPersons = () => {
   return axios.get(`${process.env.REACT_APP_API}/person`).then(ret => ret.data);
 };
 
+const hirePerson = person => {
+  return axios
+    .post(`${process.env.REACT_APP_API}/person`, person)
+    .then(() => person);
+};
+
+const firePerson = id => {
+  return axios
+    .delete(`${process.env.REACT_APP_API}/person/${id}`)
+    .then(() => id);
+};
+
 const createPerson = () => {
   return {
     get age() {
@@ -41,5 +53,7 @@ const createPerson = () => {
 
 export default {
   getPersons,
-  createPerson
+  createPerson,
+  firePerson,
+  hirePerson
 };
