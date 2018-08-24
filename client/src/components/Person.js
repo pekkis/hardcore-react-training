@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 const Person = props => {
   const { person, firePerson } = props;
 
+  throw new Error("hilipatiheijaa!");
+
   const obj = {
     [styles.male]: person.gender === "m",
     [styles.female]: person.gender !== "m"
