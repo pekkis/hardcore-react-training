@@ -41,7 +41,7 @@
     "faker": "^4.1.0",
     "final-form": "^4.10.0",
     "history": "^4.7.2",
-    "immutable": "^3.8.2",
+    "immutable": "^4.0.0-rc.10",
     "luxon": "^1.4.4",
     "polished": "^2.2.0",
     "prop-types": "^15.6.2",
