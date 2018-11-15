@@ -1,7 +1,3 @@
-const history = require("connect-history-api-fallback");
-const convert = require("koa-connect");
-const { fromJS } = require("immutable");
-
 const loaderOverrides = {
   babelLoader: (loader, env, target, paths) => {
     return loader;
@@ -27,23 +23,7 @@ const overridePlugin = (plugin, env, target, paths) => {
 };
 
 const overrideBase = (base, env, target, paths) => {
-  if (env !== "development") {
-    return base;
-  }
-
-  return base.set(
-    "serve",
-    fromJS({
-      content: [__dirname],
-      add: (app, middleware, options) => {
-        const historyOptions = {
-          // ... see: https://github.com/bripkens/connect-history-api-fallback#options
-        };
-
-        app.use(convert(history(historyOptions)));
-      }
-    })
-  );
+  return base;
 };
 
 module.exports = {
