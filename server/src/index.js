@@ -2,8 +2,8 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-
 import personService from "./services/person";
+import graphql from "./services/graphql";
 // import customerService from "./services/customer";
 // import projectService from "./services/project";
 // import officeService from "./services/office";
@@ -14,6 +14,8 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+
+graphql.applyMiddleware({ app });
 
 app.get("/person", async (req, res, next) => {
   const persons = await personService.all();

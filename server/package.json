@@ -5,16 +5,19 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --watch src --exec babel-node ./src/index.js",
-    "test": "jest"
+    "lint": "eslint src"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apollo-server": "^2.2.2",
+    "apollo-server-express": "^2.2.2",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "faker": "^4.1.0",
+    "graphql": "^14.0.2",
     "immutable": "4.0.0-rc.12",
     "luxon": "^1.6.2",
     "ramda": "^0.25.0",

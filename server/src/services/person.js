@@ -5,5 +5,5 @@ const persons = asyncronifyAll(raw);
 
 export default {
   ...persons,
-  remove: slowify(3000, 10000)(persons.remove)
+  remove: slowify(500, 10000)(persons.remove)
 };

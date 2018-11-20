@@ -1,5 +1,6 @@
 import { Map, Seq } from "immutable";
 import r from "./random";
+import uuid from "uuid";
 
 const mappifyListById = list => Map(list.map(l => [l.id, l]));
 
@@ -42,10 +43,20 @@ export const servicify = objects => {
   const findById = id => resources.get(id);
   const remove = id => {
     resources = resources.delete(id);
+    return id;
   };
   const create = object => {
-    resources = resources.set(object.id, object);
-    return object;
+    console.log(object, "obj");
+
+    const obj = {
+      ...object,
+      id: uuid()
+    };
+
+    resources = resources.set(obj.id, obj);
+
+    console.log("obj", obj);
+    return obj;
   };
 
   return {
