@@ -2,15 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Root from "./Root";
 
-/*
-import { createStore } from "./utils/redux";
+import { createStore } from "./services/redux";
 import { getMiddlewares, getReducers, getEnhancers } from "./config/redux";
 import { getInitialState } from "./config/state";
-*/
 
-const initialState = undefined;
-
-/*
 const initialState = getInitialState();
 
 const store = createStore(
@@ -19,10 +14,9 @@ const store = createStore(
   getEnhancers(),
   initialState
 );
-*/
 
 function render(Component, rootElement, method = "render") {
-  ReactDOM[method](<Component />, rootElement);
+  ReactDOM[method](<Component store={store} />, rootElement);
 }
 
 const rootElement = document.getElementById("app");

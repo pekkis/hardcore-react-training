@@ -10,7 +10,7 @@
     "build": "yarn run build:client && yarn run build:server && yarn run build:node",
     "lint": "eslint src",
     "babel-node": "babel-node",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js --port 8888",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js --port 8888 --history-api-fallback",
     "test": "jest"
   },
   "repository": {
