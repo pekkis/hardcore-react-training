@@ -1,4 +1,4 @@
-import transit from "transit-immutable-js";
+// import transit from "transit-immutable-js";
 
 export function getInitialState() {
   if (typeof window === "undefined") {
@@ -10,7 +10,8 @@ export function getInitialState() {
     if (!stateElm) {
       return undefined;
     }
-    return transit.fromJSON(stateElm.textContent);
+    return JSON.parse(stateElm.textContent);
+    // return transit.fromJSON(stateElm.textContent);
   } catch (e) {
     return undefined;
   }

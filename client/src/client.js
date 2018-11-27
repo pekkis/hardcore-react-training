@@ -8,6 +8,12 @@ import { getMiddlewares, getReducers, getEnhancers } from "./config/redux";
 import { getInitialState } from "./config/state";
 */
 
+/*
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+library.add(faSpinner);
+*/
+
 const initialState = undefined;
 
 /*
@@ -21,10 +27,12 @@ const store = createStore(
 );
 */
 
+// Just a small DRY abstraction here.
 function render(Component, rootElement, method = "render") {
   ReactDOM[method](<Component />, rootElement);
 }
 
+// If we get !undefined state from the server, we hydrate.
 const rootElement = document.getElementById("app");
 render(Root, rootElement, initialState ? "hydrate" : "render");
 

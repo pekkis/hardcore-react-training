@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.2.2",
-    "apollo-server-express": "^2.2.2",
+    "apollo-server": "^2.2.3",
+    "apollo-server-express": "^2.2.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "dotenv": "^6.1.0",
@@ -19,8 +19,8 @@
     "faker": "^4.1.0",
     "graphql": "^14.0.2",
     "immutable": "4.0.0-rc.12",
-    "luxon": "^1.6.2",
-    "ramda": "^0.25.0",
+    "luxon": "^1.8.1",
+    "ramda": "^0.26.0",
     "random-js": "^1.0.8",
     "uuid": "^3.3.2"
   },

@@ -41,13 +41,13 @@ module.exports = target => {
     ),
     defaultFeatures,
     addFeatures(
-      postCssFeature,
-      styledComponentsFeature,
-      babelPolyfillFeature,
-      externalCssFeature,
-      extractCssFeature,
+      postCssFeature(),
+      styledComponentsFeature(),
+      // babelPolyfillFeature(),
+      externalCssFeature(),
+      extractCssFeature(),
       nodeExternalsFeature({
-        whitelist: [/^react-fa/, /^font-awesome/]
+        whitelist: []
       })
     ),
     build => {
