@@ -24,6 +24,7 @@ const PersonList = props => {
 
       <PosedList pose="visible" initialPose="hidden">
         {persons
+          .toList()
           .sortBy(p => p.firstName)
           .sortBy(p => p.lastName)
           .map(p => (

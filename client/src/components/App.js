@@ -1,61 +1,59 @@
-import React from "react";
-import personService from "../services/person";
-import PersonList from "./PersonList";
-import HirePersonForm from "./HirePersonForm";
-import { List } from "immutable";
+import React, { Suspense, lazy } from "react";
+import Loading from "./Loading";
+import { Switch, Route } from "react-router";
 
+// import IndexPage from "./IndexPage";
+// import PersonPage from "./PersonPage";
 import "./App.pcss";
 
+const IndexPage = lazy(() => import("./IndexPage"));
+const PersonPage = lazy(() => import("./PersonPage"));
+
 class App extends React.Component {
-  state = {
-    persons: List(),
-    counter: 0
-  };
-
-  async componentDidMount() {
-    const persons = await personService.getPersons();
-    this.setState(state => ({
-      persons: List(persons),
-      counter: state.counter + 1
-    }));
+  componentDidMount() {
+    const { getPersons } = this.props;
+    getPersons();
   }
-
-  componentWillUnmount() {
-    // cleanup
-  }
-
-  firePerson = id => {
-    return this.setState(state => ({
-      persons: state.persons.filter(p => p.id !== id)
-    }));
-  };
-
-  hirePerson = person => {
-    return this.setState(state => ({
-      persons: state.persons.push(person)
-    }));
-  };
 
   render() {
-    const { persons } = this.state;
-
-    const isGoodPerson = p => p.gender === "m" && p.age < 30;
-    const isBadPerson = p => !isGoodPerson(p);
-
-    const goodPersons = persons.filter(isGoodPerson);
-    const badPersons = persons.filter(isBadPerson);
+    const { persons, hirePerson, firePerson, loading } = this.props;
 
     return (
       <div>
         <h1>Fraktio ERP 9999</h1>
 
-        <HirePersonForm hirePerson={this.hirePerson} />
+        {loading && <Loading />}
 
-        <h2>Pahat ihmiset</h2>
-        <PersonList persons={badPersons} firePerson={this.firePerson} />
-
-        <h2>Hyvät ihmiset</h2>
-        <PersonList persons={goodPersons} firePerson={this.firePerson} />
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={props => {
+              return (
+                <Suspense fallback={<div>laddare!!!</div>}>
+                  <IndexPage
+                    persons={persons}
+                    hirePerson={hirePerson}
+                    firePerson={firePerson}
+                  />
+                </Suspense>
+              );
+            }}
+          />
+          <Route
+            path="/person/:id"
+            exact
+            render={props => {
+              const pid = props.match.params.id;
+              const person = persons.get(pid);
+              return (
+                <Suspense fallback={<div>laddare!!!</div>}>
+                  <PersonPage person={person} />
+                </Suspense>
+              );
+            }}
+          />
+        </Switch>
       </div>
     );
   }

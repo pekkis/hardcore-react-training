@@ -5,6 +5,12 @@ export default styled.button`
   border-radius: 5px;
   padding: 1em;
   background-color: rgb(200, 200, 200);
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 
   &:hover {
     background-color: rgb(222, 222, 222);
