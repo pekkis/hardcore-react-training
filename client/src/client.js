@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Root from "./Root";
 
 /*
-import { createStore } from "./utils/redux";
+import { createStore } from "./services/redux";
 import { getMiddlewares, getReducers, getEnhancers } from "./config/redux";
 import { getInitialState } from "./config/state";
 */
