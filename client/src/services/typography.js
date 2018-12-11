@@ -4,20 +4,14 @@ const typography = new Typography({
   includeNormalize: true,
   baseFontSize: "18px",
   baseLineHeight: 1.45,
-  headerFontFamily: ["Comic Sans MS", "serif"],
-  bodyFontFamily: ["Comic Sans MS", "serif"]
-  /*
+  headerFontFamily: ["Noto Serif SC", "serif"],
+  bodyFontFamily: ["Noto Serif SC", "serif"],
   googleFonts: [
     {
-      name: "Montserrat",
-      styles: ["700"]
-    },
-    {
-      name: "Merriweather",
+      name: "Noto Serif SC",
       styles: ["400", "400i", "700", "700i"]
     }
   ]
-  */
 });
 
 export default typography;

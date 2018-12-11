@@ -1,8 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./Person.pcss";
 import cx from "classnames";
 import Button from "./Button";
 import posed from "react-pose";
+import { Link } from "react-router-dom";
 
 const PosedBox = posed.div({
   hidden: {
@@ -18,6 +19,16 @@ const PosedBox = posed.div({
       duration: 500,
       ease: "linear"
     }
+  },
+  gone: {
+    rotate: 1000,
+    opacity: 0,
+    scale: 10,
+    top: -300,
+    transition: {
+      duration: 2000,
+      ease: "linear"
+    }
   }
 });
 
@@ -30,15 +41,25 @@ const Person = props => {
   });
 
   return (
-    <PosedBox className={classes} initialPose="hidden" pose="visible">
+    <PosedBox
+      className={classes}
+      initialPose="hidden"
+      pose={person.isBeingFired ? "gone" : "visible"}
+    >
       <div>
-        <strong>{person.lastName}</strong>, {person.firstName}
+        <Link to={`/person/${person.id}`}>
+          <strong>{person.lastName}</strong>, {person.firstName}
+        </Link>
       </div>
       <div>
         [{person.gender}] [{person.age} v]
       </div>
       <div>
-        <Button block onClick={() => firePerson(person.id)}>
+        <Button
+          disabled={person.isBeingFired}
+          block
+          onClick={() => firePerson(person.id)}
+        >
           vapauta
         </Button>
       </div>
@@ -46,4 +67,4 @@ const Person = props => {
   );
 };
 
-export default Person;
+export default memo(Person);

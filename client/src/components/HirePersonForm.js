@@ -4,6 +4,8 @@ import uuid from "uuid";
 import { DateTime } from "luxon";
 import faker from "faker";
 import r from "../services/random";
+import Button from "./Button";
+import Input from "./Input";
 
 const createPerson = () => {
   return {
@@ -58,7 +60,8 @@ const HirePersonForm = props => {
           <form onSubmit={handleSubmit}>
             <div>
               <label>first name</label>
-              <input
+              <Input
+                block
                 id="firstName"
                 value={values.firstName}
                 onChange={handleChange}
@@ -66,14 +69,17 @@ const HirePersonForm = props => {
             </div>
             <div>
               <label>last name</label>
-              <input
+              <Input
+                block
                 id="lastName"
                 value={values.lastName}
                 onChange={handleChange}
               />
             </div>
             <div>
-              <button type="submit">hire</button>
+              <Button block type="submit">
+                hire
+              </Button>
             </div>
           </form>
         );

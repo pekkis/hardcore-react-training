@@ -40,6 +40,7 @@ const PersonList = props => {
 
       <PosedContainer initialPose="hidden" pose="visible">
         {persons
+          .toList()
           .sortBy(p => p.firstName)
           .sortBy(p => p.lastName)
           .map(p => (
@@ -52,7 +53,7 @@ const PersonList = props => {
 
 PersonList.propTypes = {
   firePerson: PropTypes.func.isRequired,
-  persons: ImmutablePropTypes.list.isRequired,
+  persons: ImmutablePropTypes.map.isRequired,
   showMetadata: PropTypes.bool.isRequired
 };
 

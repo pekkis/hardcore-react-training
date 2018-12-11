@@ -2,21 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Root from "./Root";
 
-/*
 import { createStore } from "./services/redux";
 import { getMiddlewares, getReducers, getEnhancers } from "./config/redux";
 import { getInitialState } from "./config/state";
-*/
 
-/*
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 library.add(faSpinner);
-*/
 
-const initialState = undefined;
-
-/*
 const initialState = getInitialState();
 
 const store = createStore(
@@ -25,11 +18,10 @@ const store = createStore(
   getEnhancers(),
   initialState
 );
-*/
 
 // Just a small DRY abstraction here.
 function render(Component, rootElement, method = "render") {
-  ReactDOM[method](<Component />, rootElement);
+  ReactDOM[method](<Component store={store} />, rootElement);
 }
 
 // If we get !undefined state from the server, we hydrate.

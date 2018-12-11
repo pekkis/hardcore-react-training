@@ -8,22 +8,30 @@ const getPersons = async () => {
     console.log("errore fatale", e);
     throw e;
   }
+};
 
-  /*
-  const persons = axios
-    .get(`${process.env.REACT_APP_API}/persons`)
-    .then(ret => {
-      return ret.data;
-    })
-    .catch(err => {
-      console.log("errore fatale", e);
-      throw e;
-    });
+const hirePerson = async person => {
+  try {
+    const ret = await axios.post(`${process.env.REACT_APP_API}/person`, person);
+    return ret.data;
+  } catch (e) {
+    console.log("errore fatale", e);
+    throw e;
+  }
+};
 
-  return persons;
-  */
+const firePerson = async id => {
+  try {
+    await axios.delete(`${process.env.REACT_APP_API}/person/${id}`);
+    return id;
+  } catch (e) {
+    console.log("errore fatale", e);
+    throw e;
+  }
 };
 
 export default {
-  getPersons
+  getPersons,
+  hirePerson,
+  firePerson
 };
