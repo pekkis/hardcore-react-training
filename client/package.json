@@ -10,7 +10,7 @@
     "build": "yarn run build:client && yarn run build:server && yarn run build:node",
     "lint": "eslint src",
     "babel-node": "babel-node",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js --port 8888 --history-api-fallback",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js --port 8888 --history-api-fallback --hot",
     "test": "jest"
   },
   "repository": {
@@ -51,7 +51,7 @@
     "polished": "^2.3.1",
     "prop-types": "^15.6.2",
     "random-js": "^1.0.8",
-    "react": "16.7.0-alpha.2",
+    "react": "16.7.0",
     "react-apollo": "^2.3.2",
     "react-dom": "^16.7.0-alpha.2",
     "react-error-boundary": "^1.2.3",

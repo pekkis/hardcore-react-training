@@ -43,3 +43,5 @@ if (module.hot) {
     render(HotReloadedRoot, rootElement, "render");
   });
 }
+
+console.log("In the browser console, also suckling on a duckling?!?");
