@@ -71,6 +71,12 @@ R.forEachObjIndexed((service, key) => {
 }, resources);
 */
 
+if (!process.env.PORT) {
+  throw new Error(
+    "PORT environment variable is not defined. Did you forgot to copy .env.example to .env?"
+  );
+}
+
 app.listen(process.env.PORT, () => {
   console.log(`Listening on port ${process.env.PORT}`);
 });
