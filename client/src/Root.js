@@ -1,8 +1,14 @@
 import React from "react";
-import App from "./components/App";
+import App from "./components/containers/AppContainer";
+import { Provider } from "react-redux";
 
 const Root = props => {
-  return <App />;
+  const { store } = props;
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
 };
 
 export default Root;

@@ -17,6 +17,16 @@ const PersonContainer = posed.div({
       duration: 500,
       ease: "linear"
     }
+  },
+  gone: {
+    rotate: 1000,
+    opacity: 0,
+    scale: 10,
+    top: -300,
+    transition: {
+      duration: 2000,
+      ease: "linear"
+    }
   }
 });
 
@@ -28,13 +38,20 @@ const Person = props => {
     [styles.female]: person.gender === "f"
   });
 
+  const pose = person.isFiring ? "gone" : "visible";
+
   return (
-    <PersonContainer className={classes} initialPose="hidden" pose="visible">
+    <PersonContainer className={classes} initialPose="hidden" pose={pose}>
       <div>
         <strong>{person.lastName}</strong>, {person.firstName} ({person.age})
       </div>
       <div>
-        <Button primary block onClick={() => firePerson(person.id)}>
+        <Button
+          disabled={person.isFiring}
+          primary
+          block
+          onClick={() => firePerson(person.id)}
+        >
           VAPAUTA
         </Button>
       </div>

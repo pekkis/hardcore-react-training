@@ -12,6 +12,12 @@ const getPersons = async () => {
   }
 };
 
+const firePerson = async id => {
+  await axios.delete(`${process.env.REACT_APP_API}/person/${id}`);
+  return id;
+};
+
 export default {
-  getPersons
+  getPersons,
+  firePerson
 };
