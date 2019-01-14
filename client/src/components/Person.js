@@ -2,6 +2,7 @@ import React from "react";
 import cx from "classnames";
 import styles from "./Person.pcss";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 import posed from "react-pose";
 
@@ -43,7 +44,9 @@ const Person = props => {
   return (
     <PersonContainer className={classes} initialPose="hidden" pose={pose}>
       <div>
-        <strong>{person.lastName}</strong>, {person.firstName} ({person.age})
+        <Link to={`/person/${person.id}`}>
+          <strong>{person.lastName}</strong>, {person.firstName} ({person.age})
+        </Link>
       </div>
       <div>
         <Button
@@ -59,4 +62,4 @@ const Person = props => {
   );
 };
 
-export default Person;
+export default React.memo(Person);

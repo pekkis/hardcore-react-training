@@ -7,7 +7,7 @@
     "build:client": "cross-env NODE_ENV=production webpack --progress --display-optimization-bailout",
     "build:server": "cross-env NODE_ENV=production webpack --progress --config webpack.server.config.js --display-optimization-bailout",
     "build:node": "cross-env NODE_ENV=production babel src/index.js > dist-server/index.js",
-    "build": "yarn run build:client && yarn run build:server && yarn run build:node",
+    "build": "yarn run build:client",
     "lint": "eslint src",
     "babel-node": "babel-node",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js --port 8888 --history-api-fallback --hot",

@@ -2,6 +2,7 @@ import React from "react";
 import Person from "./Person";
 import posed from "react-pose";
 import PropTypes from "prop-types";
+import ImmutablePropTypes from "react-immutable-proptypes";
 
 const PosedContainer = posed.div({
   hidden: {
@@ -46,7 +47,7 @@ const PersonList = props => {
 };
 
 PersonList.propTypes = {
-  persons: PropTypes.array.isRequired,
+  persons: ImmutablePropTypes.map.isRequired,
   firePerson: PropTypes.func.isRequired,
   showMetadata: PropTypes.bool.isRequired
 };

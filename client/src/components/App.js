@@ -1,25 +1,47 @@
-import React from "react";
-import PersonList from "./PersonList";
-import HirePersonForm from "./HirePersonForm";
+import React, { Suspense } from "react";
 import Loading from "./Loading";
+
+import { Switch, Route } from "react-router";
 
 import "./App.pcss";
 
-const isGood = person => {
-  return (person.gender === "m" && person.age < 30) || person.relatedToCEO;
+const IndexPage = React.lazy(() => import("./containers/IndexPageContainer"));
+const PersonPage = React.lazy(() => import("./containers/PersonPageContainer"));
+
+const lazyPage = Component => props => {
+  return (
+    <div>
+      <Suspense fallback={<div>Laddare!!!...</div>}>
+        <Component {...props} />
+      </Suspense>
+    </div>
+  );
 };
 
-class App extends React.Component {
+class App extends React.PureComponent {
+  state = {
+    isError: false
+  };
+
+  static getDerivedStateFromError(error) {
+    return { isError: true, error };
+  }
+
+  static componentDidCatch(error, moarError) {
+    // LOG ERROR TO SENTRY ETC HERE
+  }
+
   componentDidMount() {
     const { getPersons } = this.props;
     getPersons();
   }
 
   render() {
-    const { persons, firePerson, hirePerson, loading } = this.props;
+    const { loading } = this.props;
 
-    const goodPersons = persons.filter(isGood);
-    const badPersons = persons.filter(p => !isGood(p));
+    if (this.state.isError) {
+      return <div>OH NOES GRANDE PUUPPA</div>;
+    }
 
     return (
       <div>
@@ -27,13 +49,10 @@ class App extends React.Component {
 
         <h1>Fraktio ERP</h1>
 
-        <HirePersonForm hirePerson={hirePerson} />
-
-        <h2>Pahat ihmiset</h2>
-        <PersonList showMetadata persons={badPersons} firePerson={firePerson} />
-
-        <h2>Hyvät ihmiset</h2>
-        <PersonList persons={goodPersons} firePerson={firePerson} />
+        <Switch>
+          <Route path="/" exact component={lazyPage(IndexPage)} />
+          <Route path="/person/:id" exact component={lazyPage(PersonPage)} />
+        </Switch>
       </div>
     );
   }
