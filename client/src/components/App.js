@@ -1,15 +1,35 @@
 import React from "react";
+import "./App.pcss";
 
-const App = props => {
-  return (
-    <div>
-      <h1>Hello React Training!</h1>
-      <p>
-        Dear sir or madam, you must be <strong>suckling</strong> on a{" "}
-        <em>duckling!</em>
-      </p>
-    </div>
-  );
-};
+import Loading from "./Loading";
+
+import IndexPage from "./containers/IndexPageContainer";
+import PersonPage from "./containers/PersonPageContainer";
+
+import { Switch, Route } from "react-router";
+
+class App extends React.Component {
+  async componentDidMount() {
+    const { getPersons } = this.props;
+    getPersons();
+  }
+
+  render() {
+    const { loading } = this.props;
+
+    return (
+      <div>
+        {loading && <Loading />}
+
+        <h1>Fraktio GIGA ERP 10000</h1>
+
+        <Switch>
+          <Route path="/" exact component={IndexPage} />
+          <Route path="/person/:id" exact component={PersonPage} />
+        </Switch>
+      </div>
+    );
+  }
+}
 
 export default App;
