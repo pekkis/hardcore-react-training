@@ -10,6 +10,18 @@ export const getPersons = async () => {
   }
 };
 
+const hirePerson = async person => {
+  const ret = await axios.post(`${process.env.REACT_APP_API}/person`, person);
+  return ret.data;
+};
+
+const firePerson = async id => {
+  const ret = await axios.delete(`${process.env.REACT_APP_API}/person/${id}`);
+  return ret.data.id;
+};
+
 export default {
-  getPersons
+  getPersons,
+  hirePerson,
+  firePerson
 };

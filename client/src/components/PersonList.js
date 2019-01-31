@@ -17,15 +17,17 @@ const PersonList = props => {
           <p>Average age: {averageAge}</p>
         </>
       )}
-      {persons.map((person, i) => (
-        <Person firePerson={firePerson} key={person.id} person={person} />
-      ))}
+      {persons
+        .map((person, i) => (
+          <Person firePerson={firePerson} key={person.id} person={person} />
+        ))
+        .toList()}
     </div>
   );
 };
 
 PersonList.propTypes = {
-  persons: ImmutablePropTypes.list.isRequired,
+  persons: ImmutablePropTypes.map.isRequired,
   firePerson: PropTypes.func.isRequired,
   showMetadata: PropTypes.bool.isRequired
 };

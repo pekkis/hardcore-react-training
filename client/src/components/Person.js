@@ -31,7 +31,11 @@ export const Person = props => {
         {person.lastName}, {person.firstName} ({person.age})
       </div>
       <div>
-        <Button block onClick={() => firePerson(person.id)}>
+        <Button
+          disabled={person.isBeingFired}
+          block
+          onClick={() => firePerson(person.id)}
+        >
           LIBERATE
         </Button>
       </div>

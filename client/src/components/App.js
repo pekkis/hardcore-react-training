@@ -1,6 +1,7 @@
 import React from "react";
 import PersonList from "./PersonList";
 import HirePersonForm from "./HirePersonForm";
+import Spinner from "./Spinner";
 
 import "./App.pcss";
 
@@ -11,7 +12,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { persons, hirePerson, firePerson } = this.props;
+    const { persons, hirePerson, firePerson, loading } = this.props;
 
     const isGood = person => {
       return person.gender === "m" && person.age < 30;
@@ -22,6 +23,8 @@ class App extends React.Component {
 
     return (
       <div>
+        {loading && <Spinner />}
+
         <h1>Hello React Training!</h1>
 
         <HirePersonForm hirePerson={hirePerson} />
