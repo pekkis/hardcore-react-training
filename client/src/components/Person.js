@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Person.pcss";
-
 import cx from "classnames";
 import posed from "react-pose";
-
 import Button from "./Button";
+
+import { Link } from "react-router-dom";
 
 const PosedContainer = posed.div({
   hidden: {
@@ -28,7 +28,9 @@ export const Person = props => {
   return (
     <PosedContainer className={classes} initialPose="hidden" pose="visible">
       <div>
-        {person.lastName}, {person.firstName} ({person.age})
+        <Link to={`/person/${person.id}`}>
+          {person.lastName}, {person.firstName} ({person.age})
+        </Link>
       </div>
       <div>
         <Button
@@ -43,4 +45,4 @@ export const Person = props => {
   );
 };
 
-export default Person;
+export default React.memo(Person);
