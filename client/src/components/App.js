@@ -14,13 +14,21 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const { loading } = this.props;
+    const { loading, login } = this.props;
 
     return (
       <div>
         <Notifications />
         {loading && <Loading />}
         <h1>Fraktio ERP 5000</h1>
+
+        <button
+          onClick={() => {
+            login();
+          }}
+        >
+          kirjauduppa sissään
+        </button>
 
         <Switch>
           <Route path="/" exact component={IndexPage} />

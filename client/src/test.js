@@ -1,9 +1,22 @@
-const { List } = require("immutable");
+function* aatu() {
+  yield "aatu";
+  yield "on";
+  yield "herrkupeppu";
+  return "losonaama";
+}
 
-const persons = List(["Pekkis", "Thanos", "Hulk"]);
-const persons2 = persons.push("Captain America");
-const persons3 = persons.concat(["Thor"]);
+const lussuttaja = aatu();
 
-console.log(persons);
-console.log(persons2);
-console.log(persons3);
+const naama = lussuttaja.next();
+const naama2 = lussuttaja.next();
+const naama3 = lussuttaja.next();
+const naama4 = lussuttaja.next();
+const naama5 = lussuttaja.next();
+
+console.log(naama);
+console.log(naama2);
+console.log(naama3);
+console.log(naama4);
+console.log(naama5);
+
+console.log(lussuttaja);

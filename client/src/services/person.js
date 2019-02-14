@@ -21,13 +21,28 @@ const getPersons = async () => {
   */
 };
 
-const firePerson = async id => {
-  await axios.delete(`${process.env.REACT_APP_API}/person/${id}`);
+const firePerson = async (token, id) => {
+  const config = {
+    headers: {
+      authorization: "Bearer " + token
+    }
+  };
+  await axios.delete(`${process.env.REACT_APP_API}/person/${id}`, config);
   return id;
 };
 
-export const hirePerson = async person => {
-  const ret = await axios.post(`${process.env.REACT_APP_API}/person`, person);
+export const hirePerson = async (token, person) => {
+  const config = {
+    headers: {
+      authorization: "Bearer " + token
+    }
+  };
+
+  const ret = await axios.post(
+    `${process.env.REACT_APP_API}/person`,
+    person,
+    config
+  );
   return ret.data;
 };
 
