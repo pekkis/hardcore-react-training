@@ -37,7 +37,7 @@ const PersonList = props => {
 };
 
 PersonList.propTypes = {
-  persons: ImmutablePropTypes.list.isRequired,
+  persons: ImmutablePropTypes.map.isRequired,
   firePerson: PropTypes.func.isRequired
 };
 

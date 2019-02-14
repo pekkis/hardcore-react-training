@@ -38,7 +38,7 @@ const FormContainer = styled.div`
   padding: 1em;
   position: fixed;
   left: 1em;
-  top: 1em;
+  bottom: 1em;
 `;
 
 export default IndexPage;

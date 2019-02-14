@@ -2,7 +2,7 @@ import React from "react";
 import Loading from "./Loading";
 import IndexPage from "./containers/IndexPageContainer";
 import PersonPage from "./containers/PersonPageContainer";
-
+import Notifications from "./notifications/containers/NotificationsContainer";
 import { Switch, Route } from "react-router";
 
 import "./App.pcss";
@@ -18,6 +18,7 @@ class App extends React.PureComponent {
 
     return (
       <div>
+        <Notifications />
         {loading && <Loading />}
         <h1>Fraktio ERP 5000</h1>
 
