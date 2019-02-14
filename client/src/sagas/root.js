@@ -7,7 +7,10 @@ import {
   takeLeading,
   takeLatest,
   select,
-  cancel
+  cancel,
+  race,
+  apply,
+  putResolve
 } from "redux-saga/effects";
 import { getPersons, hirePerson, firePerson } from "./person";
 import { addNotification } from "./notification";
@@ -22,26 +25,51 @@ export default function* rootSagas() {
     call(addNotification, "Tervetuloa, mahtava käyttäjä!")
   ]);
 
+  let counter = 0;
+
   do {
-    const action = yield take("LOGIN");
-    const task = yield fork(
-      login,
-      action.payload.email,
-      action.payload.password
+    // const token = yield select(state => state.auth.get("token"));
+    const token = yield apply(
+      window.localStorage,
+      window.localStorage.getItem,
+      ["token"]
     );
 
-    yield take("LOGIN_SUCCESS");
+    if (!token) {
+      const action = yield take("LOGIN");
+      const task = yield fork(
+        login,
+        action.payload.email,
+        counter === 0 ? "naamaloso" : action.payload.password
+      );
+      const { success } = yield race({
+        success: take("LOGIN_SUCCESS"),
+        failure: take("LOGIN_FAILURE")
+      });
 
-    const user = yield select(state => state.auth.get("user"));
+      if (success) {
+        yield call(loggedIn);
+      }
+      counter++;
+    } else {
+      yield putResolve({
+        type: "LOGIN_SUCCESS",
+        payload: {
+          token
+        }
+      });
 
-    const loggedInTask = yield fork(loggedInSagas);
-
-    yield take("LOGOUT");
-
-    yield cancel(loggedInTask);
+      yield call(loggedIn);
+    }
 
     // clean up
   } while (true);
+}
+
+function* loggedIn() {
+  const loggedInTask = yield fork(loggedInSagas);
+  yield take("LOGOUT");
+  yield cancel(loggedInTask);
 }
 
 function* loggedInSagas() {
