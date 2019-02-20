@@ -22,6 +22,8 @@ const getCommonMiddlewares = requireLogin => {
       if (!req.user.isAdmin) {
         return res.status(403).send();
       }
+
+      return next();
     }
   ];
 };

@@ -14,6 +14,8 @@ const generateToken = async (req, res, next) => {
   req.token = createToken({
     id: req.auth.id,
     email: req.auth.email,
+    firstName: req.auth.firstName,
+    lastName: req.auth.lastName,
     isAdmin: req.auth.isAdmin
   });
   return next();
