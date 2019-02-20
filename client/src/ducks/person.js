@@ -18,41 +18,20 @@ export const HIRE_PERSON = "HIRE_PERSON";
 export const HIRE_PERSON_FULFILLED = "HIRE_PERSON_FULFILLED";
 
 export const getPersons = () => {
-  return async dispatch => {
-    dispatch({
-      type: GET_PERSONS_PENDING
-    });
-
-    try {
-      const persons = await personService.getPersons();
-      dispatch({
-        type: GET_PERSONS_FULFILLED,
-        payload: persons
-      });
-    } catch (e) {
-      dispatch({
-        type: GET_PERSONS_REJECTED,
-        payload: e,
-        error: true
-      });
-    }
-  };
+  return { type: GET_PERSONS };
 };
 
 export const hirePerson = person => {
   return {
     type: HIRE_PERSON,
-    payload: personService.hirePerson(person)
+    payload: person
   };
 };
 
 export const firePerson = id => {
   return {
     type: FIRE_PERSON,
-    payload: {
-      promise: personService.firePerson(id),
-      data: id
-    }
+    payload: id
   };
 };
 
