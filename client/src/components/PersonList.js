@@ -25,6 +25,8 @@ const PersonList = props => {
 
       <PoseGroup>
         {persons
+          .sortBy(p => p.firstName)
+          .sortBy(p => p.lastName)
           .map(person => (
             <PosedPerson key={person.id}>
               <Person key={person.id} firePerson={firePerson} person={person} />

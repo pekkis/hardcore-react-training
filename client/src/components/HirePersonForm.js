@@ -20,8 +20,8 @@ const HirePersonForm = props => {
         hirePerson(newPerson);
       }}
       initialValues={{
-        firstName: "Gaylord",
-        lastName: "Lohiposki"
+        firstName: "Tussi",
+        lastName: "Lärvilöinen"
       }}
     >
       {({ values, handleChange, handleSubmit }) => {

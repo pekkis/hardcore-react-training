@@ -11,7 +11,25 @@ import jwtAuth from "./jwt-auth";
 // import officeService from "./services/office";
 // import R from "ramda";
 
+const getCommonMiddlewares = requireLogin => {
+  if (!requireLogin) {
+    return [];
+  }
+
+  return [
+    jwtAuth,
+    (req, res, next) => {
+      if (!req.user.isAdmin) {
+        return res.status(403).send();
+      }
+    }
+  ];
+};
+
 const app = express();
+
+const commonMiddlewares = getCommonMiddlewares(process.env.REQUIRE_LOGIN);
+
 app.use(
   cors({
     exposedHeaders: ["x-auth-token", "authorization"]
@@ -54,19 +72,12 @@ app.get("/person/:id", async (req, res, next) => {
   res.json(person);
 });
 
-app.post("/person", jwtAuth, async (req, res, next) => {
-  if (!req.user.isAdmin) {
-    return res.status(403).send();
-  }
+app.post("/person", ...commonMiddlewares, async (req, res, next) => {
   const person = await personService.create(req.body);
   res.json(person);
 });
 
-app.delete("/person/:id", jwtAuth, async (req, res, next) => {
-  if (!req.user.isAdmin) {
-    return res.status(403).send();
-  }
-
+app.delete("/person/:id", ...commonMiddlewares, async (req, res, next) => {
   const person = await personService.findById(req.params.id);
   if (!person) {
     res.status(404).send("person not found");

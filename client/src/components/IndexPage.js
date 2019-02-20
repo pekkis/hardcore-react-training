@@ -34,11 +34,13 @@ class IndexPage extends React.Component {
 }
 
 const FormContainer = styled.div`
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.9);
   padding: 1em;
   position: fixed;
-  left: 1em;
-  bottom: 1em;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: rgb(255, 255, 255);
 `;
 
 export default IndexPage;

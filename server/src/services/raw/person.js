@@ -11,6 +11,8 @@ const createPerson = () => {
   const email = faker.internet.email();
   const password = bcrypt.hashSync(email, 2);
 
+  const gender = r.pick(["m", "f"]);
+
   return {
     get age() {
       const d = DateTime.fromJSDate(this.birthDay);
@@ -23,7 +25,7 @@ const createPerson = () => {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
     birthDay: faker.date.past(70, "1999-01-01"),
-    gender: r.pick(["m", "f"]),
+    gender,
     handedness: r.pick(["l", "r"]),
     salary: r.integer(2000, 10000),
     password,

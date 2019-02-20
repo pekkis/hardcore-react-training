@@ -14,7 +14,7 @@ import { getInitialState } from "./config/state";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-// import rootSaga from "./sagas/root";
+import rootSaga from "./sagas/root";
 
 library.add(faSpinner);
 
@@ -27,8 +27,8 @@ const store = createStore(
   initialState
 );
 
-// const sagaMiddleware = getSagaMiddleware();
-// sagaMiddleware.run(rootSaga);
+const sagaMiddleware = getSagaMiddleware();
+sagaMiddleware.run(rootSaga);
 
 // Just a small DRY abstraction here.
 function render(Component, rootElement, method = "render") {
