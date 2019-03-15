@@ -7,6 +7,12 @@ import { DateTime } from "luxon";
 //import { augmentPerson } from "./augmentor";
 
 const createPerson = () => {
+  const unionized = r.pick([true, false]);
+
+  const politicalView = unionized
+    ? r.pick(["red", "green"])
+    : r.pick(["red", "green", "center", "right", "fascist"]);
+
   return {
     get age() {
       const d = DateTime.fromJSDate(this.birthDay);
@@ -23,6 +29,8 @@ const createPerson = () => {
     handedness: r.pick(["l", "r"]),
     salary: r.integer(2000, 10000),
     email: faker.internet.email(),
+    unionized,
+    politicalView,
     relatedToCEO: r.pick([
       true,
       false,
