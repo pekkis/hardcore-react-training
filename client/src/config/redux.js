@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import * as reducers from "../ducks";
 
 export function getMiddlewares() {
-  let middlewares = [thunk, promiseMiddleware()];
+  let middlewares = [thunk, promiseMiddleware];
   return middlewares;
 }
 
