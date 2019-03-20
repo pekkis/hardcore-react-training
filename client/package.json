@@ -51,6 +51,7 @@
     "luxon": "^1.11.2",
     "polished": "^2.3.3",
     "prop-types": "^15.7.1",
+    "ramda": "^0.26.1",
     "random-js": "^1.0.8",
     "react": "16.8.1",
     "react-apollo": "^2.4.1",
