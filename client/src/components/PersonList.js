@@ -1,6 +1,15 @@
 import React from "react";
 import Person from "./Person";
 import PropTypes from "prop-types";
+import posed from "react-pose";
+
+const PersonsContainer = posed.div({
+  invisible: {},
+  visible: {
+    delayChildren: 1000,
+    staggerChildren: 500
+  }
+});
 
 const PersonList = props => {
   const { persons, showMetadata, ...rest } = props;
@@ -20,9 +29,11 @@ const PersonList = props => {
         </div>
       )}
 
-      {persons.map(p => (
-        <Person {...rest} key={p.id} person={p} />
-      ))}
+      <PersonsContainer initialPose="invisible" pose="visible">
+        {persons.map(p => (
+          <Person {...rest} key={p.id} person={p} />
+        ))}
+      </PersonsContainer>
     </div>
   );
 };

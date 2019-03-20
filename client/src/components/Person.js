@@ -7,11 +7,13 @@ import posed from "react-pose";
 
 const Container = posed.div({
   invisible: {
-    x: "-200%",
-    rotate: -1000
+    x: "-100%",
+    rotate: -1000,
+    scale: 0.1
   },
   visible: {
     rotate: 0,
+    scale: 1,
     x: 0,
     transition: { duration: 2000 }
   }
@@ -26,7 +28,7 @@ const Person = props => {
   });
 
   return (
-    <Container className={classes} initialPose="invisible" pose="visible">
+    <Container className={classes}>
       <div>
         <strong>{person.lastName}</strong>, {person.firstName}
       </div>
