@@ -3,6 +3,8 @@ import Person from "./Person";
 import PropTypes from "prop-types";
 import posed, { PoseGroup } from "react-pose";
 
+import ImmutablePropTypes from "react-immutable-proptypes";
+
 const PosedContainer = posed.div({
   hidden: {},
   visible: {
@@ -21,9 +23,8 @@ const PersonContainer = posed.div({
   exit: {
     y: -500,
     opacity: 0,
-    rotate: "-5000deg",
     transition: {
-      duration: 4000,
+      duration: 1000,
       ease: "linear"
     }
   }
@@ -32,9 +33,9 @@ const PersonContainer = posed.div({
 const PersonList = props => {
   const { persons, firePerson, showMetadata } = props;
 
-  const averageAge = persons.reduce((a, p) => a + p.age, 0) / persons.length;
+  const averageAge = persons.reduce((a, p) => a + p.age, 0) / persons.count();
 
-  if (persons.length === 0) {
+  if (persons.count() === 0) {
     return null;
   }
 
@@ -42,7 +43,7 @@ const PersonList = props => {
     <div>
       {showMetadata && (
         <div>
-          <p>Resursseja listalla: {persons.length}</p>
+          <p>Resursseja listalla: {persons.count()}</p>
           <p>Keski-ikä: {averageAge.toFixed(2)}</p>
         </div>
       )}
@@ -61,7 +62,7 @@ const PersonList = props => {
 };
 
 PersonList.propTypes = {
-  persons: PropTypes.array.isRequired,
+  persons: ImmutablePropTypes.list.isRequired,
   firePerson: PropTypes.func.isRequired,
   showMetadata: PropTypes.bool.isRequired
 };
@@ -70,4 +71,4 @@ PersonList.defaultProps = {
   showMetadata: false
 };
 
-export default PersonList;
+export default React.memo(PersonList);

@@ -27,6 +27,7 @@ const HirePersonForm = ({ hirePerson }) => {
         const newPerson = {
           ...values,
           id: uuid(),
+          birthDay: new Date(),
           age: 25,
           gender: "m"
         };

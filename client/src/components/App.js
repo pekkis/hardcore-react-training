@@ -1,50 +1,43 @@
-import React, { useState, useEffect } from "react";
-import PersonList from "./PersonList";
-import personService from "../services/person";
-import HirePersonForm from "./HirePersonForm";
+import React, { useEffect, Suspense, lazy } from "react";
+import Loading from "./Loading";
+
+// import IndexPage from "./containers/IndexPageContainer";
+import PersonPage from "./containers/PersonPageContainer";
+import { Route, Switch } from "react-router";
 
 import "./App.pcss";
 
+const IndexPage = lazy(() => import("./containers/IndexPageContainer"));
+const LazyIndexPage = props => {
+  return (
+    <Suspense fallback={<span>LADDARE...</span>}>
+      <IndexPage />
+    </Suspense>
+  );
+};
+
 const App = props => {
-  const [persons, setPersons] = useState([]);
+  const { getPersons, isLoading } = props;
 
+  // TODO: CLEAN UP
   useEffect(() => {
-    // personService.getPersons().then(setPersons);
-
-    const getPersons = async () => {
-      const persons = await personService.getPersons();
-      setPersons(persons);
-    };
     getPersons();
-    console.log("hellurei!");
   }, []);
-
-  const isGood = person => {
-    return person.age < 30;
-  };
-
-  const firePerson = id => {
-    setPersons(pe => pe.filter(p => p.id !== id));
-  };
-
-  const hirePerson = person => {
-    setPersons(pe => pe.concat(person));
-  };
-
-  const goodPersons = persons.filter(isGood);
-  const badPersons = persons.filter(p => !isGood(p));
 
   return (
     <div>
       <h1>Fraktio ERP 50.000</h1>
+      {isLoading && <Loading />}
 
-      <HirePersonForm hirePerson={hirePerson} />
-
-      <h2>Pahat henkilöt</h2>
-      <PersonList persons={badPersons} firePerson={firePerson} showMetadata />
-
-      <h2>Hyvät henkilöt</h2>
-      <PersonList persons={goodPersons} firePerson={firePerson} />
+      <Switch>
+        <Route path="/" exact component={LazyIndexPage} />
+        <Route path="/person/:id" exact component={PersonPage} />
+        <Route
+          render={() => {
+            return "oh noes!";
+          }}
+        />
+      </Switch>
     </div>
   );
 };

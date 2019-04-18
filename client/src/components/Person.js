@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Person.pcss";
 import cx from "classnames";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 const Person = props => {
   const { person, firePerson } = props;
@@ -14,11 +15,18 @@ const Person = props => {
   return (
     <div className={classes}>
       <div>
-        <strong>{person.lastName}</strong>, {person.firstName} (
-        {person.age.toFixed(2)})
+        <Link to={`/person/${person.id}`}>
+          <strong>{person.lastName}</strong>, {person.firstName} (
+          {person.age.toFixed(2)})
+        </Link>
       </div>
       <div>
-        <Button primary block onClick={() => firePerson(person.id)}>
+        <Button
+          disabled={person.isBeingFired}
+          primary
+          block
+          onClick={() => firePerson(person.id)}
+        >
           Vapauta!
         </Button>
       </div>
@@ -26,4 +34,4 @@ const Person = props => {
   );
 };
 
-export default Person;
+export default React.memo(Person);
