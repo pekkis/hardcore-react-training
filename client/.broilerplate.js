@@ -12,15 +12,16 @@ const {
   compile,
   override,
   run,
+  removeFeature,
   toJS
 } = require("@dr-kobros/broilerplate");
 
 const postCssFeature = require("@dr-kobros/broilerplate-postcss");
-const babelPolyfillFeature = require("@dr-kobros/broilerplate/lib/features/babelPolyfillFeature");
 const nodeExternalsFeature = require("@dr-kobros/broilerplate/lib/features/nodeExternalsFeature");
 const externalCssFeature = require("@dr-kobros/broilerplate/lib/features/externalCssFeature");
 const extractCssFeature = require("@dr-kobros/broilerplate-mini-css-extract");
 const styledComponentsFeature = require("@dr-kobros/broilerplate-styled-components");
+// const legacyFeature = require("./src/config/legacy");
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -40,10 +41,11 @@ module.exports = target => {
       })
     ),
     defaultFeatures,
+    removeFeature("uglifyFeature"),
     addFeatures(
       postCssFeature(),
       styledComponentsFeature(),
-      // babelPolyfillFeature(),
+      // legacyFeature(),
       externalCssFeature(),
       extractCssFeature(),
       nodeExternalsFeature({

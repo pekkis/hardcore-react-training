@@ -1,5 +1,5 @@
-import Random from "random-js";
+import { Random, nodeCrypto } from "random-js";
 
-const random = new Random(Random.engines.mt19937().autoSeed());
+const random = new Random(nodeCrypto);
 
 export default random;
