@@ -1,13 +1,64 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getPersons, hirePerson, firePerson } from "../ducks/person";
+import Spinner from "./Spinner";
+import IndexPage from "./IndexPage";
+import PersonPage from "./PersonPage";
+import NotFoundPage from "./NotFoundPage";
 
-const App = props => {
+import { Switch, Route } from "react-router";
+
+const App = () => {
+  const dispatch = useDispatch();
+
+  const persons = useSelector(state => state.person.get("persons"));
+  const loading = useSelector(state => state.person.get("loading") > 0);
+
+  useEffect(() => {
+    dispatch(getPersons());
+  }, [dispatch]);
+
+  const doFirePerson = useCallback(
+    id => {
+      console.log("Son, you do not disappoint anymore.");
+      dispatch(firePerson(id));
+    },
+    [dispatch]
+  );
+
+  const doHirePerson = person => {
+    dispatch(hirePerson(person));
+  };
+
   return (
     <div>
-      <h1>Hello React Training!</h1>
-      <p>
-        Dear sir or madam, you must be <strong>suckling</strong> on a{" "}
-        <em>duckling!</em>
-      </p>
+      {loading && <Spinner />}
+      <h1>Fraktio ERP v1000.0</h1>
+
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={props => {
+            return (
+              <IndexPage
+                hirePerson={doHirePerson}
+                firePerson={doFirePerson}
+                persons={persons}
+              />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/person/:id"
+          render={props => {
+            const person = persons.get(props.match.params.id);
+            return <PersonPage person={person} />;
+          }}
+        />
+        <Route component={NotFoundPage} />
+      </Switch>
     </div>
   );
 };
