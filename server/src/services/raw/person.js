@@ -5,13 +5,11 @@ import { Range } from "immutable";
 import { servicify } from "../util";
 import { DateTime } from "luxon";
 //import { augmentPerson } from "./augmentor";
+const bcrypt = require("bcryptjs");
 
 const createPerson = () => {
-  const unionized = r.pick([true, false]);
-
-  const politicalView = unionized
-    ? r.pick(["red", "green"])
-    : r.pick(["red", "green", "center", "right", "fascist"]);
+  const email = faker.internet.email();
+  const password = bcrypt.hashSync(email, 2);
 
   return {
     get age() {
@@ -28,9 +26,9 @@ const createPerson = () => {
     gender: r.pick(["m", "f"]),
     handedness: r.pick(["l", "r"]),
     salary: r.integer(2000, 10000),
-    email: faker.internet.email(),
-    unionized,
-    politicalView,
+    password,
+    email,
+    isAdmin: false,
     relatedToCEO: r.pick([
       true,
       false,
@@ -44,9 +42,46 @@ const createPerson = () => {
   };
 };
 
+const gaylord = {
+  get age() {
+    const d = DateTime.fromJSDate(this.birthDay);
+    const now = DateTime.local();
+    const diff = now.diff(d, "years").toObject();
+    return diff.years;
+  },
+  id: uuid(),
+  firstName: "Gaylord",
+  lastName: "Lohiposki",
+  isAdmin: true,
+  handedness: "l",
+  gender: "m",
+  birthDay: faker.date.past(70, "1999-01-01"),
+  salary: 100000,
+  password: bcrypt.hashSync("gaylordpassu", 2),
+  email: "gaylord.lohiposki@dr-kobros.com",
+  relatedToCEO: true
+};
+
 const persons = Range(1, 201)
   .map(createPerson)
   //.map(augmentPerson)
-  .toList();
+  .toList()
+  .push(gaylord);
 
-export default servicify(persons);
+export default {
+  ...servicify(persons),
+  auth: (email, password) => {
+    const person = persons.find(p => p.email === email);
+    if (!person) {
+      return undefined;
+    }
+    const compared = bcrypt.compareSync(password, person.password);
+
+    if (!compared) {
+      return undefined;
+    }
+
+    return person;
+  },
+  createTokenInstance: id => {}
+};
