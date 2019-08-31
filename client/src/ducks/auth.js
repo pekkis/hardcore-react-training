@@ -1,17 +1,22 @@
 import { Map } from "immutable";
 
+export const LOGIN = "LOGIN";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
+export const LOGOUT = "LOGOUT";
+
 const defaultState = Map({
   initialized: false,
   token: undefined,
   user: undefined
 });
 
-export const login = () => {
+export const login = (email, password) => {
   return {
-    type: "LOGIN",
+    type: LOGIN,
     payload: {
-      email: "gaylord.lohiposki@dr-kobros.com",
-      password: "gaylordpassu"
+      email,
+      password
     }
   };
 };
@@ -20,7 +25,9 @@ export default function authReducer(state = defaultState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case "LOGIN_SUCCESS":
+    case LOGOUT:
+      return defaultState;
+    case LOGIN_SUCCESS:
       return state.merge({
         initialized: true,
         token: payload.token,

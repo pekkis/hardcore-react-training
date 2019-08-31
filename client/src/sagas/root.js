@@ -4,10 +4,12 @@ import { GET_PERSONS } from "../ducks/person";
 
 import personSagas from "./person";
 import uiSagas from "./ui";
+import authSagas from "./auth";
+
 import { addNotification } from "./notification";
 
 export default function* rootSaga() {
-  yield all([fork(personSagas), fork(uiSagas)]);
+  yield all([fork(personSagas), fork(uiSagas), fork(authSagas)]);
 
   /*
   If we always do something in the beginning, I'd maybe put it

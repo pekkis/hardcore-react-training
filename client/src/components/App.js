@@ -8,16 +8,31 @@ import NotFoundPage from "./NotFoundPage";
 import Notifications from "./notifications/Notifications";
 import { Switch, Route } from "react-router";
 import { NOTIFICATION_DISMISS } from "../ducks/notification";
+import { LOGIN, LOGOUT } from "../ducks/auth";
 
 const App = () => {
   const dispatch = useDispatch();
 
   const persons = useSelector(state => state.person.get("persons"));
   const loading = useSelector(state => state.ui.get("loading") > 0);
+  const isLoggedIn = useSelector(
+    state => state.auth.get("token") !== undefined
+  );
 
   const notifications = useSelector(state =>
     state.notification.get("notifications")
   );
+
+  const login = useCallback(
+    (email, password) => {
+      dispatch({ type: LOGIN, payload: { email, password } });
+    },
+    [dispatch]
+  );
+
+  const logout = useCallback(() => {
+    dispatch({ type: LOGOUT });
+  }, [dispatch]);
 
   const dismissNotification = useCallback(
     id => {
@@ -52,6 +67,29 @@ const App = () => {
 
       <h1>Fraktio Space Odyssey 2001</h1>
 
+      <p>
+        {isLoggedIn && (
+          <button
+            type="button"
+            onClick={() => {
+              logout();
+            }}
+          >
+            Log out Lohiposki
+          </button>
+        )}
+        {!isLoggedIn && (
+          <button
+            type="button"
+            onClick={() =>
+              login("gaylord.lohiposki@dr-kobros.com", "gaylordpassu")
+            }
+          >
+            Log in Lohiposki
+          </button>
+        )}
+      </p>
+
       <Switch>
         <Route
           exact
@@ -59,6 +97,7 @@ const App = () => {
           render={props => {
             return (
               <IndexPage
+                isLoggedIn={isLoggedIn}
                 hirePerson={hirePerson}
                 firePerson={firePerson}
                 persons={persons}
