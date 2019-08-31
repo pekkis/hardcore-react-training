@@ -5,11 +5,13 @@ import bodyParser from "body-parser";
 import personService from "./services/person";
 import graphql from "./services/graphql";
 import jwtService from "./services/jwt";
-import jwtAuth from "./jwt-auth";
+import createJwtAuth from "./jwt-auth";
 // import customerService from "./services/customer";
 // import projectService from "./services/project";
 // import officeService from "./services/office";
 // import R from "ramda";
+
+const jwtAuth = createJwtAuth(process.env.REQUIRE_AUTH);
 
 const app = express();
 app.use(
