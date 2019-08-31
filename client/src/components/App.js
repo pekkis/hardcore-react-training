@@ -5,8 +5,9 @@ import Spinner from "./Spinner";
 import IndexPage from "./IndexPage";
 import PersonPage from "./PersonPage";
 import NotFoundPage from "./NotFoundPage";
-
+import Notifications from "./notifications/Notifications";
 import { Switch, Route } from "react-router";
+import { NOTIFICATION_DISMISS } from "../ducks/notification";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,21 @@ const App = () => {
   const persons = useSelector(state => state.person.get("persons"));
   const loading = useSelector(state => state.ui.get("loading") > 0);
 
-  const doFirePerson = useCallback(
+  const notifications = useSelector(state =>
+    state.notification.get("notifications")
+  );
+
+  const dismissNotification = useCallback(
+    id => {
+      dispatch({
+        type: NOTIFICATION_DISMISS,
+        payload: id
+      });
+    },
+    [dispatch]
+  );
+
+  const firePerson = useCallback(
     id => {
       console.log("Son, you do not disappoint anymore.");
       dispatch({ type: FIRE_PERSON, payload: id });
@@ -22,14 +37,20 @@ const App = () => {
     [dispatch]
   );
 
-  const doHirePerson = person => {
+  const hirePerson = person => {
     dispatch({ type: HIRE_PERSON, payload: person });
   };
 
   return (
     <div>
+      <Notifications
+        notifications={notifications}
+        dismissNotification={dismissNotification}
+      />
+
       {loading && <Spinner />}
-      <h1>Fraktio ERP v1000.0</h1>
+
+      <h1>Fraktio Space Odyssey 2001</h1>
 
       <Switch>
         <Route
@@ -38,8 +59,8 @@ const App = () => {
           render={props => {
             return (
               <IndexPage
-                hirePerson={doHirePerson}
-                firePerson={doFirePerson}
+                hirePerson={hirePerson}
+                firePerson={firePerson}
                 persons={persons}
               />
             );

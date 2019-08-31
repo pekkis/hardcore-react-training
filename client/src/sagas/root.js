@@ -1,9 +1,10 @@
-import { all, put, fork } from "redux-saga/effects";
+import { call, all, put, fork } from "redux-saga/effects";
 
 import { GET_PERSONS } from "../ducks/person";
 
 import personSagas from "./person";
 import uiSagas from "./ui";
+import { addNotification } from "./notification";
 
 export default function* rootSaga() {
   yield all([fork(personSagas), fork(uiSagas)]);
@@ -13,4 +14,5 @@ export default function* rootSaga() {
   here instead of the useEffect in root component
   */
   yield put({ type: GET_PERSONS });
+  yield call(addNotification, "Welcome to Fraktio Space Odyssey 2001");
 }

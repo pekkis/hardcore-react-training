@@ -1,4 +1,11 @@
-import { put, call, takeLeading, takeEvery, all } from "redux-saga/effects";
+import {
+  put,
+  call,
+  takeLeading,
+  takeEvery,
+  all,
+  take
+} from "redux-saga/effects";
 import personService from "../services/person";
 import {
   GET_PERSONS,
@@ -14,6 +21,7 @@ import {
   HIRE_PERSON_FULFILLED,
   HIRE_PERSON_PENDING
 } from "../ducks/person";
+import { addNotification } from "./notification";
 
 export function* getPersons() {
   yield put({ type: GET_PERSONS_PENDING });
@@ -48,16 +56,36 @@ export function* hirePerson(person) {
   }
 }
 
-export default function* personSagas() {
+export function* congratulateForFirings() {
+  do {
+    for (let x = 1; x <= 5; x = x + 1) {
+      yield take(FIRE_PERSON_FULFILLED);
+    }
+
+    yield call(
+      addNotification,
+      "Excellent job, sir! Keep on firing to get moar achievements!"
+    );
+  } while (true);
+}
+
+export function* loggedInActions() {
   yield all([
-    takeLeading(GET_PERSONS, function*() {
-      yield call(getPersons);
-    }),
     takeEvery(FIRE_PERSON, function*(action) {
       yield call(firePerson, action.payload);
     }),
     takeEvery(HIRE_PERSON, function*(action) {
       yield call(hirePerson, action.payload);
     })
+  ]);
+}
+
+export default function* personSagas() {
+  yield all([
+    takeLeading(GET_PERSONS, function*() {
+      yield call(getPersons);
+    }),
+    loggedInActions(),
+    congratulateForFirings()
   ]);
 }
