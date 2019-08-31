@@ -97,7 +97,7 @@ const App = () => {
           render={props => {
             return (
               <IndexPage
-                isLoggedIn={isLoggedIn}
+                readOnly={!isLoggedIn}
                 hirePerson={hirePerson}
                 firePerson={firePerson}
                 persons={persons}

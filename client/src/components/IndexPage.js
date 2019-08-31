@@ -3,7 +3,7 @@ import PersonList from "./PersonList";
 import HirePersonForm from "./HirePersonForm";
 
 const IndexPage = props => {
-  const { firePerson, hirePerson, persons, isLoggedIn } = props;
+  const { firePerson, hirePerson, persons, readOnly } = props;
 
   const isGood = p => p.age < 50 || p.isRelatedToCEO === true;
 
@@ -12,17 +12,17 @@ const IndexPage = props => {
 
   return (
     <div>
-      {isLoggedIn && <HirePersonForm hirePerson={hirePerson} />}
+      {!readOnly && <HirePersonForm hirePerson={hirePerson} />}
       <h2>Bad Persons</h2>
       <PersonList
-        readOnly={!isLoggedIn}
+        readOnly={readOnly}
         firePerson={firePerson}
         persons={badPersons}
         showMetadata
       />
       <h2>Good Persons</h2>
       <PersonList
-        readOnly={!isLoggedIn}
+        readOnly={readOnly}
         firePerson={firePerson}
         persons={goodPersons}
       />
