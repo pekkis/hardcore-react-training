@@ -1,30 +1,47 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import dotenv from "dotenv";
 import personService from "./services/person";
 import graphql from "./services/graphql";
+import jwtService from "./services/jwt";
+import jwtAuth from "./jwt-auth";
 // import customerService from "./services/customer";
 // import projectService from "./services/project";
 // import officeService from "./services/office";
 // import R from "ramda";
 
-dotenv.config();
-
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    exposedHeaders: ["x-auth-token", "authorization"]
+  })
+);
 app.use(bodyParser.json());
 
 graphql.applyMiddleware({ app });
 
+app.post(
+  "/auth",
+  async (req, res, next) => {
+    const { email, password } = req.body;
+    const person = await personService.auth(email, password);
+
+    if (!person) {
+      return res.status(401).send();
+    }
+
+    req.auth = person;
+
+    return next();
+  },
+  jwtService.generateToken,
+  jwtService.sendToken
+);
+
 app.get("/person", async (req, res, next) => {
   const persons = await personService.all();
   res.json(persons);
-});
-
-app.post("/person", async (req, res, next) => {
-  const person = await personService.create(req.body);
-  res.json(person);
 });
 
 app.get("/person/:id", async (req, res, next) => {
@@ -37,7 +54,19 @@ app.get("/person/:id", async (req, res, next) => {
   res.json(person);
 });
 
-app.delete("/person/:id", async (req, res, next) => {
+app.post("/person", jwtAuth, async (req, res, next) => {
+  if (!req.user.isAdmin) {
+    return res.status(403).send();
+  }
+  const person = await personService.create(req.body);
+  res.json(person);
+});
+
+app.delete("/person/:id", jwtAuth, async (req, res, next) => {
+  if (!req.user.isAdmin) {
+    return res.status(403).send();
+  }
+
   const person = await personService.findById(req.params.id);
   if (!person) {
     res.status(404).send("person not found");
