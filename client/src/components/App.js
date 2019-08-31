@@ -1,6 +1,6 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPersons, hirePerson, firePerson } from "../ducks/person";
+import { FIRE_PERSON, HIRE_PERSON } from "../ducks/person";
 import Spinner from "./Spinner";
 import IndexPage from "./IndexPage";
 import PersonPage from "./PersonPage";
@@ -12,22 +12,18 @@ const App = () => {
   const dispatch = useDispatch();
 
   const persons = useSelector(state => state.person.get("persons"));
-  const loading = useSelector(state => state.person.get("loading") > 0);
-
-  useEffect(() => {
-    dispatch(getPersons());
-  }, [dispatch]);
+  const loading = useSelector(state => state.ui.get("loading") > 0);
 
   const doFirePerson = useCallback(
     id => {
       console.log("Son, you do not disappoint anymore.");
-      dispatch(firePerson(id));
+      dispatch({ type: FIRE_PERSON, payload: id });
     },
     [dispatch]
   );
 
   const doHirePerson = person => {
-    dispatch(hirePerson(person));
+    dispatch({ type: HIRE_PERSON, payload: person });
   };
 
   return (
