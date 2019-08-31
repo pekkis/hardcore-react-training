@@ -6,12 +6,14 @@ import personService from "./services/person";
 import graphql from "./services/graphql";
 import jwtService from "./services/jwt";
 import createJwtAuth from "./jwt-auth";
+import createIsAdmin from "./is-admin";
 // import customerService from "./services/customer";
 // import projectService from "./services/project";
 // import officeService from "./services/office";
 // import R from "ramda";
 
 const jwtAuth = createJwtAuth(process.env.REQUIRE_AUTH);
+const isAdmin = createIsAdmin(process.env.REQUIRE_AUTH);
 
 const app = express();
 app.use(
@@ -56,19 +58,12 @@ app.get("/person/:id", async (req, res, next) => {
   res.json(person);
 });
 
-app.post("/person", jwtAuth, async (req, res, next) => {
-  if (!req.user.isAdmin) {
-    return res.status(403).send();
-  }
+app.post("/person", jwtAuth, isAdmin, async (req, res, next) => {
   const person = await personService.create(req.body);
   res.json(person);
 });
 
-app.delete("/person/:id", jwtAuth, async (req, res, next) => {
-  if (!req.user.isAdmin) {
-    return res.status(403).send();
-  }
-
+app.delete("/person/:id", jwtAuth, isAdmin, async (req, res, next) => {
   const person = await personService.findById(req.params.id);
   if (!person) {
     res.status(404).send("person not found");
