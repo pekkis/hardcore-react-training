@@ -9,6 +9,7 @@ const {
   defaultBaseConfig,
   mergeOptions,
   addFeatures,
+  setEntry,
   compile,
   override,
   run,
@@ -41,7 +42,7 @@ module.exports = target => {
       })
     ),
     defaultFeatures,
-    removeFeature("uglifyFeature"),
+    removeFeature("uglifyFeature", "serverRenderFeature"),
     addFeatures(
       postCssFeature(),
       styledComponentsFeature(),
@@ -52,20 +53,21 @@ module.exports = target => {
         whitelist: []
       })
     ),
+    setEntry("client", "./client.tsx"),
     build => {
       if (env === "production") {
         return build;
       }
       return build.setIn(["base", "devtool"], "cheap-module-eval-source-map");
     },
-    ensureFiles(false),
+    // ensureFiles(false),
     compile(env, target),
     override(path.join(__dirname, "./src/config/overrides")),
     run,
     toJS
   )(Map());
 
-  // console.log("config", util.inspect(config, { depth: 666 }));
+  //console.log("config", util.inspect(config, { depth: 666 }));
   // process.exit();
 
   return config;
