@@ -1,33 +1,34 @@
-import React, { useState, useEffect } from "react";
-import personService from "../services/person";
+import React, { useEffect } from "react";
 import PersonList from "./PersonList";
 import HirePersonForm from "./HirePersonForm";
-
-import { List } from "immutable";
-
+import { useDispatch, useSelector } from "react-redux";
 import "./App.pcss";
+import { FIRE_PERSON, HIRE_PERSON, GET_PERSONS } from "../ducks/person";
+import Spinner from "./Spinner";
+
+/*
+{
+  person: Map({ persons: List() })
+}
+*/
 
 const App = props => {
-  const [persons, setPersons] = useState(List());
+  const persons = useSelector(state => state.person.get("persons"));
+  const dispatch = useDispatch();
+
+  const isLoading = useSelector(state => state.ui.get("loading") > 0);
 
   useEffect(() => {
-    const doTheDeed = async () => {
-      const p = await personService.getPersons();
-      setPersons(List(p));
-    };
-    doTheDeed();
-
-    return () => {
-      console.log("cleanup maaan");
-    };
-  }, [setPersons]);
+    dispatch({ type: GET_PERSONS });
+    dispatch({ type: GET_PERSONS });
+  }, [dispatch]);
 
   const firePerson = id => {
-    setPersons(persons.filter(p => p.id !== id));
+    dispatch({ type: FIRE_PERSON, payload: id });
   };
 
   const hirePerson = person => {
-    setPersons(persons.push(person));
+    dispatch({ type: HIRE_PERSON, payload: person });
   };
 
   const isGood = p => p.age < 30 || p.isRelatedToCEO === true;
@@ -37,6 +38,7 @@ const App = props => {
 
   return (
     <div>
+      {isLoading && <Spinner />}
       <h1>Fraktio ERP 50.000.000</h1>
 
       <HirePersonForm hirePerson={hirePerson} />

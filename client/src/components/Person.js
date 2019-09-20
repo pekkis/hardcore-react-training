@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Person.pcss";
 import cx from "classnames";
+import Button from "./Button";
 
 const Person = props => {
   const { person, firePerson } = props;
@@ -11,13 +12,19 @@ const Person = props => {
   });
 
   return (
-    <div className={classes} initialPose="closed" pose="open">
+    <div className={classes}>
       <div>
         <strong>{person.lastName}</strong>, {person.firstName} ({person.age}{" "}
         vuotta)
       </div>
       <div>
-        <button onClick={() => firePerson(person.id)}>vapauta</button>
+        <Button
+          disabled={person.isBeingFired}
+          block
+          onClick={() => firePerson(person.id)}
+        >
+          vapauta
+        </Button>
       </div>
     </div>
   );
