@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
-import PersonList from "./PersonList";
-import HirePersonForm from "./HirePersonForm";
+import React, { useEffect, useCallback, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.pcss";
 import { FIRE_PERSON, HIRE_PERSON, GET_PERSONS } from "../ducks/person";
 import Spinner from "./Spinner";
+// import IndexPage from "./IndexPage";
 
-/*
-{
-  person: Map({ persons: List() })
-}
-*/
+import PersonPage from "./PersonPage";
+import { Switch, Route } from "react-router";
+import NotFound from "./NotFound";
+
+const IndexPage = React.lazy(() => import("./IndexPage"));
 
 const App = props => {
   const persons = useSelector(state => state.person.get("persons"));
@@ -23,31 +22,53 @@ const App = props => {
     dispatch({ type: GET_PERSONS });
   }, [dispatch]);
 
-  const firePerson = id => {
-    dispatch({ type: FIRE_PERSON, payload: id });
-  };
+  const firePerson = useCallback(
+    id => {
+      dispatch({ type: FIRE_PERSON, payload: id });
+    },
+    [dispatch]
+  );
 
-  const hirePerson = person => {
-    dispatch({ type: HIRE_PERSON, payload: person });
-  };
-
-  const isGood = p => p.age < 30 || p.isRelatedToCEO === true;
-
-  const goodPersons = persons.filter(isGood);
-  const badPersons = persons.filter(p => !isGood(p));
+  const hirePerson = useCallback(
+    person => {
+      dispatch({ type: HIRE_PERSON, payload: person });
+    },
+    [dispatch]
+  );
 
   return (
     <div>
       {isLoading && <Spinner />}
       <h1>Fraktio ERP 50.000.000</h1>
 
-      <HirePersonForm hirePerson={hirePerson} />
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={props => {
+            return (
+              <Suspense fallback={<div>LADDARE</div>}>
+                <IndexPage
+                  persons={persons}
+                  firePerson={firePerson}
+                  hirePerson={hirePerson}
+                />
+              </Suspense>
+            );
+          }}
+        />
+        <Route
+          path="/person/:id"
+          exact
+          render={props => {
+            console.log(props, "proppo");
+            const person = persons.get(props.match.params.id);
+            return <PersonPage person={person} />;
+          }}
+        />
 
-      <h2>Pahat ihmiset</h2>
-      <PersonList firePerson={firePerson} persons={badPersons} showMetadata />
-
-      <h2>Hyvät ihmiset</h2>
-      <PersonList firePerson={firePerson} persons={goodPersons} />
+        <Route component={NotFound} />
+      </Switch>
     </div>
   );
 };

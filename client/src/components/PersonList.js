@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Person from "./Person";
 import PropTypes from "prop-types";
 import ImmutablePropTypes from "react-immutable-proptypes";
@@ -78,4 +78,4 @@ PersonList.defaultProps = {
   showMetadata: false
 };
 
-export default PersonList;
+export default memo(PersonList);
