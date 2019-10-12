@@ -21,7 +21,7 @@ const postCssFeature = require("@dr-kobros/broilerplate-postcss");
 const nodeExternalsFeature = require("@dr-kobros/broilerplate/lib/features/nodeExternalsFeature");
 const externalCssFeature = require("@dr-kobros/broilerplate/lib/features/externalCssFeature");
 const extractCssFeature = require("@dr-kobros/broilerplate-mini-css-extract");
-const styledComponentsFeature = require("@dr-kobros/broilerplate-styled-components");
+const emotionFeature = require("./src/config/emotion");
 // const legacyFeature = require("./src/config/legacy");
 
 const dotenv = require("dotenv");
@@ -45,13 +45,13 @@ module.exports = target => {
     removeFeature("uglifyFeature", "serverRenderFeature"),
     addFeatures(
       postCssFeature(),
-      styledComponentsFeature(),
       // legacyFeature(),
       externalCssFeature(),
       extractCssFeature(),
       nodeExternalsFeature({
         whitelist: []
-      })
+      }),
+      emotionFeature()
     ),
     setEntry("client", "./client.tsx"),
     build => {
