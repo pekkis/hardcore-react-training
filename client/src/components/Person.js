@@ -10,15 +10,10 @@ import React from "react";
 }
 */
 
+import { Link } from "react-router-dom";
+
 const Person = props => {
   const { person, firePerson } = props;
-
-  /*
-  const classes = cx(styles.person, {
-    [styles.male]: person.gender === "m",
-    [styles.female]: person.gender === "f"
-  });
-  */
 
   return (
     <div
@@ -38,7 +33,9 @@ const Person = props => {
       ]}
       key={person.id}
     >
-      {person.lastName} {person.firstName}
+      <Link to={`/person/${person.id}`}>
+        {person.lastName} {person.firstName}
+      </Link>
       <div>
         <button onClick={() => firePerson(person.id)}>vapauta!</button>
       </div>
@@ -46,4 +43,4 @@ const Person = props => {
   );
 };
 
-export default Person;
+export default React.memo(Person);

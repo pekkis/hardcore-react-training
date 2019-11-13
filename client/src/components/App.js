@@ -1,16 +1,40 @@
-import React, { useState, useEffect } from "react";
-import personService from "../services/person";
+import React, { useEffect } from "react";
 import PersonList from "./PersonList";
 
+import HirePersonForm from "./HirePersonForm";
+import { useDispatch, useSelector } from "react-redux";
+
+import { Switch, Route } from "react-router";
+
+import { HIRE_PERSON, FIRE_PERSON, getPersons } from "../ducks/person";
+
+const NeedsPerson = props => {
+  const { person, children, ...rest } = props;
+  if (!person) {
+    return null;
+  }
+
+  return children({
+    ...rest,
+    person
+  });
+};
+
 const App = props => {
-  const [persons, setPersons] = useState([]);
+  const dispatch = useDispatch();
+  const persons = useSelector(state => state.person);
+
   console.log(persons, "persons");
   useEffect(() => {
-    personService.getPersons().then(setPersons);
-  }, [setPersons]);
+    dispatch(getPersons());
+  }, [dispatch]);
 
   const firePerson = id => {
-    setPersons(persons.filter(p => p.id !== id));
+    dispatch({ type: FIRE_PERSON, payload: id });
+  };
+
+  const hirePerson = person => {
+    dispatch({ type: HIRE_PERSON, payload: person });
   };
 
   const isGood = person => person.age <= 30;
@@ -23,16 +47,47 @@ const App = props => {
       <div>
         <h1>Fraktio ERP 50.000 Super!</h1>
 
-        <h2>Pahikset</h2>
-        <PersonList firePerson={firePerson} persons={badPersons} />
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={props => {
+              return (
+                <div>
+                  <HirePersonForm hirePerson={hirePerson} />
+                  <h2>Pahikset</h2>
+                  <PersonList firePerson={firePerson} persons={badPersons} />
+                  <h2>Hyvikset</h2>
+                  <PersonList firePerson={firePerson} persons={goodPersons} />
+                </div>
+              );
+            }}
+          />
+          <Route
+            path="/person/:id"
+            exact
+            render={props => {
+              const person = persons.find(p => p.id === props.match.params.id);
 
-        <h2>Hyvikset</h2>
-        <PersonList firePerson={firePerson} persons={goodPersons} />
+              return (
+                <NeedsPerson person={person}>
+                  {({ person: p }) => {
+                    return (
+                      <div>
+                        <h2>
+                          {p.lastName}, {p.firstName}
+                        </h2>
+                      </div>
+                    );
+                  }}
+                </NeedsPerson>
+              );
+            }}
+          />
+        </Switch>
       </div>
     </>
   );
 };
 
 export default App;
-
-export const secondaryExport = "tussi";

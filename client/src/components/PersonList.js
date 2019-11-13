@@ -6,15 +6,19 @@ const PersonList = props => {
   const { persons, ...rest } = props;
 
   const ageSum = persons.reduce((a, p) => a + p.age, 0);
-  const averageAge = ageSum / persons.length;
+  const averageAge = ageSum / persons.count();
 
   return (
     <div>
       <p>Henkilöitä listalla: {persons.length}</p>
       <p>Keski-ikä: {averageAge.toFixed(2)}</p>
-      {persons.map(person => {
-        return <Person {...rest} key={person.id} person={person} />;
-      })}
+      {persons
+        .sortBy(p => p.firstName)
+        .sortBy(p => p.lastName)
+        // .reverse()
+        .map(person => {
+          return <Person {...rest} key={person.id} person={person} />;
+        })}
     </div>
   );
 };

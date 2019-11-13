@@ -5,9 +5,15 @@ import { Global } from "@emotion/core";
 import bg from "./assets/money.jpg";
 import normalize from "emotion-normalize";
 
-type Props = {};
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
-const Root: FunctionComponent<Props> = () => {
+type Props = {
+  store: any;
+};
+
+const Root: FunctionComponent<Props> = props => {
+  const { store } = props;
   return (
     <>
       <Global
@@ -24,7 +30,11 @@ const Root: FunctionComponent<Props> = () => {
           }
         ]}
       />
-      <App />
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
     </>
   );
 };
