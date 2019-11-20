@@ -46,7 +46,7 @@
     "emotion-theming": "^10.0.19",
     "facepaint": "^1.2.1",
     "faker": "^4.1.0",
-    "formik": "^1.5.0",
+    "formik": "^2.0.4",
     "framer-motion": "^1.6.12",
     "graphql": "^14.5.5",
     "identity-obj-proxy": "^3.0.0",
