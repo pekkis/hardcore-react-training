@@ -47,7 +47,7 @@
     "facepaint": "^1.2.1",
     "faker": "^4.1.0",
     "formik": "^2.0.4",
-    "framer-motion": "^1.6.12",
+    "framer-motion": "^1.6.15",
     "graphql": "^14.5.5",
     "identity-obj-proxy": "^3.0.0",
     "immutable": "^4.0.0-rc.12",
