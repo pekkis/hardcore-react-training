@@ -1,16 +1,21 @@
 import React, { FunctionComponent } from "react";
-import App from "./components/App";
-
 import { Global, css } from "@emotion/core";
 import normalize from "emotion-normalize";
 
+import { Provider } from "react-redux";
+
+import App from "./components/App";
 import money from "./assets/money.jpg";
 
+import { BrowserRouter } from "react-router-dom";
+
 type Props = {
-  store?: any;
+  store: any;
 };
 
-const Root: FunctionComponent<Props> = () => {
+const Root: FunctionComponent<Props> = props => {
+  const { store } = props;
+
   return (
     <React.StrictMode>
       <Global
@@ -27,7 +32,11 @@ const Root: FunctionComponent<Props> = () => {
           })
         ]}
       />
-      <App />
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
     </React.StrictMode>
   );
 };

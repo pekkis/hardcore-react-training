@@ -17,11 +17,11 @@ const children = {
 };
 
 const PersonList = props => {
-  const { persons, showMetadata, firePerson, ...rest } = props;
+  const { persons, showMetadata, ...rest } = props;
 
-  const averageAge = persons.reduce((a, p) => a + p.age, 0) / persons.length;
+  const averageAge = persons.reduce((a, p) => a + p.age, 0) / persons.count();
 
-  if (persons.length === 0) {
+  if (persons.count() === 0) {
     return null;
   }
 
@@ -31,31 +31,35 @@ const PersonList = props => {
 
       <motion.div variants={variants} initial="hidden" animate="visible">
         <AnimatePresence>
-          {persons.map((person, i) => {
-            return (
-              <motion.div
-                dragConstraints={{ left: 0 }}
-                dragElastic={0.2}
-                drag="x"
-                onDragEnd={e => {
-                  if (e.offsetX > 100) {
-                    // firePerson(person.id);
-                  }
-                }}
-                positionTransition
-                key={person.id}
-                variants={children}
-                exit={{
-                  left: -350,
-                  scale: 0.0001,
-                  opacity: 0.8,
-                  transition: { ease: "backOut" }
-                }}
-              >
-                <Person {...rest} key={person.id} person={person} />
-              </motion.div>
-            );
-          })}
+          {persons
+            .toList()
+            .sortBy(p => p.firstName)
+            .sortBy(p => p.lastName)
+            .map((person, i) => {
+              return (
+                <motion.div
+                  dragConstraints={{ left: 0 }}
+                  dragElastic={0.2}
+                  drag="x"
+                  onDragEnd={e => {
+                    if (e.offsetX > 100) {
+                      // firePerson(person.id);
+                    }
+                  }}
+                  positionTransition
+                  key={person.id}
+                  variants={children}
+                  exit={{
+                    left: -350,
+                    scale: 0.0001,
+                    opacity: 0.8,
+                    transition: { duration: 0.5 }
+                  }}
+                >
+                  <Person {...rest} key={person.id} person={person} />
+                </motion.div>
+              );
+            })}
         </AnimatePresence>
       </motion.div>
     </div>

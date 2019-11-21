@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "./Button";
 
+import { Link } from "react-router-dom";
+
 const Person = props => {
   const { person, firePerson } = props;
   return (
@@ -24,10 +26,16 @@ const Person = props => {
         }
       ]}
     >
-      {person.firstName} <strong>{person.lastName}</strong> (
-      {person.age.toFixed(2)} v)
+      <Link to={`/person/${person.id}`}>
+        {person.firstName} <strong>{person.lastName}</strong> (
+        {person.age.toFixed(2)} v)
+      </Link>
+
       <div>
-        <Button onClick={() => firePerson(person.id)}>
+        <Button
+          disabled={person.isBeingFired}
+          onClick={() => firePerson(person.id)}
+        >
           <span>❤️</span> vapauta!
         </Button>
       </div>
@@ -35,4 +43,4 @@ const Person = props => {
   );
 };
 
-export default Person;
+export default React.memo(Person);

@@ -1,22 +1,22 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import Root from "./Root";
 
-/*
 import { createStore } from "./services/redux";
-import { getMiddlewares, getReducers, getEnhancers } from "./config/redux";
+import {
+  sagaMiddleware,
+  getMiddlewares,
+  getReducers,
+  getEnhancers
+} from "./config/redux";
 import { getInitialState } from "./config/state";
-*/
 
-/*
+import rootSaga from "./sagas/root";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 library.add(faSpinner);
-*/
 
-const initialState = undefined;
-
-/*
 const initialState = getInitialState();
 
 const store = createStore(
@@ -25,15 +25,16 @@ const store = createStore(
   getEnhancers(),
   initialState
 );
-*/
+
+sagaMiddleware.run(rootSaga);
 
 // Just a small DRY abstraction here.
 function render(
-  Component: FunctionComponent,
+  Component: typeof Root,
   rootElement: HTMLElement,
   method: "render" | "hydrate" = "render"
 ) {
-  ReactDOM[method](<Component />, rootElement);
+  ReactDOM[method](<Component store={store} />, rootElement);
 }
 
 const rootElement = document.getElementById("app");
