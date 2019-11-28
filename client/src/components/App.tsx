@@ -1,6 +1,8 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 
-const App = props => {
+type Props = {};
+
+const App: FunctionComponent<Props> = props => {
   return (
     <>
       <div>

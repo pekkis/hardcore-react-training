@@ -22,19 +22,17 @@ There are other branches too. They contain all the stuff from all the previous t
 ## Human Requirements
 
 - You are a developer, devsigner or such.
-- You have working professional knowledge on JavaScript, HTML and CSS. You don't have to be a guru, but the course is not suitable for beginners.
+- You have working professional knowledge on JavaScript, HTML and CSS. You don't have to be a guru, but the course REALLY is not suitable for beginners.
 
 ## Computer Requirements
 
 - MacOS and Linux are grade A citizens. Should work in Windows too, but I don't
   always test because I'm not a Windows man myself.
 - If it doesn't work, just use a Unix virtual machine.
-- The current version of node.js (8 and 10 should both work). Might work on older / newer / other ones, but no guarantees!
-- The [Yarn package manager](https://yarnpkg.com).
+- The current version of node.js (10 or 12 should work). Might work on older / newer / other ones, but no guarantees!
+- The [Yarn package manager](https://yarnpkg.com). Might work with vanilla NPM too but dunno. I like Yarn.
 - An editor / IDE that supports the good stuff. I use [VSCode](https://code.visualstudio.com/)
-  myself nowadays, and it's really good. [Atom](https://atom.io/) is OK too.
-  - Some alternatives: Nuclide, WebStorm, Eclipse, Sublime Text, whatever. Just make sure you get all the syntax and code helps etc.
-- Chrome browser. Or some other good dev browser.
+  myself nowadays, and it's really good.
 
 ### Browser extensions
 
@@ -53,18 +51,6 @@ If you use VSCode, you must install at least the following extensions.
 - PostCSS syntax
 - vscode-styled-components
 
-[Check this screenshot!](https://www.dropbox.com/s/mujeklatlr30ciy/Screenshot%202018-07-30%2013.39.07.png?dl=0)
-
-### Atom packages
-
-If you use Atom, you must install at least the following packages.
-
-- linter
-- linter-eslint
-- language-babel
-- language-postcss
-- prettier-atom
-
 ## Howto
 
 The software is divided into two subfolders. `client` has the client side
@@ -74,8 +60,7 @@ a backend for our training session.
 Commands are always run in either of these folders. Not in the common
 root folder.
 
-While preparing for the training session, you must follow the _development mode_ path
-until you reach the situation in [this screenshot](https://www.dropbox.com/s/np9dsnil0p7jny7/Screenshot%202018-08-16%2014.07.12.png?dl=0).
+While preparing for the training session, you must follow the _development mode_ path for both server and client.
 
 ## Development mode
 
@@ -85,7 +70,8 @@ until you reach the situation in [this screenshot](https://www.dropbox.com/s/np9
 - `yarn`
 - `cp .env.example .env`
 - `yarn run start`
-  - open browser and go to http://localhost:8888
+
+Open browser and go to http://localhost:8888. You should see a simple welcoming screen of some kind. It should look something like [this screenshot](https://www.dropbox.com/s/tibrr0l22ebl5qn/Screenshot%202019-11-28%2010.29.02.png?dl=0).
 
 ### server
 
@@ -94,19 +80,15 @@ until you reach the situation in [this screenshot](https://www.dropbox.com/s/np9
 - `cp .env.example .env`
 - `yarn run start`
 
+After the server is running, go to http://localhost:8889/person and you should see a mighty JSON of persons.
+
 ## Build
 
 ### client
 
-The app builds to `dist/` (client code) and `dist-server` (server side rendering) folder.
+The app builds to `dist/` (client code) folder.
 
 - `yarn run build`
-
-### server side rendering
-
-- `cd client`
-- `yarn run build`
-- `node dist-server/index.js`
 
 ## Food for thought
 

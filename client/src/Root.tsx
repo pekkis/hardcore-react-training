@@ -3,7 +3,7 @@ import App from "./components/App";
 
 type Props = {};
 
-const Root: FunctionComponent<Props> = () => {
+const Root: FunctionComponent<Props> = props => {
   return <App />;
 };
 
