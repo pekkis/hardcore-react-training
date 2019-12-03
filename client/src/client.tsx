@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Root from "./Root";
 
-/*
 import { createStore } from "./services/redux";
 import {
   getMiddlewares,
@@ -12,33 +11,27 @@ import {
 } from "./config/redux";
 import { getInitialState } from "./config/state";
 import rootSaga from "./sagas/root";
-*/
 
-/*
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { Store } from "redux";
 library.add(faSpinner);
-*/
 
-/*
 const initialState = getInitialState();
 
-const store = createStore(
+const store: Store = createStore(
   getReducers(),
   getMiddlewares(),
   getEnhancers(),
   initialState
 );
 
-
 const sagaMiddleware = getSagaMiddleware();
 sagaMiddleware.run(rootSaga);
 
-*/
-
 // Just a small DRY abstraction here.
 function render(Component: typeof Root, rootElement: HTMLElement) {
-  ReactDOM.render(<Component />, rootElement);
+  ReactDOM.render(<Component store={store} />, rootElement);
 }
 
 const rootElement = document.getElementById("app");
