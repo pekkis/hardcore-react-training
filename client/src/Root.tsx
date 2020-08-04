@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from "react";
 import App from "./components/App";
 
-type Props = {};
+interface Props {}
 
-const Root: FunctionComponent<Props> = props => {
+const Root: FunctionComponent<Props> = (props) => {
+  console.log("Lollipop");
   return <App />;
 };
 

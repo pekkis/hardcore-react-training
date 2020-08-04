@@ -51,12 +51,4 @@ if (!rootElement) {
 // If we get !undefined state from the server, we hydrate.
 render(Root, rootElement);
 
-// Webpack's hot reloading magic happens here.
-if ((module as any).hot) {
-  (module as any).hot.accept("./Root", () => {
-    const HotReloadedRoot = require("./Root").default;
-    render(HotReloadedRoot, rootElement);
-  });
-}
-
 console.log("In the browser console, also suckling on a duckling?!?");

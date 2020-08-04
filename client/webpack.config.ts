@@ -21,6 +21,8 @@ import WatchMissingNodeModulesPlugin from "react-dev-utils/WatchMissingNodeModul
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+
 // import ReactRefreshPlugin from "@webhotelier/webpack-fast-refresh";
 // import ErrorOverlayPlugin from "@webhotelier/webpack-fast-refresh/error-overlay";
 
@@ -102,11 +104,14 @@ const getPcssRule = (mode) => {
 const mode =
   process.env.NODE_ENV === "development" ? "development" : "production";
 
+const isDevelopment = mode === "development";
+
 const base: webpack.Configuration = {
   mode,
   optimization: {
     splitChunks: {
-      chunks: "all"
+      chunks: "all",
+      minSize: 500
     }
   },
   devtool: false,
@@ -191,9 +196,10 @@ const base: webpack.Configuration = {
                 "@babel/plugin-syntax-dynamic-import",
                 "@babel/plugin-proposal-class-properties",
                 "@babel/plugin-proposal-nullish-coalescing-operator",
-                "@babel/plugin-proposal-optional-chaining"
+                "@babel/plugin-proposal-optional-chaining",
+                isDevelopment && require.resolve("react-refresh/babel")
                 // "react-refresh/babel"
-              ],
+              ].filter(Boolean),
               cacheDirectory: true
             }
           }
@@ -233,7 +239,7 @@ const dev: webpack.Configuration = {
   entry: {
     client: ["./client.tsx"]
   },
-  // plugins: [new ReactRefreshPlugin()],
+  plugins: [new ReactRefreshWebpackPlugin()],
   module: {
     rules: []
   }
