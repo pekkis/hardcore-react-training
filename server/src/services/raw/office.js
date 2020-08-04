@@ -1,4 +1,5 @@
-import uuid from "uuid/v4";
+import { v4 as uuid } from "uuid";
+
 import { List } from "immutable";
 import { servicify } from "../util";
 
@@ -8,10 +9,10 @@ const offices = List.of(
   "Ostrava",
   "Tukholma",
   "Pune"
-).map(name => {
+).map((name) => {
   return {
     name,
-    id: uuid()
+    id: uuid(),
   };
 });
 

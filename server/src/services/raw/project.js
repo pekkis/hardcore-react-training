@@ -1,4 +1,4 @@
-import uuid from "uuid/v4";
+import { v4 as uuid } from "uuid";
 import { List } from "immutable";
 import customerService from "./customer";
 import r from "../random";
@@ -15,12 +15,12 @@ const projects = List.of(
   "Project X",
   "Project Y",
   "Donald Trump's Homepage"
-).map(name => {
+).map((name) => {
   const customers = customerService.all();
 
   let customer;
   if (["Embezzlement", "Fraktio ERP"].includes(name)) {
-    customer = customers.find(c => c.name === "Fraktio");
+    customer = customers.find((c) => c.name === "Fraktio");
   } else {
     customer = customers.get(r.integer(1, customers.count()) - 1);
   }
@@ -29,7 +29,7 @@ const projects = List.of(
     name,
     id: uuid(),
     priority: name === "Embezzlement" ? true : false,
-    customer: customer.id
+    customer: customer.id,
   };
 });
 

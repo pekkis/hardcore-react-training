@@ -1,4 +1,4 @@
-import uuid from "uuid/v4";
+import { v4 as uuid } from "uuid";
 import { List } from "immutable";
 import { servicify } from "../util";
 
@@ -12,10 +12,10 @@ const customers = List.of(
   "Shell",
   "Talvivaara",
   "Church of Scientology"
-).map(name => {
+).map((name) => {
   return {
     name,
-    id: uuid()
+    id: uuid(),
   };
 });
 

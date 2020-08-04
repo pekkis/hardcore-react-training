@@ -1,6 +1,6 @@
 import r from "../random";
 import faker from "faker";
-import uuid from "uuid/v4";
+import { v4 as uuid } from "uuid";
 import { Range } from "immutable";
 import { servicify } from "../util";
 import { DateTime } from "luxon";
@@ -37,8 +37,8 @@ const createPerson = () => {
       false,
       false,
       false,
-      false
-    ])
+      false,
+    ]),
   };
 };
 
@@ -59,7 +59,7 @@ const gaylord = {
   salary: 100000,
   password: bcrypt.hashSync("gaylordpassu", 2),
   email: "gaylord.lohiposki@dr-kobros.com",
-  relatedToCEO: true
+  relatedToCEO: true,
 };
 
 const persons = Range(1, 201)
@@ -71,7 +71,7 @@ const persons = Range(1, 201)
 export default {
   ...servicify(persons),
   auth: (email, password) => {
-    const person = persons.find(p => p.email === email);
+    const person = persons.find((p) => p.email === email);
     if (!person) {
       return undefined;
     }
@@ -83,5 +83,5 @@ export default {
 
     return person;
   },
-  createTokenInstance: id => {}
+  createTokenInstance: (id) => {},
 };
