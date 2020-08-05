@@ -1,6 +1,6 @@
 {
   "name": "hardcore-react-training-server",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Hardcore React Training Server",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "lint": "eslint src"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "apollo-server": "^2.16.1",
     "apollo-server-express": "^2.16.1",

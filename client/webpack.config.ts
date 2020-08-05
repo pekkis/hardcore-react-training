@@ -1,30 +1,20 @@
-// import { pipe, over, lensPath, append } from "ramda";
 import path from "path";
-import util from "util";
-
 import { any, pickBy, mapObjIndexed } from "ramda";
 import { merge } from "webpack-merge";
 
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-
-import pkg from "./package.json";
-// import { Configuration } from "webpack-dev-server";
-
-import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-
 import * as webpack from "webpack";
-// import * as webpackDevServer from "webpack-dev-server";
-
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import CaseSensitivePathsPlugin from "case-sensitive-paths-webpack-plugin";
 import WatchMissingNodeModulesPlugin from "react-dev-utils/WatchMissingNodeModulesPlugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
-// import ReactRefreshPlugin from "@webhotelier/webpack-fast-refresh";
-// import ErrorOverlayPlugin from "@webhotelier/webpack-fast-refresh/error-overlay";
+import pkg from "./package.json";
+
+type Mode = "development" | "production";
 
 const hasPrefix = (prefixes: string[], value: string): boolean => {
   return any((p) => value.startsWith(p), prefixes);
@@ -35,23 +25,23 @@ const getEnvironmentVariables = (
   prefix: string[],
   whitelisted: string[]
 ): { [key: string]: string } => {
-  // console.log(env, "env");
-
   const picked = pickBy(
     (_, k) =>
       k === "NODE_ENV" || whitelisted.includes(k) || hasPrefix(prefix, k),
     env
   );
-
   return mapObjIndexed((v) => {
     return JSON.stringify(v);
   }, picked);
 };
 
-const getBundleAnalyzer = (mode: string) => {
+const getBundleAnalyzer = (mode: Mode) => {
   const options: BundleAnalyzerPlugin.Options =
     mode === "development"
-      ? {}
+      ? {
+          analyzerPort: 8890,
+          openAnalyzer: false
+        }
       : {
           analyzerMode: "disabled",
           generateStatsFile: true,
@@ -62,7 +52,7 @@ const getBundleAnalyzer = (mode: string) => {
   return p;
 };
 
-const getCssRule = (mode) => {
+const getCssRule = (mode: Mode) => {
   return {
     test: /\.css$/,
     include: [path.resolve("src"), path.resolve("node_modules")],
@@ -80,7 +70,7 @@ const getCssRule = (mode) => {
   };
 };
 
-const getPcssRule = (mode) => {
+const getPcssRule = (mode: Mode) => {
   return {
     test: /\.pcss$/,
     include: [path.resolve("src")],
@@ -101,7 +91,7 @@ const getPcssRule = (mode) => {
   };
 };
 
-const mode =
+const mode: Mode =
   process.env.NODE_ENV === "development" ? "development" : "production";
 
 const isDevelopment = mode === "development";
@@ -114,13 +104,12 @@ const base: webpack.Configuration = {
       minSize: 500
     }
   },
-  devtool: false,
   output: {
     path: path.resolve("dist"),
     publicPath: "/"
   },
   devServer: {
-    port: 11000,
+    port: 8888,
     hot: true,
     index: "index.html",
     disableHostCheck: true,
@@ -141,7 +130,6 @@ const base: webpack.Configuration = {
       patterns: [{ from: "assets/web", flatten: false }]
     }),
     new CaseSensitivePathsPlugin(),
-    new WatchMissingNodeModulesPlugin(path.resolve("node_modules")),
     new HtmlWebpackPlugin({
       template: "assets/index.html",
       favicon: "assets/index.html",
@@ -176,9 +164,9 @@ const base: webpack.Configuration = {
             options: {
               babelrc: false,
               presets: [
-                "@babel/preset-typescript",
+                require.resolve("@babel/preset-typescript"),
                 [
-                  "@babel/preset-env",
+                  require.resolve("@babel/preset-env"),
                   {
                     debug: true,
                     useBuiltIns: "usage",
@@ -189,21 +177,21 @@ const base: webpack.Configuration = {
                     corejs: 3
                   }
                 ],
-                ["@babel/preset-react", { development: true }],
-                "@emotion/babel-preset-css-prop"
+                [require.resolve("@babel/preset-react"), { development: true }],
+                require.resolve("@emotion/babel-preset-css-prop")
               ],
               plugins: [
-                "@babel/plugin-syntax-dynamic-import",
-                "@babel/plugin-proposal-class-properties",
-                "@babel/plugin-proposal-nullish-coalescing-operator",
-                "@babel/plugin-proposal-optional-chaining",
+                require.resolve("@babel/plugin-syntax-dynamic-import"),
+                require.resolve("@babel/plugin-proposal-class-properties"),
+                require.resolve(
+                  "@babel/plugin-proposal-nullish-coalescing-operator"
+                ),
+                require.resolve("@babel/plugin-proposal-optional-chaining"),
                 isDevelopment && require.resolve("react-refresh/babel")
-                // "react-refresh/babel"
               ].filter(Boolean),
               cacheDirectory: true
             }
           }
-          // { loader: "@webhotelier/webpack-fast-refresh/loader.js" }
         ],
         exclude: [path.resolve("node_modules")]
       },
@@ -217,6 +205,7 @@ const base: webpack.Configuration = {
 };
 
 const prod: webpack.Configuration = {
+  devtool: "source-map",
   entry: {
     client: ["./client.tsx"]
   },
@@ -236,10 +225,14 @@ const prod: webpack.Configuration = {
 };
 
 const dev: webpack.Configuration = {
+  devtool: "eval-source-map",
   entry: {
     client: ["./client.tsx"]
   },
-  plugins: [new ReactRefreshWebpackPlugin()],
+  plugins: [
+    new WatchMissingNodeModulesPlugin(path.resolve("node_modules")),
+    new ReactRefreshWebpackPlugin()
+  ],
   module: {
     rules: []
   }
@@ -247,10 +240,6 @@ const dev: webpack.Configuration = {
 
 const final = mode === "production" ? merge(base, prod) : merge(base, dev);
 
-console.log(util.inspect(final, false, 999));
+//console.log(util.inspect(final, false, 999));
 
 export default final;
-
-// process.exit();
-
-// export default withBundleAnalyzer;

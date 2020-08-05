@@ -23,7 +23,7 @@ library.add(faSpinner);
 */
 
 /*
-const initialState = getInitialState();
+const initialState = undefined;
 
 const store = createStore(
   getReducers(),
@@ -32,13 +32,11 @@ const store = createStore(
   initialState
 );
 
-
 const sagaMiddleware = getSagaMiddleware();
 sagaMiddleware.run(rootSaga);
 
 */
 
-// Just a small DRY abstraction here.
 function render(Component: typeof Root, rootElement: HTMLElement) {
   ReactDOM.render(<Component />, rootElement);
 }
@@ -48,7 +46,8 @@ if (!rootElement) {
   throw new Error("Could not find root element!");
 }
 
-// If we get !undefined state from the server, we hydrate.
 render(Root, rootElement);
 
-console.log("In the browser console, also suckling on a duckling?!?");
+console.log(
+  "Someone, somewhere, is currently suckling on something sucklable. The browser console can sense it."
+);

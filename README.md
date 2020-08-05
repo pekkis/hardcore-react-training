@@ -2,37 +2,44 @@
 
 ## Introduction
 
-Welcome to my two-day hardcore React Workshop. It is very important
+Welcome to my hardcore React Workshop. It is very important
 that you read and follow these instructions before the actual two training days.
+
+## Human Requirements
+
+- You are a developer, devsigner or such.
+- You have working professional knowledge on JavaScript, HTML and CSS.
+  You don't have to be a guru, but the course really is not meant for
+  beginners.
+
+## Computer Requirements
+
+- MacOS, Linux or Windows all work.
+- If it doesn't work, just use some Linux virtual machine.
+- The current version of Node.js (12 or 14 should work). Might work on older
+  or newer ones too, but no guarantees!
+- The [Yarn package manager](https://yarnpkg.com). Should work with vanilla NPM
+  just as well too but dunno. I've been using Yarn.
+- An editor / IDE that supports all the good stuff.
+  I use [VSCode](https://code.visualstudio.com/) myself nowadays, and
+  I think it's really good.
 
 ## Installation
 
 Start by forking / cloning this repository.
 
-If you don't know how to use git, you should spend an hour to [learn the basics](https://guides.github.com/introduction/git-handbook/)!
+If you don't know how to use [Git](https://guides.github.com/introduction/git-handbook/),
+you should spend an hour or two to
+[learn the basics](https://guides.github.com/introduction/git-handbook/). Git is
+used everywhere in the industry so the skill does not go to waste!
 
 If you really don't want to use / learn git, just download the repo.
 
 `training` is the default branch that contains the starting point for
-our course. The `master` branch contains a fuller example application that might be
-up to date or not, depending on the phases of the moon and the planets.
+our course. The `master` was messed up by yours truly many moons ago.
 
-There are other branches too. They contain all the stuff from all the previous trainings. Interesting stuff, at least if you're me!
-
-## Human Requirements
-
-- You are a developer, devsigner or such.
-- You have working professional knowledge on JavaScript, HTML and CSS. You don't have to be a guru, but the course REALLY is not suitable for beginners.
-
-## Computer Requirements
-
-- MacOS and Linux are grade A citizens. Should work in Windows too, but I don't
-  always test because I'm not a Windows man myself.
-- If it doesn't work, just use a Unix virtual machine.
-- The current version of node.js (10 or 12 should work). Might work on older / newer / other ones, but no guarantees!
-- The [Yarn package manager](https://yarnpkg.com). Might work with vanilla NPM too but dunno. I like Yarn.
-- An editor / IDE that supports the good stuff. I use [VSCode](https://code.visualstudio.com/)
-  myself nowadays, and it's really good.
+There are other branches too. They contain at least all the stuff
+from most of the courses I've teached. Interesting stuff, at least if you're me!
 
 ### Browser extensions
 
@@ -43,13 +50,17 @@ Install these Chrome extensions, or similar ones for your browser of choice.
 
 ### VSCode packages
 
-If you use VSCode, you must install at least the following extensions.
+If you use VSCode, you should install at least the following extensions.
 
 - ESLint
 - Prettier - Code formatter
 - EditorConfig for VS Code
 - PostCSS syntax
 - vscode-styled-components
+
+Some other nice extensions here that I personally use:
+
+- Visual studio IntelliCode
 
 ## Howto
 
@@ -71,7 +82,8 @@ While preparing for the training session, you must follow the _development mode_
 - `cp .env.example .env`
 - `yarn run start`
 
-Open browser and go to http://localhost:8888. You should see a simple welcoming screen of some kind. It should look something like [this screenshot](https://www.dropbox.com/s/tibrr0l22ebl5qn/Screenshot%202019-11-28%2010.29.02.png?dl=0).
+Open browser and go to http://localhost:8888. You should see a simple welcoming
+screen of some kind. It should look something like [this screenshot](https://www.dropbox.com/s/tibrr0l22ebl5qn/Screenshot%202019-11-28%2010.29.02.png?dl=0).
 
 ### server
 
@@ -82,6 +94,8 @@ Open browser and go to http://localhost:8888. You should see a simple welcoming 
 
 After the server is running, go to http://localhost:8889/person and you should see a mighty JSON of persons.
 
+A GraphQL backend might also be in working state: http://localhost:8889/graphql is it's endpoint!
+
 ## Build
 
 ### client
@@ -89,22 +103,6 @@ After the server is running, go to http://localhost:8889/person and you should s
 The app builds to `dist/` (client code) folder.
 
 - `yarn run build`
-
-## Food for thought
-
-This repository uses my own [broilerplate](https://github.com/pekkis/broilerplate)
-to kickstart a React project with sane defaults, necessary tooling and reusable,
-copy-paste-preventing stuff. It's exactly the same kit I build my own stuff on.
-
-I recommend, though, to also check out the [create-react-app](https://github.com/facebookincubator/create-react-app) boilerplate
-instead of my broilerplate. If it suits you, you might want to use it. Personally, I think it's inadequate, and do not agree with it's philosophy.
-You basically always have to eject, and then you're on your own as here.
-
-With Broilerplate, I aim to get all the advantages and none of the disadvantages.
-Only future will tell whether this is sane.
-
-[react-app-rewired](https://github.com/timarney/react-app-rewired) tries to
-do the same. You might want to check it too.
 
 ## Licensing
 
