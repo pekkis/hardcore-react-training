@@ -53,10 +53,10 @@ Install these Chrome extensions, or similar ones for your browser of choice.
 If you use VSCode, you should install at least the following extensions.
 
 - ESLint
+- stylelint
 - Prettier - Code formatter
 - EditorConfig for VS Code
 - PostCSS syntax
-- vscode-styled-components
 
 Some other nice extensions here that I personally use:
 

@@ -14,6 +14,8 @@ import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
 import pkg from "./package.json";
 
+import "dotenv/config";
+
 type Mode = "development" | "production";
 
 const hasPrefix = (prefixes: string[], value: string): boolean => {

@@ -65,7 +65,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     getPersons: async () => personService.all(),
-    getPerson: async (_, { id }) => personService.findById(id)
+    getPerson: async (_, { id }) => personService.findById(id),
   },
   Mutation: {
     firePerson: async (_, { input }) => {
@@ -73,20 +73,20 @@ const resolvers = {
       await personService.remove(input.id);
 
       return {
-        id: input.id
+        id: input.id,
       };
     },
     hirePerson: async (_, { input }) => {
       // console.log("hiring person", { _, input });
       const person = await personService.create({
         ...input,
-        birthDay: DateTime.fromISO(input.birthDay).toJSDate()
+        birthDay: DateTime.fromISO(input.birthDay).toJSDate(),
       });
       return {
-        person
+        person,
       };
-    }
-  }
+    },
+  },
 };
 
 const server = new ApolloServer({ typeDefs, resolvers });

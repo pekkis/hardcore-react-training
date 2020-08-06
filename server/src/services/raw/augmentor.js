@@ -3,7 +3,7 @@ import projectService from "./project";
 
 import r from "../random";
 
-export const augmentPerson = person => {
+export const augmentPerson = (person) => {
   const offices = officeService.all();
   const projects = projectService.all();
 
@@ -12,8 +12,8 @@ export const augmentPerson = person => {
   return {
     ...person,
     officeId: office.id,
-    projectId: project.id
+    projectId: project.id,
   };
 };
 
-export const augmentPersons = persons => persons.map(augmentPerson);
+export const augmentPersons = (persons) => persons.map(augmentPerson);

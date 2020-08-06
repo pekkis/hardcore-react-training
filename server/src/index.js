@@ -18,7 +18,7 @@ const isAdmin = createIsAdmin(process.env.REQUIRE_AUTH);
 const app = express();
 app.use(
   cors({
-    exposedHeaders: ["x-auth-token", "authorization"]
+    exposedHeaders: ["x-auth-token", "authorization"],
   })
 );
 app.use(bodyParser.json());

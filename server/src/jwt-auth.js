@@ -4,7 +4,7 @@ const isRevokedCallback = async (req, payload, done) => {
   return done(null, false);
 };
 
-export default requireAuth => {
+export default (requireAuth) => {
   if (!requireAuth) {
     return (req, res, next) => {
       return next();
@@ -13,6 +13,6 @@ export default requireAuth => {
 
   return jwt({
     secret: process.env.SECRET,
-    isRevoked: isRevokedCallback
+    isRevoked: isRevokedCallback,
   });
 };

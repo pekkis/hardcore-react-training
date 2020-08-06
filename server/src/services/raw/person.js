@@ -62,13 +62,13 @@ const gaylord = {
   relatedToCEO: true,
 };
 
-const persons = Range(1, 201)
+const persons = Range(1, process.env.NUMBER_OF_EMPLOYEES)
   .map(createPerson)
   //.map(augmentPerson)
   .toList()
   .push(gaylord);
 
-export default {
+const personService = {
   ...servicify(persons),
   auth: (email, password) => {
     const person = persons.find((p) => p.email === email);
@@ -85,3 +85,5 @@ export default {
   },
   createTokenInstance: (id) => {},
 };
+
+export default personService;

@@ -1,9 +1,7 @@
-export interface Person {
-  id: string;
-}
+import { PersonInterface } from "../types";
 
 export interface PersonState {
-  persons: Person[];
+  persons: PersonInterface[];
 }
 
 const defaultState: PersonState = {

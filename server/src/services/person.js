@@ -3,7 +3,9 @@ import { asyncronifyAll, slowify } from "./util";
 
 const persons = asyncronifyAll(raw);
 
-export default {
+const personService = {
   ...persons,
-  remove: slowify(500, 10000)(persons.remove)
+  remove: slowify(500, 10000)(persons.remove),
 };
+
+export default personService;

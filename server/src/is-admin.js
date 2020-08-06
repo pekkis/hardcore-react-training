@@ -1,4 +1,4 @@
-export default requireAuth => {
+export default (requireAuth) => {
   if (!requireAuth) {
     return (req, res, next) => {
       return next();
