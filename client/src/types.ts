@@ -10,4 +10,5 @@ export interface PersonInterface {
   salary?: number;
   age: number;
   gender: "m" | "f";
+  isBeingFired?: boolean;
 }

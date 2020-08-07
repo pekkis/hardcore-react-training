@@ -13,8 +13,33 @@ export const getPersons = async (): Promise<PersonInterface[]> => {
   }
 };
 
+export const hirePerson = async (
+  person: PersonInterface
+): Promise<PersonInterface[]> => {
+  try {
+    const ret = await axios.post<PersonInterface[]>(
+      `${process.env.REACT_APP_API}/person`,
+      person
+    );
+    return ret.data;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const firePerson = async (id: string): Promise<boolean> => {
+  try {
+    await axios.delete<void>(`${process.env.REACT_APP_API}/person/${id}`);
+    return true;
+  } catch (e) {
+    throw e;
+  }
+};
+
 const personService = {
-  getPersons
+  getPersons,
+  hirePerson,
+  firePerson
 };
 
 export default personService;

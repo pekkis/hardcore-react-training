@@ -10,6 +10,11 @@ const Button = styled.button({
 
   ":hover": {
     backgroundColor: darken(0.1, "rgb(100, 100, 100)")
+  },
+
+  ":disabled": {
+    opacity: 0.5,
+    cursor: "not-allowed"
   }
 });
 

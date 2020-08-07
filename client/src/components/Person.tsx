@@ -62,6 +62,7 @@ const Person: FunctionComponent<Props> = ({ person, firePerson }) => {
           }}
         >
           <Button
+            disabled={person.isBeingFired}
             onClick={() => {
               firePerson(person.id);
             }}

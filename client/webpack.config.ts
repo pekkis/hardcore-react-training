@@ -134,7 +134,7 @@ const base: webpack.Configuration = {
     new CaseSensitivePathsPlugin(),
     new HtmlWebpackPlugin({
       template: "assets/index.html",
-      favicon: "assets/index.html",
+      favicon: "assets/favicon.png",
       chunksSortMode: "auto",
       title: "MHM 2000"
     }),

@@ -23,7 +23,8 @@
           "customMatcher": "\\.module\\.(pc|c|le|sa|sc)ss$"
         }
       }
-    ]
+    ],
+    "typeRoots": ["node_modules/@types", "typings"]
   }
   // "include": ["src/**/*", "/webpack.config.ts"]
 }

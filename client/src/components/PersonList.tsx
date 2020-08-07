@@ -13,7 +13,7 @@ const getAverageAge = (persons: PersonInterface[]) => {
 
 const Persons: FunctionComponent<Props> = ({ persons, firePerson }) => {
   if (persons.length === 0) {
-    return <div>Lista tyhjä.</div>;
+    return <div>Lista onpi tyhjä.</div>;
   }
 
   return (
