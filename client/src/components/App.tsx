@@ -1,57 +1,23 @@
-import React, {
-  FunctionComponent,
-  useEffect,
-  useState,
-  useCallback,
-  useReducer
-} from "react";
-import personService from "../services/person";
+import React, { FunctionComponent, useEffect, useCallback } from "react";
 
 import styles from "./App.module.pcss";
 import { PersonInterface } from "../types";
 import PersonList from "./PersonList";
 import HirePersonForm from "./HirePersonForm";
+import { useSelector, useDispatch } from "react-redux";
+import { AppState } from "../ducks";
 
-const GET_PERSONS = "GET_PERSONS";
-const HIRE_PERSON = "HIRE_PERSON";
-const FIRE_PERSON = "FIRE_PERSON";
-
-type Actions =
-  | { type: typeof GET_PERSONS; payload: PersonInterface[] }
-  | { type: typeof HIRE_PERSON; payload: PersonInterface }
-  | { type: typeof FIRE_PERSON; payload: string };
-
-const personReducer = (
-  state: PersonInterface[],
-  action: Actions
-): PersonInterface[] => {
-  switch (action.type) {
-    case GET_PERSONS:
-      return action.payload;
-    case FIRE_PERSON:
-      return state.filter((p) => p.id !== action.payload);
-    case HIRE_PERSON:
-      return state.concat(action.payload);
-
-    default:
-      return state;
-  }
-};
+import { HIRE_PERSON, FIRE_PERSON, getPersons } from "../ducks/person";
 
 const App: FunctionComponent = () => {
-  const [persons, dispatch] = useReducer(personReducer, []);
+  const dispatch = useDispatch();
+  const persons = useSelector<AppState, PersonInterface[]>(
+    (state) => state.person.persons
+  );
 
-  // const [persons, setPersons] = useState<PersonInterface[]>([]);
   useEffect(() => {
-    const getPersons = async () => {
-      const persons = await personService.getPersons();
-      dispatch({
-        type: GET_PERSONS,
-        payload: persons
-      });
-    };
-    getPersons();
-  }, []);
+    dispatch(getPersons());
+  }, [dispatch]);
 
   const firePerson = useCallback(
     (id: string) => {
