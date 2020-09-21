@@ -2,8 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Root from "./Root";
 
-import "normalize.css";
-
+/*
 import { createStore } from "./services/redux";
 import {
   getMiddlewares,
@@ -11,13 +10,19 @@ import {
   getEnhancers,
   getSagaMiddleware
 } from "./config/redux";
+*/
 
+/*
 import rootSaga from "./sagas/root";
+*/
 
+/*
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 library.add(faSpinner);
+*/
 
+/*
 const initialState = undefined;
 
 const store = createStore(
@@ -26,12 +31,15 @@ const store = createStore(
   getEnhancers(),
   initialState
 );
+*/
 
+/*
 const sagaMiddleware = getSagaMiddleware();
 sagaMiddleware.run(rootSaga);
+*/
 
 function render(Component: typeof Root, rootElement: HTMLElement) {
-  ReactDOM.render(<Component store={store} />, rootElement);
+  ReactDOM.render(<Component />, rootElement);
 }
 
 const rootElement = document.getElementById("app");

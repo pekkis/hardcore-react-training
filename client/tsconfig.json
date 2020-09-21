@@ -16,15 +16,6 @@
     "noEmit": true,
     "isolatedModules": true,
     "allowJs": true,
-    "plugins": [
-      {
-        "name": "typescript-plugin-css-modules",
-        "options": {
-          "customMatcher": "\\.module\\.(pc|c|le|sa|sc)ss$"
-        }
-      }
-    ],
-    "typeRoots": ["node_modules/@types", "typings"]
   }
   // "include": ["src/**/*", "/webpack.config.ts"]
 }

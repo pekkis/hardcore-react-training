@@ -2,7 +2,9 @@ import path from "path";
 import { any, pickBy, mapObjIndexed } from "ramda";
 import { merge } from "webpack-merge";
 
-import * as webpack from "webpack";
+import { Configuration as WebpackConfiguration, DefinePlugin } from "webpack";
+import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
+
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
@@ -17,6 +19,10 @@ import pkg from "./package.json";
 import "dotenv/config";
 
 type Mode = "development" | "production";
+
+interface Configuration extends WebpackConfiguration {
+  devServer?: WebpackDevServerConfiguration;
+}
 
 const hasPrefix = (prefixes: string[], value: string): boolean => {
   return any((p) => value.startsWith(p), prefixes);
@@ -98,7 +104,7 @@ const mode: Mode =
 
 const isDevelopment = mode === "development";
 
-const base: webpack.Configuration = {
+const base: Configuration = {
   mode,
   optimization: {
     splitChunks: {
@@ -111,6 +117,7 @@ const base: webpack.Configuration = {
     publicPath: "/"
   },
   devServer: {
+    // host: "tussi.tunk.io", // if you have SSL problems in localhost, this helps
     port: 8888,
     hot: true,
     index: "index.html",
@@ -123,7 +130,7 @@ const base: webpack.Configuration = {
   },
   context: path.resolve("src"),
   plugins: [
-    new webpack.DefinePlugin({
+    new DefinePlugin({
       __DEVELOPMENT__: mode === "development",
       __PRODUCTION__: mode === "production",
       "process.env": getEnvironmentVariables(process.env, ["REACT_APP_"], [])
@@ -206,7 +213,7 @@ const base: webpack.Configuration = {
   }
 };
 
-const prod: webpack.Configuration = {
+const prod: Configuration = {
   devtool: "source-map",
   entry: {
     client: ["./client.tsx"]
@@ -226,7 +233,7 @@ const prod: webpack.Configuration = {
   }
 };
 
-const dev: webpack.Configuration = {
+const dev: Configuration = {
   devtool: "eval-source-map",
   entry: {
     client: ["./client.tsx"]
