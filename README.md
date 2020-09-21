@@ -83,7 +83,9 @@ While preparing for the training session, you must follow the _development mode_
 - `yarn run start`
 
 Open browser and go to http://localhost:8888. You should see a simple welcoming
-screen of some kind. It should look something like [this screenshot](https://www.dropbox.com/s/tibrr0l22ebl5qn/Screenshot%202019-11-28%2010.29.02.png?dl=0).
+screen of some kind that suggests that you suckle on a duckling.
+
+It could look something like [this screenshot](https://www.dropbox.com/s/tibrr0l22ebl5qn/Screenshot%202019-11-28%2010.29.02.png?dl=0).
 
 ### server
 
@@ -92,9 +94,9 @@ screen of some kind. It should look something like [this screenshot](https://www
 - `cp .env.example .env`
 - `yarn run start`
 
-After the server is running, go to http://localhost:8889/person and you should see a mighty JSON of persons.
+After the server is running, open browser and go to http://localhost:8889/person and make sure you see a mighty JSON blob of persons.
 
-A GraphQL backend might also be in working state: http://localhost:8889/graphql is it's endpoint!
+A GraphQL backend might also be in a semi-working state: http://localhost:8889/graphql is it's endpoint!
 
 ## Build
 
