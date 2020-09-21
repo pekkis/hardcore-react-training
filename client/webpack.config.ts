@@ -1,10 +1,8 @@
 import path from "path";
 import { any, pickBy, mapObjIndexed } from "ramda";
 import { merge } from "webpack-merge";
-
 import { Configuration as WebpackConfiguration, DefinePlugin } from "webpack";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
-
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
@@ -13,7 +11,6 @@ import WatchMissingNodeModulesPlugin from "react-dev-utils/WatchMissingNodeModul
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
-
 import pkg from "./package.json";
 
 import "dotenv/config";
@@ -248,7 +245,5 @@ const dev: Configuration = {
 };
 
 const final = mode === "production" ? merge(base, prod) : merge(base, dev);
-
-//console.log(util.inspect(final, false, 999));
 
 export default final;
