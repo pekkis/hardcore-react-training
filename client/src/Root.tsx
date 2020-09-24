@@ -5,15 +5,7 @@ import { ThemeProvider } from "emotion-theming";
 import { lighten } from "polished";
 
 const Root: FunctionComponent = () => {
-  return (
-    <ThemeProvider
-      theme={{
-        borderColor: lighten(0.5, "rgb(0, 0, 0)")
-      }}
-    >
-      <App />
-    </ThemeProvider>
-  );
+  return <App />;
 };
 
 export default Root;

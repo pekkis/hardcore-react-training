@@ -1,27 +1,26 @@
-import styled from "@emotion/styled";
+import React from "react";
+import { FunctionComponent, ButtonHTMLAttributes } from "react";
+import cx from "classnames";
+import styles from "./Button.module.pcss";
 
-type Props = {
+type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   block: boolean;
 };
 
-const Button = styled.button<Props>([
-  {
-    border: "5px solid rgb(100, 100, 255)",
-    borderRadius: "5px",
-    padding: "0.5em",
-    backgroundColor: "rgb(0, 0, 255)",
-    color: "rgb(255, 255, 255)",
-    cursor: "pointer",
+const Button: FunctionComponent<Props> = ({
+  block = false,
+  children,
+  ...rest
+}) => {
+  const classes = cx(styles.button, {
+    [styles.block]: block
+  });
 
-    "&:hover": {
-      border: "5px solid rgb(50, 50, 255)"
-    }
-  },
-  (props) =>
-    props.block && {
-      display: "block",
-      width: "100%"
-    }
-]);
+  return (
+    <button {...rest} className={classes}>
+      {children}
+    </button>
+  );
+};
 
 export default Button;

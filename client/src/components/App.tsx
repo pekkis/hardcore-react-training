@@ -15,8 +15,6 @@ import * as R from "ramda";
 const App: FunctionComponent = () => {
   const [persons, setPersons] = useState<PersonInterface[]>([]);
 
-  const [time, setTime] = useState<DateTime>(DateTime.utc());
-
   useEffect(() => {
     console.log("I will be run every goddamn render");
   });
@@ -33,8 +31,8 @@ const App: FunctionComponent = () => {
     };
   }, []);
 
-  // Clock effect
-  /*
+  // Clock state and effect here
+  const [time, setTime] = useState<DateTime>(DateTime.utc());
   useEffect(() => {
     console.log("Time to update da clock maaan!");
 
@@ -46,7 +44,6 @@ const App: FunctionComponent = () => {
       clearInterval(updateTimeInterval);
     };
   }, [setTime]);
-  */
 
   const hirePerson = (person: HireablePerson) => {
     const hiredPerson: PersonInterface = {
@@ -71,6 +68,7 @@ const App: FunctionComponent = () => {
 
       <Clock time={time} />
 
+      <h2>Hire</h2>
       <HirePersonForm hirePerson={hirePerson} />
 
       <PersonCatalogue persons={persons} firePerson={firePerson} />

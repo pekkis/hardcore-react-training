@@ -13,7 +13,7 @@ type Props = {
 const HirePersonForm: FunctionComponent<Props> = (props) => {
   const { hirePerson } = props;
 
-  return <div className={styles.form}>Oh noes hireperson form!</div>;
+  return <div className={styles.form}>Oh noes, hire form be missing!1!</div>;
 };
 
 export default HirePersonForm;

@@ -27,7 +27,10 @@ const isGood = (person: PersonInterface) => {
 };
 
 /*
-Composing stuff is a nice functional paradigm we are activelyopting out of.
+Composing stuff is a nice functional paradigm we are actively opting out of.
+
+I think that it is stupid of us to linger in the current _ world.
+We should most definitely move to FP world and native world.
 */
 const isBad = R.compose(R.not, isGood);
 
@@ -49,9 +52,7 @@ const PersonCatalogue: FunctionComponent<Props> = (props) => {
   const badPersons = getBadPersons(persons);
 
   /*
-  I think that it is stupid for us to linger in the current _ world.
-  We should definitely move to FP world or / and native world.
-  */
+   */
 
   return (
     <div>

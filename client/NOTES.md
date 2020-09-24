@@ -1,3 +1,16 @@
+## veikkaus day 2
+
+- fp ## natiivit metodit ## lodash vs lodash/fp / ramda
+- immutaabelius
+
+- devtoolssit
+- perffi
+- lisää huukkei
+- lomake
+- reititys
+- redusointi
+- animaatiot
+
 # Peksun muistiinpanot
 
 Olen täydentänyt tätä listaa kolmen vuoden aikana satunnaisesti. 3.12.2019 yritän täydentää juuri lopettamani kurssin mukaisesti niin että uudet soihtunkantajat saavat ajantasaisen tiedon.
