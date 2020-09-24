@@ -1,17 +1,19 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import Button from "./Button";
 import { FunctionComponent } from "react";
 import { PersonInterface } from "../types";
 import cx from "classnames";
+import { v4 } from "uuid";
 
 import styles from "./Person.module.pcss";
+import PersonCatalogue from "./PersonCatalogue";
 
 type Props = {
   person: PersonInterface;
-  firePerson: (id: string) => void;
+  dispatch: Dispatch<{ type: string; payload: any }>;
 };
 
-const Person: FunctionComponent<Props> = ({ person, firePerson }) => {
+const Person: FunctionComponent<Props> = ({ person, dispatch }) => {
   const classes = cx(styles.person, {
     [styles.male]: person.gender === "m",
     [styles.female]: person.gender === "f"
@@ -32,7 +34,10 @@ const Person: FunctionComponent<Props> = ({ person, firePerson }) => {
         <Button
           block
           onClick={() => {
-            firePerson(person.id);
+            dispatch({
+              type: "FIRE_PERSON",
+              payload: person.id
+            });
           }}
         >
           Liberate!
@@ -42,4 +47,4 @@ const Person: FunctionComponent<Props> = ({ person, firePerson }) => {
   );
 };
 
-export default Person;
+export default React.memo(Person);

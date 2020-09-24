@@ -1,8 +1,16 @@
-import { DateTime } from "luxon";
-import React, { FunctionComponent, useState, useEffect } from "react";
-import { getPersons } from "../services/person";
+import React, {
+  FunctionComponent,
+  useState,
+  useEffect,
+  useCallback,
+  useReducer,
+  lazy,
+  Suspense
+} from "react";
+import personService, { getPersons } from "../services/person";
 import { PersonInterface } from "../types";
-import HirePersonForm, { HireablePerson } from "./HirePersonForm";
+import { HireablePerson } from "./HirePersonForm";
+import useTime from "../hooks/useTime";
 
 import "./App.module.pcss";
 import Clock from "./Clock";
@@ -10,10 +18,39 @@ import PersonCatalogue from "./PersonCatalogue";
 
 import { v4 } from "uuid";
 
-import * as R from "ramda";
+import produce from "immer";
+
+const HirePersonForm = lazy(() => import("./HirePersonForm"));
+
+const reducer = (state, action) => {
+  console.log("ACTION", action);
+  switch (action.type) {
+    case "GET_PERSONS":
+      return produce(state, (draft) => {
+        draft.persons = action.payload;
+      });
+
+    case "FIRE_PERSON":
+      return produce(state, (draft) => {
+        draft.persons = draft.persons.filter((p) => p.id !== action.payload);
+      });
+
+    case "HIRE_PERSON":
+      return produce(state, (draft) => {
+        draft.persons.push(action.payload);
+        // draft.persons = draft.persons.concat([action.payload]);
+      });
+    default:
+      return state;
+  }
+};
 
 const App: FunctionComponent = () => {
-  const [persons, setPersons] = useState<PersonInterface[]>([]);
+  const [state, dispatch] = useReducer(reducer, { persons: [] });
+
+  const { persons } = state;
+
+  // const [persons, setPersons] = useState<PersonInterface[]>([]);
 
   useEffect(() => {
     console.log("I will be run every goddamn render");
@@ -25,42 +62,38 @@ const App: FunctionComponent = () => {
   }, [persons]);
 
   useEffect(() => {
-    getPersons().then(setPersons);
-    return () => {
-      console.log("cleanup");
-    };
+    dispatch({
+      type: "GET_PERSON_PENDING"
+    });
+    getPersons().then((persons) => {
+      dispatch({
+        type: "GET_PERSONS",
+        payload: persons
+      });
+    });
   }, []);
 
-  // Clock state and effect here
-  const [time, setTime] = useState<DateTime>(DateTime.utc());
-  useEffect(() => {
-    console.log("Time to update da clock maaan!");
+  const hirePerson = useCallback(
+    (person: HireablePerson) => {
+      const hiredPerson: PersonInterface = {
+        ...person,
+        id: v4(),
+        age: 55,
+        gender: "m"
+      };
 
-    const updateTimeInterval = setInterval(() => {
-      setTime(DateTime.utc());
-    }, 1000);
+      dispatch({
+        type: "HIRE_PERSON",
+        payload: hiredPerson
+      });
 
-    return () => {
-      clearInterval(updateTimeInterval);
-    };
-  }, [setTime]);
+      // setPersons(R.append(hiredPerson, persons));
+      // setPersons(persons.concat([hiredPerson]));
+    },
+    [dispatch]
+  );
 
-  const hirePerson = (person: HireablePerson) => {
-    const hiredPerson: PersonInterface = {
-      ...person,
-      id: v4()
-    };
-
-    setPersons(R.append(hiredPerson, persons));
-    // setPersons(persons.concat([hiredPerson]));
-  };
-
-  const firePerson = (id: string) => {
-    // setPersons(persons.filter((p) => p.id !== id));
-
-    // functional
-    setPersons(R.filter((p: PersonInterface) => p.id !== id, persons));
-  };
+  const time = useTime();
 
   return (
     <div>
@@ -69,9 +102,12 @@ const App: FunctionComponent = () => {
       <Clock time={time} />
 
       <h2>Hire</h2>
-      <HirePersonForm hirePerson={hirePerson} />
 
-      <PersonCatalogue persons={persons} firePerson={firePerson} />
+      <Suspense fallback={<div>Laddare!</div>}>
+        <HirePersonForm hirePerson={hirePerson} />
+      </Suspense>
+
+      <PersonCatalogue persons={persons} dispatch={dispatch} />
     </div>
   );
 };

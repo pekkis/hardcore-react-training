@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { Dispatch, FunctionComponent } from "react";
 import React from "react";
 import { PersonInterface } from "../types";
 import PersonList from "./PersonList";
@@ -6,7 +6,7 @@ import * as R from "ramda";
 
 type Props = {
   persons: PersonInterface[];
-  firePerson: (id: string) => void;
+  dispatch: Dispatch<{ type: string; payload: any }>;
 };
 
 const nameSort = R.sortWith<PersonInterface>([
@@ -14,7 +14,11 @@ const nameSort = R.sortWith<PersonInterface>([
   R.ascend(R.prop("firstName"))
 ]);
 
+// bacon.map('.loso') bacon.map(R.prop("loso"))
+
 const isGood = (person: PersonInterface) => {
+  // lodash.map(persons, p => {})
+
   if (person.relatedToCEO) {
     return true;
   }
@@ -39,7 +43,7 @@ const getGoodPersons = R.compose(R.filter(isGood), nameSort);
 const getBadPersons = R.compose(R.filter(isBad), nameSort);
 
 const PersonCatalogue: FunctionComponent<Props> = (props) => {
-  const { persons, firePerson } = props;
+  const { persons, dispatch } = props;
 
   // const sorted = nameSort(persons);
 
@@ -57,12 +61,13 @@ const PersonCatalogue: FunctionComponent<Props> = (props) => {
   return (
     <div>
       <h2>Bad people</h2>
-      <PersonList persons={badPersons} firePerson={firePerson} />
+
+      <PersonList persons={badPersons} dispatch={dispatch} />
 
       <h2>Good people</h2>
-      <PersonList persons={goodPersons} firePerson={firePerson} />
+      <PersonList persons={goodPersons} dispatch={dispatch} />
     </div>
   );
 };
 
-export default PersonCatalogue;
+export default React.memo(PersonCatalogue);
