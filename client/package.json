@@ -44,7 +44,7 @@
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@theme-ui/presets": "^0.3.0",
     "apollo-client": "^2.6.10",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "emotion-normalize": "^10.1.0",
     "emotion-theming": "^10.0.27",
