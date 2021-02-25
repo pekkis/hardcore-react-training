@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
+import { jsx } from "theme-ui";
 import { FunctionComponent } from "react";
 
 const App: FunctionComponent = () => {
@@ -7,6 +7,9 @@ const App: FunctionComponent = () => {
     <div
       css={{
         border: "3px dotted rgb(255, 255, 0)"
+      }}
+      sx={{
+        padding: 2
       }}
     >
       <h1>Suckling on a duckling!</h1>

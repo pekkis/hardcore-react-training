@@ -98,6 +98,7 @@
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "@types/react-redux": "^7.1.9",
+    "@types/theme-ui": "^0.3.7",
     "@types/webpack": "4.41.26",
     "@types/webpack-bundle-analyzer": "^3.8.0",
     "@types/webpack-dev-server": "^3.11.0",
