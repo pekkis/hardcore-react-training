@@ -5,5 +5,5 @@ module.exports = {
     node: true,
   },
   extends: ["react-app", "plugin:prettier/recommended"],
-  parser: "babel-eslint",
+  parser: "@babel/eslint-parser",
 };

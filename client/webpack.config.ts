@@ -1,5 +1,5 @@
 import path from "path";
-import { any, pickBy, mapObjIndexed } from "ramda";
+import { any } from "ramda";
 import { merge } from "webpack-merge";
 import { Configuration as WebpackConfiguration, DefinePlugin } from "webpack";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
@@ -27,9 +27,22 @@ const hasPrefix = (prefixes: string[], value: string): boolean => {
 
 const getEnvironmentVariables = (
   env: NodeJS.ProcessEnv,
-  prefix: string[],
-  whitelisted: string[]
-): { [key: string]: string } => {
+  prefix: string[]
+  //whitelisted: string[]
+) => {
+  const ret = Object.keys(env).reduce((a, key) => {
+    if (hasPrefix(prefix, key)) {
+      a[key] = env[key];
+    }
+    return a;
+  }, {});
+
+  // Todo: fix, this just a quick kludge because TS types broke everything.
+  console.log("ret", ret);
+
+  return ret;
+
+  /*
   const picked = pickBy(
     (_, k) =>
       k === "NODE_ENV" || whitelisted.includes(k) || hasPrefix(prefix, k),
@@ -38,6 +51,7 @@ const getEnvironmentVariables = (
   return mapObjIndexed((v) => {
     return JSON.stringify(v);
   }, picked);
+  */
 };
 
 const getBundleAnalyzer = (mode: Mode) => {
@@ -130,7 +144,7 @@ const base: Configuration = {
     new DefinePlugin({
       __DEVELOPMENT__: mode === "development",
       __PRODUCTION__: mode === "production",
-      "process.env": getEnvironmentVariables(process.env, ["REACT_APP_"], [])
+      "process.env": getEnvironmentVariables(process.env, ["REACT_APP_"])
     }),
     new CopyWebpackPlugin({
       patterns: [{ from: "assets/web", flatten: false }]
@@ -140,7 +154,7 @@ const base: Configuration = {
       template: "assets/index.html",
       favicon: "assets/favicon.png",
       chunksSortMode: "auto",
-      title: "MHM 2000"
+      title: "Training"
     }),
     getBundleAnalyzer(mode)
   ],
@@ -183,7 +197,15 @@ const base: Configuration = {
                     corejs: 3
                   }
                 ],
-                [require.resolve("@babel/preset-react"), { development: true }],
+                [
+                  require.resolve("@babel/preset-react"),
+                  {
+                    development: true,
+                    runtime: "classic"
+                    // importSource: "@emotion/react"
+                  }
+                ],
+                //"@babel/preset-react"
                 require.resolve("@emotion/babel-preset-css-prop")
               ],
               plugins: [
