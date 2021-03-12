@@ -143,7 +143,7 @@
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.1.2",
     "ramda": "^0.27.1",
-    "react-dev-utils": "^11.0.3",
+    "react-dev-utils": "^11.0.4",
     "react-is": "^17.0.1",
     "react-refresh": "^0.9.0",
     "style-loader": "^2.0.0",
