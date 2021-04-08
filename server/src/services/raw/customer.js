@@ -1,9 +1,7 @@
 import { v4 as uuid } from "uuid";
-import { List } from "immutable";
 import { servicify } from "../util";
 
-const customers = List.of(
-  "Fraktio",
+const customers = [
   "Nestle",
   "Monsanto",
   "Philip Morris",
@@ -11,8 +9,8 @@ const customers = List.of(
   "Volkswagen",
   "Shell",
   "Talvivaara",
-  "Church of Scientology"
-).map((name) => {
+  "Church of Scientology",
+].map((name) => {
   return {
     name,
     id: uuid(),

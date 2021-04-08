@@ -1,15 +1,14 @@
 import { v4 as uuid } from "uuid";
 
-import { List } from "immutable";
 import { servicify } from "../util";
 
-const offices = List.of(
-  "Kamppi Head Office",
+const offices = [
+  "Oslo Head Office",
   "Keilaniemi",
   "Ostrava",
   "Tukholma",
-  "Pune"
-).map((name) => {
+  "Pune",
+].map((name) => {
   return {
     name,
     id: uuid(),

@@ -15,7 +15,7 @@
     "sourceMap": true,
     "noEmit": true,
     "isolatedModules": true,
-    "allowJs": true,
+    "allowJs": true
   }
   // "include": ["src/**/*", "/webpack.config.ts"]
 }

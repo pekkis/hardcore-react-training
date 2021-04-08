@@ -12,6 +12,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import pkg from "./package.json";
+import env from "env-var";
 
 import "dotenv/config";
 
@@ -32,13 +33,15 @@ const getEnvironmentVariables = (
 ) => {
   const ret = Object.keys(env).reduce((a, key) => {
     if (hasPrefix(prefix, key)) {
-      a[key] = env[key];
+      a[key] = JSON.stringify(env[key]);
     }
     return a;
   }, {});
 
   // Todo: fix, this just a quick kludge because TS types broke everything.
   console.log("ret", ret);
+
+  // throw new Error("xoo");
 
   return ret;
 
@@ -113,7 +116,7 @@ const getPcssRule = (mode: Mode) => {
 const mode: Mode =
   process.env.NODE_ENV === "development" ? "development" : "production";
 
-const isDevelopment = mode === "development";
+const isDevelopment = true;
 
 const base: Configuration = {
   mode,
@@ -129,25 +132,23 @@ const base: Configuration = {
   },
   devServer: {
     // host: "tussi.tunk.io", // if you have SSL problems in localhost, this helps
-    port: 8888,
+    port: env.get("DEVSERVER_PORT").asPortNumber() || 8888,
     hot: true,
     index: "index.html",
     disableHostCheck: true,
     historyApiFallback: true
   },
   resolve: {
-    modules: [path.resolve("node_modules")],
+    // modules: [path.resolve("node_modules")],
     extensions: [".js", ".ts", ".jsx", ".tsx", ".mjs"]
   },
   context: path.resolve("src"),
   plugins: [
     new DefinePlugin({
-      __DEVELOPMENT__: mode === "development",
-      __PRODUCTION__: mode === "production",
       "process.env": getEnvironmentVariables(process.env, ["REACT_APP_"])
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: "assets/web", flatten: false }]
+      patterns: [{ from: "assets/web" }]
     }),
     new CaseSensitivePathsPlugin(),
     new HtmlWebpackPlugin({
@@ -201,12 +202,10 @@ const base: Configuration = {
                   require.resolve("@babel/preset-react"),
                   {
                     development: true,
-                    runtime: "classic"
-                    // importSource: "@emotion/react"
+                    runtime: "automatic",
+                    importSource: "react"
                   }
-                ],
-                //"@babel/preset-react"
-                require.resolve("@emotion/babel-preset-css-prop")
+                ]
               ],
               plugins: [
                 require.resolve("@babel/plugin-syntax-dynamic-import"),
@@ -253,6 +252,7 @@ const prod: Configuration = {
 };
 
 const dev: Configuration = {
+  target: "web",
   devtool: "eval-source-map",
   entry: {
     client: ["./client.tsx"]
@@ -263,9 +263,17 @@ const dev: Configuration = {
   ],
   module: {
     rules: []
+  },
+  resolve: {
+    alias: {
+      crypto: require.resolve("crypto-browserify"),
+      stream: require.resolve("stream-browserify")
+    }
   }
 };
 
 const final = mode === "production" ? merge(base, prod) : merge(base, dev);
+
+console.log(final, "final config");
 
 export default final;

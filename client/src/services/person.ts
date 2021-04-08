@@ -1,39 +1,31 @@
 import axios from "axios";
 import { PersonInterface } from "../types";
+import env from "env-var";
+import { ascend, descend, sortWith } from "ramda";
 
-export const getPersons = async (): Promise<PersonInterface[]> => {
-  try {
-    const ret = await axios.get<PersonInterface[]>(
-      `${process.env.REACT_APP_API}/person`
-    );
-    return ret.data;
-  } catch (e) {
-    throw e;
-  }
+const API = env.get("REACT_APP_API").required().asString();
+
+const getPersons = async (): Promise<PersonInterface[]> => {
+  const ret = await axios.get<PersonInterface[]>(`${API}/person`);
+  return ret.data;
 };
 
-export const hirePerson = async (
-  person: PersonInterface
-): Promise<PersonInterface[]> => {
-  try {
-    const ret = await axios.post<PersonInterface[]>(
-      `${process.env.REACT_APP_API}/person`,
-      person
-    );
-    return ret.data;
-  } catch (e) {
-    throw e;
-  }
+const hirePerson = async (
+  person: Omit<PersonInterface, "id" | "age">
+): Promise<PersonInterface> => {
+  const ret = await axios.post<PersonInterface>(`${API}/person`, person);
+  return ret.data;
 };
 
-export const firePerson = async (id: string): Promise<boolean> => {
-  try {
-    await axios.delete<void>(`${process.env.REACT_APP_API}/person/${id}`);
-    return true;
-  } catch (e) {
-    throw e;
-  }
+const firePerson = async (id: string): Promise<PersonInterface> => {
+  const ret = await axios.delete<PersonInterface>(`${API}/person/${id}`);
+  return ret.data;
 };
+
+export const sortByName = sortWith<PersonInterface>([
+  ascend((p) => p.lastName),
+  ascend((p) => p.firstName)
+]);
 
 const personService = {
   getPersons,

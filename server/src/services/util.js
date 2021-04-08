@@ -1,9 +1,9 @@
-import { Map, Seq } from "immutable";
 import r from "./random";
 
 import { v4 as uuid } from "uuid";
+import { assoc, dissoc, indexBy, mapObjIndexed, values } from "ramda";
 
-const mappifyListById = (list) => Map(list.map((l) => [l.id, l]));
+const mappifyListById = (list) => indexBy((l) => l.id, list);
 
 export const slowify = (min, max) => (func) => async (...args) =>
   new Promise((resolve, reject) => {
@@ -28,32 +28,27 @@ export const errorify = (percentage) => (func) => async (...args) => {
 };
 
 export const slowifyAll = (min, max) => (service) =>
-  Seq(service).map(slowify(min, max)).toJS();
+  mapObjIndexed(slowify(min, max), service);
 
 export const asyncronifyAll = (service) =>
-  Seq(service)
-    .map((func) => async (...args) => func(...args))
-    .toJS();
+  mapObjIndexed((func) => async (...args) => func(...args), service);
 
-export const servicify = (objects) => {
-  let resources = mappifyListById(objects);
+export const servicify = (objects, mangler) => {
+  let resources = mapObjIndexed(mangler, mappifyListById(objects));
 
-  const all = () => resources.toList();
-  const findById = (id) => resources.get(id);
+  const all = () => values(resources);
+  const findById = (id) => resources[id];
   const remove = (id) => {
-    resources = resources.delete(id);
+    resources = dissoc(id, resources);
     return id;
   };
   const create = (object) => {
-    console.log(object, "obj");
-
-    const obj = {
+    const obj = mangler({
       ...object,
       id: uuid(),
-    };
+    });
 
-    resources = resources.set(obj.id, obj);
-
+    resources = assoc(obj.id, obj, resources);
     console.log("obj", obj);
     return obj;
   };
