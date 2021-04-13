@@ -11,7 +11,7 @@ import WatchMissingNodeModulesPlugin from "react-dev-utils/WatchMissingNodeModul
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
-import pkg from "./package.json";
+
 import env from "env-var";
 
 import "dotenv/config";
@@ -116,8 +116,6 @@ const getPcssRule = (mode: Mode) => {
 const mode: Mode =
   process.env.NODE_ENV === "development" ? "development" : "production";
 
-const isDevelopment = true;
-
 const base: Configuration = {
   mode,
   optimization: {
@@ -181,43 +179,7 @@ const base: Configuration = {
         test: /\.(js|jsx|ts|tsx)$/,
         use: [
           {
-            loader: require.resolve("babel-loader"),
-            options: {
-              babelrc: false,
-              presets: [
-                require.resolve("@babel/preset-typescript"),
-                [
-                  require.resolve("@babel/preset-env"),
-                  {
-                    debug: true,
-                    useBuiltIns: "usage",
-                    targets: {
-                      browsers: pkg.browserslist[mode]
-                    },
-                    modules: false,
-                    corejs: 3
-                  }
-                ],
-                [
-                  require.resolve("@babel/preset-react"),
-                  {
-                    development: true,
-                    runtime: "automatic",
-                    importSource: "react"
-                  }
-                ]
-              ],
-              plugins: [
-                require.resolve("@babel/plugin-syntax-dynamic-import"),
-                require.resolve("@babel/plugin-proposal-class-properties"),
-                require.resolve(
-                  "@babel/plugin-proposal-nullish-coalescing-operator"
-                ),
-                require.resolve("@babel/plugin-proposal-optional-chaining"),
-                isDevelopment && require.resolve("react-refresh/babel")
-              ].filter(Boolean),
-              cacheDirectory: true
-            }
+            loader: require.resolve("babel-loader")
           }
         ],
         exclude: [path.resolve("node_modules")]
@@ -273,7 +235,5 @@ const dev: Configuration = {
 };
 
 const final = mode === "production" ? merge(base, prod) : merge(base, dev);
-
-console.log(final, "final config");
 
 export default final;

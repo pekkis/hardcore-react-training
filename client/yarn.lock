@@ -3085,6 +3085,11 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.168.tgz#fe24632e79b7ade3f132891afff86caa5e5ce008"
   integrity sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
 
+"@types/luxon@^1.26.3":
+  version "1.26.3"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.26.3.tgz#3d548f5f6f59723c292a8545da97631a85738b95"
+  integrity sha512-2TELN+Pd3Ocde87sKJMSQ9Wdj0zc/okHK3/+fOQHr3CaWv4jtVtcMzmt1Foww1+5YvPd9B5vL3XR6u5KF0daEA==
+
 "@types/markdown-to-jsx@^6.11.3":
   version "6.11.3"
   resolved "https://registry.yarnpkg.com/@types/markdown-to-jsx/-/markdown-to-jsx-6.11.3.tgz#cdd1619308fecbc8be7e6a26f3751260249b020e"
@@ -4367,7 +4372,7 @@ babel-eslint@10.1.0:
     eslint-visitor-keys "^1.0.0"
     resolve "^1.12.0"
 
-babel-jest@^26.3.0, babel-jest@^26.6.3:
+babel-jest@^26.6.3:
   version "26.6.3"
   resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-26.6.3.tgz#d87d25cb0037577a0c89f82e5755c5d293c01056"
   integrity sha512-pl4Q+GAVOHwvjrck6jKjvmGhnO3jHX/xuB9d27f+EJZ/6k+6nMuPjorrYp7s++bKKdANwzElBWnLWaObvTnaZA==

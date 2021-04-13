@@ -4,8 +4,7 @@
   "description": "A training / starter project for my Hardcore React Training course",
   "main": "src",
   "scripts": {
-    "build:client": "cross-env NODE_ENV=production webpack --progress --display-optimization-bailout",
-    "build": "yarn run build:client",
+    "build": "cross-env NODE_ENV=production webpack --progress ",
     "lint": "eslint src",
     "start": "cross-env NODE_ENV=development webpack serve --hot --mode=development",
     "test": "jest",
@@ -27,6 +26,17 @@
   "author": "Pekkis",
   "license": "MIT",
   "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "tsx",
+      "ts"
+    ],
+    "transform": {
+      "\\.tsx?$": [
+        "babel-jest"
+      ]
+    },
     "setupFilesAfterEnv": [
       "<rootDir>/src/jest/setup.js"
     ],
@@ -101,6 +111,7 @@
     "@testing-library/react": "^11.2.6",
     "@types/classnames": "^2.2.10",
     "@types/faker": "^5.5.0",
+    "@types/luxon": "^1.26.3",
     "@types/ramda": "^0.27.39",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
@@ -115,7 +126,7 @@
     "@typescript-eslint/parser": "4.21.0",
     "autoprefixer": "^10.2.5",
     "babel-eslint": "10.1.0",
-    "babel-jest": "^26.3.0",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.1.0",
     "case-sensitive-paths-webpack-plugin": "^2.3.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -171,17 +182,11 @@
       "last 2 firefox versions"
     ],
     "production": [
-      "last 2 versions",
-      "ios_saf >= 10",
       "> 2% in FI",
-      "last 2 chrome versions",
-      "last 2 firefox versions",
-      "last 1 safari versions",
-      "not ie <= 11",
-      "not edge <= 78",
-      "not op_mini all",
-      "not Android <= 6000",
-      "not Samsung <= 1000"
+      "not dead"
+    ],
+    "test": [
+      "node 14"
     ]
   }
 }

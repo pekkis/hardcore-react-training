@@ -1,6 +1,7 @@
 import { FC, memo } from "react";
 import { PersonInterface } from "../types";
 import Person from "./Person";
+import { AnimatePresence } from "framer-motion";
 
 type Props = {
   persons: PersonInterface[];
@@ -10,9 +11,11 @@ type Props = {
 const PersonList: FC<Props> = ({ persons, firePerson }) => {
   return (
     <div>
-      {persons.map((person) => (
-        <Person key={person.id} person={person} firePerson={firePerson} />
-      ))}
+      <AnimatePresence>
+        {persons.map((person) => (
+          <Person key={person.id} person={person} firePerson={firePerson} />
+        ))}
+      </AnimatePresence>
     </div>
   );
 };
