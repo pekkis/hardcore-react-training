@@ -26,11 +26,7 @@ const hasPrefix = (prefixes: string[], value: string): boolean => {
   return any((p) => value.startsWith(p), prefixes);
 };
 
-const getEnvironmentVariables = (
-  env: NodeJS.ProcessEnv,
-  prefix: string[]
-  //whitelisted: string[]
-) => {
+const getEnvironmentVariables = (env: NodeJS.ProcessEnv, prefix: string[]) => {
   const ret = Object.keys(env).reduce((a, key) => {
     if (hasPrefix(prefix, key)) {
       a[key] = JSON.stringify(env[key]);
@@ -38,23 +34,7 @@ const getEnvironmentVariables = (
     return a;
   }, {});
 
-  // Todo: fix, this just a quick kludge because TS types broke everything.
-  console.log("ret", ret);
-
-  // throw new Error("xoo");
-
   return ret;
-
-  /*
-  const picked = pickBy(
-    (_, k) =>
-      k === "NODE_ENV" || whitelisted.includes(k) || hasPrefix(prefix, k),
-    env
-  );
-  return mapObjIndexed((v) => {
-    return JSON.stringify(v);
-  }, picked);
-  */
 };
 
 const getBundleAnalyzer = (mode: Mode) => {

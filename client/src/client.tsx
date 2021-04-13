@@ -2,12 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Root from "./Root";
 
-/*
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-library.add(faSpinner);
-*/
-
 async function render(Component: typeof Root, rootElement: HTMLElement) {
   if (process.env.NODE_ENV !== "production") {
     const axe = await import("@axe-core/react");

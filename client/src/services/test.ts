@@ -1,12 +1,9 @@
+import { Random, nodeCrypto } from "random-js";
 import faker from "faker";
 import { v4 } from "uuid";
-import { repeat } from "ramda";
-import { render } from "@testing-library/react";
-import PersonList from "./PersonList";
-import { Random, nodeCrypto } from "random-js";
-const r = new Random(nodeCrypto);
 import { DateTime } from "luxon";
-import { GenderType } from "../types";
+
+const r = new Random(nodeCrypto);
 
 const getGenderForNaming = (gender) => {
   if (gender === 0 || gender === 1) {
@@ -15,7 +12,7 @@ const getGenderForNaming = (gender) => {
   return undefined;
 };
 
-const createPerson = () => {
+export const createPerson = () => {
   const email = faker.internet.email();
 
   const gender = r.pick([0, 1, 2]);
@@ -26,7 +23,7 @@ const createPerson = () => {
     firstName: faker.name.firstName(genderForNaming),
     lastName: faker.name.lastName(genderForNaming),
     birthDay: faker.date.past(70, "2006-01-01").toString(),
-    gender: gender as GenderType,
+    gender,
     handedness: r.pick(["l", "r"]) as "l" | "r",
     salary: r.integer(2000, 10000),
     email,
@@ -40,17 +37,3 @@ const createPerson = () => {
     }
   };
 };
-
-describe("it renders", () => {
-  it("renders oh yeah", () => {
-    const firePerson = jest.fn();
-
-    const persons = repeat(createPerson(), 10);
-
-    const { debug } = render(
-      <PersonList firePerson={firePerson} persons={persons} />
-    );
-
-    debug();
-  });
-});
