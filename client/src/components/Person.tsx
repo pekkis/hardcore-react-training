@@ -1,23 +1,12 @@
 /** @jsxImportSource @emotion/react */
 
-import { FC } from "react";
+import { FC, memo } from "react";
 import { PersonInterface } from "../services/person";
-import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 type Props = {
   person: PersonInterface;
   firePerson: (id: string) => void;
-};
-
-const variants = {
-  hidden: {
-    opacity: 0,
-    x: -500
-  },
-  visible: {
-    opacity: 1,
-    x: 0
-  }
 };
 
 const Person: FC<Props> = ({ person, firePerson }) => {
@@ -39,10 +28,13 @@ const Person: FC<Props> = ({ person, firePerson }) => {
       ]}
     >
       <div>
-        <strong>{person.lastName}</strong>, {person.firstName}
+        <Link to={`/person/${person.id}`}>
+          <strong>{person.lastName}</strong>, {person.firstName}
+        </Link>
       </div>
       <div>
         <button
+          disabled={person.isBeingFired}
           onClick={() => {
             firePerson(person.id);
           }}
@@ -54,4 +46,4 @@ const Person: FC<Props> = ({ person, firePerson }) => {
   );
 };
 
-export default Person;
+export default memo(Person);

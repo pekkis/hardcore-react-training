@@ -7,6 +7,7 @@ export interface PersonInterface {
   firstName: string;
   lastName: string;
   age: number;
+  isBeingFired?: boolean;
 }
 
 // async / await
@@ -23,11 +24,23 @@ export const getPersons = async (): Promise<PersonInterface[]> => {
   }
 };
 
-/*
-export default {
-  getPersons
+export const firePerson = async (id: string): Promise<PersonInterface> => {
+  try {
+    const fired = await axios.delete<PersonInterface>(
+      `${process.env.REACT_APP_API}/person/${id}`
+    );
+    return fired.data;
+  } catch (e) {
+    // Loggaust
+    throw e;
+  }
 };
-*/
+
+export default {
+  getPersons,
+  firePerson
+};
+
 /*
 export default {
   getPersons: getPersons
