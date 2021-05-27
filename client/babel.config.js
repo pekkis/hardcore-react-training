@@ -36,6 +36,10 @@ module.exports = (api) => {
     plugins: [
       require.resolve("@babel/plugin-syntax-dynamic-import"),
       require.resolve("@babel/plugin-proposal-class-properties"),
+      [
+        require.resolve("@babel/plugin-proposal-decorators"),
+        { decoratorsBeforeExport: true }
+      ],
       require.resolve("@babel/plugin-proposal-nullish-coalescing-operator"),
       require.resolve("@babel/plugin-proposal-optional-chaining"),
       env === "development" && require.resolve("react-refresh/babel")
