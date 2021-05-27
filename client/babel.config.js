@@ -27,7 +27,7 @@ module.exports = (api) => {
       [
         require.resolve("@babel/preset-react"),
         {
-          development: true,
+          development: process.env.NODE_ENV === "development",
           runtime: "automatic",
           importSource: "react"
         }

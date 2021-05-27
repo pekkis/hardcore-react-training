@@ -4,7 +4,7 @@
   "description": "A training / starter project for my Hardcore React Training course",
   "main": "src",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --progress ",
+    "build": "cross-env NODE_ENV=production webpack --progress",
     "lint": "eslint src",
     "start": "cross-env NODE_ENV=development webpack serve --hot --mode=development",
     "test": "jest"

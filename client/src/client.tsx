@@ -4,12 +4,11 @@ import Root from "./Root";
 
 async function render(Component: typeof Root, rootElement: HTMLElement) {
   if (process.env.NODE_ENV !== "production") {
+    console.log("Doing dev mode stuffz");
     const axe = await import("@axe-core/react");
     axe.default(React, ReactDOM, 1000);
-    ReactDOM.render(<Component />, rootElement);
-  } else {
-    ReactDOM.render(<Component />, rootElement);
   }
+  ReactDOM.render(<Component />, rootElement);
 }
 
 const rootElement = document.getElementById("app");
