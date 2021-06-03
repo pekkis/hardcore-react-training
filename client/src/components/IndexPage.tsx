@@ -1,3 +1,4 @@
+import { ascend, prop, sortWith } from "ramda";
 import { FC } from "react";
 import { PersonType } from "./App";
 import HirePersonForm from "./HirePersonForm";
@@ -9,14 +10,21 @@ type Props = {
   firePerson: (id: string) => void;
 };
 
+const sortByName = sortWith<PersonType>([
+  ascend(prop("lastName")),
+  ascend(prop("firstName"))
+]);
+
 const isGood = (p: PersonType): boolean =>
   p.age < 30 || p.relatedToCEO === true;
 
 const IndexPage: FC<Props> = ({ persons, hirePerson, firePerson }) => {
   console.log(persons, "persons");
 
-  const goodPeople = persons.filter(isGood);
-  const badPeople = persons.filter((p) => !isGood(p));
+  const sorted = sortByName(persons);
+
+  const goodPeople = sorted.filter(isGood);
+  const badPeople = sorted.filter((p) => !isGood(p));
 
   return (
     <section>
