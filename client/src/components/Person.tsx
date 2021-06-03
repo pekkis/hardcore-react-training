@@ -2,10 +2,10 @@
 
 import { FC, memo } from "react";
 import { PersonType } from "./App";
-import styles from "./Person.module.pcss";
-import cx from "clsx";
+// import styles from "./Person.module.pcss";
+// import cx from "clsx";
 import Button from "./Button";
-import { useSelector } from "../services/pedux";
+import { Link } from "react-router-dom";
 
 const getBgColor = (person: PersonType) => {
   if (person.gender === 0) {
@@ -52,7 +52,9 @@ const Person: FC<Props> = (props) => {
       ]}
     >
       <div>
-        <strong>{person.lastName}</strong>, {person.firstName}
+        <Link to={`/person/${person.id}`}>
+          <strong>{person.lastName}</strong>, {person.firstName}
+        </Link>
       </div>
 
       <div>

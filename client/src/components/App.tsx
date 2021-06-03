@@ -1,11 +1,12 @@
-import { FC, useCallback, useEffect, useReducer, useState } from "react";
-import personService from "../services/person";
-import PersonList from "./PersonList";
-import produce from "immer";
-import HirePersonForm from "./HirePersonForm";
-import person from "../services/person";
-import { indexBy } from "ramda";
+import { FC, lazy, Suspense, useEffect } from "react";
 import Spinner from "./Spinner";
+import { useStore } from "../services/state";
+import { Switch, Route } from "react-router";
+// import IndexPage from "./IndexPage";
+// import PersonPage from "./PersonPage";
+
+const IndexPage = lazy(() => import("./IndexPage"));
+const PersonPage = lazy(() => import("./PersonPage"));
 
 // import "App.pcss";
 
@@ -24,181 +25,67 @@ export type PersonType = {
   isBeingFired?: boolean;
 };
 
-// HOOKS
-// useState, useReducer
-// async
-
-type Action =
-  | { type: "FIRE_PERSON"; payload: string }
-  | { type: "FIRE_PERSON_PENDING"; payload: string }
-  | { type: "FIRE_PERSON_FULFILLED"; payload: PersonType }
-  | { type: "FIRE_PERSON_REJECTED"; payload: Error; error: true }
-  | { type: "HIRE_PERSON"; payload: PersonType }
-  | { type: "GET_PERSONS" }
-  | { type: "GET_PERSONS_PENDING" }
-  | { type: "GET_PERSONS_REJECTED"; error: true; payload: Error }
-  | { type: "GET_PERSONS_FULFILLED"; payload: PersonType[] };
-
-type State = {
-  persons: Record<string, PersonType>;
-  numberOfRenders: number;
-  isLoading: number;
-};
-
-const reducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case "GET_PERSONS_PENDING":
-      return produce(state, (draft) => {
-        draft.isLoading = draft.isLoading + 1;
-      });
-
-    case "GET_PERSONS_REJECTED":
-    case "FIRE_PERSON_REJECTED":
-      return produce(state, (draft) => {
-        draft.isLoading = draft.isLoading - 1;
-      });
-
-    case "HIRE_PERSON":
-      return produce(state, (draft) => {
-        draft.persons[action.payload.id] = action.payload;
-      });
-
-    case "FIRE_PERSON_PENDING":
-      return produce(state, (draft) => {
-        draft.persons[action.payload].isBeingFired = true;
-        draft.isLoading = draft.isLoading + 1;
-      });
-
-    case "FIRE_PERSON_FULFILLED":
-      return produce(state, (draft) => {
-        delete draft.persons[action.payload.id];
-        draft.isLoading = draft.isLoading - 1;
-        // draft.persons = draft.persons.filter((p) => p.id !== action.payload);
-      });
-
-    case "GET_PERSONS_FULFILLED":
-      return produce(state, (draft) => {
-        // draft.persons = action.payload;
-        draft.persons = indexBy((p) => p.id, action.payload);
-        draft.isLoading = draft.isLoading - 1;
-      });
-
-    default:
-      return state;
-  }
-};
-
-const isGood = (p: PersonType): boolean =>
-  p.age < 30 || p.relatedToCEO === true;
-
 const App: FC = () => {
-  /*
-  const [persons, setPersons] = useState<PersonType[]>([]);
-  const [numberOfRenders, setNumberOfRenders] = useState(0);
-  */
-
-  const [{ persons, numberOfRenders, isLoading }, dispatch] = useReducer(
-    reducer,
-    {
-      numberOfRenders: 0,
-      persons: {},
-      isLoading: 0
-    }
-  );
-
-  // const isLoading = useSelector(state => state.isLoading > 0)
-
-  console.log(isLoading, "isLoading");
-
-  const personList = Object.values(persons);
-
-  const firePerson = useCallback(
-    async (id: string) => {
-      dispatch({
-        type: "FIRE_PERSON_PENDING",
-        payload: id
-      });
-
-      try {
-        const fired = await personService.firePerson(id);
-        dispatch({
-          type: "FIRE_PERSON_FULFILLED",
-          payload: fired
-        });
-      } catch (e) {
-        dispatch({
-          type: "FIRE_PERSON_REJECTED",
-          payload: e,
-          error: true
-        });
-      }
-    },
-    [dispatch]
-  );
-
-  const hirePerson = useCallback(
-    (person: PersonType) => {
-      dispatch({
-        type: "HIRE_PERSON",
-        payload: person
-      });
-    },
-    [dispatch]
-  );
-
-  /*
-  useEffect(() => {
-    console.log("HELLUREI HELLUREI MIKSI ET LAUO");
-
-    const id = setInterval(() => {
-      setNumberOfRenders((noOfRenders) => noOfRenders + 1);
-    }, 500);
-
-    return () => {
-      clearInterval(id);
-    };
-
-    return undefined; // is ok
-
-    // setNumberOfRenders(numberOfRenders + 1);
-  }, [numberOfRenders]);
-  */
+  const persons = useStore((state) => state.persons);
+  const isLoading = useStore((state) => state.isLoading > 0);
+  const numberOfRenders = useStore((state) => state.numberOfRenders);
+  const getPersons = useStore((state) => state.getPersons);
+  const hirePerson = useStore((state) => state.hirePerson);
+  const firePerson = useStore((state) => state.firePerson);
 
   useEffect(() => {
     console.log("PERSONS HAVE CHANGED");
   }, [persons]);
 
   useEffect(() => {
-    dispatch({
-      type: "GET_PERSONS_PENDING"
-    });
-
-    personService.getPersons().then((persons) => {
-      dispatch({
-        type: "GET_PERSONS_FULFILLED",
-        payload: persons
-      });
-    });
+    getPersons();
   }, []);
 
-  const goodPeople = personList.filter(isGood);
-  const badPeople = personList.filter((p) => !isGood(p));
+  const personList = Object.values(persons);
 
   return (
     <main>
-      {isLoading > 0 && <Spinner />}
+      {isLoading && <Spinner />}
 
       <h1>Giga ERP</h1>
-
-      <HirePersonForm hirePerson={hirePerson} />
-
       <p>Number of renders: {numberOfRenders}</p>
 
-      <h2>Bad People</h2>
-      <PersonList firePerson={firePerson} persons={badPeople} showMetadata />
+      <Switch>
+        <Route
+          path="/person/:id"
+          exact
+          render={(props) => {
+            const person = persons[props.match.params.id];
+            return (
+              <Suspense fallback={<div>laddare...</div>}>
+                <PersonPage person={person} />
+              </Suspense>
+            );
+          }}
+        />
 
-      <h2>Good People</h2>
-      <PersonList firePerson={firePerson} persons={goodPeople} />
+        <Route
+          path="/"
+          exact
+          render={() => {
+            return (
+              <Suspense fallback={<div>laddare...</div>}>
+                <IndexPage
+                  persons={personList}
+                  hirePerson={hirePerson}
+                  firePerson={firePerson}
+                />
+              </Suspense>
+            );
+          }}
+        />
+
+        <Route
+          render={() => {
+            return <section>not found fallback</section>;
+          }}
+        />
+      </Switch>
     </main>
   );
 };
