@@ -1,57 +1,105 @@
-import { FC } from "react";
-import "./duckling-suckler";
+import { FC, useCallback, useEffect, useState } from "react";
+import personService from "../services/person";
+import PersonList from "./PersonList";
+import produce from "immer";
+import { append } from "ramda";
+import HirePersonForm from "./HirePersonForm";
+
+// import "App.pcss";
+
+/*
+import {v4} from "uuid";
+v4();
+*/
+
+export type PersonType = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  gender: 0 | 1 | 2;
+  age: number;
+  relatedToCEO: boolean;
+};
+
+// HOOKS
+// useState, u
+
+const isGood = (p: PersonType): boolean =>
+  p.age < 30 || p.relatedToCEO === true;
 
 const App: FC = () => {
+  const [persons, setPersons] = useState<PersonType[]>([]);
+  const [numberOfRenders, setNumberOfRenders] = useState(0);
+
+  const firePerson = useCallback(
+    (id: string) => {
+      setPersons((persons) => persons.filter((p) => p.id !== id));
+    },
+    [setPersons]
+  );
+
+  const hirePerson = useCallback(
+    (person: PersonType) => {
+      setPersons((persons) => {
+        return [...persons, person];
+
+        /*
+        return append(person, persons);
+
+        return produce(persons, (draft) => {
+          draft.push(person);
+        });
+
+        // return persons.concat(person);
+        // persons.push(person);
+        */
+      });
+    },
+    [setPersons]
+  );
+
+  useEffect(() => {
+    console.log("HELLUREI HELLUREI MIKSI ET LAUO");
+
+    const id = setInterval(() => {
+      setNumberOfRenders((noOfRenders) => noOfRenders + 1);
+    }, 500);
+
+    return () => {
+      clearInterval(id);
+    };
+
+    return undefined; // is ok
+
+    // setNumberOfRenders(numberOfRenders + 1);
+  }, [numberOfRenders]);
+
+  useEffect(() => {
+    console.log("PERSONS HAVE CHANGED");
+  }, [persons]);
+
+  useEffect(() => {
+    console.log("HELLUREI WHEN AM I BEING RUN?");
+    personService.getPersons().then(setPersons);
+  }, []);
+
+  const goodPeople = persons.filter(isGood);
+  const badPeople = persons.filter((p) => !isGood(p));
+
   return (
-    <div>
-      <h1>Hobla! It works (or at least seems to work).</h1>
+    <main>
+      <h1>Giga ERP</h1>
 
-      <pekkis-duckling-suckler name="Pekkis" />
+      <HirePersonForm hirePerson={hirePerson} />
 
-      <h2>Attention!</h2>
+      <p>Number of renders: {numberOfRenders}</p>
 
-      <p>
-        Below is a nice helpful iframe trying to fetch it's stuff from{" "}
-        <a href="http://localhost:8889/person">http://localhost:8889/person</a>.
-        If the iframe contains some mysterious JSON blob of random person data,
-        you're probably good to go. If not, start the server process.
-      </p>
+      <h2>Bad People</h2>
+      <PersonList firePerson={firePerson} persons={badPeople} showMetadata />
 
-      <p>
-        Also open the browser's dev console and assert that it has all kinds of
-        stuff. Warnings and shit!
-      </p>
-
-      <iframe width="100%" src="http://localhost:8889/person"></iframe>
-
-      <h2>More attention!</h2>
-
-      <p>
-        I might do some late surprise changes so you should{" "}
-        <code>git pull</code> and <code>yarn</code> come the first training
-        day's morning.
-      </p>
-
-      <h2>Extra attention!</h2>
-
-      <p>
-        Open `src/components/App.tsx`, do a code change there and save the file.
-        The browser should update without a hard reload.
-      </p>
-
-      <p>
-        If you're using Linux and it doesn't work or stops working, go here:
-      </p>
-
-      <ul>
-        <li>
-          <a target="_blank" href="https://webpack.js.org/configuration/watch/">
-            https://webpack.js.org/configuration/watch/
-          </a>{" "}
-          and check the part where it talks about not having enough watchers.
-        </li>
-      </ul>
-    </div>
+      <h2>Good People</h2>
+      <PersonList firePerson={firePerson} persons={goodPeople} />
+    </main>
   );
 };
 
