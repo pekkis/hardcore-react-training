@@ -1,6 +1,7 @@
 import { FC, memo } from "react";
 import { PersonType } from "./App";
 import Person from "./Person";
+import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
 
 // import PropTypes from "prop-types";
 
@@ -10,22 +11,81 @@ type Props = {
   firePerson: (id: string) => void;
 };
 
-const PersonList: FC<Props> = ({
-  persons,
-  showMetadata = false,
-  firePerson
-}) => {
+const variants = {
+  hidden: {
+    opacity: 0,
+    x: -500
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      staggerChildren: 0.05
+    }
+  },
+  exit: {
+    x: 0,
+    scale: 10,
+    rotate: 1000,
+    opacity: 0,
+    transition: {
+      duration: 1
+    }
+  }
+};
+
+const PersonList: FC<Props> = ({ persons, firePerson }) => {
+  if (persons.length === 0) {
+    return null;
+  }
+
   return (
     <div>
-      {showMetadata && <p>Metadata here.</p>}
+      <AnimateSharedLayout>
+        <motion.div
+          layout
+          variants={variants}
+          initial="hidden"
+          animate="visible"
+        >
+          <AnimatePresence>
+            {persons.map((person) => {
+              return (
+                <motion.div
+                  key={person.id}
+                  layout
+                  variants={variants}
+                  exit="exit"
+                  drag="x"
+                  dragElastic
+                  dragMomentum
+                  dragConstraints={{
+                    right: 0,
+                    left: 0
+                  }}
+                  onDragEnd={(p1, p2) => {
+                    if (person.isBeingFired) {
+                      return;
+                    }
 
-      {persons.map((person) => {
-        return (
-          <Person firePerson={firePerson} key={person.id} person={person} />
-        );
-      })}
+                    if (p2.offset.x > 100) {
+                      firePerson(person.id);
+                    }
+                  }}
+                >
+                  <Person
+                    firePerson={firePerson}
+                    key={person.id}
+                    person={person}
+                  />
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </motion.div>
+      </AnimateSharedLayout>
     </div>
   );
 };
 
-export default memo(PersonList);
+export default PersonList;
