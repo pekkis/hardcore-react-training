@@ -5,6 +5,8 @@ import bg from "./assets/money.jpg";
 import { Global } from "@emotion/react";
 import emotionNormalize from "emotion-normalize";
 
+import { PeduxProvider } from "./services/pedux";
+
 const Root: FC = () => {
   return (
     <StrictMode>
@@ -23,7 +25,9 @@ const Root: FC = () => {
           }
         ]}
       />
-      <App />
+      <PeduxProvider>
+        <App />
+      </PeduxProvider>
     </StrictMode>
   );
 };

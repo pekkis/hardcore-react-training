@@ -5,6 +5,7 @@ import { PersonType } from "./App";
 import styles from "./Person.module.pcss";
 import cx from "clsx";
 import Button from "./Button";
+import { useSelector } from "../services/pedux";
 
 const getBgColor = (person: PersonType) => {
   if (person.gender === 0) {
@@ -25,6 +26,8 @@ type Props = {
 
 const Person: FC<Props> = (props) => {
   const { person, firePerson } = props;
+
+  // const pedux = usePedux();
 
   /*
   const classes = cx(styles.root, {
@@ -54,6 +57,7 @@ const Person: FC<Props> = (props) => {
 
       <div>
         <Button
+          disabled={person.isBeingFired}
           onClick={() => {
             firePerson(person.id);
           }}

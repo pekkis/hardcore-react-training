@@ -2,8 +2,10 @@ import { FC, useCallback, useEffect, useReducer, useState } from "react";
 import personService from "../services/person";
 import PersonList from "./PersonList";
 import produce from "immer";
-// import { append } from "ramda";
 import HirePersonForm from "./HirePersonForm";
+import person from "../services/person";
+import { indexBy } from "ramda";
+import Spinner from "./Spinner";
 
 // import "App.pcss";
 
@@ -19,6 +21,7 @@ export type PersonType = {
   gender: 0 | 1 | 2;
   age: number;
   relatedToCEO: boolean;
+  isBeingFired?: boolean;
 };
 
 // HOOKS
@@ -27,6 +30,9 @@ export type PersonType = {
 
 type Action =
   | { type: "FIRE_PERSON"; payload: string }
+  | { type: "FIRE_PERSON_PENDING"; payload: string }
+  | { type: "FIRE_PERSON_FULFILLED"; payload: PersonType }
+  | { type: "FIRE_PERSON_REJECTED"; payload: Error; error: true }
   | { type: "HIRE_PERSON"; payload: PersonType }
   | { type: "GET_PERSONS" }
   | { type: "GET_PERSONS_PENDING" }
@@ -34,25 +40,47 @@ type Action =
   | { type: "GET_PERSONS_FULFILLED"; payload: PersonType[] };
 
 type State = {
-  persons: PersonType[];
+  persons: Record<string, PersonType>;
   numberOfRenders: number;
+  isLoading: number;
 };
 
 const reducer = (state: State, action: Action) => {
   switch (action.type) {
-    case "HIRE_PERSON":
+    case "GET_PERSONS_PENDING":
       return produce(state, (draft) => {
-        draft.persons.push(action.payload);
+        draft.isLoading = draft.isLoading + 1;
       });
 
-    case "FIRE_PERSON":
+    case "GET_PERSONS_REJECTED":
+    case "FIRE_PERSON_REJECTED":
       return produce(state, (draft) => {
-        draft.persons = draft.persons.filter((p) => p.id !== action.payload);
+        draft.isLoading = draft.isLoading - 1;
+      });
+
+    case "HIRE_PERSON":
+      return produce(state, (draft) => {
+        draft.persons[action.payload.id] = action.payload;
+      });
+
+    case "FIRE_PERSON_PENDING":
+      return produce(state, (draft) => {
+        draft.persons[action.payload].isBeingFired = true;
+        draft.isLoading = draft.isLoading + 1;
+      });
+
+    case "FIRE_PERSON_FULFILLED":
+      return produce(state, (draft) => {
+        delete draft.persons[action.payload.id];
+        draft.isLoading = draft.isLoading - 1;
+        // draft.persons = draft.persons.filter((p) => p.id !== action.payload);
       });
 
     case "GET_PERSONS_FULFILLED":
       return produce(state, (draft) => {
-        draft.persons = action.payload;
+        // draft.persons = action.payload;
+        draft.persons = indexBy((p) => p.id, action.payload);
+        draft.isLoading = draft.isLoading - 1;
       });
 
     default:
@@ -69,17 +97,41 @@ const App: FC = () => {
   const [numberOfRenders, setNumberOfRenders] = useState(0);
   */
 
-  const [{ persons, numberOfRenders }, dispatch] = useReducer(reducer, {
-    numberOfRenders: 0,
-    persons: []
-  });
+  const [{ persons, numberOfRenders, isLoading }, dispatch] = useReducer(
+    reducer,
+    {
+      numberOfRenders: 0,
+      persons: {},
+      isLoading: 0
+    }
+  );
+
+  // const isLoading = useSelector(state => state.isLoading > 0)
+
+  console.log(isLoading, "isLoading");
+
+  const personList = Object.values(persons);
 
   const firePerson = useCallback(
-    (id: string) => {
+    async (id: string) => {
       dispatch({
-        type: "FIRE_PERSON",
+        type: "FIRE_PERSON_PENDING",
         payload: id
       });
+
+      try {
+        const fired = await personService.firePerson(id);
+        dispatch({
+          type: "FIRE_PERSON_FULFILLED",
+          payload: fired
+        });
+      } catch (e) {
+        dispatch({
+          type: "FIRE_PERSON_REJECTED",
+          payload: e,
+          error: true
+        });
+      }
     },
     [dispatch]
   );
@@ -117,7 +169,10 @@ const App: FC = () => {
   }, [persons]);
 
   useEffect(() => {
-    console.log("HELLUREI WHEN AM I BEING RUN?");
+    dispatch({
+      type: "GET_PERSONS_PENDING"
+    });
+
     personService.getPersons().then((persons) => {
       dispatch({
         type: "GET_PERSONS_FULFILLED",
@@ -126,11 +181,13 @@ const App: FC = () => {
     });
   }, []);
 
-  const goodPeople = persons.filter(isGood);
-  const badPeople = persons.filter((p) => !isGood(p));
+  const goodPeople = personList.filter(isGood);
+  const badPeople = personList.filter((p) => !isGood(p));
 
   return (
     <main>
+      {isLoading > 0 && <Spinner />}
+
       <h1>Giga ERP</h1>
 
       <HirePersonForm hirePerson={hirePerson} />

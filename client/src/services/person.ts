@@ -14,6 +14,17 @@ export const getPersons = async (): Promise<PersonType[]> => {
   }
 };
 
+export const firePerson = async (id): Promise<PersonType> => {
+  try {
+    const response = await axios.delete<PersonType>(`${prefix}/person/${id}`);
+    return response.data;
+  } catch (e) {
+    console.log(e, "oh noes");
+    throw e;
+  }
+};
+
 export default {
-  getPersons
+  getPersons,
+  firePerson
 };
