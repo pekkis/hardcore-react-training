@@ -1,8 +1,8 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useReducer, useState } from "react";
 import personService from "../services/person";
 import PersonList from "./PersonList";
 import produce from "immer";
-import { append } from "ramda";
+// import { append } from "ramda";
 import HirePersonForm from "./HirePersonForm";
 
 // import "App.pcss";
@@ -22,42 +22,79 @@ export type PersonType = {
 };
 
 // HOOKS
-// useState, u
+// useState, useReducer
+// async
+
+type Action =
+  | { type: "FIRE_PERSON"; payload: string }
+  | { type: "HIRE_PERSON"; payload: PersonType }
+  | { type: "GET_PERSONS" }
+  | { type: "GET_PERSONS_PENDING" }
+  | { type: "GET_PERSONS_REJECTED"; error: true; payload: Error }
+  | { type: "GET_PERSONS_FULFILLED"; payload: PersonType[] };
+
+type State = {
+  persons: PersonType[];
+  numberOfRenders: number;
+};
+
+const reducer = (state: State, action: Action) => {
+  switch (action.type) {
+    case "HIRE_PERSON":
+      return produce(state, (draft) => {
+        draft.persons.push(action.payload);
+      });
+
+    case "FIRE_PERSON":
+      return produce(state, (draft) => {
+        draft.persons = draft.persons.filter((p) => p.id !== action.payload);
+      });
+
+    case "GET_PERSONS_FULFILLED":
+      return produce(state, (draft) => {
+        draft.persons = action.payload;
+      });
+
+    default:
+      return state;
+  }
+};
 
 const isGood = (p: PersonType): boolean =>
   p.age < 30 || p.relatedToCEO === true;
 
 const App: FC = () => {
+  /*
   const [persons, setPersons] = useState<PersonType[]>([]);
   const [numberOfRenders, setNumberOfRenders] = useState(0);
+  */
+
+  const [{ persons, numberOfRenders }, dispatch] = useReducer(reducer, {
+    numberOfRenders: 0,
+    persons: []
+  });
 
   const firePerson = useCallback(
     (id: string) => {
-      setPersons((persons) => persons.filter((p) => p.id !== id));
+      dispatch({
+        type: "FIRE_PERSON",
+        payload: id
+      });
     },
-    [setPersons]
+    [dispatch]
   );
 
   const hirePerson = useCallback(
     (person: PersonType) => {
-      setPersons((persons) => {
-        return [...persons, person];
-
-        /*
-        return append(person, persons);
-
-        return produce(persons, (draft) => {
-          draft.push(person);
-        });
-
-        // return persons.concat(person);
-        // persons.push(person);
-        */
+      dispatch({
+        type: "HIRE_PERSON",
+        payload: person
       });
     },
-    [setPersons]
+    [dispatch]
   );
 
+  /*
   useEffect(() => {
     console.log("HELLUREI HELLUREI MIKSI ET LAUO");
 
@@ -73,6 +110,7 @@ const App: FC = () => {
 
     // setNumberOfRenders(numberOfRenders + 1);
   }, [numberOfRenders]);
+  */
 
   useEffect(() => {
     console.log("PERSONS HAVE CHANGED");
@@ -80,7 +118,12 @@ const App: FC = () => {
 
   useEffect(() => {
     console.log("HELLUREI WHEN AM I BEING RUN?");
-    personService.getPersons().then(setPersons);
+    personService.getPersons().then((persons) => {
+      dispatch({
+        type: "GET_PERSONS_FULFILLED",
+        payload: persons
+      });
+    });
   }, []);
 
   const goodPeople = persons.filter(isGood);
