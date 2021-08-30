@@ -112,9 +112,8 @@ const base: Configuration = {
     // host: "tussi.tunk.io", // if you have SSL problems in localhost, this helps
     port: env.get("DEVSERVER_PORT").asPortNumber() || 8888,
     hot: true,
-    index: "index.html",
-    disableHostCheck: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    allowedHosts: "all"
   },
   resolve: {
     // modules: [path.resolve("node_modules")],
