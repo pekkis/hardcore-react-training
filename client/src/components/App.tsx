@@ -1,13 +1,25 @@
 import { FC } from "react";
-import "./duckling-suckler";
+import Three from "./three/Three";
+import DucklingSuckler from "./DucklingSuckler";
 
 const App: FC = () => {
   return (
     <div>
       <h1>Hobla! It works (or at least seems to work).</h1>
 
-      <pekkis-duckling-suckler name="Pekkis" />
+      <DucklingSuckler name="Pekkis" />
 
+      <h2>A Grand Welcome</h2>
+
+      <div
+        style={{
+          border: "1px solid #000",
+          height: "400px",
+          width: "400px"
+        }}
+      >
+        <Three />
+      </div>
       <h2>Attention!</h2>
 
       <p>
