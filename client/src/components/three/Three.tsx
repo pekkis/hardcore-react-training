@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { extend, Canvas, useFrame } from "@react-three/fiber";
 import { Text } from "troika-three-text";
 
+/* This is just some semi copy paste I cooked up yesterday */
+
 const fonts = {
   Roboto: "https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxM.woff",
   "Noto Sans":

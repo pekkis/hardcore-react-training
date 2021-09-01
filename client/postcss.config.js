@@ -4,5 +4,6 @@ module.exports = {
     "postcss-advanced-variables": {},
     "postcss-nested": {},
     autoprefixer: {}
+    // cssnano
   }
 };
