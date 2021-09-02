@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Root from "./Root";
+import { enableMapSet } from "immer";
+
+enableMapSet();
 
 async function render(Component: typeof Root, rootElement: HTMLElement) {
   if (process.env.NODE_ENV !== "production") {

@@ -11,6 +11,7 @@ export type PersonType = {
   lastName: string;
   age: number;
   gender: GenderType;
+  isBeingFired?: boolean;
 };
 
 const api = envVar.get("REACT_APP_API").required().asString();
@@ -21,6 +22,16 @@ export const getPersons = async (): Promise<PersonType[]> => {
 
     console.log(ret.data, "lubsendore");
 
+    return ret.data;
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+};
+
+export const firePerson = async (id: string): Promise<PersonType> => {
+  try {
+    const ret = await axios.delete<PersonType>(`${api}/person/${id}`);
     return ret.data;
   } catch (e) {
     console.log(e);

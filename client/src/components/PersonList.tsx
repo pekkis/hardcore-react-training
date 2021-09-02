@@ -2,6 +2,7 @@ import { FC, memo } from "react";
 import { PersonType } from "../services/person";
 import Person from "./Person";
 import Metadata from "./PersonListMetadata";
+import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 
 type Props = {
   persons: PersonType[];
@@ -16,9 +17,13 @@ const PersonList: FC<Props> = (props) => {
     <div>
       {showMetadata && <Metadata persons={persons} />}
 
-      {persons.map((p) => (
-        <Person firePerson={firePerson} key={p.id} person={p} />
-      ))}
+      <AnimateSharedLayout>
+        <AnimatePresence>
+          {persons.map((p) => (
+            <Person firePerson={firePerson} key={p.id} person={p} />
+          ))}
+        </AnimatePresence>
+      </AnimateSharedLayout>
     </div>
   );
 };

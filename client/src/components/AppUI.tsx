@@ -2,11 +2,12 @@
 
 import { FC } from "react";
 import { PersonType } from "../services/person";
-import HirePersonForm from "./HirePersonForm";
-import PersonList from "./PersonList";
+import { useStore } from "../services/state";
+import IndexPage from "./IndexPage";
 import Spinner from "./Spinner";
-
-const isGood = (p: PersonType) => p.age < 30;
+import { Switch, Route } from "react-router";
+import NotFound from "./NotFound";
+import PersonPage from "./PersonPage";
 
 type Props = {
   firePerson: (id: string) => void;
@@ -24,34 +25,33 @@ const AppUI: FC<Props> = (props) => {
     numberOfRenders,
     increaseNumberOfRenders
   } = props;
-  const goodPersons = persons.filter(isGood);
-  const badPersons = persons.filter((p) => !isGood(p));
+
+  const isLoading = useStore((store) => Boolean(store.asyncLoading));
 
   return (
     <main>
       <h1>Giga ERP!!!</h1>
-
-      <Spinner />
-
+      {isLoading && <Spinner />}
       <button onClick={increaseNumberOfRenders}>incremento!</button>
 
-      <HirePersonForm hirePerson={hirePerson} />
-
-      <p
-        css={{
-          fontSize: "50px",
-          color: "#fff",
-          textShadow: "1px 1px 3px rgb(0, 0, 0)"
-        }}
-      >
-        {numberOfRenders} renders
-      </p>
-
-      <h2>Pahat</h2>
-      <PersonList showMetadata firePerson={firePerson} persons={badPersons} />
-
-      <h2>Hyvät</h2>
-      <PersonList firePerson={firePerson} persons={goodPersons} />
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={() => {
+            return (
+              <IndexPage
+                persons={persons}
+                firePerson={firePerson}
+                hirePerson={hirePerson}
+                numberOfRenders={numberOfRenders}
+              />
+            );
+          }}
+        />
+        <Route component={PersonPage} path="/person/:id" />
+        <Route component={NotFound} />
+      </Switch>
     </main>
   );
 };

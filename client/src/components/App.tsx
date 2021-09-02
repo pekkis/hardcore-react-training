@@ -7,7 +7,7 @@ const App: FC = () => {
   const firePerson = useStore((store) => store.firePerson);
   const hirePerson = useStore((store) => store.hirePerson);
   const getPersons = useStore((store) => store.getPersons);
-  const persons = useStore((store) => store.persons);
+  const persons = useStore((store) => Array.from(store.persons.values()));
   const increaseNumberOfRenders = useStore(
     (store) => store.increaseNumberOfRenders
   );
