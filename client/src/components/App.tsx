@@ -1,52 +1,17 @@
-import { FC, useState, useEffect, useCallback } from "react";
-import { getPersons, PersonType } from "../services/person";
-import HirePersonForm from "./HirePersonForm";
-import PersonList from "./PersonList";
+import { FC, useEffect } from "react";
+import AppUI from "./AppUI";
 
-// import "./App.module.pcss";
-
-/*
-class App extends React.Component {
-  state = [];
-
-  componentDidMount() {
-    // hakisin tyypit linjalta, päivittäisin tilaa
-    console.log("MOUNT");
-  }
-
-  componentDidUpdate() {
-
-  }
-
-  render() {
-    return (
-      <main>
-        <h1>Giga ERP!!!</h1>
-      </main>
-    );
-  }
-}
-*/
-
-const isGood = (p: PersonType) => p.age < 30;
+import { useStore } from "../services/state";
 
 const App: FC = () => {
-  const [persons, setPersons] = useState<PersonType[]>([]);
-  const [numberOfRenders, setNumberOfRenders] = useState<number>(0);
-
-  const firePerson = useCallback(
-    (id: string): void => {
-      setPersons((persons) => persons.filter((p) => p.id !== id));
-    },
-    [setPersons]
+  const firePerson = useStore((store) => store.firePerson);
+  const hirePerson = useStore((store) => store.hirePerson);
+  const getPersons = useStore((store) => store.getPersons);
+  const persons = useStore((store) => store.persons);
+  const increaseNumberOfRenders = useStore(
+    (store) => store.increaseNumberOfRenders
   );
-
-  const hirePerson = useCallback(
-    (person: PersonType): void => {
-      setPersons((persons) => persons.concat(person));
-    },
-    [setPersons]
-  );
+  const numberOfRenders = useStore((store) => store.numberOfRenders);
 
   useEffect(() => {
     console.log("JOKA KERTA KUN RENDER LOPPUU JA ALKAA OIKEA YÖ!");
@@ -54,42 +19,31 @@ const App: FC = () => {
     return () => {
       console.log("JOKA KERTA CLEANUP");
     };
-    //return undefined;
   });
 
-  /*
   useEffect(() => {
     const interval = setInterval(() => {
-      setNumberOfRenders((n) => n + 1);
-    }, 1000);
+      increaseNumberOfRenders();
+    }, 2500);
 
     return () => {
       clearInterval(interval);
     };
-  }, []);
-  */
+  }, [increaseNumberOfRenders]);
 
   useEffect(() => {
-    getPersons().then(setPersons);
-  }, []);
-
-  const goodPersons = persons.filter(isGood);
-  const badPersons = persons.filter((p) => !isGood(p));
+    getPersons();
+    // This is ok to not be in deps because it is run only once and it doesn't even maaaatteeer.
+  }, [getPersons]);
 
   return (
-    <main>
-      <h1>Giga ERP!!!</h1>
-
-      <HirePersonForm hirePerson={hirePerson} />
-
-      <p>{numberOfRenders}</p>
-
-      <h2>Pahat</h2>
-      <PersonList firePerson={firePerson} persons={badPersons} />
-
-      <h2>Hyvät</h2>
-      <PersonList firePerson={firePerson} persons={goodPersons} />
-    </main>
+    <AppUI
+      firePerson={firePerson}
+      hirePerson={hirePerson}
+      persons={persons}
+      numberOfRenders={numberOfRenders}
+      increaseNumberOfRenders={increaseNumberOfRenders}
+    />
   );
 };
 
