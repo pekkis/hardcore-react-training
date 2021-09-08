@@ -1,6 +1,6 @@
-## Pekkis' Tough React Training
+## Pekkis' Hardcore React Training
 
-### React
+## React
 
 React is a JavaScript library for building user interfaces, invented by Facebook. When I discovered React back in 2014, I got hooked super fast. It became super obvious to me that React would seriously disrupt the webdev scene, and I began to preach the joys of the library to everyone who would listen.
 
