@@ -1,4 +1,4 @@
-# Pekkis' Tough React Training
+# Pekkis' Hardcore React Training
 
 ## React
 
