@@ -113,9 +113,30 @@ Here are some bulletin points for each coaching day. Don’t think of these subj
     - Vue
     - Svelte
 
+### Feedback
+
+I've teached the course many tens of times during the years. The average rating I got has been about **4.5/5**. Most of the feedback I've ever gotten belongs to my previous employer, but here are some of the recent comments (in both Finnish and English) from the couple of online courses I've held after my hiatus ended.
+
+> "Asiat etenivät hyvällä tahdilla ja huumorilla höystettynä eteenpäin, eikä mikään tuntunut vaikealta, vaikka vaikeita konsepteja käsiteltiin. Tylsää ei kerennyt tulla missään vaiheessa. Työkalut toimivat mainiosti, ja itsellä ainakin paljon parempi seurata ja koodata omilla välineillä (== isolla näytöllä) kotona."
+
+> "Paljon uutta laadukkaasti esitettyä sisältöä. Kouluttajalla on tarpeeksi kilometrejä takana aihealueesta. Aihealueet oli valittu hyvin ja esitetty siten, että perusteltiin myös miksi."
+
+> "It did not feel like watching a prerecorded webinar or that the trainer did not just follow a ready-made "script". It felt like it was happening real-time and all the things we're done together with us. Of course there is a "script" and the trainer had done most of the stuff before in previous courses, but it did not _feel_ like that."
+
+> "Paljon uutta laadukkaasti esitettyä sisältöä. Kouluttajalla on tarpeeksi kilometrejä takana aihealueesta. Aihealueet oli valittu hyvin ja esitetty siten, että perusteltiin myös miksi."
+
+> "Thanks a million! I love the code with me while I think out loud method, because I learn well when I have to think along with you with the exact same context in my head."
+
+> "Extremely hands on so you saw all the dirty details when things don't work out and how to resolve it. No slide show hell, but real coding. It was invaluable that real development tools and libraries were used and introduced. It was also very good to have a discussion around why things are like they are to understand that current situation and then introduce the latest libraries based on personal experience. It felt like the end result of the demo app was a realistic production level application, just the design missing :)"
+
+> "Iso peukku hands-on-tekemiselle! Sai oikeasti tuntumaa siihen, että millaista on koodata reactia ilman sitä "silmäluomesi-alkavat-tuntua-raskailta"-fiilistä, joka tulee pelkästä teoriahöpötyksen kuuntelusta. Myös Pekkiksen innostus asiaan oli mukaansatempaavaa. LiveSharen käyttö pelasti vanhan bäkkäriklonkun pariin otteeseen kun muuten olisi pudonnut kärryiltä."
+
+> "There was enough depth, yet it still felt casual (no pressure). I enjoyed the occasional anecdote. As far as I'm concerned, the course covered everything important to send you on your way - I think after the course, with a little exercise of course, one should be able to produce a React app in its entirety.
+While you could technically read all this information from bunch of how-to articles, there's much more added value, energy and _metadata_ when learning from a person. And this certainly isn't the case with every teacher, so kudos for that."
+
 ### Contact
 
-Due to the ongoing coronavirus pandemic, I currently only teach the subject remotely in the context of private courses for your business.
+Due to the ongoing coronavirus pandemic, I currently only teach the subject remotely in the context of private courses for your business. The teaching language can be English or Finnish, all the materials are in English.
 
 The price is **6000 euros + VAT**, and for this money, a maximum of 10 people can participate. This is a practical limitation that cannot be surpassed with money, I simply can’t teach a larger set of people at once even if I wanted.
 
