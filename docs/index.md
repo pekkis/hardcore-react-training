@@ -1,5 +1,7 @@
 ## Pekkis' Hardcore React Training
 
+![A semi-real screenshot from a live training](./screenshot.png)
+
 ### React
 
 [React](https://reactjs.org/) is a JavaScript library for building user interfaces, invented by Facebook. When I discovered React back in 2014, I got hooked super fast. It immediately became obvious to me that React would seriously disrupt the webdev scene, and I began to learn the library and preach it's joys to everyone who would listen.
@@ -27,7 +29,7 @@ All materials except me and my narrations are open source and free software lice
 
 ### Who is it for?
 
-The training will be good for you if you are a software developer and / or a devsigner who will use JavaScript, React and / or other up-to-date front-end development tools in your work. Many of the topics are difficult and the pace will be rapid, so the course really *is not suitable for beginners*.
+The training will be good for you if you are a software developer and / or a devsigner who will use JavaScript, React and / or other up-to-date front-end development tools in your work. Many of the topics are difficult and the pace will be rapid, so the course really _is not suitable for beginners_.
 
 You do not need to be a guru, but I'm serious when I say that my coaching is intended for **professionals** and I expect all participants to have a professional working background in software development. In addition, you should have applicable experience in JavaScript, HTML, CSS and web development in general.
 
@@ -37,7 +39,7 @@ To participate in the course, you will need:
 - A computer and a development environment
   - I will send preparation instructions about a week in advance. They should take no more than fifteen minutes to complete, and completing the instructions in advance is an absolute prerequisite for participation in the course.
 - During epidemics or other exceptional circumstances, coaching takes place remotely. This has consequences that vary and are difficult for me to anticipate. Please keep this in mind in your expectation values, we play with the cards that are dealt to us.
-- I strongly recommend that **you have two screens** or at least one huge screen with a monster resolution. I use Discord as the remote platform and it is very good and it works with just one screen, but there's a lot of streams (my screen, VSCode LiveShare and also my face if you want to see it when I rant about something) available and you are supposed to also be coding yourself at the same time. The second screen can be something like an iPad, one main display is enough! 
+- I strongly recommend that **you have two screens** or at least one huge screen with a monster resolution. I use Discord as the remote platform and it is very good and it works with just one screen, but there's a lot of streams (my screen, VSCode LiveShare and also my face if you want to see it when I rant about something) available and you are supposed to also be coding yourself at the same time. The second screen can be something like an iPad, one main display is enough!
 
 ### Course content
 
@@ -45,7 +47,7 @@ We code and talk about coding for two days. I don't believe in slideshows. If th
 
 We use libraries and ways of working that I personally think are good or otherwise worth presenting. The content lives on according to what I think is relevant and what the specicic interests of your class are. Experience has shown that in the end, only the participants determine what we do with our two days together.
 
-We use modern JavaScript and TypeScript on top of that. This is both awful and wonderful, but since you’re 100% sure to encounter TypeScript in your day job anyways, it’s pointless to resist it. TypeScript has its own quirks and is a subjective subject, but at the basic level we are going to use it it won't slow us down too bad (and if it does, I'll just leave it broken and give you a home assignment). It's just a matter of implementing it "correctly", I think. 
+We use modern JavaScript and TypeScript on top of that. This is both awful and wonderful, but since you’re 100% sure to encounter TypeScript in your day job anyways, it’s pointless to resist it. TypeScript has its own quirks and is a subjective subject, but at the basic level we are going to use it it won't slow us down too bad (and if it does, I'll just leave it broken and give you a home assignment). It's just a matter of implementing it "correctly", I think.
 
 Here are some bulletin points for each coaching day. Don’t think of these subjects in absolute terms or order, everything is flexible. If you have specific interests or development needs, please let me know about them beforehand so that I may be able to say something deeper than usual about these subjects.
 
@@ -53,11 +55,11 @@ Here are some bulletin points for each coaching day. Don’t think of these subj
 
 - Orientation
   - Introductions
-  - A small lecture  
+  - A small lecture
 - base development stack: The tower of Babel
   - Package managers: NPM & Yarn
   - Babel, ES2021 +, TypeScript
-  - Webpack 
+  - Webpack
   - Editors, IDEs, tools, configurations, linters etc
 - The basics of React
   - JSX
@@ -73,8 +75,8 @@ Here are some bulletin points for each coaching day. Don’t think of these subj
   - styling with CSS modules and PostCSS
   - styling with CSS-in-JavaScript
 - devtools
--   debugging
--   profiling
+- debugging
+- profiling
 - animations (bonus subject!)
 
 #### Day 2
@@ -97,21 +99,21 @@ Here are some bulletin points for each coaching day. Don’t think of these subj
 
 #### If we have time and / or interest
 
-  - even more advanced state management
-  - native web components and React
-  - You can do *what* with React?
-  - Design systems / styleguides
-  - GraphQL
-  - ready-made boilerplates vs "do-it-yourself" deep dive
-    - Create-React-App
-    - JAMStack / SSR
-    - Gatsby / Next
-    - next gen DIY bundlers
-  - progressive web apps (PWA)
-  - internationalization & localization
-  - React's "competitors" and future
-    - Vue
-    - Svelte
+- even more advanced state management
+- native web components and React
+- You can do _what_ with React?
+- Design systems / styleguides
+- GraphQL
+- ready-made boilerplates vs "do-it-yourself" deep dive
+  - Create-React-App
+  - JAMStack / SSR
+  - Gatsby / Next
+  - next gen DIY bundlers
+- progressive web apps (PWA)
+- internationalization & localization
+- React's "competitors" and future
+  - Vue
+  - Svelte
 
 ### Feedback
 
@@ -132,7 +134,7 @@ I've teached the course many tens of times during the years. The average rating 
 > "Iso peukku hands-on-tekemiselle! Sai oikeasti tuntumaa siihen, että millaista on koodata reactia ilman sitä "silmäluomesi-alkavat-tuntua-raskailta"-fiilistä, joka tulee pelkästä teoriahöpötyksen kuuntelusta. Myös Pekkiksen innostus asiaan oli mukaansatempaavaa. LiveSharen käyttö pelasti vanhan bäkkäriklonkun pariin otteeseen kun muuten olisi pudonnut kärryiltä."
 
 > "There was enough depth, yet it still felt casual (no pressure). I enjoyed the occasional anecdote. As far as I'm concerned, the course covered everything important to send you on your way - I think after the course, with a little exercise of course, one should be able to produce a React app in its entirety.
-While you could technically read all this information from bunch of how-to articles, there's much more added value, energy and _metadata_ when learning from a person. And this certainly isn't the case with every teacher, so kudos for that."
+> While you could technically read all this information from bunch of how-to articles, there's much more added value, energy and _metadata_ when learning from a person. And this certainly isn't the case with every teacher, so kudos for that."
 
 ### Contact
 
