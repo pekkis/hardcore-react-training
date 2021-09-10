@@ -26,9 +26,9 @@ export class PekkisDucklingSuckler extends LitElement {
   render() {
     return html`<div>
       <p>
-        I am pretty effin' sure that somewhere, someone, is
-        <em>suckling on a juicy duckling.</em> But I can assure you, it's not
-        a-mee, <strong>${this.name}</strong>.
+        I am pretty sure that somewhere, someone, is
+        <em>suckling on a juicy duckling.</em> But I do assure you that it is
+        not me, <strong>${this.name}</strong>.
       </p>
       <p>This black box is a <em>native</em> web component, by the way.</p>
     </div>`;
