@@ -33,8 +33,8 @@ days.
 
 Start by forking / cloning this repository.
 
-`training` is the default branch that contains the starting point for
-our course. This is just for historical reasons, me messing up master at some point.
+`main` is the default branch that contains the starting point for
+our course. This is just for historical reasons, me messing up ``master` at some point.
 
 There are other branches too. They contain at least all the stuff
 from most of the previous courses I've teached. Interesting stuff, at least if you're
@@ -70,48 +70,22 @@ I should use in addition / replacing one of these, do holler!
 
 ## Howto
 
-The software is divided into two subfolders. `client` has the client side
-code (our main dish). `server` just contains a simple Express app to act as
-a backend for our training session.
+### Develop
 
-Commands are always run in either of these folders, not in the common
-root folder.
-
-While preparing for the training session, you must follow the _development_ path for both server and client and assert that you get a working starting state.
-
-## Development
-
-### client
-
-- `cd client`
 - `yarn`
 - `cp .env.example .env`
 - `yarn run start`
 
-Open browser and go to http://localhost:8888. You should see a simple welcoming
-screen of some kind that suggests that you suckle on a duckling (or something
-similar).
+Open browser and go to http://localhost:8888. You should see a beautiful welcoming
+screen that contains a duckling and suggests that some people like suckling on ducklings.
 
-It could look something like [this screenshot](https://www.dropbox.com/s/tibrr0l22ebl5qn/Screenshot%202019-11-28%2010.29.02.png?dl=0).
+There should be some helpful instructions / assertions on the screen. So go thru it carefully. If you're happy with what you see, you're done.
 
-### server
-
-- `cd server`
-- `yarn`
-- `cp .env.example .env`
-- `yarn run start`
-
-After the server is running, open browser and go to http://localhost:8889/person and make sure you see a mighty JSON blob of random data.
-
-A GraphQL backend might also be in a semi-working state: http://localhost:8889/graphql is it's endpoint. It might also not work. Nobody knows.
-
-## Build
-
-### client
-
-The app builds to `dist/` (client code) folder.
+### Build
 
 - `yarn run build`
+
+Look at the `dist/`
 
 ## Licensing
 
