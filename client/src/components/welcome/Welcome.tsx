@@ -8,12 +8,13 @@ import Three from "./Three";
 import duckling from "../../assets/duckling-2.png";
 import { Global } from "@emotion/react";
 import HotReloadTester from "./HotReloadTester";
+import BackendChecker from "./BackendChecker";
 
 const Welcome: FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <Global
-        styles={(theme) => ({
+        styles={() => ({
           "*": {
             boxSizing: "border-box"
           }
@@ -80,26 +81,7 @@ const Welcome: FC = () => {
           <Heading as="h2" my={3} mb={3}>
             Attention!
           </Heading>
-
-          <Paragraph>
-            Below is a nice helpful iframe trying to fetch it's stuff from{" "}
-            <a href={`${process.env.REACT_APP_API}/person`}>
-              {`${process.env.REACT_APP_API}/person`}
-            </a>
-            . If the iframe contains a mysterious JSON blob of random person
-            data, you're probably good to go. If not, start the server process.
-          </Paragraph>
-
-          <Paragraph>
-            Also open the browser's dev console and assert that it has all kinds
-            of stuff. Warnings and shit!
-          </Paragraph>
-
-          <iframe
-            title="check-json"
-            width="100%"
-            src="http://localhost:8889/person"
-          ></iframe>
+          <BackendChecker />
 
           <Heading as="h2" my={3} mb={3}>
             More Attention!

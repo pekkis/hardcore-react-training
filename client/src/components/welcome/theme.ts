@@ -26,10 +26,7 @@ const theme: Theme = {
   text: {
     paragraph: {
       // variant: "paragraph",
-      my: 2,
-      textAlign: "justify",
-      textAlignLast: "start",
-      textJustify: "auto"
+      my: 2
     }
   },
 
