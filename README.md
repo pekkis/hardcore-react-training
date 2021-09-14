@@ -16,10 +16,10 @@ days.
 ## Computer Requirements
 
 - MacOS, Linux or Windows all work.
-  - In Windows, it works at least in WSL. I use that myself when hobby coding.
+  - In Windows, it works at least in WSL 2. I use that myself when hobby coding.
     Native Windows? I have absolutely no clue.
   - If it doesn't work, just boot this up in some Linux virtual machine.
-- The current version of Node.js (14.x), just to be sure. Might work on older
+- The current stable version of Node.js (14.x), just to be sure. Might work on older
   or newer ones too, but no guarantees!
 - The [Yarn package manager](https://yarnpkg.com). It will probably work with vanilla NPM
   just as well too but dunno. I've been using Yarn.
@@ -34,7 +34,7 @@ days.
 Start by forking / cloning this repository.
 
 `main` is the default branch that contains the starting point for
-our course. This is just for historical reasons, me messing up ``master` at some point.
+our course.
 
 There are other branches too. They contain at least all the stuff
 from most of the previous courses I've teached. Interesting stuff, at least if you're
