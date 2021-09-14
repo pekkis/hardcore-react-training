@@ -22,6 +22,7 @@ const Welcome: FC = () => {
       />
       <Box as="main">
         <Container
+          p={2}
           sx={{
             textAlign: "center"
           }}
@@ -41,6 +42,7 @@ const Welcome: FC = () => {
           sx={{
             display: ["block", "grid"],
             gridTemplateColumns: "1fr 1fr 1fr",
+            width: "100%",
             gap: 3,
             alignItems: "stretch",
             height: ["auto", "auto"],
@@ -48,8 +50,7 @@ const Welcome: FC = () => {
           }}
         >
           <Box
-            m={4}
-            p={4}
+            p={[4, 4]}
             sx={{
               alignSelf: "center"
             }}
@@ -59,25 +60,25 @@ const Welcome: FC = () => {
             <DucklingSuckler name="Pekkis" />
           </Box>
 
-          <Box p={2}>
+          <Box p={[0, 2]}>
             <Three />
           </Box>
 
-          <Box m={2}>
+          <Box my={2} p={2}>
             <img
               src={duckling}
               alt="A succulent duckling"
               sx={{
                 maxWidth: "100%",
                 display: "block",
-                mb: -4,
-                mt: -4
+                mb: [-4, -4],
+                mt: [0, -4]
               }}
             />
           </Box>
         </Box>
 
-        <Container my={5}>
+        <Container my={5} p={2}>
           <Heading as="h2" my={3} mb={3}>
             Attention!
           </Heading>
@@ -98,9 +99,16 @@ const Welcome: FC = () => {
           </Heading>
 
           <Paragraph>
-            Open <code>src/components/welcome/HotReloadTester.tsx</code>, do a
-            text change there and save the file. The next paragraph should
-            update without a hard reload (look at the next paragraph).
+            Open{" "}
+            <code
+              sx={{
+                wordBreak: "break-all"
+              }}
+            >
+              src/components/welcome/HotReloadTester.tsx
+            </code>
+            , do a text change there and save the file. The next paragraph
+            should update without a hard reload (look at the next paragraph).
           </Paragraph>
 
           <Paragraph>
@@ -108,21 +116,16 @@ const Welcome: FC = () => {
           </Paragraph>
 
           <Paragraph>
-            If you're using Linux and it doesn't work or stops working, go here:
+            If you're using Linux and it doesn't work or stops working,{" "}
+            <a
+              rel="noreferrer"
+              target="_blank"
+              href="https://webpack.js.org/configuration/watch/"
+            >
+              refer to this Webpack config.
+            </a>{" "}
+            and check the part where it talks about not having enough watchers.
           </Paragraph>
-
-          <ul>
-            <li>
-              <a
-                target="_blank"
-                href="https://webpack.js.org/configuration/watch/"
-              >
-                https://webpack.js.org/configuration/watch/
-              </a>{" "}
-              and check the part where it talks about not having enough
-              watchers.
-            </li>
-          </ul>
         </Container>
       </Box>
     </ThemeProvider>

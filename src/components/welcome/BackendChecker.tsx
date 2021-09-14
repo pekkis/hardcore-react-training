@@ -1,4 +1,6 @@
-import { Heading, Paragraph } from "@theme-ui/components";
+/** @jsxImportSource theme-ui */
+
+import { Paragraph } from "@theme-ui/components";
 import { FC, useState, useEffect } from "react";
 import {
   getPersons,
@@ -45,7 +47,11 @@ const BackendChecker: FC = () => {
     <>
       <Paragraph>
         Your personal imaginary backend lives at{" "}
-        <code>
+        <code
+          sx={{
+            wordBreak: "break-all"
+          }}
+        >
           <a href={url}>{url}</a>
         </code>
         .
