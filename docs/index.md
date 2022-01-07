@@ -58,10 +58,10 @@ Here are some bulletin points for each coaching day. Don’t think of these subj
 - Orientation
   - Introductions
   - A small lecture
-- base development stack: The tower of Babel
+- Dev tooling: The tower of Babel
   - Package managers: NPM & Yarn
   - Babel, ES2021 +, TypeScript
-  - Webpack
+  - Why Vite? Why not Webpack?
   - Editors, IDEs, tools, configurations, linters etc
 - The basics of React
   - JSX
