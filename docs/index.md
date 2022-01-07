@@ -17,7 +17,7 @@ You can get to know my person by googleing me (Mikko "Pekkis" Forsström is a go
 - [LinkedIn](https://www.linkedin.com/in/pekkis/)
 - [Github](https://github.com/pekkis)
 - [WIP Himapage Blog Portal](https://www.pekkis.eu)
-- [My professional memoirs, parts 1-5](https://www.pekkis.eu/blogi/2017/04/10/hopeakettu-muistelee-osa-1-laimea-uhka)
+- [My professional memoires, parts 1-5](https://www.pekkis.eu/blogi/2017/04/10/hopeakettu-muistelee-osa-1-laimea-uhka)
 - [The Dictator Exchange](https://diktaattoriporssi.com/), my primary hobby project from the last 20+ years.
 - [The Dr. Kobros Foundation](Imaginary context for hobby projects et al)
 
@@ -59,8 +59,8 @@ Here are some bulletin points for each coaching day. Don’t think of these subj
   - Introductions
   - A small lecture
 - Dev tooling: The tower of Babel
-  - Package managers: NPM & Yarn
-  - Babel, ES2021 +, TypeScript
+  - Package managers: NPM, Yarn, pnpm?
+  - ES2021 +, TypeScript
   - Why Vite? Why not Webpack?
   - Editors, IDEs, tools, configurations, linters etc
 - The basics of React
@@ -76,10 +76,11 @@ Here are some bulletin points for each coaching day. Don’t think of these subj
   - component-based styling
   - styling with CSS modules and PostCSS
   - styling with CSS-in-JavaScript
+  - styling in type safe TypeScript?!?!
 - devtools
 - debugging
 - profiling
-- animations (bonus subject!)
+- animations (bonus subject)
 
 #### Day 2
 

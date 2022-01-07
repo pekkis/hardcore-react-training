@@ -29,13 +29,13 @@ Kaikki kurssimateriaalit ovat avointa lähdekoodia ja vapaata riistaa, joten sit
 
 Valmennus sopii sinulle, jos olet ohjelmistokehittäjä ja / tai devsigner, ja tulet käyttämään JavaScriptiä, Reactia ja / tai muita ajanmukaisia fronttikehitysvälineitä työssäsi. Monet aiheista ovat vaikeita ja etenemme vauhdilla, joten kurssi ei sovellu vasta-alkajille.
 
-Sinun ei tarvitse missään tapauksessa olla guru, mutta olen tosissani kun sanon että valmennukseni on tarkoitettu **ammattilaisille** ja että edellytän osallistujilta  taustaa ammattimaisen ohjelmistokehityksen parista. Lisäksi sinulla tulee olla soveltavaa kokemusta JavaScriptistä, HTML:stä, CSS:stä ja webbikehityksestä ylipäätään.
+Sinun ei tarvitse missään tapauksessa olla guru, mutta olen tosissani kun sanon että valmennukseni on tarkoitettu **ammattilaisille** ja että edellytän osallistujilta taustaa ammattimaisen ohjelmistokehityksen parista. Lisäksi sinulla tulee olla soveltavaa kokemusta JavaScriptistä, HTML:stä, CSS:stä ja webbikehityksestä ylipäätään.
 
 Osallistuaksi valmennukseen tarvitset:
 
 - Avoimen ja kahden päivän ajaksi "oikeasta" työstä vapautetun mielen.
 - Tietokoneen ja kehitysympäristön
-  - Lähetän esivalmistelu-ohjeet noin viikkoa aikaisemmin. Niiden suorittamiseen pitäisi mennä enintään puoli tuntia, ja ohjeiden suorittaminen etukäteen on **kurssille osallistumisen **ehdoton edellytys**.
+  - Lähetän esivalmistelu-ohjeet noin viikkoa aikaisemmin. Niiden suorittamiseen pitäisi mennä enintään puoli tuntia, ja ohjeiden suorittaminen etukäteen on **kurssille osallistumisen **ehdoton edellytys\*\*.
 - Kulkutautien tai muiden poikkeusolojen aikana valmennus tapahtuu etänä. Tällä on seuraamuksia, jotka vaihtelevat, ja joita minun on vaikeaa ennakoida. Otathan asian huomioon odotusarvoissasi, niillä korteilla pelataan jotka on jaettu.
 
 ## Valmennuksen sisältö
@@ -51,7 +51,7 @@ Tässä joitakin ranskalaisia viivoja kummallekin valmennuspäivälle. Älä suh
 ## Päivä 1
 
 - kehityksen Baabelin torni
-  - NPM & Yarn
+  - Paketinhallinta: NPM, Yarn, pnpm
   - Babel, ES2021+, TypeScript
   - Webpack
   - Editorit, IDE:t, työkalut, konfiguraatiot
@@ -116,4 +116,3 @@ järjestän kurssia tällä hetkellä ainoastaan tilauksesta yrityksellesi.
 Kurssin hinta on **6000 euroa + alv**, ja tällä hinnalla mukaan pääsee maksimissaan kymmenen henkilöä. Tämä on käytännön asettama rajoitus, koska sen suurempaa joukkoa en pysty opettamaan kerralla.
 
 Kiinnostuitko? Lähetä minulle sähköpostia osoitteeseen <a href="mailto:mikko.forsstrom@nitor.com">mailto:mikko.forsstrom@nitor.com</a> ja jatketaan keskustelua!
-

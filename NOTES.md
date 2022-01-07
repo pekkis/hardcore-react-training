@@ -280,7 +280,7 @@ Jos tilanhallinnassa ehditään TODELLA pitkälle, tässä lisäpähkinöitä. O
 
 Yleensä about lopetan buildaukseen.
 
-- yarn run build
+- npm run build
 - Kerro oman ja vendor-koodin eroista ja niiden splittauksesta
 - Demonstroi stats.jsonin visualisointia esimerkiksi webpack-visualizerilla
 - Tee koodinsplittaus Suspensella ja laiskoilla komponenteilla (IndexPage, PersonPage)
