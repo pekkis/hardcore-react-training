@@ -90,8 +90,8 @@ const Welcome: FC = () => {
 
           <Paragraph>
             I might do some late surprise changes so you should{" "}
-            <code>git pull</code> and <code>yarn</code> come the first training
-            day's morning.
+            <code>git pull</code> and <code>npm install</code> come the first
+            training day's morning.
           </Paragraph>
 
           <Heading as="h2" my={3} mb={3}>
