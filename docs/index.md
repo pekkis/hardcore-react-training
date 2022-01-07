@@ -6,7 +6,7 @@
 
 [React](https://reactjs.org/) is a JavaScript library for building user interfaces, invented by Facebook. When I discovered React back in 2014, I got hooked super fast. It immediately became obvious to me that React would seriously disrupt the webdev scene, and I began to learn the library and preach it's joys to everyone who would listen.
 
-The wisdom of hindsight prove me right. In the 2020s, React is everywhere, and I still believe it's for the benefit of mankind. You shouldn’t of course fall in love with technology, tech is a tool and one should always keep a sceptical eye out for new disruptions, but all in all, React has so far proven to be sustainable.
+The wisdom of hindsight prove me right. In the 2020s, React is everywhere, and I believe it's for the benefit of mankind. You shouldn’t of course fall in love with technology, tech is a tool and one should always keep a sceptical eye out for new disruptions, but all in all, React has so far proven to be sustainable.
 
 ### Pekkis
 
@@ -16,8 +16,10 @@ You can get to know my person by googleing me (Mikko "Pekkis" Forsström is a go
 
 - [LinkedIn](https://www.linkedin.com/in/pekkis/)
 - [Github](https://github.com/pekkis)
-- [My professional memoirs, parts 1-5](https://www.fraktio.fi/blogi/hopeakettu-muistelee-osa-1-laimea-uhka)
+- [WIP Himapage Blog Portal](https://www.pekkis.eu)
+- [My professional memoirs, parts 1-5](https://www.pekkis.eu/blogi/2017/04/10/hopeakettu-muistelee-osa-1-laimea-uhka)
 - [The Dictator Exchange](https://diktaattoriporssi.com/), my primary hobby project from the last 20+ years.
+- [The Dr. Kobros Foundation](Imaginary context for hobby projects et al)
 
 ### React vs. "React"
 
