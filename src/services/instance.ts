@@ -1,15 +1,16 @@
 import { v4 } from "uuid";
 import axios from "axios";
 
-export type PersonType = {
+export type TestPersonType = {
   id: string;
   appId: string;
 };
 
-export const getAppId = (): string => {
-  const predefinedAppId = process.env.REACT_APP_APPID;
-  if (predefinedAppId) {
-    return predefinedAppId;
+export const getAppId = (): string | undefined => {
+  const predefinedAppId = import.meta.env.VITE_APPID;
+
+  if (typeof predefinedAppId !== "string") {
+    return undefined;
   }
 
   const appId = window.localStorage.getItem("appId");
@@ -24,10 +25,10 @@ export const getAppId = (): string => {
 };
 
 export const getUrl = (): string =>
-  `${process.env.REACT_APP_API}/person/${getAppId()}`;
+  `${import.meta.env.VITE_API}/person/${getAppId()}`;
 
-export const getPersons = async (): Promise<PersonType[]> => {
-  const response = await axios.get<PersonType[]>(`${getUrl()}`);
+export const getPersons = async (): Promise<TestPersonType[]> => {
+  const response = await axios.get<TestPersonType[]>(`${getUrl()}`);
   return response.data;
 };
 

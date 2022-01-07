@@ -1,16 +1,12 @@
-Hellurei, my little friends. It's Pekkis here.
+Hellurei, my friends. It's Pekkis here.
 
 I promised to send preparation instructions for the React training ~a week in advance, so here we are.
 
-If you have forgotten, here is the thing, and yes, you are participating.
-
-https://www.eventbrite.com/e/pekkis-react-training-tickets-152303926143
-
-Please follow these instructions _before_ the training day so we don't lose time on pre-setup.
+It is very important to follow these instructions _before_ the training day so we don't lose time on pre-setup.
 
 Start by joining the Discord (link below) server. In the past couple of trainings people had random issues with the web version, so I recommend using the desktop version of the software.
 
-https://discord.gg/r4fmAeFV (This link should be alive for 7 days)
+https://discord.gg/<xxxxxx> (This link should be alive for 7 days)
 
 After you have joined, you can clone / fork the repo and set the coding environment up.
 

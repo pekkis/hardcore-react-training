@@ -1,4 +1,4 @@
-# Pekkis' React Training
+# Pekkis' Hardcore React Training
 
 ## Introduction
 
@@ -10,7 +10,7 @@ days.
 
 - You are a developer, devsigner or such.
 - You have working professional knowledge on JavaScript, HTML and CSS.
-  You don't have to be a guru, but this course really is not meant for
+  You don't have to be a guru, but the course really is not meant for
   beginners.
 
 ## Computer Requirements
@@ -19,15 +19,9 @@ days.
   - In Windows, it works at least in WSL 2. I use that myself when hobby coding.
     Native Windows? I have absolutely no clue.
   - If it doesn't work, just boot this up in some Linux virtual machine.
-- The current stable version of Node.js (14.x), just to be sure. Might work on older
+- The current stable version of Node.js (16.x) and a "normal" default version of `NPM` that probably comes bundled with the Node version. This Might work on older
   or newer ones too, but no guarantees!
-- The [Yarn package manager](https://yarnpkg.com). It will probably work with vanilla NPM
-  just as well too but dunno. I've been using Yarn.
-  - I have no idea whether Yarn 2.x works. I haven't migrated. If it doesn't, fall back to Yarn 1.x.
-- An editor / IDE that supports all the good stuff.
-  I use [VSCode](https://code.visualstudio.com/) myself.
-  If you are not sure of this stuff, just get VSCode and you're sure to have
-  feature parity with me.
+- An editor / IDE that supports all the good stuff. I use [VSCode](https://code.visualstudio.com/) myself, and because of the LiveShare code sharing env, you probably should too.
 
 ## Installation
 
@@ -36,16 +30,15 @@ Start by forking / cloning this repository.
 `main` is the default branch that contains the starting point for
 our course.
 
-There are other branches too. They contain at least all the stuff
-from most of the previous courses I've teached. Interesting stuff, at least if you're
-hungry for nostalgia.
+There are other branches too. These contain the code I've done
+in most of the previous courses I've teached. Interesting stuff, at least if you're
+hungry for nostalgia and how the scene has changed!
 
 ### Browser extensions
 
 You should install these Chrome extensions, or similar ones for your browser of choice.
 
 - [React dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
-- [Redux dev tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
 
 ### VSCode extensions
 
@@ -66,24 +59,24 @@ parity do install them too.
 
 Some extensions you might already have could conflict with these, so please
 try to check that everything is a-ok. Also if you have good extensions that
-I should use in addition / replacing one of these, do holler!
+I should use in addition / replacing one of these, please holler!
 
 ## Howto
 
 ### Develop
 
-- `yarn`
+- `npm install`
 - `cp .env.example .env`
-- `yarn run start`
+- `npm run start`
 
-Open browser and go to http://localhost:8888. You should see a beautiful welcoming
+Open browser and go to http://localhost:3000 (if that is reserved for some reason, you might get another port but the terminal should tell you that). You should see a "beautiful" welcoming
 screen that contains a duckling and suggests that some people like suckling on ducklings.
 
-There should be some helpful instructions / assertions on the screen. So go thru it carefully. If you're happy with what you see, you're done.
+There should be some helpful instructions / assertions on the screen. Please look at it carefully. If you're happy with what you see, you're done.
 
 ### Build
 
-- `yarn run build`
+- `npm run build`
 
 Look at the `dist/`
 

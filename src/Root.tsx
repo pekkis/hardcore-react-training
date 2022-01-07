@@ -3,7 +3,7 @@ import App from "./components/App";
 import Welcome from "./components/welcome/Welcome";
 
 const Root: FC = () => {
-  // All components must return one thing. A fragment (the empty tag) is "one thing" with no markup.
+  // All React components must return one thing. A fragment (the empty tag <>) is such "one thing" that has no markup.
   return (
     <>
       <Welcome />

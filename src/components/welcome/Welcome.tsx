@@ -116,15 +116,10 @@ const Welcome: FC = () => {
           </Paragraph>
 
           <Paragraph>
-            If you're using Linux and it doesn't work or stops working,{" "}
-            <a
-              rel="noreferrer"
-              target="_blank"
-              href="https://webpack.js.org/configuration/watch/"
-            >
-              refer to this Webpack config.
-            </a>{" "}
-            and check the part where it talks about not having enough watchers.
+            If you're using Linux and it doesn't work or stops working, you
+            might have to google for solutions for number of watchers. Sorry
+            about that, but Linux people are smart people and you can solve
+            anything!
           </Paragraph>
         </Container>
       </Box>

@@ -5,14 +5,14 @@ import { FC, useState, useEffect } from "react";
 import {
   getPersons,
   getUrl,
-  PersonType,
+  TestPersonType,
   cleanse
 } from "../../services/instance";
 import Spinner from "./Spinner";
 
 const BackendChecker: FC = () => {
   const [backendIsChecked, setBackendIsChecked] = useState<boolean>(false);
-  const [persons, setPersons] = useState<PersonType[]>([]);
+  const [persons, setPersons] = useState<TestPersonType[]>([]);
   const url = getUrl();
 
   useEffect(() => {
@@ -54,11 +54,12 @@ const BackendChecker: FC = () => {
         >
           <a href={url}>{url}</a>
         </code>
-        .
+        . You should copy-pasteurize this to your notes because you might going
+        to need it later.
       </Paragraph>
 
       <Paragraph>
-        Below is an iframe fetching it's stuff from there. If the iframe
+        Below is an iframe fetching it's stuff from the backend. If the iframe
         contains a mysterious JSON blob of random person data, you're probably
         good to go. If not, reload the page and it <em>should be ok</em>. If it
         doesn't want to be ok after multiple reloads, the backend might be down
