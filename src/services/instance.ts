@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 import axios from "axios";
 
-export type TestPersonType = {
+export type TestDuckType = {
   id: string;
   appId: string;
 };
@@ -24,15 +24,15 @@ export const getAppId = (): string | undefined => {
   return newAppId;
 };
 
-export const getUrl = (): string =>
-  `${import.meta.env.VITE_API}/person/${getAppId()}`;
+export const getBaseUrl = (): string =>
+  `${import.meta.env.VITE_API}/${getAppId()}`;
 
-export const getPersons = async (): Promise<TestPersonType[]> => {
-  const response = await axios.get<TestPersonType[]>(`${getUrl()}`);
+export const getTestData = async (): Promise<TestDuckType[]> => {
+  const response = await axios.get<TestDuckType[]>(`${getBaseUrl()}/duck`);
   return response.data;
 };
 
 export const cleanse = async (): Promise<boolean> => {
-  const ret = await axios.post<boolean>(`${getUrl()}/cleanse`);
+  const ret = await axios.post<boolean>(`${getBaseUrl()}/cleanse`);
   return ret.data;
 };

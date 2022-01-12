@@ -28,7 +28,7 @@ const Welcome: FC = () => {
           }}
         >
           <Heading as="h1" mt={3} mb={3} variant="headings.cute">
-            💖Welcome to Pekkis' Hardcore React Training💖
+            💖Welcome to Pekkis&apos; Hardcore React Training💖
           </Heading>
 
           <Box>
@@ -91,7 +91,7 @@ const Welcome: FC = () => {
           <Paragraph>
             I might do some late surprise changes so you should{" "}
             <code>git pull</code> and <code>npm install</code> come the first
-            training day's morning.
+            training day&apos;s morning.
           </Paragraph>
 
           <Heading as="h2" my={3} mb={3}>
@@ -116,7 +116,7 @@ const Welcome: FC = () => {
           </Paragraph>
 
           <Paragraph>
-            If you're using Linux and it doesn't work or stops working, you
+            If you are using Linux and it doesn not work or stops working, you
             might have to google for solutions for number of watchers. Sorry
             about that, but Linux people are smart people and you can solve
             anything!

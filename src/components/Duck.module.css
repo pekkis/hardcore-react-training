@@ -1,0 +1,27 @@
+.root {
+  border: 5px solid rgb(0, 0, 0);
+  border-radius: 1rem;
+  margin: 1em 0;
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: stretch;
+}
+
+.male {
+  background-color: rgba(200, 200, 255, 0.75);
+}
+
+.female {
+  background-color: rgba(255, 200, 200, 0.75);
+}
+
+.info {
+  width: 75%;
+}
+
+.actions {
+  width: 25%;
+  align-self: center;
+  text-align: right;
+}

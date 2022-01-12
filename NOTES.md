@@ -106,7 +106,7 @@ Tähdennän, että tästä alkaen (ja miksei ennenkin) valmentaminen on lopulta 
   - Selitä se että tilassa pidetään tarvittava ja loput derivoidaan lennossa.
   - Filtteri (isGood)
   - Filtterin uudelleenkäyttö / negaatio
-  - PersonList-komponentin luonti
+  - DuckList-komponentin luonti
     - Juttele sen propseista ja vastuualueista (kenelle esim title kuuluu)
   - Optionaalinen metatietopropsi (pahoista halutaan nähdä määrä ja keski-ikä, hyviksistä ei)
     - Keski-ikä koska funktionaalisen ohjelmoinnin 101, osa 2: reduce
@@ -118,7 +118,7 @@ Tähdennän, että tästä alkaen (ja miksei ennenkin) valmentaminen on lopulta 
 - Ei potkita pois palvelimelle asti, vain statesta!
 - Selitä kuinka paska valuu alaspäin (callbackit myös propseina koska yksisuuntainen dataflow)
 - Toteuttakaa firePerson-funkkari ja valuttakaa se alaspäin
-- Demonstroi PersonListissä kuinka spreadaus { ...rest } toimii edestakaisin koska PersonList ei ole kiinnostunut tästä funkkarista vaan haluaa delegoida kaikki loput vaan sokkona Personille
+- Demonstroi DuckListissä kuinka spreadaus { ...rest } toimii edestakaisin koska DuckList ei ole kiinnostunut tästä funkkarista vaan haluaa delegoida kaikki loput vaan sokkona Personille
 - Toteuttakaa Personiin nappi josta erotus tapahtuu
   - Jutelkaa onClickistä ja klosuurista riittävästi notta ymmärtävät
 - Onnitelkaa itseänne henkilön onnistuneesta poistumisesta!
@@ -156,8 +156,8 @@ Tässä kohtaa joskus "hitaammilla" kursseilla ensimmäinen päivä alkaakin ole
 - Sano että tehtävänne on omatoimisesti töräyttää linjalle niin hienot animaatiot että pää hajoaa.
 - Kerro että olet tästä edes vain vapaa konsultti joka neuvoo kysyttäessä parhaansa mukaan ja koodaa itse samalla itselleen animaatiota.
 - Jos se on mahdollista, kutsu Jaani tässä kohtaa apuopettajaksi. Se toimii tosi hyvin.
-  - Jos olet epävarma, katso esimerkkiä jostain aiemmasta koodauksesta joka toimii, [esimerkiksi täältä](https://github.com/pekkis/hardcore-react-training/blob/2019-12-02/client/src/components/PersonList.tsx)
-  - Koodaa PersonList-komponenttiin jengille toimivaa esimerkkiä ja sitten kun se on valmis niin näytä ja selitä se ihmisille.
+  - Jos olet epävarma, katso esimerkkiä jostain aiemmasta koodauksesta joka toimii, [esimerkiksi täältä](https://github.com/pekkis/hardcore-react-training/blob/2019-12-02/client/src/components/DuckList.tsx)
+  - Koodaa DuckList-komponenttiin jengille toimivaa esimerkkiä ja sitten kun se on valmis niin näytä ja selitä se ihmisille.
   - Kerro AnimatePresencestä ja toteuta se.
   - Anna tyypeille koodausrauha, koodaa itse ruudulla jotain todella friikkiä animaatziota.
 
@@ -171,7 +171,7 @@ Jos ensimmäisestä päivästä on riittävästi tuntia jäljellä ja/tai ajatus
 - Selitä immutaabelin datan edut ja tietysti eritoten Reactissa
 - Immer
 - Immutable.js (paremmat tietorakenteet, immutaabelit, parempi API)
-- Fuktoroikaa kaikki []:t Immutablen listalla (App, PersonList tarttevat muutoksia)
+- Fuktoroikaa kaikki []:t Immutablen listalla (App, DuckList tarttevat muutoksia)
 
 ## Generaattorit
 
