@@ -1,4 +1,4 @@
-import { VFC } from "react";
+import { memo, VFC } from "react";
 import { DuckType } from "../services/duck";
 import styles from "./Duck.module.css";
 import cx from "clsx";
@@ -6,9 +6,10 @@ import Button from "./Button";
 
 type Props = {
   duck: DuckType;
+  fireDuck: (id: string) => void;
 };
 
-const Person: VFC<Props> = ({ duck }) => {
+const Duck: VFC<Props> = ({ duck, fireDuck }) => {
   const classes = cx(styles.root, {
     [styles.male]: duck.gender === 0,
     [styles.female]: duck.gender === 1
@@ -17,19 +18,33 @@ const Person: VFC<Props> = ({ duck }) => {
   return (
     <div className={classes}>
       <div className={styles.info}>
-        <div>
+        <div className={styles.block}>
           <strong>{duck.lastName}</strong>, {duck.firstName}
         </div>
-        <div>
+        <div className={styles.block}>
           <em>{duck.age.toFixed(2)} y</em>
+        </div>
+        <div className={styles.block}>
+          opinion on migration: {duck.migratesForWinters ? "👍" : "👎"}
+        </div>
+        <div className={styles.block}>
+          related to the boss: {duck.relatedToCEO ? "✔" : "✖"}
         </div>
       </div>
 
       <div className={styles.actions}>
-        <Button type="button">free</Button>
+        <Button
+          disabled={duck.isBeingFired}
+          onClick={() => {
+            fireDuck(duck.id);
+          }}
+          type="button"
+        >
+          free
+        </Button>
       </div>
     </div>
   );
 };
 
-export default Person;
+export default memo(Duck);

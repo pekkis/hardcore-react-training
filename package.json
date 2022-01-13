@@ -115,7 +115,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.4.7",
     "postcss": "^8.4.5",
-    "postcss-advanced-variables": "^3.0.1",
     "postcss-import": "^14.0.2",
     "postcss-modules": "^4.3.0",
     "postcss-nested": "^5.0.6",
