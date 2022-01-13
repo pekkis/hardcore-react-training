@@ -16,6 +16,10 @@
   background-color: rgb(255 200 200 / 75%);
 }
 
+.name {
+  margin: 0.25em 0 0.5em 0;
+}
+
 .info {
   width: 75%;
 }

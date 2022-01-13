@@ -18,7 +18,7 @@ const Duck: VFC<Props> = ({ duck, fireDuck }) => {
   return (
     <div className={classes}>
       <div className={styles.info}>
-        <div className={styles.block}>
+        <div className={styles.name}>
           <strong>{duck.lastName}</strong>, {duck.firstName}
         </div>
         <div className={styles.block}>
