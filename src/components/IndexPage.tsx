@@ -3,6 +3,7 @@ import { DuckType } from "../services/duck";
 import useStore from "../services/store";
 import DuckList from "./DuckList";
 import HireDuckForm from "./HireDuckForm";
+import Helmet from "react-helmet";
 
 const IndexPage: FC = () => {
   const ducks = useStore((state) => state.ducks);
@@ -24,15 +25,27 @@ const IndexPage: FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Duck List - Mallard ERP</title>
+      </Helmet>
+
       <HireDuckForm hireDuck={hireDuck} duckIsBeingHired={duckIsBeingHired} />
 
-      {!isInitialized && <em>HOLD YER HORSES...</em>}
+      {!isInitialized && (
+        <p>
+          <em>HOLD YER HORSES...</em>
+        </p>
+      )}
 
-      <h2>Bad ducks</h2>
-      <DuckList showMetadata fireDuck={fireDuck} ducks={badDucks} />
+      {isInitialized && (
+        <>
+          <h2>Bad ducks</h2>
+          <DuckList showMetadata fireDuck={fireDuck} ducks={badDucks} />
 
-      <h2>Good ducks</h2>
-      <DuckList fireDuck={fireDuck} ducks={goodDucks} />
+          <h2>Good ducks</h2>
+          <DuckList fireDuck={fireDuck} ducks={goodDucks} />
+        </>
+      )}
     </>
   );
 };

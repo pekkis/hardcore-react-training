@@ -1,12 +1,15 @@
 import { FC, useEffect, useState } from "react";
-import HireDuckForm from "./HireDuckForm";
 
-import styles from "./App.module.css";
+// import styles from "./App.module.css";
 import { cleanse } from "../services/instance";
 // import useDucks from "../hooks/useDucks";
 import useStore from "../services/store";
 import Spinner from "./Spinner";
+import Helmet from "react-helmet";
 import { Outlet } from "react-router";
+import { sortBy } from "ramda";
+
+import { mainClass, headingClass, headerClass } from "./App.css";
 
 const App: FC = () => {
   const [renderCount, setRenderCount] = useState<number>(0);
@@ -35,11 +38,14 @@ const App: FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Mallard ERP</title>
+      </Helmet>
       {operationsPending > 0 && <Spinner />}
-      <header className={styles.header}>
-        <h1 className={styles.heading}>Mallard ERP</h1>
+      <header className={headerClass}>
+        <h1 className={headingClass}>Mallard ERP</h1>
       </header>
-      <main className={styles.main}>
+      <main className={mainClass}>
         <p>
           I have been rendered <strong>{renderCount}</strong> times!{" "}
           <button

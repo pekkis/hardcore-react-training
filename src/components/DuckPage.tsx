@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useParams } from "react-router";
 import useStore from "../services/store";
+import Helmet from "react-helmet";
 
 const DuckPage: FC = () => {
   const { id } = useParams();
@@ -12,6 +13,12 @@ const DuckPage: FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>
+          {duck.lastName}, {duck.firstName} - Mallard ERP
+        </title>
+      </Helmet>
+
       <h2>
         <strong>{duck.lastName}</strong>, {duck.firstName}
       </h2>
