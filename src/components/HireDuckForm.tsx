@@ -54,16 +54,16 @@ const HireDuckForm: FC<Props> = ({ hireDuck, duckIsBeingHired }) => {
           <Form>
             <div className={styles.group}>
               <label className={styles.label} htmlFor="firstName">
-                first name
+                First name
               </label>
-              <Field name="firstName" as={Input} />
+              <Field id="firstName" name="firstName" as={Input} />
               <ErrorMessage name="firstName" />
             </div>
             <div className={styles.group}>
               <label className={styles.label} htmlFor="lastName">
-                last name
+                Last name
               </label>
-              <Field name="lastName" as={Input} />
+              <Field id="lastName" name="lastName" as={Input} />
               <ErrorMessage name="lastName" />
             </div>
 

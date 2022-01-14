@@ -3,6 +3,7 @@ import { DuckType } from "../services/duck";
 import styles from "./Duck.module.css";
 import cx from "clsx";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 type Props = {
   duck: DuckType;
@@ -19,7 +20,9 @@ const Duck: VFC<Props> = ({ duck, fireDuck }) => {
     <div className={classes}>
       <div className={styles.info}>
         <div className={styles.name}>
-          <strong>{duck.lastName}</strong>, {duck.firstName}
+          <Link to={`/duck/${duck.id}`}>
+            <strong>{duck.lastName}</strong>, {duck.firstName}
+          </Link>
         </div>
         <div className={styles.block}>
           <em>{duck.age.toFixed(2)} y</em>

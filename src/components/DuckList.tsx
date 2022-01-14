@@ -11,9 +11,19 @@ type Props = {
 };
 
 const DuckList: VFC<Props> = ({ ducks, fireDuck, showMetadata = false }) => {
+  if (ducks.length === 0) {
+    return <section>zero ducks given.</section>;
+  }
+
+  const averageAge = ducks.reduce((a, d) => a + d.age, 0) / ducks.length;
+
   return (
     <section>
-      {showMetadata && <p>Number of ducks: {ducks.length}</p>}
+      {showMetadata && (
+        <p>
+          Number of ducks: {ducks.length}, average age: {averageAge.toFixed(2)}
+        </p>
+      )}
 
       <ul className={styles.root}>
         {ducks.map((duck) => (
