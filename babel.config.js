@@ -5,8 +5,8 @@ module.exports = {
     [
       "babel-preset-vite",
       {
-        env: true, // defaults to true
-        glob: true // defaults to true
+        env: true,
+        glob: true
       }
     ]
   ],
