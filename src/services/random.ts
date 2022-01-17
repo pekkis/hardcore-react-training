@@ -25,7 +25,7 @@ export const createRandomDuck = (): DuckType => {
     id: v4(),
     firstName: faker.name.firstName(genderForNaming),
     lastName: faker.name.lastName(genderForNaming),
-    birthDay: faker.date.past(70, "2006-01-01").toString(),
+    birthDay: faker.date.past(10, "2022-01-01").toString(),
     gender,
     wingedness: random.pick(["l", "r"]) as "l" | "r",
     migratesForWinters: random.pick([true, true, false]),

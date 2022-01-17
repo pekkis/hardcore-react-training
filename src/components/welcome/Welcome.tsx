@@ -9,6 +9,7 @@ import duckling from "../../assets/duckling-2.png";
 import { Global } from "@emotion/react";
 import HotReloadTester from "./HotReloadTester";
 import BackendChecker from "./BackendChecker";
+import ducklings from "../../assets/duckling-pattern.png";
 
 const Welcome: FC = () => {
   return (
@@ -17,6 +18,9 @@ const Welcome: FC = () => {
         styles={() => ({
           "*": {
             boxSizing: "border-box"
+          },
+          html: {
+            backgroundImage: `url(${ducklings})`
           }
         })}
       />
@@ -28,12 +32,12 @@ const Welcome: FC = () => {
           }}
         >
           <Heading as="h1" mt={3} mb={3} variant="headings.cute">
-            💖Welcome to Pekkis&apos; Hardcore React Training💖
+            💖 Welcome to Pekkis&apos; Hardcore React Training 💖
           </Heading>
 
           <Box>
             This is a two day workshop for professional developers, devsigners
-            and people who fancy suckling on ducklings.
+            and people who like duck typing.
           </Box>
         </Container>
 
