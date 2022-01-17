@@ -13,6 +13,10 @@ export const getAppId = (): string | undefined => {
     return undefined;
   }
 
+  if (predefinedAppId) {
+    return predefinedAppId;
+  }
+
   const appId = window.localStorage.getItem("appId");
 
   if (appId) {
