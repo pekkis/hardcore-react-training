@@ -3,8 +3,7 @@
 ## Introduction
 
 Welcome to my two day React Workshop. It is very important
-that you read and follow these instructions **before** the actual two training
-days.
+that you read and follow these instructions **before** the actual two training days.
 
 ## Human Requirements
 
