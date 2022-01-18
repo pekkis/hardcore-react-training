@@ -7,7 +7,7 @@
     "build": "cross-env NODE_ENV=production vite build",
     "lint": "eslint src",
     "start": "cross-env NODE_ENV=development vite",
-    "test": "jest",
+    "test": "cross-env VITE_API=http://localhost/erp VITE_APPID=test jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -45,6 +45,7 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@faker-js/faker": "^6.0.0-alpha.3",
     "@lit-labs/react": "^1.0.1",
     "@react-three/fiber": "^7.0.24",
     "@theme-ui/css": "^0.13.1",
