@@ -47,7 +47,7 @@ You should install at least the following extensions.
 - Prettier - Code formatter (esbenp.prettier-vscode)
 - EditorConfig for VS Code (editorconfig.editorconfig)
 - Live Share Extension Pack (ms-vsliveshare.vsliveshare-pack)
-- vscode-styled-components (jpoissonnier.vscode-styled-components)
+- vscode-styled-components (styled-components.vscode-styled-components)
 - stylelint (stylelint.vscode-stylelint)
 
 I also seem to have these potentially relevant ones, so if you want feature
