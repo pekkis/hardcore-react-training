@@ -7,7 +7,6 @@
     "build": "cross-env NODE_ENV=production vite build",
     "lint": "eslint src",
     "start": "cross-env NODE_ENV=development vite",
-    "test": "jest",
     "preview": "cross-env NODE_ENV=production vite preview",
     "test": "cross-env VITE_API=http://localhost/erp VITE_APPID=test jest",
     "storybook": "start-storybook -p 6006",

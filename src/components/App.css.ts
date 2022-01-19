@@ -36,5 +36,11 @@ export const headerClass = style({
 });
 
 export const headingClass = style({
+  fontSize: "30px",
   margin: 0
+});
+
+export const logoClass = style({
+  marginRight: "0.33em",
+  verticalAlign: "middle"
 });
