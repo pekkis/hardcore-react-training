@@ -64,7 +64,7 @@ I should use in addition / replacing one of these, please holler!
 
 ### Develop
 
-- `npm install`
+- `npm ci`
 - `cp .env.example .env`
 - `npm run start`
 
