@@ -1,0 +1,16 @@
+.duck {
+  border: 5px solid rgb(0 0 0);
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 15px;
+  background-color: rgb(255 255 255 / 75%);
+  display: flex;
+}
+
+.male {
+  background-color: rgb(200 200 255 / 75%);
+}
+
+.female {
+  background-color: rgb(255 200 200 / 75%);
+}

@@ -1,0 +1,29 @@
+:global {
+  html {
+    font-family: "Comic Sans MS";
+    background-image: url("/src/assets/duckling-pattern.png");
+  }
+}
+
+.main {
+  margin: 1em;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background-color: rgb(255, 255, 0);
+  padding: 10px;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  text-align: center;
+  z-index: 1000000;
+}
+
+.logo {
+  vertical-align: middle;
+  margin-right: 0.33em;
+}
+
+.heading {
+  margin: 0;
+}
