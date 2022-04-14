@@ -12,7 +12,7 @@ One shouldn’t of course fall in love with tech and one should always keep an e
 
 ### Pekkis
 
-I have taught the joys of frontend development to peers for years. For the longest time I did this in the context of [Finland's toughest React training](https://www.fraktio.fi/palvelut/koulutus/suomen-rankin-react-valmennus/) organized by Fraktio. After returning from my teaching hiatus (I taught way too much in 2018 and 2019) in 2021 I'm now semi-silently selling the course through my current employer, [Nitor](http://nitor.com).
+I have taught the joys of frontend development to peers for years. For the longest time I did this in the context of [Finland's toughest React training](https://www.fraktio.fi/palvelut/koulutus/suomen-rankin-react-valmennus/) organized by Fraktio. After returning from my teaching hiatus (I taught way too much in 2018 and 2019) in 2021 I'm now semi-silently selling the course again.
 
 You can get to know my person by googleing me (Mikko "Pekkis" Forsström is a good search term) and / or by clicking directly on the links below.
 
