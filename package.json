@@ -48,6 +48,7 @@
     "@emotion/styled": "^11.8.1",
     "@faker-js/faker": "^6.1.2",
     "@lit-labs/react": "^1.0.4",
+    "@mdx-js/react": "^2.1.1",
     "@react-three/fiber": "^8.0.12",
     "@theme-ui/css": "^0.14.2",
     "@theme-ui/presets": "^0.14.2",
