@@ -1,10 +1,11 @@
-// import React from "react";
+// import * as React from "react";
 // import ReactDOM from "react-dom";
 
 import { createRoot } from "react-dom/client";
 import Root from "./Root";
 
 import "normalize.css";
+// import "./main.pcss";
 
 async function render(Component: typeof Root, rootElement: HTMLElement) {
   console.log("in vite, meta stuff is in import.meta", import.meta.env);
