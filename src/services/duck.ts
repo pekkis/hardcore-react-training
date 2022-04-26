@@ -7,6 +7,9 @@ export type DuckType = {
   lastName: string;
   age: number;
   birthDay: string;
+  gender: 0 | 1 | 2;
+  migratesForWinters: boolean;
+  relatedToCEO: boolean;
 };
 
 // var, let, const
@@ -14,4 +17,20 @@ export type DuckType = {
 export const getDucks = async (): Promise<DuckType[]> => {
   const ret = await axios.get<DuckType[]>(`${getBaseUrl()}/duck`);
   return ret.data;
+};
+
+export const hireDuck = async (duck: DuckType): Promise<DuckType> => {
+  const ret = await axios.post<DuckType>(`${getBaseUrl()}/duck`, duck);
+  return ret.data;
+};
+
+export const fireDuck = async (id: string): Promise<DuckType> => {
+  const ret = await axios.delete<DuckType>(`${getBaseUrl()}/duck/${id}`);
+  return ret.data;
+};
+
+export default {
+  getDucks,
+  hireDuck,
+  fireDuck
 };

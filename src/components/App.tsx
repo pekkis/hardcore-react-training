@@ -1,31 +1,56 @@
-import { Component, FC, useEffect, useState } from "react";
-import { DuckType, getDucks } from "../services/duck";
+import { FC, useEffect, useState, useCallback, useMemo } from "react";
+import duck, { DuckType, getDucks } from "../services/duck";
+import { cleanse } from "../services/instance";
 import styles from "./App.module.pcss";
+import DuckList from "./DuckList";
+import {
+  fireDuck as fireDuckService,
+  hireDuck as hireDuckService
+} from "../services/duck";
+import HireDuckForm from "./HireDuckForm";
+import SecondsElapsed from "./SecondsElapsed";
 
 // console.log(styles);
 
 type Props = {};
 
+const isGood = (duck: DuckType): boolean => {
+  if (duck.relatedToCEO === true) {
+    return true;
+  }
+  return duck.age < 10 && duck.migratesForWinters === false;
+};
+
+const DuckTitle = ({ numberOfDucks }) => <h2>Pahat ankat ({numberOfDucks})</h2>;
+
 const App: FC<Props> = (props) => {
   const [ducks, setDucks] = useState<DuckType[]>([]);
-  const [secondsElapsed, setSecondsElapsed] = useState<number>(0);
 
-  console.log(ducks);
+  const fireDuck = useCallback(
+    async (id: string) => {
+      const firedDuck = await fireDuckService(id);
+      setDucks((oldDucks) => oldDucks.filter((d) => d.id !== firedDuck.id));
+    },
+    [setDucks]
+  );
+
+  const hireDuck = useCallback(
+    async (duck: DuckType) => {
+      console.log("WILL HIRE", duck);
+
+      // todo: FIX TYPE
+      delete duck.age;
+
+      const hiredDuck = await hireDuckService(duck);
+
+      console.log("GONNA HIRE", hiredDuck);
+      setDucks((oldDucks) => oldDucks.concat(hiredDuck));
+    },
+    [setDucks]
+  );
 
   useEffect(() => {
-    console.log("App :: Render!");
-
-    const timeout = setInterval(() => {
-      console.log("hip hap huu");
-      setSecondsElapsed((s) => s + 1);
-    }, 1000);
-
-    return () => {
-      clearInterval(timeout);
-    };
-  }, []);
-
-  useEffect(() => {
+    // Every time.
     console.log("App :: Render!");
   });
 
@@ -63,23 +88,33 @@ const App: FC<Props> = (props) => {
     };
   }, []);
 
+  const goodDucks = useMemo(() => ducks.filter(isGood), [ducks]);
+  const badDucks = useMemo(() => ducks.filter((d) => !isGood(d)), [ducks]);
+
   return (
     <section className={styles.main}>
       <h1 className={styles.header}>Duck ERP 10000 Pro</h1>
 
-      <p>
-        Sekunteja kulunut: <strong>{secondsElapsed}</strong>
-      </p>
+      <HireDuckForm hireDuck={hireDuck} />
 
-      <div>
-        {ducks.map((duck) => {
-          return (
-            <div>
-              {duck.lastName}, {duck.firstName}
-            </div>
-          );
-        })}
-      </div>
+      <button
+        onClick={() => {
+          cleanse();
+        }}
+      >
+        cleanse
+      </button>
+
+      <SecondsElapsed />
+
+      <DuckList
+        fireDuck={fireDuck}
+        ducks={badDucks}
+        showMetadata
+        title={DuckTitle}
+      />
+
+      <DuckList fireDuck={fireDuck} ducks={goodDucks} title={DuckTitle} />
     </section>
   );
 };
