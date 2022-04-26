@@ -12,6 +12,8 @@ export type DuckType = {
   relatedToCEO: boolean;
 };
 
+export type DuckProspectType = Omit<DuckType, "age">;
+
 // var, let, const
 
 export const getDucks = async (): Promise<DuckType[]> => {
@@ -19,7 +21,7 @@ export const getDucks = async (): Promise<DuckType[]> => {
   return ret.data;
 };
 
-export const hireDuck = async (duck: DuckType): Promise<DuckType> => {
+export const hireDuck = async (duck: DuckProspectType): Promise<DuckType> => {
   const ret = await axios.post<DuckType>(`${getBaseUrl()}/duck`, duck);
   return ret.data;
 };

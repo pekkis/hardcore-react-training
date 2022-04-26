@@ -1,5 +1,5 @@
 import { FC, useEffect, useState, useCallback, useMemo } from "react";
-import duck, { DuckType, getDucks } from "../services/duck";
+import duck, { DuckProspectType, DuckType, getDucks } from "../services/duck";
 import { cleanse } from "../services/instance";
 import styles from "./App.module.pcss";
 import DuckList from "./DuckList";
@@ -21,7 +21,9 @@ const isGood = (duck: DuckType): boolean => {
   return duck.age < 10 && duck.migratesForWinters === false;
 };
 
-const DuckTitle = ({ numberOfDucks }) => <h2>Pahat ankat ({numberOfDucks})</h2>;
+const DuckTitle = ({ numberOfDucks }: { numberOfDucks: string }) => (
+  <h2>Pahat ankat ({numberOfDucks})</h2>
+);
 
 const App: FC<Props> = (props) => {
   const [ducks, setDucks] = useState<DuckType[]>([]);
@@ -35,11 +37,8 @@ const App: FC<Props> = (props) => {
   );
 
   const hireDuck = useCallback(
-    async (duck: DuckType) => {
+    async (duck: DuckProspectType) => {
       console.log("WILL HIRE", duck);
-
-      // todo: FIX TYPE
-      delete duck.age;
 
       const hiredDuck = await hireDuckService(duck);
 
