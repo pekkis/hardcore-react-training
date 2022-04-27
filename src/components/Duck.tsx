@@ -2,6 +2,8 @@ import { FC, memo } from "react";
 import { DuckType } from "../services/duck";
 import styles from "./Duck.module.pcss";
 import cx from "clsx";
+import Button from "./Button";
+import { Link } from "react-router-dom";
 
 /*
 const HelperCompo = () => {
@@ -23,16 +25,19 @@ const Duck: FC<Props> = ({ duck, fireDuck }) => {
   return (
     <div className={classes} key={duck.id}>
       <div>
-        {duck.lastName}, {duck.firstName}
+        <Link to={`/duck/${duck.id}`}>
+          {duck.lastName}, {duck.firstName}
+        </Link>
       </div>
       <div>
-        <button
+        <Button
+          disabled={duck.isBeingFired}
           onClick={() => {
             fireDuck(duck.id);
           }}
         >
           vapauta
-        </button>
+        </Button>
       </div>
     </div>
   );

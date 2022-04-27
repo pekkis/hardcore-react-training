@@ -1,52 +1,21 @@
-import { FC, useEffect, useState, useCallback, useMemo } from "react";
-import duck, { DuckProspectType, DuckType, getDucks } from "../services/duck";
+import { FC, useEffect } from "react";
 import { cleanse } from "../services/instance";
 import styles from "./App.module.pcss";
-import DuckList from "./DuckList";
-import {
-  fireDuck as fireDuckService,
-  hireDuck as hireDuckService
-} from "../services/duck";
-import HireDuckForm from "./HireDuckForm";
 import SecondsElapsed from "./SecondsElapsed";
+import Button from "./Button";
+import useStore from "../services/store";
+import Spinner from "./Spinner";
+import { Outlet } from "react-router";
 
 // console.log(styles);
 
-type Props = {};
+const App: FC = () => {
+  const ducks = useStore((store) => Object.values(store.ducks));
+  const getDucks = useStore((store) => store.getDucks);
+  const secondsElapsed = useStore((store) => store.secondsElapsed);
+  const increment = useStore((store) => store.incrementSecondsElapsed);
 
-const isGood = (duck: DuckType): boolean => {
-  if (duck.relatedToCEO === true) {
-    return true;
-  }
-  return duck.age < 10 && duck.migratesForWinters === false;
-};
-
-const DuckTitle = ({ numberOfDucks }: { numberOfDucks: string }) => (
-  <h2>Pahat ankat ({numberOfDucks})</h2>
-);
-
-const App: FC<Props> = (props) => {
-  const [ducks, setDucks] = useState<DuckType[]>([]);
-
-  const fireDuck = useCallback(
-    async (id: string) => {
-      const firedDuck = await fireDuckService(id);
-      setDucks((oldDucks) => oldDucks.filter((d) => d.id !== firedDuck.id));
-    },
-    [setDucks]
-  );
-
-  const hireDuck = useCallback(
-    async (duck: DuckProspectType) => {
-      console.log("WILL HIRE", duck);
-
-      const hiredDuck = await hireDuckService(duck);
-
-      console.log("GONNA HIRE", hiredDuck);
-      setDucks((oldDucks) => oldDucks.concat(hiredDuck));
-    },
-    [setDucks]
-  );
+  const isInitialized = useStore((store) => store.isInitialized);
 
   useEffect(() => {
     // Every time.
@@ -61,8 +30,7 @@ const App: FC<Props> = (props) => {
   useEffect(() => {
     // oldValue === newValue
     console.log("App :: Ducks have changed");
-
-    getDucks().then(setDucks);
+    getDucks();
 
     /*
     const fetcher = async () => {
@@ -85,35 +53,30 @@ const App: FC<Props> = (props) => {
     return () => {
       // cleanup
     };
-  }, []);
+  }, [getDucks]);
 
-  const goodDucks = useMemo(() => ducks.filter(isGood), [ducks]);
-  const badDucks = useMemo(() => ducks.filter((d) => !isGood(d)), [ducks]);
+  const isLoading = useStore((store) => store.isLoading > 0);
+
+  if (!isInitialized) {
+    return <Spinner />;
+  }
 
   return (
     <section className={styles.main}>
       <h1 className={styles.header}>Duck ERP 10000 Pro</h1>
-
-      <HireDuckForm hireDuck={hireDuck} />
-
-      <button
+      {isLoading && <Spinner />}
+      <Button
         onClick={() => {
           cleanse();
         }}
       >
         cleanse
-      </button>
-
-      <SecondsElapsed />
-
-      <DuckList
-        fireDuck={fireDuck}
-        ducks={badDucks}
-        showMetadata
-        title={DuckTitle}
-      />
-
-      <DuckList fireDuck={fireDuck} ducks={goodDucks} title={DuckTitle} />
+      </Button>
+      <SecondsElapsed secondsElapsed={secondsElapsed} increment={increment} />
+      <main>
+        <Outlet />
+      </main>
+      <footer>Copyright &copy: 2022 Gaylord McAnkka</footer>
     </section>
   );
 };

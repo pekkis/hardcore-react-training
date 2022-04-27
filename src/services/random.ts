@@ -1,8 +1,6 @@
 import { Random, browserCrypto, nodeCrypto } from "random-js";
-import { faker } from "@faker-js/faker";
 import { v4 } from "uuid";
-import { DateTime } from "luxon";
-import { DuckGenderType, DuckType } from "./duck";
+import { DuckType } from "./duck";
 import { DuckProspectType } from "./duck";
 
 export const random = new Random(
@@ -22,16 +20,14 @@ const getGenderForNaming = (gender: number) => {
 };
 
 export const createRandomDuck = (): DuckType => {
-  const email = faker.internet.email();
+  const email = "testi@testi.io";
 
   const gender = random.pick([0, 1, 2]) as DuckGenderType;
   const genderForNaming = getGenderForNaming(gender);
 
   const duck: DuckProspectType = {
     id: v4(),
-    firstName: faker.name.firstName(genderForNaming),
-    lastName: faker.name.lastName(genderForNaming),
-    birthDay: faker.date.past(2, "2021-07-01").toISOString(),
+    birthDay: "2020-02-02",
     gender,
     wingedness: random.pick(["l", "r"]) as "l" | "r",
     migratesForWinters: random.pick([true, true, false]),

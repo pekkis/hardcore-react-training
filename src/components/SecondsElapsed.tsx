@@ -1,20 +1,28 @@
 import { FC, useEffect, useState } from "react";
+import { AppState } from "../services/store";
 
-const SecondsElapsed: FC = () => {
-  const [secondsElapsed, setSecondsElapsed] = useState<number>(0);
+type Props = {
+  secondsElapsed: number;
+  increment: AppState["incrementSecondsElapsed"];
+  intervalMillis?: number;
+};
 
+const SecondsElapsed: FC<Props> = ({
+  secondsElapsed,
+  increment,
+  intervalMillis = 1000
+}) => {
   useEffect(() => {
-    // once.
     console.log("SecondsEnabled :: Render!");
 
     const timeout = setInterval(() => {
-      setSecondsElapsed((s) => s + 1);
-    }, 1000);
+      increment();
+    }, intervalMillis);
 
     return () => {
       clearInterval(timeout);
     };
-  }, []);
+  }, [intervalMillis, increment]);
 
   return (
     <p>

@@ -4,6 +4,8 @@ import * as Yup from "yup";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { createRandomDuck } from "../services/random";
+import Button from "./Button";
+import useStore from "../services/store";
 
 const schema = Yup.object().shape({
   firstName: Yup.string()
@@ -16,16 +18,13 @@ const schema = Yup.object().shape({
     .required("Required")
 });
 
-type Props = {
+export type Props = {
   hireDuck: (duck: DuckType) => void;
 };
 
-type DuckForm = {
-  firstName: string;
-  lastName: string;
-};
-
 const HireDuckForm: FC<Props> = ({ hireDuck }) => {
+  const duckIsBeingHired = useStore((store) => store.duckIsBeingHired);
+
   return (
     <div>
       <Formik
@@ -63,9 +62,9 @@ const HireDuckForm: FC<Props> = ({ hireDuck }) => {
               </div>
 
               <div>
-                <button disabled={!isValid} type="submit">
+                <Button disabled={!isValid || duckIsBeingHired} type="submit">
                   palkkaa!
-                </button>
+                </Button>
               </div>
             </Form>
           );
