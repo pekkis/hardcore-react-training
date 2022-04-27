@@ -11,6 +11,7 @@ export type DuckType = {
   migratesForWinters: boolean;
   relatedToCEO: boolean;
   isBeingFired?: boolean;
+  isAdmin: true;
 };
 
 export type DuckProspectType = Omit<DuckType, "age">;

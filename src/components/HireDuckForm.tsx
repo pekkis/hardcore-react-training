@@ -32,7 +32,7 @@ const HireDuckForm: FC<Props> = ({ hireDuck }) => {
           firstName: "",
           lastName: ""
         }}
-        onSubmit={async (values) => {
+        onSubmit={async (values, { resetForm }) => {
           console.log("values", values);
 
           const duckHiree: DuckType = {
@@ -42,7 +42,13 @@ const HireDuckForm: FC<Props> = ({ hireDuck }) => {
           };
 
           console.log("duckHiree", duckHiree);
-          hireDuck(duckHiree);
+          const succetore = await hireDuck(duckHiree);
+
+          console.log("SUCCETORE", succetore);
+
+          if (succetore) {
+            resetForm();
+          }
         }}
         validationSchema={schema}
         validateOnMount={true}

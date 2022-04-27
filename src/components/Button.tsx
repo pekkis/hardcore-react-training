@@ -1,17 +1,18 @@
 /** @jsxImportSource @emotion/react */
 
-import { FC } from "react";
+import { FC, forwardRef } from "react";
 import type { ComponentProps } from "react";
 
 interface ButtonProps extends ComponentProps<"button"> {
   variant?: "primary" | "secondary";
 }
 
-const Button: FC<ButtonProps> = (props) => {
+const Button: FC<ButtonProps> = (props, ref) => {
   const { children, variant = "primary", ...rest } = props;
 
   return (
     <button
+      ref={ref}
       css={[
         {
           cursor: "pointer",
@@ -36,4 +37,4 @@ const Button: FC<ButtonProps> = (props) => {
   );
 };
 
-export default Button;
+export default forwardRef(Button);

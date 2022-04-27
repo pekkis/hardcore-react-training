@@ -13,7 +13,7 @@ export type AppState = {
   secondsElapsed: number;
   getDucks: () => void;
   fireDuck: (id: string) => void;
-  hireDuck: (duck: DuckProspectType) => void;
+  hireDuck: (duck: DuckProspectType) => Promise<boolean>;
   incrementSecondsElapsed: () => void;
   duckIsBeingHired: boolean;
   isLoading: number;
@@ -88,28 +88,34 @@ const useStore = create<AppState>((set) => {
       // sets((oldDucks) => oldDucks.filter((d) => d.id !== firedDuck.id));
     },
     hireDuck: async (duck: DuckProspectType) => {
-      set((state) => ({
-        duckIsBeingHired: true,
-        isLoading: state.isLoading + 1
-      }));
+      try {
+        set((state) => ({
+          duckIsBeingHired: true,
+          isLoading: state.isLoading + 1
+        }));
 
-      const hiredDuck = await hireDuck(duck);
+        const hiredDuck = await hireDuck(duck);
 
-      set((state) => {
-        return produce(state, (draft) => {
-          draft.isLoading = draft.isLoading - 1;
-          draft.ducks[hiredDuck.id] = hiredDuck;
-          draft.duckIsBeingHired = false;
+        set((state) => {
+          return produce(state, (draft) => {
+            draft.isLoading = draft.isLoading - 1;
+            draft.ducks[hiredDuck.id] = hiredDuck;
+            draft.duckIsBeingHired = false;
+          });
+
+          /*
+          return {
+            ducks: state.ducks.concat(hiredDuck),
+            duckIsBeingHired: false,
+            isLoading: state.isLoading - 1
+          };
+          */
         });
 
-        /*
-        return {
-          ducks: state.ducks.concat(hiredDuck),
-          duckIsBeingHired: false,
-          isLoading: state.isLoading - 1
-        };
-        */
-      });
+        return true;
+      } catch (e) {
+        return false;
+      }
     }
   };
 });

@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useRef } from "react";
 import { cleanse } from "../services/instance";
 import styles from "./App.module.pcss";
 import SecondsElapsed from "./SecondsElapsed";
@@ -57,6 +57,12 @@ const App: FC = () => {
 
   const isLoading = useStore((store) => store.isLoading > 0);
 
+  const ref = useRef();
+
+  useEffect(() => {
+    console.log("BUTTON REF", ref);
+  });
+
   if (!isInitialized) {
     return <Spinner />;
   }
@@ -66,6 +72,7 @@ const App: FC = () => {
       <h1 className={styles.header}>Duck ERP 10000 Pro</h1>
       {isLoading && <Spinner />}
       <Button
+        ref={ref}
         onClick={() => {
           cleanse();
         }}

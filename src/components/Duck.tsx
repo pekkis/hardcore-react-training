@@ -1,9 +1,10 @@
-import { FC, memo } from "react";
+import { FC, memo, useState } from "react";
 import { DuckType } from "../services/duck";
 import styles from "./Duck.module.pcss";
 import cx from "clsx";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import DuckModal from "./DuckModal";
 
 /*
 const HelperCompo = () => {
@@ -22,8 +23,12 @@ const Duck: FC<Props> = ({ duck, fireDuck }) => {
     [styles.female]: duck.gender === 1
   });
 
+  const [modal, setModal] = useState<boolean>(false);
+
   return (
     <div className={classes} key={duck.id}>
+      {modal && <DuckModal duck={duck} />}
+
       <div>
         <Link to={`/duck/${duck.id}`}>
           {duck.lastName}, {duck.firstName}
@@ -37,6 +42,14 @@ const Duck: FC<Props> = ({ duck, fireDuck }) => {
           }}
         >
           vapauta
+        </Button>
+
+        <Button
+          onClick={() => {
+            setModal(true);
+          }}
+        >
+          modalisoi
         </Button>
       </div>
     </div>
