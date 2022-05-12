@@ -1,8 +1,5 @@
 import { FC, useEffect, useState } from "react";
-
-// import styles from "./App.module.css";
 import { cleanse } from "../services/instance";
-// import useDucks from "../hooks/useDucks";
 import useStore from "../services/store";
 import Spinner from "./Spinner";
 import Helmet from "react-helmet";
