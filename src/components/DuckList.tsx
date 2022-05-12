@@ -1,4 +1,4 @@
-import { memo, VFC } from "react";
+import { memo, FC } from "react";
 import { DuckType } from "../services/duck";
 import Duck from "./Duck";
 import {
@@ -17,7 +17,7 @@ type Props = {
   showMetadata?: boolean;
 };
 
-const DuckList: VFC<Props> = ({ ducks, fireDuck, showMetadata = false }) => {
+const DuckList: FC<Props> = ({ ducks, fireDuck, showMetadata = false }) => {
   const shouldReduceMotion = useReducedMotion();
 
   const variants: Variants = {

@@ -1,8 +1,4 @@
-/**
- * @jest-environment jsdom
- */
-
-import { describe, test, beforeEach, afterEach, expect } from "@jest/globals";
+import { describe, test, afterEach, afterAll, expect, beforeAll } from "vitest";
 import {
   render,
   fireEvent,
@@ -20,7 +16,9 @@ import { rest } from "msw";
 const server = setupServer();
 
 describe("IndexPage", () => {
-  beforeAll(() => server.listen());
+  beforeAll(() => {
+    server.listen();
+  });
 
   afterEach(() => server.resetHandlers());
 
@@ -28,6 +26,7 @@ describe("IndexPage", () => {
 
   test("App is rendered and request is mocked", async () => {
     const ducks = Array.from({ length: 50 }).map(() => createRandomDuck());
+    const user = userEvent.setup();
 
     server.use(
       rest.get("http://localhost/erp/test/duck", (req, res, ctx) => {
@@ -38,8 +37,6 @@ describe("IndexPage", () => {
       })
     );
 
-    const user = userEvent.setup();
-
     render(<Root />);
 
     const items = await waitFor(() => screen.getAllByRole("listitem"));
@@ -47,7 +44,7 @@ describe("IndexPage", () => {
 
     const btn = screen.getAllByRole("button", { name: "free" });
 
-    await waitFor(() => expect(btn.length).toEqual(ducks.length));
+    await waitFor(() => expect(btn.length).toEqual(50));
 
     await waitFor(() => user.click(btn[0]));
   });

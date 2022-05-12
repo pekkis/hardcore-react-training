@@ -18,7 +18,6 @@ module.exports = {
   rules: {
     // "@typescript-eslint/explicit-function-return-type": 0,
     // "jsx-a11y/no-onchange": 0
-
     "react/prop-types": "off"
   }
 };

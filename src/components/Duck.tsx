@@ -1,4 +1,4 @@
-import { memo, VFC } from "react";
+import { memo, FC } from "react";
 import { DuckType } from "../services/duck";
 import styles from "./Duck.module.css";
 import cx from "clsx";
@@ -10,7 +10,7 @@ type Props = {
   fireDuck: (id: string) => void;
 };
 
-const Duck: VFC<Props> = ({ duck, fireDuck }) => {
+const Duck: FC<Props> = ({ duck, fireDuck }) => {
   const classes = cx(styles.root, {
     [styles.male]: duck.gender === 0,
     [styles.female]: duck.gender === 1
