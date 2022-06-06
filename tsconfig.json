@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["node", "vite/client", "jest"],
+    "types": ["node", "vite/client"],
     "experimentalDecorators": true
   },
   "include": ["./typings", "./src"]

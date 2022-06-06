@@ -111,7 +111,7 @@ Here are some bulletin points for each coaching day. Don’t think of these subj
 
 - testing
   - end-to-end testing with cypress et al?
-  - unit tests with jest, react testing library et al?
+  - unit tests with vitest, react testing library et al?
 - Design systems / styleguides (Storybook analogues)
 - native web components and React
 - internationalization & localization
