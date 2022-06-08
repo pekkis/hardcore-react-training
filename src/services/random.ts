@@ -1,49 +1,27 @@
 import { Random, browserCrypto, nodeCrypto } from "random-js";
-import { faker } from "@faker-js/faker";
 import { v4 } from "uuid";
-import { DateTime } from "luxon";
-import { DuckGenderType, DuckType } from "./duck";
+import { DuckProspectType, DuckType } from "./duck";
 
 export const random = new Random(
   process.env.NODE_ENV === "test" ? nodeCrypto : browserCrypto
 );
 
-const getGenderForNaming = (gender: number) => {
-  if (gender === 0) {
-    return "male";
-  }
+export const createRandomDuck = (): DuckProspectType => {
+  const email = "testi@testi.io";
 
-  if (gender === 1) {
-    return "female";
-  }
+  const gender = random.pick([0, 1, 2]) as 0 | 1 | 2;
 
-  return undefined;
-};
-
-export const createRandomDuck = (): DuckType => {
-  const email = faker.internet.email();
-
-  const gender = random.pick([0, 1, 2]) as DuckGenderType;
-  const genderForNaming = getGenderForNaming(gender);
-
-  const duck: DuckType = {
+  const duck: DuckProspectType = {
+    firstName: "X",
+    lastName: "X",
     id: v4(),
-    firstName: faker.name.firstName(genderForNaming),
-    lastName: faker.name.lastName(genderForNaming),
-    birthDay: faker.date.past(70, "2006-01-01").toString(),
+    birthDay: "2020-02-02",
     gender,
     wingedness: random.pick(["l", "r"]) as "l" | "r",
     migratesForWinters: random.pick([true, true, false]),
     email,
     isAdmin: false,
-    relatedToCEO: random.pick([true, false]),
-    get age(): number {
-      const d = DateTime.fromJSDate(new Date(this.birthDay));
-      const now = DateTime.local();
-      const diff = now.diff(d, "years").toObject();
-      return diff.years as number;
-    }
+    relatedToCEO: random.pick([true, false])
   };
-
   return duck;
 };

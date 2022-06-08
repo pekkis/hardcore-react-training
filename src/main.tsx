@@ -5,9 +5,12 @@ import { createRoot } from "react-dom/client";
 import Root from "./Root";
 
 import "normalize.css";
+import "./blob.css";
 
-async function render(Component: typeof Root, rootElement: HTMLElement) {
+async function render(ribuls: typeof Root, rootElement: HTMLElement) {
   console.log("in vite, meta stuff is in import.meta", import.meta.env);
+
+  const TurboRibuls = ribuls;
 
   /*
   // Not sure whether this works with React 18 so I disabled.
@@ -19,7 +22,7 @@ async function render(Component: typeof Root, rootElement: HTMLElement) {
   */
 
   const root = createRoot(rootElement);
-  root.render(<Component />);
+  root.render(<TurboRibuls />);
 }
 
 const rootElement = document.getElementById("root");
