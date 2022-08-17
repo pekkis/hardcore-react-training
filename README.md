@@ -3,7 +3,7 @@
 ## Introduction
 
 Welcome to my two day React Workshop. It is very important
-that you read and follow these instructions **before** the actual two training days.
+that you read and follow these instructions **carefully** and **before** the actual two training days.
 
 ## Human Requirements
 
@@ -15,12 +15,10 @@ that you read and follow these instructions **before** the actual two training d
 ## Computer Requirements
 
 - MacOS, Linux or Windows all work.
-  - In Windows, this works at least in WSL 2. I often use that myself when hobby coding.
-    Native Windows? I have no clue.
+  - In Windows, this works in WSL 2. I often use that myself when hobby coding. Native Windows? I have no clue, I do not care.
   - If it doesn't work, just boot it up in some Linux virtual machine.
-- Current stable version of Node.js (16.x) and a "normal" default version of `NPM` that comes bundled with the Node version (8.x). It might work on older
-  or newer Node versions too, but no guarantees! Use `nvm` for example to manage multiple Node versions.
-- An editor / IDE that supports all the good stuff. I use [VSCode](https://code.visualstudio.com/) myself, and because of the LiveShare code sharing env, you probably should too during this training.
+- Current stable version of Node.js (18.x) and a "normal" default version of `NPM` that comes bundled with the Node version (8.x). It might work on older or newer Node versions too, but no guarantees! Use `nvm` for example to manage multiple Node versions.
+- An editor / IDE that supports all the good stuff. I use [VSCode](https://code.visualstudio.com/) myself, and because of the LiveShare code sharing env, you probably should use it too during this training.
 
 ## Installation
 

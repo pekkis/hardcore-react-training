@@ -42,8 +42,8 @@ function Box(props: JSX.IntrinsicElements["mesh"]) {
   );
 }
 
-const Pexu = () => {
-  const text = "Suckling\non a\nduckling!";
+const Pexu = ({ suckledSeconds }: { suckledSeconds: number }) => {
+  const text = `${suckledSeconds} seconds \nsuckling on a\nduckling!`;
 
   const ref = useRef();
   useFrame(() => {
@@ -78,7 +78,11 @@ const Pexu = () => {
   );
 };
 
-const Three: FC = () => {
+type Props = {
+  suckledSeconds: number;
+};
+
+const Three: FC<Props> = ({ suckledSeconds }) => {
   return (
     <div sx={{ width: "100%", height: "400px" }}>
       <Canvas
@@ -90,7 +94,7 @@ const Three: FC = () => {
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
 
-        <Pexu />
+        <Pexu suckledSeconds={suckledSeconds} />
         <Box position={[-3, -1.5, 0]} />
         <Box position={[3, 2, -2]} />
       </Canvas>

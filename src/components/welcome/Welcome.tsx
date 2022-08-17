@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { ThemeProvider, Box, Paragraph, Heading, Container } from "theme-ui";
 import DucklingSuckler from "./DucklingSuckler";
 import theme from "./theme";
@@ -12,6 +12,17 @@ import BackendChecker from "./BackendChecker";
 import ducklings from "../../assets/duckling-pattern.png";
 
 const Welcome: FC = () => {
+  const [suckledSeconds, setSuckledSeconds] = useState<number>(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSuckledSeconds((ss) => ss + 1);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <Global
@@ -65,7 +76,7 @@ const Welcome: FC = () => {
           </Box>
 
           <Box p={[0, 2]}>
-            <Three />
+            <Three suckledSeconds={suckledSeconds} />
           </Box>
 
           <Box my={2} p={2}>
