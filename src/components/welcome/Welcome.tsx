@@ -83,14 +83,10 @@ const Welcome: FC = () => {
         </Box>
 
         <Container my={5} p={2}>
-          <Heading as="h2" my={3} mb={3}>
-            Attention!
-          </Heading>
+          <Heading as="h2">Attention!</Heading>
           <BackendChecker />
 
-          <Heading as="h2" my={3} mb={3}>
-            More Attention!
-          </Heading>
+          <Heading as="h2">More Attention!</Heading>
 
           <Paragraph>
             I might do some late surprise changes so you should{" "}
@@ -98,9 +94,7 @@ const Welcome: FC = () => {
             training day&apos;s morning.
           </Paragraph>
 
-          <Heading as="h2" my={3} mb={3}>
-            Even More Attention!
-          </Heading>
+          <Heading as="h2">Even More Attention!</Heading>
 
           <Paragraph>
             Open{" "}

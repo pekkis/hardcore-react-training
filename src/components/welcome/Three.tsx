@@ -51,7 +51,7 @@ const Pexu = () => {
   });
 
   const [opts, setOpts] = useState({
-    font: "Roboto",
+    font: "arial",
     fontSize: 5,
     color: "#000",
     maxWidth: 300,

@@ -10,11 +10,13 @@ const theme: Theme = {
   },
   breakpoints: breakpoints.map((b) => `${b}px`),
 
+  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+
   fonts: {
     ...funk.fonts,
-    body: "Urbanist, sans-serif",
-    heading: "Urbanist, sans-serif",
-    cute: "Pacifico, cursive"
+    body: "zeitung-micro, sans-serif",
+    heading: "acuta, sans-serif",
+    cute: "acuta, sans-serif"
   },
 
   fontWeights: {
@@ -23,10 +25,26 @@ const theme: Theme = {
     normal: 400,
     bold: 600
   },
+
+  lineHeights: {
+    body: 1.4,
+    heading: 1.125
+  },
+
   text: {
     paragraph: {
       // variant: "paragraph",
-      my: 2
+      my: 3,
+      ":first-of-type": {
+        mt: 0
+      },
+      ":last-of-type": {
+        mb: 0
+      }
+    },
+    heading: {
+      mt: 4,
+      mb: 3
     }
   },
 
@@ -36,16 +54,7 @@ const theme: Theme = {
       // uses the theme values provided above
       fontFamily: "body",
       fontWeight: "body",
-      fontSize: 3,
-      p: {
-        my: 3,
-        ":first-of-type": {
-          mt: 0
-        },
-        ":last-of-type": {
-          mb: 0
-        }
-      }
+      fontSize: 3
     },
     a: {
       color: "link"
