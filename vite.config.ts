@@ -15,5 +15,11 @@ export default defineConfig({
     deps: {
       fallbackCJS: true
     }
+  },
+  esbuild: {
+    logOverride: {
+      "this-is-undefined-in-esm": "silent",
+      "unsupported-jsx-comment": "silent"
+    }
   }
 });
