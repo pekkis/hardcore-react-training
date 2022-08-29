@@ -62,7 +62,7 @@ I should use in addition / replacing one of these, please holler!
 
 ### Develop
 
-- `npm ci`
+- `npm ci --force`
 - `cp .env.example .env`
 - `npm run start`
 
