@@ -4,7 +4,8 @@ import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 import Root from "./Root";
 
-import "normalize.css";
+import "normalize.css"; // node_modules/normalize.css/normalize.css
+// import "./global.css";
 
 async function render(Component: typeof Root, rootElement: HTMLElement) {
   console.log("in vite, meta stuff is in import.meta", import.meta.env);

@@ -1,12 +1,29 @@
 import { VFC } from "react";
-import Welcome from "./components/welcome/Welcome";
+import { ErrorBoundary } from "react-error-boundary";
+import { BrowserRouter } from "react-router-dom";
+
+import App from "./components/App";
 
 const Root: VFC = () => {
-  // All React components must return one thing. A fragment (the empty tag <>) is such "one thing" that has no markup.
   return (
-    <>
-      <Welcome />
-    </>
+    <BrowserRouter>
+      <ErrorBoundary
+        onError={(e) => {
+          // loggaa virhe jonnekin
+        }}
+        fallbackRender={({ error }) => {
+          return (
+            <div>
+              <h1>OH NOES!!!</h1>
+
+              {error.message}
+            </div>
+          );
+        }}
+      >
+        <App />
+      </ErrorBoundary>
+    </BrowserRouter>
   );
 };
 
