@@ -1,26 +1,9 @@
-/** @jsxImportSource theme-ui */
-
 import { FC } from "react";
 import { FaSpinner } from "react-icons/fa";
+import { spinClass } from "./Spinner.css";
 
 const Spinner: FC = () => {
-  return (
-    <FaSpinner
-      className="fa-spin"
-      sx={{
-        mr: 2,
-        animation: "fa-spin 5s infinite linear",
-        "@keyframes fa-spin": {
-          "0%": {
-            transform: "rotate(0deg)"
-          },
-          "100%": {
-            transform: "rotate(359deg)"
-          }
-        }
-      }}
-    />
-  );
+  return <FaSpinner className={spinClass} />;
 };
 
 export default Spinner;

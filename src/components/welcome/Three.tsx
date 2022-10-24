@@ -1,9 +1,8 @@
-/** @jsxImportSource theme-ui */
-
 import * as THREE from "three";
 import { FC, useRef, useState } from "react";
 import { extend, Canvas, useFrame } from "@react-three/fiber";
 import { Text } from "troika-three-text";
+import { containerClass } from "./Three.css";
 
 const fonts = {
   Roboto: "https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxM.woff"
@@ -84,9 +83,10 @@ type Props = {
 
 const Three: FC<Props> = ({ suckledSeconds }) => {
   return (
-    <div sx={{ width: "100%", height: "400px" }}>
+    <div className={containerClass}>
       <Canvas
         resize={{
+          offsetSize: true,
           debounce: 100,
           scroll: false
         }}
