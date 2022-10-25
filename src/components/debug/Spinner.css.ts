@@ -7,5 +7,6 @@ const rotate = keyframes({
 
 export const spinClass = style({
   animationName: rotate,
-  animationDuration: "3s"
+  animationDuration: "3s",
+  animationIterationCount: "infinite"
 });

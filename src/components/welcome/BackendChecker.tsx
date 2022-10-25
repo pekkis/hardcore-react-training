@@ -5,7 +5,8 @@ import {
   TestDuckType,
   cleanse
 } from "../../services/instance";
-import Spinner from "./Spinner";
+import CleanseButton from "../debug/CleanseButton";
+import Spinner from "../debug/Spinner";
 import { codeClass } from "./Welcome.css";
 
 const BackendChecker: FC = () => {
@@ -68,6 +69,18 @@ const BackendChecker: FC = () => {
       {persons.length > 0 && (
         <iframe title="check-json" width="100%" src={`${url}/duck`}></iframe>
       )}
+
+      <p>
+        If you manage to mess up your ducks (it might happen) you can always
+        cleanse the flock with the pre-made <code>CleanseButton</code> component
+        from <code>/src/components/debug/CleanseButton.tsx</code>. Just render
+        the component and click the cleanse button and wait patiently and your
+        flock should be reset to a safe starting state.
+      </p>
+
+      <p>
+        <CleanseButton />
+      </p>
     </>
   );
 };
