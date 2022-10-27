@@ -1,4 +1,4 @@
-import { ComponentProps, FC, forwardRef } from "react";
+import { ComponentProps, forwardRef, ForwardRefRenderFunction } from "react";
 import { buttonClass } from "./Button.css";
 
 type Props = ComponentProps<"button">;
@@ -9,9 +9,10 @@ type Props = ComponentProps<"button">;
 };
 */
 
-const Button: FC<Props> = ({ children, ...rest }, ref) => {
-  // const classes = "puuppadoore lussandorf";
-
+const Button: ForwardRefRenderFunction<HTMLButtonElement, Props> = (
+  { children, ...rest },
+  ref
+) => {
   return (
     <button {...rest} className={buttonClass} ref={ref}>
       {children}

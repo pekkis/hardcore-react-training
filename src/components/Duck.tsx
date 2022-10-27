@@ -3,6 +3,7 @@ import { DuckType } from "../services/duck";
 import cx from "clsx";
 import { duckClass, femaleClass, maleClass } from "./Duck.css";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 // import * as styles from "./Duck.css";
 
@@ -17,16 +18,21 @@ const Duck: FC<Props> = ({ duck, fireDuck }) => {
     [femaleClass]: duck.gender === 1
   });
 
+  // throw new Error("Shit has hit the fan!");
+
   return (
     <div className={classes}>
       {/*JSON.stringify(duck, null, 2)*/}
       <div>
-        <strong>{duck.lastName}</strong>, {duck.firstName} (
-        {duck.age.toFixed(2)} v)
+        <Link to={`/duck/${duck.id}`}>
+          <strong>{duck.lastName}</strong>, {duck.firstName} (
+          {duck.age.toFixed(2)} v)
+        </Link>
       </div>
 
       <div>
         <Button
+          disabled={duck.isBeingFired}
           onClick={() => {
             fireDuck(duck.id);
           }}

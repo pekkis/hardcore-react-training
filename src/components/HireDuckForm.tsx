@@ -36,7 +36,7 @@ const HireDuckForm: FC<Props> = ({ hireDuck }) => {
         firstName: "Beneditto",
         lastName: "Lohiposki"
       }}
-      onSubmit={(values) => {
+      onSubmit={(values, { resetForm }) => {
         console.log(values, "Form submit");
         const prospect: DuckProspectType = {
           ...values,
@@ -53,6 +53,7 @@ const HireDuckForm: FC<Props> = ({ hireDuck }) => {
         };
 
         hireDuck(prospect);
+        resetForm();
       }}
       validateOnMount
       validationSchema={schema}
