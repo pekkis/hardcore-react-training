@@ -35,7 +35,7 @@
     "framer-motion": "^7.6.1",
     "immer": "^9.0.16",
     "lit": "^2.4.0",
-    "luxon": "^3.0.4",
+    "luxon": "^3.2.1",
     "normalize.css": "^8.0.1",
     "ramda": "^0.28.0",
     "random-js": "^2.1.0",
