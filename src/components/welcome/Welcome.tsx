@@ -18,6 +18,7 @@ import {
   paddedClass,
   welcomeClass
 } from "./Welcome.css";
+import VanillaExtractChecker from "./VanillaExtractChecker";
 
 const Welcome: FC = () => {
   const [suckledSeconds, setSuckledSeconds] = useState<number>(0);
@@ -76,7 +77,7 @@ const Welcome: FC = () => {
 
           <p>
             I might do some late surprise changes so you should{" "}
-            <code>git pull</code> and <code>npm install</code> come the first
+            <code>git pull</code> and <code>pnpm i</code> come the first
             training day&apos;s morning.
           </p>
 
@@ -101,6 +102,8 @@ const Welcome: FC = () => {
             about that, but Linux people are smart people and you can solve
             anything!
           </p>
+
+          <VanillaExtractChecker />
         </div>
       </main>
     </HelmetProvider>
