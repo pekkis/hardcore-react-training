@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export type TestDuckType = {
   id: string;
   appId: string;
@@ -31,11 +29,18 @@ export const getBaseUrl = (): string =>
   `${import.meta.env.VITE_API}/${getAppId()}`;
 
 export const getTestData = async (): Promise<TestDuckType[]> => {
-  const response = await axios.get<TestDuckType[]>(`${getBaseUrl()}/duck`);
-  return response.data;
+  const response = await fetch(`${getBaseUrl()}/duck`);
+  const data = (await response.json()) as TestDuckType[];
+
+  return data;
 };
 
 export const cleanse = async (): Promise<boolean> => {
-  const ret = await axios.post<boolean>(`${getBaseUrl()}/cleanse`);
-  return ret.data;
+  const ret = await fetch(`${getBaseUrl()}/cleanse`, {
+    method: "POST"
+  });
+
+  const data = (await ret.json()) as { purged: boolean };
+
+  return data.purged;
 };

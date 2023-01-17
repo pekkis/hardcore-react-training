@@ -1,6 +1,8 @@
+import { type PluginOption } from "vite";
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
+import { visualizer } from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,7 +10,11 @@ export default defineConfig({
     react({
       jsxRuntime: "automatic"
     }),
-    vanillaExtractPlugin()
+    vanillaExtractPlugin(),
+    visualizer({
+      emitFile: true,
+      filename: "stats.html"
+    })
   ],
   test: {
     environment: "jsdom",

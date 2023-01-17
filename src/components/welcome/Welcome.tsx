@@ -1,10 +1,11 @@
-import { FC, useEffect, useState } from "react";
+import { FC, lazy, Suspense, useEffect, useState } from "react";
 import DucklingSuckler from "./DucklingSuckler";
-import Three from "./Three";
 import duckling from "../../assets/duckling-2.png";
 import HotReloadTester from "./HotReloadTester";
 import BackendChecker from "./BackendChecker";
 import cx from "clsx";
+
+const Three = lazy(() => import("./Three"));
 
 import { HelmetProvider, Helmet } from "react-helmet-async";
 
@@ -59,7 +60,9 @@ const Welcome: FC = () => {
           </div>
 
           <div>
-            <Three suckledSeconds={suckledSeconds} />
+            <Suspense fallback={<span>laddare...</span>}>
+              <Three suckledSeconds={suckledSeconds} />
+            </Suspense>
           </div>
 
           <div className={contentClass}>
