@@ -1,0 +1,11 @@
+.form {
+  border: 5px dashed hotpink;
+  padding: 1em;
+  background-color: rgb(255 255 255 / 0.5);
+  margin: 1em 0;
+}
+
+.poo {
+  font-size: 50px;
+  margin: 1rem 0;
+}

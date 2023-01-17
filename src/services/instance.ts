@@ -1,4 +1,3 @@
-import { v4 } from "uuid";
 import axios from "axios";
 
 export type TestDuckType = {
@@ -23,7 +22,7 @@ export const getAppId = (): string | undefined => {
     return appId;
   }
 
-  const newAppId = v4();
+  const newAppId = crypto.randomUUID();
   window.localStorage.setItem("appId", newAppId);
   return newAppId;
 };

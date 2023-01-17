@@ -19,6 +19,7 @@ import {
   welcomeClass
 } from "./Welcome.css";
 import VanillaExtractChecker from "./VanillaExtractChecker";
+import Form from "./Form";
 
 const Welcome: FC = () => {
   const [suckledSeconds, setSuckledSeconds] = useState<number>(0);
@@ -54,6 +55,7 @@ const Welcome: FC = () => {
             <h2>A Grand Welcome</h2>
 
             <DucklingSuckler name="Pekkis" />
+            <Form />
           </div>
 
           <div>

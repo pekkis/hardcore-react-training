@@ -1,6 +1,5 @@
 import { Random, browserCrypto, nodeCrypto } from "random-js";
 import { faker } from "@faker-js/faker";
-import { v4 } from "uuid";
 import { DateTime } from "luxon";
 import { DuckGenderType, DuckType } from "./duck";
 
@@ -27,7 +26,7 @@ export const createRandomDuck = (): DuckType => {
   const genderForNaming = getGenderForNaming(gender);
 
   const duck: DuckType = {
-    id: v4(),
+    id: crypto.randomUUID(),
     firstName: faker.name.firstName(genderForNaming),
     lastName: faker.name.lastName(genderForNaming),
     birthDay: faker.date.past(70, "2006-01-01").toString(),
