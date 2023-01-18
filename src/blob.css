@@ -1,0 +1,9 @@
+html {
+  font-family: "Comic Sans MS", fantasy;
+  background-image: url("/src/assets/duckling-pattern.png");
+  font-size: 18px;
+}
+
+body {
+  padding: 1rem;
+}

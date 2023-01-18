@@ -5,12 +5,15 @@ export type DuckType = {
   firstName: string;
   lastName: string;
   age: number;
-  isRelatedToCEO: boolean;
+  relatedToCEO: boolean;
+  gender: 0 | 1 | 2;
+  // lus: "foo" | "bar" | "lus";
 };
 
 export const getDucks = async (): Promise<DuckType[]> => {
   console.log("getting da ducks");
   const response = await fetch(`${getBaseUrl()}/duck`);
   const ducks = (await response.json()) as DuckType[];
+
   return ducks;
 };
