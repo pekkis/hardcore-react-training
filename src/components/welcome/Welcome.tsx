@@ -24,6 +24,7 @@ import Form from "./Form";
 
 const Welcome: FC = () => {
   const [suckledSeconds, setSuckledSeconds] = useState<number>(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setSuckledSeconds((ss) => ss + 1);
