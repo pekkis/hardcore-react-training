@@ -10,5 +10,9 @@ export const buttonClass = style({
 
   ":hover": {
     borderRadius: "15px"
+  },
+
+  ":focus": {
+    borderColor: "rgb(255, 0, 0)"
   }
 });

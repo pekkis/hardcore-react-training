@@ -1,4 +1,9 @@
-import { FC, ReactNode, ComponentProps } from "react";
+import {
+  FC,
+  ComponentProps,
+  forwardRef,
+  ForwardRefRenderFunction
+} from "react";
 import { buttonClass } from "./Button.css";
 
 import cx from "clsx";
@@ -11,12 +16,15 @@ type Props = {
 
 type Props = ComponentProps<"button">;
 
-const Button: FC<Props> = ({ children, className, ...rest }) => {
+const Button: ForwardRefRenderFunction<HTMLButtonElement, Props> = (
+  { children, className, ...rest },
+  ref
+) => {
   return (
-    <button {...rest} className={cx(buttonClass, className)}>
+    <button {...rest} className={cx(buttonClass, className)} ref={ref}>
       {children}
     </button>
   );
 };
 
-export default Button;
+export default forwardRef(Button);

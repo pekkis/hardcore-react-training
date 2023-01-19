@@ -1,8 +1,9 @@
-import { FC, memo } from "react";
-import { DuckProspectType, DuckType } from "../services/duck";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { FC, memo, useEffect, useRef } from "react";
+import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { DuckProspectType } from "../services/duck";
+import Button from "./Button";
 
 const schema = z.object({
   firstName: z.string().min(3, { message: "Required" }),
@@ -28,6 +29,17 @@ const HireDuckForm: FC<Props> = ({ hireDuck }) => {
       lastName: "Aargh"
     }
   });
+
+  const firstNameRef = useRef<HTMLInputElement | null>();
+
+  const buttonRef = useRef<HTMLButtonElement | null | undefined>(null);
+
+  useEffect(() => {
+    console.log(buttonRef, "BTN REF");
+    buttonRef.current?.focus();
+  }, [buttonRef.current]);
+
+  const { ref, ...rest } = register("firstName");
 
   return (
     <form
@@ -55,7 +67,13 @@ const HireDuckForm: FC<Props> = ({ hireDuck }) => {
     >
       <div>
         <label>Etunimi</label>
-        <input {...register("firstName")} />
+        <input
+          {...rest}
+          ref={(e) => {
+            ref(e);
+            firstNameRef.current = e;
+          }}
+        />
         {errors.firstName?.message && <span>{errors.firstName.message}</span>}
       </div>
       <div>
@@ -65,7 +83,9 @@ const HireDuckForm: FC<Props> = ({ hireDuck }) => {
       </div>
 
       <div>
-        <button disabled={!isValid}>palkkaa!</button>
+        <Button ref={buttonRef} disabled={!isValid}>
+          palkkaa!
+        </Button>
       </div>
     </form>
   );

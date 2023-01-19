@@ -13,7 +13,7 @@ module.exports = {
     "plugin:prettier/recommended",
     "plugin:jsx-a11y/recommended"
   ],
-  plugins: ["@typescript-eslint", "@emotion", "jsx-a11y", "prettier"],
+  plugins: ["@typescript-eslint", "jsx-a11y", "prettier"],
   parser: "@typescript-eslint/parser",
   rules: {
     // "@typescript-eslint/explicit-function-return-type": 0,

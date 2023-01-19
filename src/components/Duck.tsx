@@ -3,6 +3,7 @@ import { DuckType } from "../services/duck";
 import cx from "clsx";
 import { duckClass, femaleClass, maleClass } from "./Duck.css";
 import Button from "./Button";
+import { useQuotations } from "./DuckContext";
 
 // import styles from "./Duck.module.pcss";
 
@@ -16,6 +17,7 @@ const Duck: FC<Props> = ({ duck, fireDuck }) => {
     [maleClass]: duck.gender === 0,
     [femaleClass]: duck.gender === 1
   });
+  const quotations = useQuotations();
 
   return (
     <div className={classes}>
@@ -25,6 +27,8 @@ const Duck: FC<Props> = ({ duck, fireDuck }) => {
         </div>
 
         <div>{duck.age.toFixed(3)}</div>
+
+        <div>{quotations[0]}</div>
       </div>
       <div>
         <Button
