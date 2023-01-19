@@ -1,7 +1,11 @@
 type Props = {};
 
 import { FC, useEffect, useState, useCallback, useMemo } from "react";
-import { DuckType, getDucks } from "../services/duck";
+
+import type { DuckProspectType, DuckType } from "../services/duck";
+import * as duckService from "../services/duck";
+import CleanseButton from "./debug/CleanseButton";
+
 import DuckList from "./DuckList";
 import HireDuckForm from "./HireDuckForm";
 
@@ -10,7 +14,7 @@ const isGood = (duck: DuckType): boolean => {
     return true;
   }
 
-  if (duck.age >= 10) {
+  if (duck.age >= 7) {
     return false;
   }
 
@@ -22,23 +26,27 @@ const App: FC<Props> = () => {
   const [secondsElapsed, setSecondsElapsed] = useState<number>(0);
 
   const fireDuck = useCallback(
-    (id: DuckType["id"]) => {
-      setDucks((oldDucks) => oldDucks.filter((d) => d.id !== id));
+    async (id: DuckType["id"]) => {
+      const firedDuck = await duckService.fireDuck(id);
+      setDucks((oldDucks) => oldDucks.filter((d) => d.id !== firedDuck.id));
     },
     [setDucks]
   );
 
   const hireDuck = useCallback(
-    (prospect: DuckType) => {
+    async (prospect: DuckProspectType) => {
+      const hiredDuck = await duckService.hireDuck(prospect);
+
+      console.log(hiredDuck, "hip hap huu");
+
       // setDucks((oldDucks) => oldDucks.concat(prospect));
-      setDucks((oldDucks) => [...oldDucks, prospect]);
+      setDucks((oldDucks) => [...oldDucks, hiredDuck]);
     },
     [setDucks]
   );
 
   useEffect(() => {
     console.log("RENDER APP");
-    // getDucks().then(setDucks);
 
     return () => {
       console.log("RENDER APP CLEANUP");
@@ -55,7 +63,7 @@ const App: FC<Props> = () => {
   }, [ducks]);
 
   useEffect(() => {
-    getDucks().then(setDucks);
+    duckService.getDucks().then(setDucks);
 
     return () => {
       console.log("NOTHING HAS CHANGED CLEANUP");
@@ -81,6 +89,8 @@ const App: FC<Props> = () => {
   return (
     <main>
       <h1>Hyper ERP 50000 Pro</h1>
+
+      <CleanseButton />
 
       <p>
         Sekunteja kulunut: <strong>{secondsElapsed}</strong>

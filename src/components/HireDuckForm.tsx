@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import { DuckType } from "../services/duck";
+import { DuckProspectType, DuckType } from "../services/duck";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -12,7 +12,7 @@ const schema = z.object({
 type FormInputType = z.infer<typeof schema>;
 
 type Props = {
-  hireDuck: (prospect: DuckType) => void;
+  hireDuck: (prospect: DuckProspectType) => void;
 };
 
 const HireDuckForm: FC<Props> = ({ hireDuck }) => {
@@ -24,15 +24,35 @@ const HireDuckForm: FC<Props> = ({ hireDuck }) => {
     mode: "onChange",
     resolver: zodResolver(schema),
     defaultValues: {
-      firstName: "Benedictus",
-      lastName: "McDuck"
+      firstName: "Aapeli",
+      lastName: "Aargh"
     }
   });
 
-  console.log(register("firstName"));
-
   return (
-    <form>
+    <form
+      onSubmit={handleSubmit((values, e) => {
+        e?.preventDefault();
+
+        const prospect: DuckProspectType = {
+          ...values,
+          relatedToCEO: true,
+          gender: 2,
+          id: crypto.randomUUID(),
+          birthDay: "2021-07-03",
+          isCannibal: false,
+          migratesForWinters: false,
+          salary: 0,
+          isAdmin: false,
+          wingedness: "r",
+          email: "puuppa@poksy.org"
+        };
+
+        console.log("HIRING PROSPECT", prospect);
+
+        hireDuck(prospect);
+      })}
+    >
       <div>
         <label>Etunimi</label>
         <input {...register("firstName")} />

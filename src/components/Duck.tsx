@@ -19,7 +19,11 @@ const Duck: FC<Props> = ({ duck, fireDuck }) => {
   return (
     <div className={classes}>
       <div>
-        <strong>{duck.lastName}</strong>, {duck.firstName}
+        <div>
+          <strong>{duck.lastName}</strong>, {duck.firstName}
+        </div>
+
+        <div>{duck.age.toFixed(3)}</div>
       </div>
       <div>
         <button
