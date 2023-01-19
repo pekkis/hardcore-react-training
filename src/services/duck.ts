@@ -14,6 +14,7 @@ export type DuckType = {
   migratesForWinters: boolean;
   isCannibal: boolean;
   email: string;
+  isBeingFired?: boolean;
   // lus: "foo" | "bar" | "lus";
 };
 

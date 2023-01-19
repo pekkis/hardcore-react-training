@@ -1,56 +1,21 @@
 type Props = {};
 
-import { FC, useEffect, useState, useCallback, useMemo } from "react";
+import { FC, useEffect } from "react";
 
-import type { DuckProspectType, DuckType } from "../services/duck";
-import * as duckService from "../services/duck";
 import CleanseButton from "./debug/CleanseButton";
 
-import DuckList from "./DuckList";
-import HireDuckForm from "./HireDuckForm";
-
-import { sortWith, ascend, prop } from "ramda";
-
-const isGood = (duck: DuckType): boolean => {
-  if (duck.relatedToCEO) {
-    return true;
-  }
-
-  if (duck.age >= 7) {
-    return false;
-  }
-
-  return true;
-};
-
-const duckSorter = sortWith<DuckType>([
-  ascend(prop("lastName")),
-  ascend(prop("firstName"))
-]);
+import useDuckStore from "../services/store";
+import Spinner from "./Spinner";
+import { Outlet } from "react-router-dom";
 
 const App: FC<Props> = () => {
-  const [ducks, setDucks] = useState<DuckType[]>([]);
-  const [secondsElapsed, setSecondsElapsed] = useState<number>(0);
+  const ducks = useDuckStore((state) => Object.values(state.ducks));
+  const isLoading = useDuckStore((state) => state.loadingOperations > 0);
+  const getDucks = useDuckStore((state) => state.getDucks);
 
-  const fireDuck = useCallback(
-    async (id: DuckType["id"]) => {
-      const firedDuck = await duckService.fireDuck(id);
-      setDucks((oldDucks) => oldDucks.filter((d) => d.id !== firedDuck.id));
-    },
-    [setDucks]
-  );
+  const incrementor = useDuckStore((state) => state.incrementSecondsElapsed);
 
-  const hireDuck = useCallback(
-    async (prospect: DuckProspectType) => {
-      const hiredDuck = await duckService.hireDuck(prospect);
-
-      console.log(hiredDuck, "hip hap huu");
-
-      // setDucks((oldDucks) => oldDucks.concat(prospect));
-      setDucks((oldDucks) => [...oldDucks, hiredDuck]);
-    },
-    [setDucks]
-  );
+  const isInitialized = useDuckStore((state) => state.isInitialized);
 
   useEffect(() => {
     console.log("RENDER APP");
@@ -70,62 +35,37 @@ const App: FC<Props> = () => {
   }, [ducks]);
 
   useEffect(() => {
-    duckService.getDucks().then(setDucks);
-
+    getDucks();
     return () => {
       console.log("NOTHING HAS CHANGED CLEANUP");
     };
-  }, []);
+  }, [getDucks]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setSecondsElapsed((s) => s + 1);
+      incrementor();
     }, 1000);
 
     return () => {
       clearInterval(interval);
     };
-  }, [setSecondsElapsed]);
+  }, [incrementor]);
 
-  const [goodDucks, badDucks] = useMemo(() => {
-    /*
-    const sortedDucks = [...ducks].sort((a, b) => {
-      const lastNameComparison = a.lastName.localeCompare(b.lastName);
-
-      if (lastNameComparison !== 0) {
-        return lastNameComparison;
-      }
-
-      return a.firstName.localeCompare(b.firstName);
-    });
-    */
-
-    const sortedDucks = duckSorter(ducks);
-
-    const goodDucks = sortedDucks.filter(isGood);
-    const badDucks = sortedDucks.filter((d) => !isGood(d));
-    return [goodDucks, badDucks];
-  }, [ducks]);
+  if (!isInitialized) {
+    return <main>HOLD YOUR HORSES!</main>;
+  }
 
   return (
     <main>
       <h1>Hyper ERP 50000 Pro</h1>
 
+      {isLoading && <Spinner />}
+
       <CleanseButton />
 
-      <p>
-        Sekunteja kulunut: <strong>{secondsElapsed}</strong>
-      </p>
+      <hr />
 
-      <HireDuckForm hireDuck={hireDuck} />
-
-      {ducks.length === 0 && <p>Ei ankkoja...</p>}
-
-      <h2>Pahat ankat</h2>
-      <DuckList fireDuck={fireDuck} ducks={badDucks} showMetadata />
-
-      <h2>Hyvät ankat</h2>
-      <DuckList fireDuck={fireDuck} ducks={goodDucks} showMetadata />
+      <Outlet />
     </main>
   );
 };

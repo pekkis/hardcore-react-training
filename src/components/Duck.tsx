@@ -4,6 +4,7 @@ import cx from "clsx";
 import { duckClass, femaleClass, maleClass } from "./Duck.css";
 import Button from "./Button";
 import { useQuotations } from "./DuckContext";
+import { Link } from "react-router-dom";
 
 // import styles from "./Duck.module.pcss";
 
@@ -19,11 +20,15 @@ const Duck: FC<Props> = ({ duck, fireDuck }) => {
   });
   const quotations = useQuotations();
 
+  // throw new Error("Kakka on osunut tuulettimeen");
+
   return (
     <div className={classes}>
       <div>
         <div>
-          <strong>{duck.lastName}</strong>, {duck.firstName}
+          <Link to={`/duck/${duck.id}`}>
+            <strong>{duck.lastName}</strong>, {duck.firstName}
+          </Link>
         </div>
 
         <div>{duck.age.toFixed(3)}</div>
@@ -32,6 +37,7 @@ const Duck: FC<Props> = ({ duck, fireDuck }) => {
       </div>
       <div>
         <Button
+          disabled={duck.isBeingFired}
           className="ribuslk"
           onClick={() => {
             fireDuck(duck.id);
