@@ -6,6 +6,7 @@ export const duckClass = style({
   margin: "1rem 0",
   backgroundColor: "rgb(255 255 255 / 80%)",
   borderRadius: "10px",
+  display: "flex",
 
   ":hover": {
     borderRadius: "15px"

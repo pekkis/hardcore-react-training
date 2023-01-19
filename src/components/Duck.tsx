@@ -2,6 +2,7 @@ import { FC, memo } from "react";
 import { DuckType } from "../services/duck";
 import cx from "clsx";
 import { duckClass, femaleClass, maleClass } from "./Duck.css";
+import Button from "./Button";
 
 // import styles from "./Duck.module.pcss";
 
@@ -26,13 +27,14 @@ const Duck: FC<Props> = ({ duck, fireDuck }) => {
         <div>{duck.age.toFixed(3)}</div>
       </div>
       <div>
-        <button
+        <Button
+          className="ribuslk"
           onClick={() => {
             fireDuck(duck.id);
           }}
         >
           voimauta
-        </button>
+        </Button>
       </div>
     </div>
   );

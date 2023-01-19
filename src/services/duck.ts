@@ -1,17 +1,5 @@
 import { getBaseUrl } from "./instance";
 
-/*
- email: "fake@email.com",
-          salary: 0,
-          isAdmin: false,
-          birthDay: "2022-07-01",
-          wingedness: "r",
-          gender: 0,
-          migratesForWinters: false,
-          isCannibal: true,
-          relatedToCEO: true
-          */
-
 export type DuckType = {
   id: string;
   firstName: string;

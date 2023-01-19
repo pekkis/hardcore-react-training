@@ -9,6 +9,8 @@ import CleanseButton from "./debug/CleanseButton";
 import DuckList from "./DuckList";
 import HireDuckForm from "./HireDuckForm";
 
+import { sortWith, ascend, prop } from "ramda";
+
 const isGood = (duck: DuckType): boolean => {
   if (duck.relatedToCEO) {
     return true;
@@ -20,6 +22,11 @@ const isGood = (duck: DuckType): boolean => {
 
   return true;
 };
+
+const duckSorter = sortWith<DuckType>([
+  ascend(prop("lastName")),
+  ascend(prop("firstName"))
+]);
 
 const App: FC<Props> = () => {
   const [ducks, setDucks] = useState<DuckType[]>([]);
@@ -81,8 +88,22 @@ const App: FC<Props> = () => {
   }, [setSecondsElapsed]);
 
   const [goodDucks, badDucks] = useMemo(() => {
-    const goodDucks = ducks.filter(isGood);
-    const badDucks = ducks.filter((d) => !isGood(d));
+    /*
+    const sortedDucks = [...ducks].sort((a, b) => {
+      const lastNameComparison = a.lastName.localeCompare(b.lastName);
+
+      if (lastNameComparison !== 0) {
+        return lastNameComparison;
+      }
+
+      return a.firstName.localeCompare(b.firstName);
+    });
+    */
+
+    const sortedDucks = duckSorter(ducks);
+
+    const goodDucks = sortedDucks.filter(isGood);
+    const badDucks = sortedDucks.filter((d) => !isGood(d));
     return [goodDucks, badDucks];
   }, [ducks]);
 
@@ -104,7 +125,7 @@ const App: FC<Props> = () => {
       <DuckList fireDuck={fireDuck} ducks={badDucks} showMetadata />
 
       <h2>Hyvät ankat</h2>
-      <DuckList fireDuck={fireDuck} ducks={goodDucks} />
+      <DuckList fireDuck={fireDuck} ducks={goodDucks} showMetadata />
     </main>
   );
 };
