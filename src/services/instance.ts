@@ -3,30 +3,18 @@ export type TestDuckType = {
   appId: string;
 };
 
-export const getAppId = (): string | undefined => {
-  const predefinedAppId = import.meta.env.VITE_APPID;
+export const getAppId = (): string => {
+  const predefinedAppId = process.env.NEXT_PUBLIC_APPID;
 
   if (typeof predefinedAppId !== "string") {
-    return undefined;
+    throw new Error("APP ID IS NOT DEFINED!!!");
   }
 
-  if (predefinedAppId) {
-    return predefinedAppId;
-  }
-
-  const appId = window.localStorage.getItem("appId");
-
-  if (appId) {
-    return appId;
-  }
-
-  const newAppId = crypto.randomUUID();
-  window.localStorage.setItem("appId", newAppId);
-  return newAppId;
+  return predefinedAppId;
 };
 
 export const getBaseUrl = (): string =>
-  `${import.meta.env.VITE_API}/${getAppId()}`;
+  `${process.env.NEXT_PUBLIC_API}/${getAppId()}`;
 
 export const getTestData = async (): Promise<TestDuckType[]> => {
   const response = await fetch(`${getBaseUrl()}/duck`);

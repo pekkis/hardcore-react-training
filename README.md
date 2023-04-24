@@ -15,9 +15,9 @@ that you read and follow these instructions **carefully** and **before** the act
 ## Computer Requirements
 
 - MacOS, Linux or Windows all work.
-  - In Windows, this works in WSL 2. I often use that myself when hobby coding. Native Windows? I have no clue, I do not care.
-  - If it doesn't work, just boot it up in some Linux virtual machine.
-- Current stable version of Node.js (18.x) and a "normal" default version of `npm` that comes bundled with the Node version (8.x). It might work on older or newer Node versions too, but no guarantees! Use `nvm` for example to manage multiple Node versions.
+  - In Windows, this works in WSL 2. I often use that myself when hobby coding.
+  - If it doesn't work, just boot it up in some Linux virtual machine or docker or whatnot.
+- Current stable version of Node.js (18.x) and a "normal" default version of `npm` that comes bundled with the Node version. This might work on older or newer Node versions too, but no guarantees! Use `nvm` for example to manage multiple Node versions.
 - An editor / IDE that supports all the good stuff. I use [VSCode](https://code.visualstudio.com/) myself, and because of the LiveShare code sharing env, you probably should use it too during this training.
 
 ## Installation
@@ -66,6 +66,7 @@ I should use in addition / replacing one of these, please holler!
 
 - `pnpm i`
 - `cp .env.example .env`
+- edit `.env.example`. Make **NEXT_PUBLIC_APPID** be something that you'd think is unique for yourself.
 - `pnpm run start`
 
 Open browser and go to http://localhost:3000 (if that is reserved for some reason, you might get another port but the terminal should tell you that).
@@ -77,7 +78,7 @@ There should be more instructions / assertions on the screen. Please read carefu
 
 - `pnpm run build`
 
-Look at `dist/` folder.
+Look at `build/` folder.
 
 ## Licensing
 

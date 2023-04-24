@@ -1,14 +1,13 @@
-import { FC, lazy, Suspense, useEffect, useState } from "react";
-import DucklingSuckler from "./DucklingSuckler";
-import duckling from "../../assets/duckling-2.png";
-import HotReloadTester from "./HotReloadTester";
-import BackendChecker from "./BackendChecker";
 import cx from "clsx";
+import { FC, lazy, Suspense, useEffect, useState } from "react";
+import duckling from "../../assets/duckling-2.png";
+import BackendChecker from "./BackendChecker";
+import HotReloadTester from "./HotReloadTester";
 
 const Three = lazy(() => import("./Three"));
 
-import { HelmetProvider, Helmet } from "react-helmet-async";
-
+import Form from "./Form";
+import VanillaExtractChecker from "./VanillaExtractChecker";
 import {
   codeClass,
   contentClass,
@@ -19,8 +18,6 @@ import {
   paddedClass,
   welcomeClass
 } from "./Welcome.css";
-import VanillaExtractChecker from "./VanillaExtractChecker";
-import Form from "./Form";
 
 const Welcome: FC = () => {
   const [suckledSeconds, setSuckledSeconds] = useState<number>(0);
@@ -34,11 +31,23 @@ const Welcome: FC = () => {
     };
   }, []);
 
+  if (!process.env.NEXT_PUBLIC_APPID) {
+    return (
+      <div>
+        <pre>process.env.NEXT_PUBLIC_APPID</pre> is missing.
+        <ul>
+          <li>cp .env.example .env.local</li>
+          <li>
+            edit .env.local, make NEXT_PUBLIC_APPID be something that you would
+            think is uniquely yours!
+          </li>
+        </ul>
+      </div>
+    );
+  }
+
   return (
-    <HelmetProvider>
-      <Helmet>
-        <title>Suuuuckliiiiing on a duuuuckliiing</title>
-      </Helmet>
+    <>
       <header className={headerClass}>
         <h1 className={headingClass.cute}>
           💖 Welcome to Pekkis&apos; Hardcore React Training 💖
@@ -54,8 +63,6 @@ const Welcome: FC = () => {
         <div className={flexClass}>
           <div className={cx(welcomeClass, contentClass)}>
             <h2>A Grand Welcome</h2>
-
-            <DucklingSuckler name="Pekkis" />
             <Form />
           </div>
 
@@ -67,7 +74,7 @@ const Welcome: FC = () => {
 
           <div className={contentClass}>
             <img
-              src={duckling}
+              src={duckling.src}
               alt="A succulent duckling"
               className={duckImageClass}
             />
@@ -111,7 +118,7 @@ const Welcome: FC = () => {
           <VanillaExtractChecker />
         </div>
       </main>
-    </HelmetProvider>
+    </>
   );
 };
 

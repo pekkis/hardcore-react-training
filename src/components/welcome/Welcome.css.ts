@@ -1,7 +1,6 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { sprinkles } from "./sprinkles.css";
 import vars from "./theme.css";
-// import ducklings from "../../assets/duckling-pattern.png";
 
 export const flexClass = style({
   display: "block",
@@ -56,7 +55,7 @@ globalStyle("html", {
   // backgroundColor: "rgb(0 0 0)",
   fontFamily: vars.fontFamily.main,
   fontSize: vars.fontSize.medium,
-  backgroundImage: `url("/src/assets/duckling-pattern.png")`
+  backgroundImage: `url(/duckling-pattern.png)`
 });
 
 export const headingClass = styleVariants({
