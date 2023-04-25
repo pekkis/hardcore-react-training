@@ -65,14 +65,15 @@ I should use in addition / replacing one of these, please holler!
 - `npm i -g pnpm` (just once to install pnpm)
 
 - `pnpm i`
-- `cp .env.example .env`
-- edit `.env.example`. Make **NEXT_PUBLIC_APPID** be something that you'd think is unique for yourself.
+- `cp .env.example .env.local`
+- edit `.env.example`. Invent **NEXT_PUBLIC_APPID** to be a string that you'd think could be unique for yourself. It's an unique id for your pre-built backend hosted in firebase.
 - `pnpm run start`
 
 Open browser and go to http://localhost:3000 (if that is reserved for some reason, you might get another port but the terminal should tell you that).
+
 You should see a "beautiful" welcoming screen that contains a duckling and might suggest that some people like suckling on ducklings.
 
-There should be more instructions / assertions on the screen. Please read carefully. If you're happy with what you see, you're done.
+There should be more instructions / assertions on the screen. Please read them carefully. If you're happy with what you see, you're done.
 
 ### Build
 
