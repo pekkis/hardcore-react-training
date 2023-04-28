@@ -15,7 +15,7 @@ const CleanseButton: FC = () => {
       }}
     >
       {isCleansing && <Spinner />}
-      Cleanse the flock
+      Cleanse all data
     </button>
   );
 };
