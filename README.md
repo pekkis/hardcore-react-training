@@ -67,7 +67,7 @@ I should use in addition / replacing one of these, please holler!
 - `pnpm i`
 - `cp .env.example .env.local`
 - edit `.env.example`. Invent **NEXT_PUBLIC_APPID** to be a string that you'd think could be unique for yourself. It's an unique id for your pre-built backend hosted in firebase.
-- `pnpm run start`
+- `pnpm run dev`
 
 Open browser and go to http://localhost:3000 (if that is reserved for some reason, you might get another port but the terminal should tell you that).
 

@@ -5,7 +5,7 @@ import {
   TestDuckType,
   cleanse
 } from "../../services/instance";
-import CleanseButton from "../debug/CleanseButton";
+import CleanseButton from "../debug/Cleanser";
 import Spinner from "../debug/Spinner";
 import { codeClass } from "./Welcome.css";
 
