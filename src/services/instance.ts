@@ -1,4 +1,6 @@
-export type TestDuckType = {
+import axios from "axios";
+
+export type TestQuarticleType = {
   id: string;
   appId: string;
 };
@@ -16,11 +18,9 @@ export const getAppId = (): string => {
 export const getBaseUrl = (): string =>
   `${process.env.NEXT_PUBLIC_API}/${getAppId()}`;
 
-export const getTestData = async (): Promise<TestDuckType[]> => {
-  const response = await fetch(`${getBaseUrl()}/duck`);
-  const data = (await response.json()) as TestDuckType[];
-
-  return data;
+export const getTestData = async (): Promise<TestQuarticleType[]> => {
+  const ret = await axios.get<TestQuarticleType[]>(`${getBaseUrl()}/quarticle`);
+  return ret.data;
 };
 
 export const cleanse = async (): Promise<boolean> => {
