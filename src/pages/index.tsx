@@ -84,6 +84,7 @@ export default function Home({ quarticles, now }: Props): JSX.Element {
         {quarticles.map((quarticle) => {
           return (
             <Headline
+              id={quarticle.id}
               key={quarticle.id}
               lead={quarticle.lead}
               headline={quarticle.headline}
