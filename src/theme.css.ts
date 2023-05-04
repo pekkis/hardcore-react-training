@@ -8,5 +8,8 @@ export const theme = createGlobalTheme(":root", {
   padding: {
     small: "0.5em",
     medium: "1em"
+  },
+  radiuses: {
+    mighty: "15px"
   }
 });

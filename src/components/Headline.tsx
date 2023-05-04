@@ -1,6 +1,6 @@
 import { Quarticle } from "@/services/quarticle";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, memo } from "react";
 
 type Props = {
   id: Quarticle["id"];
@@ -21,4 +21,4 @@ const Headline: FC<Props> = (props) => {
   );
 };
 
-export default Headline;
+export default memo(Headline);

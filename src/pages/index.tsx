@@ -1,10 +1,12 @@
 import Clock from "@/components/Clock";
 import Headline from "@/components/Headline";
+import QuarticleList from "@/components/QuarticleList";
+import CleanseButton from "@/components/debug/Cleanser";
 import { Quarticle, getQuarticles } from "@/services/quarticle";
 import { DateTime } from "luxon";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type Props = {
   quarticles: Quarticle[];
@@ -30,6 +32,10 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
 };
 
 // const Home = FC<Props>
+
+const isQuarticleImportant = (q: Quarticle): boolean => {
+  return q.priority === "high";
+};
 
 export default function Home({ quarticles, now }: Props): JSX.Element {
   useEffect(() => {
@@ -67,6 +73,14 @@ export default function Home({ quarticles, now }: Props): JSX.Element {
 
   // console.log("quarticles", { quarticles });
 
+  const [important, normal] = useMemo(() => {
+    console.log("tussen hofer");
+
+    const important = quarticles.filter(isQuarticleImportant);
+    const normal = quarticles.filter((q) => !isQuarticleImportant(q));
+    return [important, normal];
+  }, [quarticles]);
+
   return (
     <>
       <Head>
@@ -81,16 +95,12 @@ export default function Home({ quarticles, now }: Props): JSX.Element {
         <Clock zone="Europe/Helsinki" time={dt} />
         <Clock darkMode zone="Asia/Tokyo" time={dt} />
 
-        {quarticles.map((quarticle) => {
-          return (
-            <Headline
-              id={quarticle.id}
-              key={quarticle.id}
-              lead={quarticle.lead}
-              headline={quarticle.headline}
-            />
-          );
-        })}
+        <CleanseButton />
+
+        {important.length > 0 && (
+          <QuarticleList title={<h2>Mucho Grande</h2>} quarticles={important} />
+        )}
+        <QuarticleList title={<h2>Non Importante</h2>} quarticles={normal} />
       </main>
     </>
   );
