@@ -9,7 +9,9 @@ type Props = {
 const Comment: FC<Props> = ({ comment }) => {
   return (
     <div className={commentClass}>
-      <div className={emailClass}>{comment.email}</div>
+      <div className={emailClass}>
+        {comment.email} ({comment.publishedAt})
+      </div>
       <div>{comment.comment}</div>
     </div>
   );
