@@ -1,10 +1,17 @@
+import duckling from "@/assets/duckling-2.png";
 import cx from "clsx";
-import { FC, lazy, Suspense, useEffect, useState } from "react";
-import duckling from "../../assets/duckling-2.png";
+import { FC } from "react";
 import BackendChecker from "./BackendChecker";
 import HotReloadTester from "./HotReloadTester";
 
-const Three = lazy(() => import("./Three"));
+import dynamic from "next/dynamic";
+
+const Three = dynamic(() => import("./Three"), {
+  ssr: false,
+  loading() {
+    return <div>LADDARE...</div>;
+  }
+});
 
 import Form from "./Form";
 import VanillaExtractChecker from "./VanillaExtractChecker";
@@ -20,17 +27,6 @@ import {
 } from "./Welcome.css";
 
 const Welcome: FC = () => {
-  const [suckledSeconds, setSuckledSeconds] = useState<number>(0);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSuckledSeconds((ss) => ss + 1);
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
   if (!process.env.NEXT_PUBLIC_APPID) {
     return (
       <div>
@@ -67,9 +63,7 @@ const Welcome: FC = () => {
           </div>
 
           <div>
-            <Suspense fallback={<span>laddare...</span>}>
-              <Three suckledSeconds={suckledSeconds} />
-            </Suspense>
+            <Three />
           </div>
 
           <div className={contentClass}>
@@ -88,7 +82,7 @@ const Welcome: FC = () => {
           <h2>More Attention!</h2>
 
           <p>
-            I might do some late surprise changes so you should{" "}
+            I will probably do some late changes so you should{" "}
             <code>git pull</code> and <code>pnpm i</code> come the first
             training day&apos;s morning.
           </p>

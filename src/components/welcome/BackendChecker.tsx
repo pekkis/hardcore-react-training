@@ -1,22 +1,19 @@
+"use client";
 import { FC, useState, useEffect } from "react";
-import {
-  getTestData,
-  getBaseUrl,
-  cleanse,
-  TestQuarticleType
-} from "../../services/instance";
+import { getBaseUrl, cleanse } from "../../services/instance";
 import CleanseButton from "../debug/Cleanser";
 import Spinner from "../debug/Spinner";
 import { codeClass } from "./Welcome.css";
+import { QuarticleType, getQuarticles } from "@/services/quarticle";
 
 const BackendChecker: FC = () => {
   const [backendIsChecked, setBackendIsChecked] = useState<boolean>(false);
-  const [quarticles, setQuarticles] = useState<TestQuarticleType[]>([]);
+  const [quarticles, setQuarticles] = useState<QuarticleType[]>([]);
   const url = getBaseUrl();
 
   useEffect(() => {
     const initializer = async () => {
-      const quarticles = await getTestData();
+      const { quarticles } = await getQuarticles();
 
       if (quarticles.length !== 0) {
         setQuarticles(quarticles);
@@ -25,7 +22,7 @@ const BackendChecker: FC = () => {
       }
 
       await cleanse();
-      const cleansed = await getTestData();
+      const { quarticles: cleansed } = await getQuarticles();
       setQuarticles(cleansed);
       setBackendIsChecked(true);
     };

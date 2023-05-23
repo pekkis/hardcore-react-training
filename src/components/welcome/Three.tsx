@@ -1,14 +1,9 @@
+"use client";
+
 import * as THREE from "three";
 import { FC, useRef, useState } from "react";
-import { extend, Canvas, useFrame } from "@react-three/fiber";
-import { Text } from "troika-three-text";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { containerClass } from "./Three.css";
-
-const fonts = {
-  Roboto: "https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxM.woff"
-};
-
-extend({ Text });
 
 function Box(props: JSX.IntrinsicElements["mesh"]) {
   const ref = useRef<THREE.Mesh>(null);
@@ -16,6 +11,9 @@ function Box(props: JSX.IntrinsicElements["mesh"]) {
   const [active, setActive] = useState(false);
 
   useFrame(() => {
+    if (!ref.current) {
+      return;
+    }
     ref.current.rotation.z += 0.01;
     ref.current.rotation.x += 0.01;
   });
@@ -24,14 +22,13 @@ function Box(props: JSX.IntrinsicElements["mesh"]) {
       {...props}
       ref={ref}
       scale={active ? 1.5 : 1}
-      onClick={(event) => {
-        console.log(event, "e");
-        setActive(!active);
+      onClick={() => {
+        setActive((current) => !current);
       }}
       onPointerOver={() => {
         setHover(true);
       }}
-      onPointerOut={(event) => {
+      onPointerOut={() => {
         setHover(false);
       }}
     >
@@ -41,47 +38,7 @@ function Box(props: JSX.IntrinsicElements["mesh"]) {
   );
 }
 
-const Pexu = ({ suckledSeconds }: { suckledSeconds: number }) => {
-  const text = `${suckledSeconds} seconds \nsuckling on a\nduckling!`;
-
-  const ref = useRef();
-  useFrame(() => {
-    ref.current.rotation.z -= -0.01;
-  });
-
-  const [opts, setOpts] = useState({
-    font: "arial",
-    fontSize: 5,
-    color: "#000",
-    maxWidth: 300,
-    lineHeight: 1,
-    letterSpacing: 0,
-    textAlign: "center",
-    materialType: "MeshPhongMaterial"
-  });
-
-  return (
-    <text
-      ref={ref}
-      position-z={-15}
-      rotation={[0.3, 0, 0]}
-      {...opts}
-      text={text}
-      font={fonts[opts.font]}
-      anchorX="center"
-      anchorY="middle"
-      position={[0, 0, -15]}
-    >
-      <meshPhongMaterial attach="material" color={opts.color} />
-    </text>
-  );
-};
-
-type Props = {
-  suckledSeconds: number;
-};
-
-const Three: FC<Props> = ({ suckledSeconds }) => {
+const Three: FC = () => {
   return (
     <div className={containerClass}>
       <Canvas
@@ -92,9 +49,11 @@ const Three: FC<Props> = ({ suckledSeconds }) => {
         }}
       >
         <ambientLight />
+
         <pointLight position={[10, 10, 10]} />
 
-        <Pexu suckledSeconds={suckledSeconds} />
+        <Box position={[-3, 3, -1]} />
+        <Box position={[2, -3, 0]} />
         <Box position={[-3, -1.5, 0]} />
         <Box position={[3, 2, -2]} />
       </Canvas>

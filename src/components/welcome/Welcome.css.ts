@@ -1,5 +1,4 @@
 import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
-import { sprinkles } from "./sprinkles.css";
 import vars from "./theme.css";
 
 export const flexClass = style({
