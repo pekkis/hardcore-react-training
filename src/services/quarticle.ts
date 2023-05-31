@@ -19,6 +19,8 @@ export type QuarticleType = {
   id: string;
   mainImage: string;
   content: ContentBlock;
+  lead: string;
+  headline: string;
 };
 
 type GetQuarticlesResponse = {

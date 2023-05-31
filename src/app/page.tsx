@@ -1,4 +1,6 @@
-import Welcome from "@/components/welcome/Welcome";
+import Headlines from "@/components/Headlines";
+import { getQuarticles } from "@/services/quarticle";
+import { DateTime } from "luxon";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,9 +8,20 @@ export const metadata: Metadata = {
 };
 
 export default async function IndexPage() {
+  const serverTime = DateTime.utc()
+    .minus({
+      hours: 5
+    })
+    .toISO() as string;
+
+  // Tää ei oikeasti vielä ole sil selvä.
+  const ret = await getQuarticles(0, 10);
+
   return (
     <div>
-      <Welcome />
+      <h2>Tuoreimmat uutiset</h2>
+
+      <Headlines headlines={ret.quarticles} serverTime={serverTime} />
     </div>
   );
 }
