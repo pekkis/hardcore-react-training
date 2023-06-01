@@ -1,8 +1,18 @@
 import axios from "axios";
 import { getBaseUrl } from "./instance";
+import { sortBy } from "ramda";
 
-export type QommentType = unknown;
-export type NewQommentType = unknown;
+export type NewQommentType = {
+  email: string;
+  comment: string;
+};
+
+export type QommentType = NewQommentType & {
+  id: string;
+  appId: string;
+  articleId: string;
+  publishedAt: string;
+};
 
 export const postQomment = async (
   quarticleId: string,
@@ -23,5 +33,8 @@ export const getQomments = async (
     `${getBaseUrl()}/quarticle/${quarticleId}/comment`
   );
 
-  return ret.data;
+  //  sort the god damn commeeeeents, just a quick kludgero
+  // import { sortBy } from "ramda";
+  const sorted = sortBy((q) => q.publishedAt, ret.data);
+  return sorted.reverse();
 };

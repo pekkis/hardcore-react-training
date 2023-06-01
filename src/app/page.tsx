@@ -1,3 +1,4 @@
+import Clocks from "@/components/Clocks";
 import Headlines from "@/components/Headlines";
 import { getQuarticles } from "@/services/quarticle";
 import { DateTime } from "luxon";
@@ -21,7 +22,8 @@ export default async function IndexPage() {
     <div>
       <h2>Tuoreimmat uutiset</h2>
 
-      <Headlines headlines={ret.quarticles} serverTime={serverTime} />
+      <Clocks serverTime={serverTime} />
+      <Headlines headlines={ret.quarticles} />
     </div>
   );
 }
