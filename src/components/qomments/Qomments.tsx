@@ -1,6 +1,12 @@
 "use client";
 
-import { NewQommentType, getQomments, postQomment } from "@/services/qomments";
+import {
+  NewQommentType,
+  QommentType,
+  deleteQomment,
+  getQomments,
+  postQomment
+} from "@/services/qomments";
 import {
   QueryClient,
   QueryClientProvider,
@@ -12,6 +18,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { FC, useRef } from "react";
 import Spinner from "../debug/Spinner";
 import Qomment from "./Qomment";
+import QommentForm from "./QommentForm";
 
 type Props = {
   quarticleId: string;
@@ -36,31 +43,38 @@ const CommentsView: FC<CommentsViewProps> = ({ quarticleId }) => {
     },
     onSuccess: () => {
       client.invalidateQueries({
-        queryKey: []
+        queryKey: ["qomments", quarticleId]
+      });
+    }
+  });
+
+  const deleteQommentMutation = useMutation({
+    mutationFn: async (qomment: QommentType) => {
+      return deleteQomment(qomment.articleId, qomment.id);
+    },
+    onSuccess: () => {
+      client.invalidateQueries({
+        queryKey: ["qomments", quarticleId]
       });
     }
   });
 
   return (
     <section>
-      <button
-        onClick={async () => {
-          const newQomment = {
-            email: "pekkisx@gmail.com",
-            comment: "Paras kommentti ikinä!"
-          };
-
-          postQommentMutation.mutate(newQomment);
-        }}
-      >
-        postaa kommentti
-      </button>
+      <QommentForm postQomment={postQommentMutation.mutate} />
 
       {isLoading && <Spinner />}
 
       {data &&
         data.map((qomment) => {
-          return <Qomment key={qomment.id} qomment={qomment} />;
+          return (
+            <Qomment
+              isDeleting={deleteQommentMutation.variables?.id === qomment.id}
+              deleteQomment={deleteQommentMutation.mutate}
+              key={qomment.id}
+              qomment={qomment}
+            />
+          );
         })}
     </section>
   );

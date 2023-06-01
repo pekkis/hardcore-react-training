@@ -2,12 +2,15 @@ import { QommentType } from "@/services/qomments";
 import { DateTime } from "luxon";
 import { FC } from "react";
 import * as style from "./Qomment.css";
+import Button from "../Button";
 
 type Props = {
   qomment: QommentType;
+  deleteQomment: (qomment: QommentType) => void;
+  isDeleting?: boolean;
 };
 
-const Qomment: FC<Props> = ({ qomment }) => {
+const Qomment: FC<Props> = ({ qomment, deleteQomment, isDeleting = false }) => {
   return (
     <div className={style.qomment}>
       <div>
@@ -24,6 +27,17 @@ const Qomment: FC<Props> = ({ qomment }) => {
         )
       </div>
       <div>{qomment.comment}</div>
+
+      <div>
+        <Button
+          disabled={isDeleting}
+          onClick={() => {
+            deleteQomment(qomment);
+          }}
+        >
+          poista
+        </Button>
+      </div>
     </div>
   );
 };

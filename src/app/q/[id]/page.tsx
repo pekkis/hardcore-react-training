@@ -2,8 +2,18 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import * as quarticleService from "@/services/quarticle";
-import { cache } from "react";
-import Qomments from "@/components/qomments/Qomments";
+import { Suspense, cache, lazy } from "react";
+import dynamic from "next/dynamic";
+import Latest from "./Latest";
+
+//import Qomments from "@/components/qomments/Qomments";
+
+// const Qomments = lazy(() => import("@/components/qomments/Qomments"));
+
+const Qomments = dynamic(() => import("@/components/qomments/Qomments"), {
+  loading: () => <div>LADDAROINEN</div>,
+  ssr: false
+});
 
 type Props = {
   params: {
@@ -47,6 +57,11 @@ export default async function QuarticlePage(props: Props) {
     <div>
       <h1>{quarticle.headline}</h1>
 
+      <aside>
+        <Suspense fallback={<div>laddaroinens</div>}>
+          <Latest />
+        </Suspense>
+      </aside>
       <p>{JSON.stringify(quarticle.content)}</p>
 
       <Qomments quarticleId={quarticle.id} />
