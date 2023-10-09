@@ -16,7 +16,7 @@ that you read and follow these instructions **carefully** and **before** the act
 - MacOS, Linux or Windows all work.
   - In Windows, this works in **WSL 2**. I often use that myself when hobby coding.
   - If it doesn't work, just boot it up in some Linux virtual machine or docker or whatnot.
-- Current stable version of Node.js (18.x) and a "normal" default version of `npm` that comes bundled with the Node version. This might work on older or newer Node versions too, but who knows! Use `nvm` (for example) to manage multiple Node versions.
+- Current stable version of Node.js (20.x, 18.x) and a "normal" default version of `npm` that comes bundled with the Node version. This might work on older or newer Node versions too, but who knows! Use `nvm` (for example) to manage multiple Node versions.
 - An editor / IDE that supports all the good stuff. I use [VSCode](https://code.visualstudio.com/) myself, and because of the LiveShare code sharing environment, you really probably should use it too during this training.
 
 ## Installation
@@ -61,7 +61,7 @@ I should use in addition / replacing one of these, please holler!
 
 ### Develop
 
-- `npm i -g pnpm` (just once to install pnpm)
+- `npm i -g pnpm` (just once to install pnpm if you don't still have it)
 
 - `pnpm i`
 - `cp .env.example .env.local`
