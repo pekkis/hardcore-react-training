@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 
+import "normalize.css";
+
 type Props = {
   children: ReactNode;
 };
 
-import "normalize.css";
-
-export default async function RootLayout({ children }: Props) {
+export default async function WelcomeLayout({ children }: Props) {
   return (
     <html lang="fi">
       <head>

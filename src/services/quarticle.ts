@@ -1,27 +1,48 @@
 import axios from "axios";
 import { getBaseUrl } from "./instance";
 
-type MarkdownBlock = {
+export type MarkdownBlockType = {
   type: "markdown";
+  text: string;
 };
 
-type HeadingBlock = {
+export type HeadingBlockType = {
   type: "heading";
+  level: number;
+  text: string;
 };
 
-type ImageBlock = {
+export type ImageBlockType = {
   type: "image";
+  alt: string;
+  url: string;
 };
 
-type ContentBlock = MarkdownBlock | HeadingBlock | ImageBlock;
+export type ContentBlockType =
+  | MarkdownBlockType
+  | HeadingBlockType
+  | ImageBlockType;
+
+export type QuarticleAuthor = {
+  id: string;
+  firstName: string;
+  lastName: string;
+};
+
+export type QuarticlePriority = "high" | "normal";
 
 export type QuarticleType = {
   id: string;
   mainImage: string;
-  content: ContentBlock;
+  publishedAt: string;
+  author: QuarticleAuthor;
+  priority: QuarticlePriority;
+  headline: string;
+  lead: string;
+  content: ContentBlockType[];
 };
 
-type GetQuarticlesResponse = {
+export type GetQuarticlesResponse = {
   quarticles: QuarticleType[];
   totalQuarticles: number;
 };

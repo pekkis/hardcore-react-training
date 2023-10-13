@@ -25,7 +25,6 @@ import {
   paddedClass,
   welcomeClass
 } from "./Welcome.css";
-import StyledChecker from "./StyledChecker";
 
 const Welcome: FC = () => {
   if (!process.env.NEXT_PUBLIC_APPID) {
@@ -111,9 +110,6 @@ const Welcome: FC = () => {
           </p>
 
           <VanillaExtractChecker />
-          <StyledChecker>
-            Another div just for the sake of tech validation
-          </StyledChecker>
         </div>
       </main>
     </>

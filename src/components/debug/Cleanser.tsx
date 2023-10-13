@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, useState } from "react";
 import { cleanse } from "../../services/instance";
 import Spinner from "./Spinner";
