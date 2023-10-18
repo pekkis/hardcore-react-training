@@ -6,7 +6,7 @@ It is very important to follow these instructions _before_ the training day so w
 
 Start by joining the Discord (link below) server. I would recommend the desktop version of the software.
 
-https://discord.gg/vHJNBWSP4 (This link should be alive for 30 days)
+https://discord.gg/HeW9qc3kF (This link should be alive for 30 days)
 
 After you have joined, you can clone / fork the following repo and set the coding environment up.
 
