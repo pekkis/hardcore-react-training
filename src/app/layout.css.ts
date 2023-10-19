@@ -7,6 +7,8 @@ globalStyle("html", {
   fontFamily: theme.fontFamily.base,
   fontSize: theme.fontSize.body,
   backgroundImage: `url(${bg.src})`
+  // width: "100%",
+  // height: "100%"
 });
 
 globalStyle("body", {

@@ -1,8 +1,13 @@
 "use client";
 
-import { EnrichedCurrencyRates } from "@/services/currency";
-import { FC, useDeferredValue, useEffect, useMemo, useState } from "react";
+import { EnrichedCurrencyRates, getCurrencyRates } from "@/services/currency";
+import { FC, useCallback, useDeferredValue, useMemo, useState } from "react";
 import RatesTable from "./RatesTable";
+import { DateTime } from "luxon";
+import { YEAR_MONTH_DAY } from "@/services/date";
+import Controls from "./Controls";
+
+// import {} from "react-icons/";
 
 type Props = {
   initialRates: EnrichedCurrencyRates;
@@ -33,15 +38,38 @@ const Currency: FC<Props> = ({ initialRates }) => {
 
   // useCallback
 
+  const changeDate = useCallback(
+    async (changeInDays: number) => {
+      const current = DateTime.fromISO(rates.date);
+      const nextDate = current.plus({ days: changeInDays });
+
+      try {
+        const nextRates = await getCurrencyRates(
+          nextDate.toFormat(YEAR_MONTH_DAY)
+        );
+        setRates(nextRates);
+      } catch (e) {
+        setRates({
+          date: nextDate.toFormat(YEAR_MONTH_DAY),
+          rates: {}
+        });
+      }
+    },
+    [rates.date]
+  );
+
   return (
     <section>
-      <input
-        value={filter}
-        type="text"
-        onChange={(e) => {
-          setFilter(e.target.value);
-        }}
-      />
+      <Controls date={rates.date} changeDate={changeDate} />
+      <div>
+        <input
+          value={filter}
+          type="text"
+          onChange={(e) => {
+            setFilter(e.target.value);
+          }}
+        />
+      </div>
 
       <RatesTable rates={filteredRates} />
     </section>

@@ -1,9 +1,19 @@
 import axios from "axios";
 import { getBaseUrl } from "./instance";
 
-export type NewCommentType = unknown;
+import { z } from "zod";
 
-export type CommentType = unknown;
+export const commentSchema = z.object({
+  comment: z.string().min(10),
+  email: z.string().email()
+});
+
+export type NewCommentType = z.infer<typeof commentSchema>;
+
+export type CommentType = NewCommentType & {
+  id: string;
+  publishedAt?: string;
+};
 
 export const postComment = async (
   quarticleId: string,

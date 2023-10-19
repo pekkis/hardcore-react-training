@@ -1,9 +1,8 @@
 import { CurrencyRecord } from "@/services/currency";
-import { doNothing } from "@/services/util";
 import { FC, memo } from "react";
 
 type Props = {
-  rates: [abbreviation: string, CurrencyRecord][];
+  rates: [abbreviation: string, record: CurrencyRecord][];
 };
 
 const RatesTable: FC<Props> = ({ rates }) => {
