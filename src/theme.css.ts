@@ -11,6 +11,10 @@ export const theme = createGlobalTheme(":root", {
     white: "rgb(255 255 255)"
   },
 
+  borderRadius: {
+    plump: "10px"
+  },
+
   fontFamily: {
     base: "Comic Sans MS"
   },

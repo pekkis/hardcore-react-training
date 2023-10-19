@@ -11,12 +11,11 @@ type Props = {
   postComment: (comment: NewCommentType) => void;
 };
 
-const CommentsForm: FC<Props> = ({ postComment, handleReset }) => {
+const CommentsForm: FC<Props> = ({ postComment }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
-    reset
+    formState: { errors, isValid }
   } = useForm<NewCommentType>({
     mode: "onChange",
     resolver: zodResolver(commentSchema),
@@ -35,8 +34,6 @@ const CommentsForm: FC<Props> = ({ postComment, handleReset }) => {
         console.log("DATA", data);
 
         postComment(data);
-
-        handleReset(reset);
       })}
     >
       <div>

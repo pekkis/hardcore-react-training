@@ -33,17 +33,17 @@ export default async function IndexPage() {
   console.log("rates", rates);
 
   return (
-    <div className={styles.page}>
-      <div>
-        <Headlines quarticles={quarticlesResponse.quarticles} />
-      </div>
-
-      <div>
+    <div className={styles.grid}>
+      <div className={styles.currencies}>
         <Currency initialRates={rates} />
       </div>
 
-      <div>
+      <div className={styles.clock}>
         <Clocks initialDate={now} />
+      </div>
+
+      <div className={styles.latest}>
+        <Headlines quarticles={quarticlesResponse.quarticles} />
       </div>
     </div>
   );

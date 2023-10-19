@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import { FC } from "react";
 import CommentsForm from "./CommentForm";
 import { NewCommentType, getComments, postComment } from "@/services/comments";
@@ -14,7 +16,7 @@ type Props = {
 const Comments: FC<Props> = ({ quarticleId }) => {
   const client = useQueryClient();
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: () => {
       return getComments(quarticleId);
     },
@@ -40,17 +42,13 @@ const Comments: FC<Props> = ({ quarticleId }) => {
     <div>
       <h3>comments for {quarticleId}</h3>
 
-      <CommentsForm
-        postComment={mutation.mutateAsync}
-        handleSuccess={(fn) => {
-          fn();
-        }}
-      />
+      <CommentsForm postComment={mutation.mutateAsync} />
 
       {isLoading && <Spinner />}
 
       {data
         ?.toSorted((a, b) => {
+          // @ts-ignore
           return a!.publishedAt < b!.publishedAt ? 1 : -1;
         })
         .map((comment) => {
