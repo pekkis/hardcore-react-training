@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
 import "normalize.css";
+import "./global.css";
 
 type Props = {
   children: ReactNode;
