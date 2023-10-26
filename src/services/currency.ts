@@ -20,8 +20,10 @@ export type EnrichedCurrencyRates = {
   rates: Record<CurrencyName, CurrencyRecord>;
 };
 
+// async / await
+
 export const getCurrencyRates = async (
-  date: string
+  date: string // '2023-10-26'
 ): Promise<EnrichedCurrencyRates> => {
   try {
     const ret = await axios.get<CurrencyRates>(

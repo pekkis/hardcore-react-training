@@ -1,4 +1,5 @@
 import Clocks, { ClockConfiguration } from "@/components/Clocks";
+import Currencies from "@/components/currencies/Currencies";
 import { DateTime } from "luxon";
 
 const clocks: ClockConfiguration[] = [
@@ -16,12 +17,14 @@ const clocks: ClockConfiguration[] = [
   }
 ];
 
-export default function IndexPage() {
+export default async function IndexPage() {
   const now = DateTime.local().toUnixInteger();
 
   return (
     <div>
       <h1>Kvauppalehti 5000</h1>
+
+      <Currencies time={now} />
 
       <Clocks time={now} clocks={clocks} />
     </div>

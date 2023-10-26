@@ -19,7 +19,7 @@ const Clock: FC<Props> = ({ time, zone, locale = "fi" }) => {
   const isBusinessHours = dt.hour >= 8 && dt.hour <= 15;
 
   const classes = cx(styles.clock, {
-    [styles.nightTime]: isBusinessHours
+    [styles.nightTime]: !isBusinessHours
   });
 
   return (
