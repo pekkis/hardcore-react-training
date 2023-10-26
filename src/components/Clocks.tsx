@@ -2,6 +2,7 @@
 
 import { FC, useState, useEffect } from "react";
 import Clock from "./Clock";
+import useTime from "@/hooks/useTime";
 
 export type ClockConfiguration = {
   zone: string;
@@ -24,33 +25,7 @@ function Clocks2(props: Props): JSX.Element {
 // const tussi = (x) => x + 5;
 
 const Clocks: FC<Props> = ({ clocks, time }) => {
-  const [current, setCurrent] = useState(time);
-
-  useEffect(() => {
-    console.log("HIP HEI JOKA RENDERÖINNILLÄ");
-  });
-
-  useEffect(() => {
-    console.log("HIP HEI CURRENT", current);
-  }, [current]);
-
-  useEffect(() => {
-    console.log("HIP HEI VAIN KUN MIKÄÄN EI KOSKAAN MUUTU");
-
-    const interval = setInterval(() => {
-      console.log("I AM CHANGING!!!!");
-      setCurrent((prev) => prev + 1);
-    }, 1000);
-
-    // return undefined;
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  // no side effects
-  // setTime(555);
+  const current = useTime(time);
 
   return (
     <div>

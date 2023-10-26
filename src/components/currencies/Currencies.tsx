@@ -18,7 +18,9 @@ const filterBySearch = (search: string, abbreviation: string) => {
 
 const Currencies: FC<Props> = ({ time }) => {
   const [rates, setRates] = useState<EnrichedCurrencyRates>();
+
   const [filterBy, setFilterBy] = useState("");
+  // useDeferredValue()
 
   const [ratesDateTime, setRatesDateTime] = useState(
     DateTime.fromSeconds(time)
@@ -56,6 +58,7 @@ const Currencies: FC<Props> = ({ time }) => {
     return <Spinner />;
   }
 
+  // useMemo()
   const entries = Object.entries(rates.rates);
   const ratesList = entries.map((entry) => {
     return {
@@ -63,11 +66,11 @@ const Currencies: FC<Props> = ({ time }) => {
       value: entry[1].value
     };
   });
-
   const filteredRatesList = ratesList.filter((r) => {
     return filterBySearch(filterBy, r.abbreviation);
   });
 
+  // useCallback()
   const handleChangeDate = (nextDate: DateTime) => {
     console.log(nextDate, "hip huu");
 
