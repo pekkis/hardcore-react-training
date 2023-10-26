@@ -2,8 +2,9 @@
 
 import { NewCommentType, commentSchema } from "@/services/comments";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FC } from "react";
+import { FC, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
+import Input from "../duck-ui/Input";
 // import Button from "../duck-ui/Button";
 // import Input from "../duck-ui/Input";
 
@@ -25,6 +26,14 @@ const CommentsForm: FC<Props> = ({ postComment }) => {
     }
   });
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  /*
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+  */
+
   // todo: unique ids
 
   return (
@@ -38,7 +47,7 @@ const CommentsForm: FC<Props> = ({ postComment }) => {
     >
       <div>
         <label htmlFor="name">sähköposti</label>
-        <input {...register("email")} />
+        <Input {...register("email")} />
         {errors.email?.message && <span>{errors.email.message}</span>}
       </div>
 

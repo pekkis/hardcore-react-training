@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="fi">
       <body>
         <Providers>
-          <Header />
+          <Header UserBar={({ bar }) => <span>Lub Bleu {bar}</span>}></Header>
 
           <Main>{children}</Main>
           <Footer />

@@ -1,5 +1,3 @@
-"use client";
-
 import { MarkdownBlockType } from "@/services/quarticle";
 import { FC } from "react";
 
