@@ -18,10 +18,6 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: false
-  },
-  // this nags but it must be here for vanilla extract for some reason. ugh
-  experimental: {
-    appDir: true
   }
 };
 

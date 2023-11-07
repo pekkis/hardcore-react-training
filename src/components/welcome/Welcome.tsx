@@ -98,9 +98,7 @@ const Welcome: FC = () => {
             should update without a hard reload (look at the next paragraph).
           </p>
 
-          <p>
-            <HotReloadTester />
-          </p>
+          <HotReloadTester />
 
           <p>
             If you are using Linux and it doesn not work or stops working, you
