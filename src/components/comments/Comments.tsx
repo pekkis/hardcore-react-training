@@ -31,6 +31,8 @@ const Comments: FC<Props> = ({ quarticleId }) => {
     }
   });
 
+  console.log("MUTATION IDLE", mutation.isIdle);
+
   const sorted = reverse(
     sortBy((c) => {
       return c.publishedAt;
@@ -41,7 +43,10 @@ const Comments: FC<Props> = ({ quarticleId }) => {
     <section className={styles.comments}>
       <h3>Comments for #{quarticleId}</h3>
 
-      <CommentsForm postComment={mutation.mutateAsync} />
+      <CommentsForm
+        postComment={mutation.mutateAsync}
+        canPost={!mutation.isPending}
+      />
 
       {isLoading && <Spinner />}
 

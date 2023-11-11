@@ -18,3 +18,13 @@ export const kvaak = style({
   width: "50px",
   marginRight: theme.spacing.s
 });
+
+export const link = style({
+  ":link": {
+    color: theme.colors.black,
+    textDecoration: "none"
+  },
+  ":visited": {
+    color: theme.colors.black
+  }
+});

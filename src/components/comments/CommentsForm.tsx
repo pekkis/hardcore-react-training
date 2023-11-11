@@ -7,9 +7,10 @@ import Input from "../duck-ui/Input";
 
 type Props = {
   postComment: (comment: NewCommentType) => void;
+  canPost: boolean;
 };
 
-const CommentsForm: FC<Props> = ({ postComment }) => {
+const CommentsForm: FC<Props> = ({ postComment, canPost }) => {
   const {
     register,
     handleSubmit,
@@ -46,7 +47,7 @@ const CommentsForm: FC<Props> = ({ postComment }) => {
       </div>
 
       <div>
-        <Button disabled={!isValid} type="submit">
+        <Button disabled={!isValid || !canPost} type="submit">
           lähetä commentore
         </Button>
       </div>

@@ -4,6 +4,10 @@ import Clocks from "../Clocks";
 import Currencies from "../Currencies";
 import LatestQuarticles from "../LatestQuarticles";
 import * as styles from "./IndexPageView.css";
+import QuackCast from "../quackcast/QuackCast";
+import QuackTube from "../quacktube/QuackTube";
+import { Suspense } from "react";
+import Spinner from "../debug/Spinner";
 
 type Props = {
   serverTime: string;
@@ -29,6 +33,18 @@ export default function IndexPageView({
           <h2>Maailmankello</h2>
 
           <Clocks serverTime={serverTime} />
+        </section>
+
+        <section className={styles.quackcast}>
+          <Suspense fallback={<Spinner />}>
+            <QuackCast />
+          </Suspense>
+        </section>
+
+        <section className={styles.quacktube}>
+          <Suspense fallback={<Spinner />}>
+            <QuackTube />
+          </Suspense>
         </section>
 
         <section className={styles.currencies}>

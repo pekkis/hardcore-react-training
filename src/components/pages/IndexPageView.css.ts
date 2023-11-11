@@ -10,6 +10,7 @@ export const grid = style({
 
   gridTemplateAreas: `
   "clock clock clock"
+  "quackcast quacktube quacktube"
   "latest latest currency"
   `,
 
@@ -20,6 +21,8 @@ export const grid = style({
 
       gridTemplateAreas: `
       "clock"
+      "quackcast"
+      "quacktube"
       "latest"
       "currency"
       `
@@ -46,4 +49,18 @@ export const latest = style({
   padding: theme.spacing.s,
   backgroundColor: "rgb(0 0 255 / .10)",
   gridArea: "latest"
+});
+
+export const quackcast = style({
+  borderRadius: theme.borderRadius.plump,
+  padding: theme.spacing.s,
+  backgroundColor: "rgb(0 255 255 / .10)",
+  gridArea: "quackcast"
+});
+
+export const quacktube = style({
+  borderRadius: theme.borderRadius.plump,
+  padding: theme.spacing.s,
+  backgroundColor: "rgb(255 0 255 / .10)",
+  gridArea: "quacktube"
 });
