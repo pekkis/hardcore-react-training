@@ -4,6 +4,5 @@ export const checkerClass = style({
   backgroundColor: "hotpink",
   color: "black",
   padding: "1em",
-  margin: "1em 0",
-  borderRadius: "5px"
+  margin: "1em 0"
 });

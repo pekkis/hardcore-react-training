@@ -34,8 +34,8 @@ const Welcome: FC = () => {
         <ul>
           <li>cp .env.example .env.local</li>
           <li>
-            edit .env.local, make NEXT_PUBLIC_APPID be something{" "}
-            <em>alphanumeric</em> that you would think is uniquely yours!
+            edit .env.local, make NEXT_PUBLIC_APPID be something that you would
+            think is uniquely yours!
           </li>
         </ul>
       </div>
@@ -98,7 +98,9 @@ const Welcome: FC = () => {
             should update without a hard reload (look at the next paragraph).
           </p>
 
-          <HotReloadTester />
+          <p>
+            <HotReloadTester />
+          </p>
 
           <p>
             If you are using Linux and it doesn not work or stops working, you

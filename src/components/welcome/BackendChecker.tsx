@@ -59,6 +59,11 @@ const BackendChecker: FC = () => {
         contact the teacher.
       </p>
 
+      <p>
+        Also open the browser dev console and assert that it has all kinds of
+        stuff. Warnings and whatnot!
+      </p>
+
       {quarticles.length > 0 && (
         <iframe
           title="check-json"
