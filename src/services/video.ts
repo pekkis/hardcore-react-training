@@ -1,3 +1,5 @@
+import { random } from "./random";
+
 export type QuackTubeVideo = {
   title: string;
   url: string;
@@ -18,3 +20,14 @@ export const videos: QuackTubeVideo[] = [
       "https://en.wikipedia.org/wiki/File:Canard_colvert_femelle_et_ses_petits_(Lac_Archambault,_Qc).webm"
   }
 ];
+
+export const getVideos = async (): Promise<QuackTubeVideo[]> => {
+  return new Promise((resolve) => {
+    setTimeout(
+      () => {
+        resolve(videos);
+      },
+      random.integer(100, 300)
+    );
+  });
+};
