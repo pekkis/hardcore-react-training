@@ -9,8 +9,6 @@ const QuackTube = async () => {
 
   return (
     <div>
-      <h2>Kvaaktuubi</h2>
-
       <Videos videos={videos} />
     </div>
   );

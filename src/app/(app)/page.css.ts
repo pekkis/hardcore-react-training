@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import theme from "../theme.css";
+import theme from "@/theme.css";
 
 export const grid = style({
   display: "grid",
@@ -9,6 +9,7 @@ export const grid = style({
   gridTemplateRows: "auto",
 
   gridTemplateAreas: `
+  "welcome welcome welcome"
   "clock clock clock"
   "quackcast quacktube quacktube"
   "latest latest currency"
@@ -20,6 +21,7 @@ export const grid = style({
       gridTemplateRows: "auto",
 
       gridTemplateAreas: `
+      "welcome"
       "clock"
       "quackcast"
       "quacktube"
@@ -28,6 +30,10 @@ export const grid = style({
       `
     }
   }
+});
+
+export const welcome = style({
+  gridArea: "welcome"
 });
 
 export const clock = style({

@@ -22,10 +22,10 @@ const LatestQuarticles: FC<Props> = ({ quarticles }) => {
 
   return (
     <div>
-      <h2>Suur-kvartikkelit</h2>
+      <h3>Suur-kvartikkelit</h3>
       <Headlines quarticles={importantQuarticles} />
 
-      <h2>Tavan kvartikkelit</h2>
+      <h3>Tavan kvartikkelit</h3>
       <Headlines quarticles={normalQuarticles} />
     </div>
   );

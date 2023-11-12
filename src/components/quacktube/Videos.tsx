@@ -7,6 +7,7 @@ import { QuackTubeVideo } from "@/services/video";
 import { FC, useEffect, useRef, useState } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 import * as styles from "./Videos.css";
+import Paragraph from "../duck-ui/Paragraph";
 
 type Props = {
   videos: QuackTubeVideo[];
@@ -78,6 +79,8 @@ const Videos: FC<Props> = ({ videos }) => {
 
         <progress max="100" value={progress.toFixed(0)} />
       </div>
+
+      <Paragraph>{video.description}</Paragraph>
     </div>
   );
 };

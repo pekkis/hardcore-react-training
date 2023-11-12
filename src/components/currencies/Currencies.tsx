@@ -38,8 +38,6 @@ const Currencies: FC<Props> = ({ rates }) => {
 
   return (
     <div className={styles.currenciesClass}>
-      <h2>Valuutat</h2>
-
       <p>
         <button onClick={() => changeDate(-1)}>&laquo;</button>
         {currentRates.date}

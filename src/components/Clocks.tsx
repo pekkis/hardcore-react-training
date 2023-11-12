@@ -39,14 +39,13 @@ const Clocks: FC<Props> = ({ serverTime }) => {
     <div className={styles.clocks}>
       {setup.map((setup) => {
         return (
-          <div key={setup.name} className={styles.clock}>
-            <Clock
-              time={time}
-              locale={setup.locale}
-              name={setup.name}
-              zone={setup.zone}
-            />
-          </div>
+          <Clock
+            key={setup.zone}
+            time={time}
+            locale={setup.locale}
+            name={setup.name}
+            zone={setup.zone}
+          />
         );
       })}
     </div>

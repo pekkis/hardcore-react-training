@@ -4,6 +4,7 @@
 
 import { QuackCastAudio } from "@/services/audio";
 import { FC } from "react";
+import * as styles from "./Player.css";
 
 type Props = {
   clip: QuackCastAudio;
@@ -11,7 +12,7 @@ type Props = {
 
 const Player: FC<Props> = ({ clip }) => {
   return (
-    <audio controls src={clip.url}>
+    <audio className={styles.audio} controls src={clip.url}>
       audio
     </audio>
   );

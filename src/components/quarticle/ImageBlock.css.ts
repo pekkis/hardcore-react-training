@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import theme from "../theme.css";
+import theme from "@/theme.css";
 
 export const image = style({
   width: "100%",

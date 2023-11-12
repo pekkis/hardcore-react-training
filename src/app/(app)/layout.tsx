@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import "normalize.css";
 import Main from "@/components/Main";
 
-import "@/components/Layout.css";
+import "./layout.css";
 import Provider from "@/components/Provider";
 
 type Props = {
