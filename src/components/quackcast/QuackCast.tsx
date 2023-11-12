@@ -2,8 +2,6 @@ import { getQuackCast } from "@/services/audio";
 import Player from "./Player";
 import Paragraph from "../duck-ui/Paragraph";
 
-type Props = {};
-
 const QuackCast = async () => {
   const quackCast = await getQuackCast();
   return (

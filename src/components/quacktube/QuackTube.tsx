@@ -1,8 +1,5 @@
 import { getVideos } from "@/services/video";
-import { FC } from "react";
 import Videos from "./Videos";
-
-type Props = {};
 
 const QuackTube = async () => {
   const videos = await getVideos();

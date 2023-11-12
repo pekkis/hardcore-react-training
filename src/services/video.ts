@@ -11,7 +11,7 @@ export const videos: QuackTubeVideo[] = [
   {
     title: "Mustat joutsenet",
     description:
-      "Taloustilanteen mustat joutsenet huolettavat monia. Toimittajamme kysyi joutsenilta, mitä he ajattelevat tämänhetkisestä taloustilanteesta.",
+      "Taloustilanteen ennakoimattomat tapahtumat huolettavat monia. Toimittajamme kysyi mustilta joutsenilta, mitä he itse ajattelevat nykyisestä taloustilantesta ja omasta vaikutuksestaan vuoden 2024 kasvunäkymiin.",
     url: "https://hardcore-react-training.s3.eu-north-1.amazonaws.com/black-swan.webm",
     attribution:
       "The Nature Box, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons"
