@@ -2,7 +2,6 @@ import * as quarticleService from "@/services/quarticle";
 import { Metadata } from "next";
 
 import Clocks from "@/components/Clocks";
-import Currencies from "@/components/Currencies";
 import LatestQuarticles from "@/components/LatestQuarticles";
 import Spinner from "@/components/debug/Spinner";
 import QuackCast from "@/components/quackcast/QuackCast";
