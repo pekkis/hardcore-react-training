@@ -1,18 +1,12 @@
 import { getQuackCast } from "@/services/audio";
 import Player from "./Player";
-import Paragraph from "../duck-ui/Paragraph";
+import Markdown from "@/components/Markdown";
 
 const QuackCast = async () => {
   const quackCast = await getQuackCast();
   return (
     <div>
-      <Paragraph>
-        Päivän kvaakcastissa toimitusjohtajat <strong>Gaylord McAnkka</strong>,{" "}
-        <strong>Kulta-Into Pii</strong> ja <strong>Kroisos Pennonen</strong>{" "}
-        keskustelevat talouden ennakoimattomista tapahtumista, niin kutsutuista
-        mustista joutsenista.
-      </Paragraph>
-
+      <Markdown>{quackCast.description}</Markdown>
       <Player clip={quackCast} />
     </div>
   );

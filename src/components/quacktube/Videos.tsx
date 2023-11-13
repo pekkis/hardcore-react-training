@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 "use client";
 
 import { QuackTubeVideo } from "@/services/video";
 import { FC, useState } from "react";
-import Paragraph from "../duck-ui/Paragraph";
 import Player from "./Player";
+import * as styles from "./Videos.css";
+import Markdown from "../Markdown";
 
 type Props = {
   videos: QuackTubeVideo[];
@@ -15,7 +18,7 @@ const Videos: FC<Props> = ({ videos }) => {
   const video = videos[index];
 
   return (
-    <div>
+    <div className={styles.videos}>
       <ul>
         {videos.map((video, i) => {
           return (
@@ -37,7 +40,7 @@ const Videos: FC<Props> = ({ videos }) => {
       </ul>
 
       <Player url={video.url} />
-      <Paragraph>{video.description}</Paragraph>
+      <Markdown>{video.description}</Markdown>
     </div>
   );
 };
