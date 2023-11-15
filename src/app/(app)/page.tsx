@@ -15,7 +15,7 @@ import MainHeading from "@/components/duck-ui/MainHeading";
 import Paragraph from "@/components/duck-ui/Paragraph";
 
 export const metadata: Metadata = {
-  title: "Pääsivu - Kvauppalehti"
+  title: "Pääsivu - Ankkojen Talouselämä"
 };
 
 export default async function IndexPage() {
@@ -28,10 +28,10 @@ export default async function IndexPage() {
     <div>
       <div className={styles.grid}>
         <section className={styles.welcome}>
-          <MainHeading>Tervetuloa Kvauppalehden sivuille</MainHeading>
+          <MainHeading>Tervetuloa Ankkojen Talouselämän sivuille</MainHeading>
 
           <Paragraph>
-            Kvauppalehti on Internetin johtava kvauppapaikka!!!
+            Ankkojen Talouselämä on Internetin johtava kvauppapaikka!!!
           </Paragraph>
         </section>
 
@@ -49,7 +49,7 @@ export default async function IndexPage() {
         </section>
 
         <section className={styles.quacktube}>
-          <SectionHeading>Kvaaktuubi</SectionHeading>
+          <SectionHeading>Videot</SectionHeading>
 
           <Suspense fallback={<Spinner />}>
             <QuackTube />

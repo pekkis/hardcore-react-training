@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const cert = await getQuarticle(params.id);
     return {
-      title: `${cert.headline} - Kvauppalehti`
+      title: `${cert.headline} - Ankkojen Talouselämä`
     };
   } catch (e) {
     notFound();

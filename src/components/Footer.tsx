@@ -4,7 +4,7 @@ import * as styles from "./Footer.css";
 const Footer: FC = () => {
   return (
     <footer className={styles.footer}>
-      Copyright &copy; 2023 Gaylord McDuck Enterprises
+      Copyright &copy; 2023 Ankkojen Talouselämä
     </footer>
   );
 };

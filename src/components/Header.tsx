@@ -7,9 +7,13 @@ import Link from "next/link";
 const Header: FC = () => {
   return (
     <header className={styles.header}>
-      <img src={kvaak.src} className={styles.kvaak} alt="Kvauppalehden logo" />
+      <img
+        src={kvaak.src}
+        className={styles.kvaak}
+        alt="Ankkojen Talouselämä"
+      />
       <Link className={styles.link} href="/">
-        Kvauppalehti
+        Ankkojen Talouselämä
       </Link>
     </header>
   );
