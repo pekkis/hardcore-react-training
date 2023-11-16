@@ -31,7 +31,7 @@ export const getVideos = async (): Promise<QuackTubeVideo[]> => {
       () => {
         resolve(videos);
       },
-      random.integer(100, 300)
+      random.integer(500, 800)
     );
   });
 };
