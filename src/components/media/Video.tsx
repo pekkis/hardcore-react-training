@@ -2,10 +2,11 @@
 
 "use client";
 
-import { FC, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import * as styles from "./Video.css";
 
-import { FaPlay, FaPause } from "react-icons/fa";
+import { FaPlay, FaPause, FaPoop } from "react-icons/fa";
+import Button from "../duck-ui/Button";
 
 type Props = {
   source: string;
@@ -14,9 +15,15 @@ type Props = {
 const Video: FC<Props> = ({ source }) => {
   const ref = useRef<HTMLVideoElement>(null);
 
+  console.log("SOURCE", source);
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [time, setTime] = useState<number | undefined>();
   const [duration, setDuration] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    ref.current?.load();
+  }, [source]);
 
   const progress = duration && time ? (time / duration) * 100 : 0;
 
@@ -44,7 +51,7 @@ const Video: FC<Props> = ({ source }) => {
         <source src={source} type="video/webm" />
       </video>
       <div>
-        <button
+        <Button
           onClick={() => {
             if (ref.current?.paused) {
               return ref.current?.play();
@@ -54,7 +61,20 @@ const Video: FC<Props> = ({ source }) => {
           }}
         >
           {!isPlaying ? <FaPlay /> : <FaPause />}
-        </button>
+        </Button>
+
+        <Button
+          variant="secondary"
+          onClick={() => {
+            if (!document.pictureInPictureElement) {
+              ref.current?.requestPictureInPicture();
+            } else {
+              document.exitPictureInPicture();
+            }
+          }}
+        >
+          <FaPoop />
+        </Button>
         <progress max="100" value={progress} />
       </div>
     </div>

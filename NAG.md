@@ -1,0 +1,1 @@
+- kellot menee epäsynkkaan sillä aikaa kun Gaylord käy vaklaamassa Duck Economistia!

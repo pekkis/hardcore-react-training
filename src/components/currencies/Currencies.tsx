@@ -3,11 +3,19 @@
 import { EnrichedCurrencyRates, getCurrencyRates } from "@/services/currency";
 import { YEAR_MONTH_DAY } from "@/services/date";
 import { DateTime } from "luxon";
-import { FC, useDeferredValue, useEffect, useMemo, useState } from "react";
+import {
+  FC,
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useState
+} from "react";
 import Spinner from "../debug/Spinner";
 import { useQuery } from "@tanstack/react-query";
 import CurrencyTable from "./CurrencyTable";
 import Controls from "./Controls";
+import Input from "../duck-ui/Input";
 
 type Props = {
   serverTime: number;
@@ -65,16 +73,39 @@ const Currencies: FC<Props> = ({ serverTime }) => {
     [deferredFilter, rates]
   );
 
+  const handleChange = useCallback(
+    (newDate: string) => {
+      console.log("NEW DATE", newDate);
+      setDate(newDate);
+    },
+    [setDate]
+  );
+
   if (isLoading) {
     return <Spinner />;
   }
 
   if (isError) {
-    return <div>oh noes</div>;
+    return (
+      <div>
+        <Controls date={date} handleChange={handleChange} />
+        oh noes errore
+      </div>
+    );
   }
 
   if (!data) {
-    return <div>oh ei</div>;
+    return (
+      <div>
+        <Controls
+          date={date}
+          handleChange={(newDate) => {
+            console.log("NEW DATE", newDate);
+            setDate(newDate);
+          }}
+        />
+      </div>
+    );
   }
 
   return (
@@ -88,7 +119,7 @@ const Currencies: FC<Props> = ({ serverTime }) => {
       />
 
       <p>
-        <input
+        <Input
           type="text"
           value={filter}
           onChange={(e) => {

@@ -2,7 +2,9 @@
 
 import { DateTime } from "luxon";
 import { FC } from "react";
-import styles from "./Clock.module.css";
+// import styles from "./Clock.module.css";
+
+import * as styles from "./Clock.css";
 
 import cx from "clsx";
 

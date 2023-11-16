@@ -10,8 +10,11 @@ export const theme = createGlobalTheme(":root", {
 
   color: {
     black: "rgb(0 0 0)",
-    white: "rgb(0 0 0)",
-    yellow: "rgb(255 255 0)"
+    white: "rgb(255 255 255)",
+    yellow: "rgb(255 255 0)",
+
+    primary: "rgb(220 220 220)",
+    secondary: "rgb(100 100 100)"
   },
 
   borderRadius: {
