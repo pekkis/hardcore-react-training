@@ -113,8 +113,6 @@ Here are some bulletin points for each coaching day. Don’t think of these subj
 - Where to go next?
 - Farewells
 
-#### If we have time and / or interest
-
 ### Feedback
 
 I've teached the course tens of times during the years. The average rating I got has been something like **4.5/5**. Most of the feedback I've gotten was left to my previous business, but here are some of the more recent comments (in both Finnish and English) from the courses I've held after my hiatus ended.
