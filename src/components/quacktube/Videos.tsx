@@ -39,7 +39,7 @@ const Videos: FC<Props> = ({ videos }) => {
         })}
       </ul>
 
-      <Player url={video.url} />
+      <Player url={video.url} type={video.type} />
       <Markdown>{video.description}</Markdown>
     </div>
   );

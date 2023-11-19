@@ -1,4 +1,5 @@
-import { random } from "./random";
+import axios from "axios";
+import { getBaseUrl } from "./instance";
 
 export type QuackCastAudio = {
   title: string;
@@ -7,22 +8,7 @@ export type QuackCastAudio = {
   attribution: string;
 };
 
-const quackCast: QuackCastAudio = {
-  title: "Podcast",
-  url: "https://hardcore-react-training.s3.eu-north-1.amazonaws.com/kvaakcast.ogg",
-  description:
-    "Päivän podcastissa toimitusjohtajat **Gaylord McAnkka**, **Kulta-Into Pii** ja **Kroisos Pennonen** keskustelevat talouden ennakoimattomista tapahtumista, niin kutsutuista mustista joutsenista.",
-  attribution:
-    "https://en.wikipedia.org/wiki/File:Mallard_(Anas_platyrhynchos)_(W1CDR0001518_BD17).ogg"
-};
-
 export const getQuackCast = async (): Promise<QuackCastAudio> => {
-  return new Promise((resolve) => {
-    setTimeout(
-      () => {
-        resolve(quackCast);
-      },
-      random.integer(500, 1000)
-    );
-  });
+  const ret = await axios.get<QuackCastAudio>(`${getBaseUrl()}/audio`);
+  return ret.data;
 };

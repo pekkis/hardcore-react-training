@@ -18,10 +18,38 @@ export type ImageBlockType = {
   url: string;
 };
 
+export type QuestionBlockType = {
+  type: "question";
+  questionId: string;
+  question: string;
+  answers: string[];
+  correctAnswer: number;
+};
+
+export type AudioBlockType = {
+  type: "audio";
+  url: string;
+  title: string;
+  description: string;
+  attribution: string;
+};
+
+export type VideoBlockType = {
+  type: "video";
+  url: string;
+  title: string;
+  description: string;
+  videoType: string;
+  attribution: string;
+};
+
 export type ContentBlockType =
   | MarkdownBlockType
   | HeadingBlockType
-  | ImageBlockType;
+  | ImageBlockType
+  | VideoBlockType
+  | AudioBlockType
+  | QuestionBlockType;
 
 export type QuarticleAuthor = {
   id: string;

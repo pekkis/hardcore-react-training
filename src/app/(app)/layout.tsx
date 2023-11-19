@@ -6,6 +6,7 @@ import "normalize.css";
 import Main from "@/components/Main";
 
 import "./layout.css";
+import "./typography.css";
 import Provider from "@/components/Provider";
 
 type Props = {

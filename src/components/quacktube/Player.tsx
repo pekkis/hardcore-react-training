@@ -10,9 +10,10 @@ import Button from "../duck-ui/Button";
 
 type Props = {
   url: string;
+  type: string;
 };
 
-const Player: FC<Props> = ({ url }) => {
+const Player: FC<Props> = ({ url, type }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [time, setTime] = useState<number | undefined>(undefined);
   const [duration, setDuration] = useState<number | undefined>(undefined);
@@ -61,7 +62,7 @@ const Player: FC<Props> = ({ url }) => {
           setTime(playerRef.current?.currentTime);
         }}
       >
-        <source src={url} type="video/webm" />
+        <source src={url} type={type} />
       </video>
 
       <div className={styles.controls}>

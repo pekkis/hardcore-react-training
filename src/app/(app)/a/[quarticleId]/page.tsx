@@ -8,7 +8,7 @@ import { notFound } from "next/navigation";
 
 type Props = {
   params: {
-    id: string;
+    quarticleId: string;
   };
 };
 
@@ -16,7 +16,7 @@ const getQuarticle = cache(quarticleService.getQuarticle);
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const cert = await getQuarticle(params.id);
+    const cert = await getQuarticle(params.quarticleId);
     return {
       title: `${cert.headline} - Ankkojen Talouselämä`
     };
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const QuarticlePage = async ({ params }: Props) => {
   try {
-    const quarticle = await getQuarticle(params.id);
+    const quarticle = await getQuarticle(params.quarticleId);
 
     return (
       <div>

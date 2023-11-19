@@ -5,6 +5,9 @@ import ImageBlock from "./ImageBlock";
 import MarkdownBlock from "./MarkdownBlock";
 import * as styles from "./QuarticleRenderer.css";
 import UnknownBlock from "./UnknownBlock";
+import VideoBlock from "./VideoBlock";
+import AudioBlock from "./AudioBlock";
+import QuestionBlock from "./QuestionBlock";
 
 type Props = {
   quarticle: QuarticleType;
@@ -27,6 +30,15 @@ const QuarticleRenderer: FC<Props> = ({ quarticle }) => {
 
           case "heading":
             return <HeadingBlock key={i} block={block} />;
+
+          case "video":
+            return <VideoBlock key={i} block={block} />;
+
+          case "audio":
+            return <AudioBlock key={i} block={block} />;
+
+          case "question":
+            return <QuestionBlock key={i} block={block} />;
 
           default:
             return <UnknownBlock key={i} block={block} />;
