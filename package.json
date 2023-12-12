@@ -39,6 +39,7 @@
     "immer": "^10.0.3",
     "luxon": "^3.4.3",
     "next": "^14.0.2",
+    "next-auth": "5.0.0-beta.3",
     "normalize.css": "^8.0.1",
     "ramda": "^0.29.1",
     "random-js": "^2.1.0",

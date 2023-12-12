@@ -21,6 +21,7 @@ export default async function RootLayout({ children }: Props) {
         <link rel="stylesheet" href="https://use.typekit.net/bjx8ola.css" />
       </head>
       <body>
+        <div id="portal"></div>
         <Provider>
           <Header />
 

@@ -5,6 +5,7 @@ import QuarticleRenderer from "@/components/quarticle/QuarticleRenderer";
 import * as quarticleService from "@/services/quarticle";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Paywall from "./Paywall";
 
 type Props = {
   params: {
@@ -31,6 +32,7 @@ const QuarticlePage = async ({ params }: Props) => {
 
     return (
       <div>
+        <Paywall />
         <QuarticleRenderer quarticle={quarticle} />
 
         <hr />

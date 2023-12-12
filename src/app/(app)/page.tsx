@@ -14,6 +14,10 @@ import SectionHeading from "@/components/duck-ui/SectionHeading";
 import MainHeading from "@/components/duck-ui/MainHeading";
 import Paragraph from "@/components/duck-ui/Paragraph";
 
+import {} from "next-auth";
+
+import { auth } from "@/auth";
+
 export const metadata: Metadata = {
   title: "Pääsivu - Ankkojen Talouselämä"
 };
@@ -23,6 +27,10 @@ export default async function IndexPage() {
   const serverTime = now.toISO() as string;
 
   const latestQuarticles = await quarticleService.getQuarticles(0, 10);
+
+  const tussi = await auth();
+
+  console.log(tussi, "tussi");
 
   return (
     <div>
