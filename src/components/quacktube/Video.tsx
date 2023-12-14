@@ -2,10 +2,11 @@
 
 /* eslint-disable jsx-a11y/media-has-caption */
 
-import { FC, Fragment, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import * as styles from "./Video.css";
 
 import { FaPlay, FaPause } from "react-icons/fa";
+import Button from "../duck-ui/Button";
 
 type Props = {
   source: string;
@@ -48,7 +49,11 @@ const Video: FC<Props> = ({ source }) => {
         onPause={() => {
           setIsPlaying(false);
         }}
-        onTimeUpdate={(e) => {
+        onTimeUpdate={() => {
+          if (!videoRef.current?.currentTime || !videoRef?.current?.duration) {
+            return;
+          }
+
           setProgress(
             (videoRef.current?.currentTime / videoRef?.current?.duration) * 100
           );
@@ -57,7 +62,7 @@ const Video: FC<Props> = ({ source }) => {
         <source type="video/webm" src={source} />
       </video>
       <div>
-        <button
+        <Button
           onClick={() => {
             if (videoRef?.current?.paused) {
               videoRef?.current?.play();
@@ -67,7 +72,7 @@ const Video: FC<Props> = ({ source }) => {
           }}
         >
           {isPlaying ? <FaPause /> : <FaPlay />}
-        </button>
+        </Button>
         <progress max="100" value={progress} />
       </div>
     </div>

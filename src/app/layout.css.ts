@@ -9,5 +9,5 @@ globalStyle("html", {
 });
 
 globalStyle("body", {
-  padding: theme.spacing.m
+  padding: 0
 });

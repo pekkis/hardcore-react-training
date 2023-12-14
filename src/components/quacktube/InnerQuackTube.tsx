@@ -17,8 +17,6 @@ const InnerQuackTube: FC<Props> = ({ videos }) => {
 
   return (
     <div>
-      <h2>QuackTube</h2>
-
       <ul>
         {videos.map((video, i) => {
           return (

@@ -12,6 +12,10 @@ export const theme = createGlobalTheme(":root", {
   },
   color: {
     black: "rgb(0 0 0)",
-    white: "rgb(255 255 255)"
+    white: "rgb(255 255 255)",
+    primary: "rgb(255 255 0)"
+  },
+  borderRadius: {
+    plump: "15px"
   }
 });

@@ -23,6 +23,10 @@ export type EnrichedCurrencyRates = {
 export const getCurrencyRates = async (
   date: string
 ): Promise<EnrichedCurrencyRates> => {
+  const url = `${getBaseUrl()}/currency/${date}`;
+
+  console.log(url);
+
   try {
     const ret = await axios.get<CurrencyRates>(
       `${getBaseUrl()}/currency/${date}`

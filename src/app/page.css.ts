@@ -5,14 +5,14 @@ export const container = style({
 });
 
 export const puuppa = style({
-  width: "25em",
+  // width: "25em",
   containerType: "inline-size"
 });
 
 export const clocks = style({
   "@container": {
     "(width > 30em)": {
-      border: "5px rgb(255 0 0) solid"
+      // border: "5px rgb(255 0 0) solid"
     }
   }
 });
