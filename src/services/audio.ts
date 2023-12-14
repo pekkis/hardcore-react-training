@@ -22,7 +22,7 @@ export const getQuackCast = async (): Promise<QuackCastAudio> => {
       () => {
         resolve(quackCast);
       },
-      random.integer(500, 1000)
+      random.integer(1000, 2000)
     );
   });
 };
