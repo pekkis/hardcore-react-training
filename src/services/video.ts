@@ -11,5 +11,12 @@ export type QuackTubeVideo = {
 
 export const getVideos = async (): Promise<QuackTubeVideo[]> => {
   const ret = await axios.get<QuackTubeVideo[]>(`${getBaseUrl()}/video`);
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(ret.data);
+    }, 2000);
+  });
+
   return ret.data;
 };
