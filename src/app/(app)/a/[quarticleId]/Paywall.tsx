@@ -8,7 +8,7 @@ const Paywall: FC = () => {
   const [showPaywall, setShowPaywall] = useState(false);
 
   useEffect(() => {
-    setShowPaywall(true);
+    setShowPaywall(false);
   }, []);
 
   if (!showPaywall) {
