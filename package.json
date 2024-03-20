@@ -35,7 +35,7 @@
     "axios": "^1.6.8",
     "clsx": "^2.1.0",
     "currency-codes": "^2.1.0",
-    "framer-motion": "^11.0.16",
+    "framer-motion": "^11.0.18",
     "immer": "^10.0.4",
     "luxon": "^3.4.4",
     "next": "^14.1.4",
