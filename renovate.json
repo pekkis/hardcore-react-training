@@ -1,5 +1,20 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", "schedule:daily", "group:allNonMajor"],
+  "assignees": ["pekkis"],
+  "timezone": "Europe/Helsinki",
+  "extends": [
+    "config:recommended",
+    ":disableVulnerabilityAlerts",
+    "schedule:monthly",
+    "group:allNonMajor",
+    "group:jsUnitTest",
+    "group:jsTest"
+  ],
+  "npm": {
+    "stabilityDays": 21
+  },
+  "ignoreDeps": [],
+  "rebaseWhen": "never",
+  "dependencyDashboard": true,
   "rangeStrategy": "bump"
 }
