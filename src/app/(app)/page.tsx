@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 export default async function IndexPage() {
-  const now = DateTime.fromISO("2024-05-19-12T10:00:00.000+00:00");
+  const now = DateTime.fromISO("2024-05-19T10:00:00.000+00:00");
   const serverTime = now.toISO() as string;
 
   const latestQuarticles = await quarticleService.getQuarticles(0, 10);
