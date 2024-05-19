@@ -44,15 +44,14 @@ const config: StorybookConfig = {
           }
         ]
       }
-    }
+    },
+    "@chromatic-com/storybook"
   ],
   framework: {
     name: "@storybook/nextjs",
     options: {}
   },
-  docs: {
-    autodocs: "tag"
-  },
+  docs: {},
 
   async webpackFinal(config, { configType }) {
     config.resolve!.alias = {
