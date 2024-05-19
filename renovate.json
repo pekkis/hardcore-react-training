@@ -10,9 +10,6 @@
     "group:jsUnitTest",
     "group:jsTest"
   ],
-  "npm": {
-    "stabilityDays": 21
-  },
   "ignoreDeps": [],
   "rebaseWhen": "never",
   "dependencyDashboard": true,
