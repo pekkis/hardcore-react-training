@@ -222,6 +222,9 @@ importers:
       msw:
         specifier: ^2.3.0
         version: 2.3.0(typescript@5.4.5)
+      postcss:
+        specifier: ^8.4.38
+        version: 8.4.38
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -240,6 +243,9 @@ importers:
       stylelint-prettier:
         specifier: ^5.0.0
         version: 5.0.0(prettier@3.2.5)(stylelint@16.5.0(typescript@5.4.5))
+      tailwindcss:
+        specifier: ^3.4.3
+        version: 3.4.3
       typescript:
         specifier: ~5.4.5
         version: 5.4.5

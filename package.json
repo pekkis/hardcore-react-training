@@ -98,12 +98,14 @@
     "jsdom": "^24.0.0",
     "mini-css-extract-plugin": "^2.9.0",
     "msw": "^2.3.0",
+    "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "storybook": "^8.1.1",
     "style-loader": "^4.0.0",
     "stylelint": "^16.5.0",
     "stylelint-config-standard": "^36.0.0",
     "stylelint-prettier": "^5.0.0",
+    "tailwindcss": "^3.4.3",
     "typescript": "~5.4.5"
   },
   "packageManager": "pnpm@9.1.1+sha256.9551e803dcb7a1839fdf5416153a844060c7bce013218ce823410532504ac10b"

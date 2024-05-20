@@ -1,15 +1,17 @@
+import "@/styles/global.css";
+
 import { ReactNode } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-import "normalize.css";
+// import "normalize.css";
 import Main from "@/components/Main";
 
-import "./layout.css";
-import "./typography.css";
+// import "./layout.css";
+// import "./typography.css";
 import Provider from "@/components/Provider";
 
-import "@gaylordmcduck/quack-ui/style.css";
+// import "@gaylordmcduck/quack-ui/style.css";
 
 type Props = {
   children: ReactNode;
