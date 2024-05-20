@@ -7,7 +7,9 @@ import * as styles from "./Currencies.css";
 import CurrenciesList from "./CurrenciesList";
 import { DateTime } from "luxon";
 import { YEAR_MONTH_DAY } from "@/services/date";
-import { Button } from "@gaylordmcduck/quack-ui";
+import Button from "../../../packages/quack-ui/src/components/Button";
+// import Button from "../../../packages/quack-ui/src/components/Button";
+// import { Button } from "@gaylordmcduck/quack-ui";
 
 type Props = {
   rates: EnrichedCurrencyRates;

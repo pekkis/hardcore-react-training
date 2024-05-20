@@ -1,10 +1,15 @@
+import "../output.css";
+
 import { ComponentProps, FC } from "react";
-import styles from "./Button.module.css";
 
 type Props = ComponentProps<"button">;
 
 const Button: FC<Props> = (props) => {
-  return <button {...props} className={styles.button} />;
+  return (
+    <button {...props} className="px-4 border rounded-sm bg-[pink]">
+      plaa
+    </button>
+  );
 };
 
 export default Button;
