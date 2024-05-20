@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import externals from "rollup-plugin-node-externals";
 import { defineConfig } from "vite";
+import styleX from "vite-plugin-stylex-dev";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,6 +18,10 @@ export default defineConfig({
     }
   },
   plugins: [
+    styleX({
+      useCSSLayers: true,
+      unstable_moduleResolution: null
+    }),
     react(),
     typescript({
       target: "es2020",
