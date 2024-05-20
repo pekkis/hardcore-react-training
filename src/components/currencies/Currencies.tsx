@@ -7,6 +7,7 @@ import * as styles from "./Currencies.css";
 import CurrenciesList from "./CurrenciesList";
 import { DateTime } from "luxon";
 import { YEAR_MONTH_DAY } from "@/services/date";
+import { Button } from "@gaylordmcduck/quack-ui";
 
 type Props = {
   rates: EnrichedCurrencyRates;
@@ -39,9 +40,9 @@ const Currencies: FC<Props> = ({ rates }) => {
   return (
     <div className={styles.currenciesClass}>
       <p>
-        <button onClick={() => changeDate(-1)}>&laquo;</button>
+        <Button onClick={() => changeDate(-1)}>&laquo;</Button>
         {currentRates.date}
-        <button onClick={() => changeDate(1)}>&raquo;</button>
+        <Button onClick={() => changeDate(1)}>&raquo;</Button>
       </p>
 
       <p>

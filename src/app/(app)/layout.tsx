@@ -9,6 +9,8 @@ import "./layout.css";
 import "./typography.css";
 import Provider from "@/components/Provider";
 
+import "@gaylordmcduck/quack-ui/style.css";
+
 type Props = {
   children: ReactNode;
 };
