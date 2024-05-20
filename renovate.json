@@ -2,14 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "assignees": ["pekkis"],
   "timezone": "Europe/Helsinki",
-  "extends": [
-    "config:recommended",
-    ":disableVulnerabilityAlerts",
-    "schedule:monthly",
-    "group:allNonMajor",
-    "group:jsUnitTest",
-    "group:jsTest"
-  ],
+  "extends": ["config:recommended", "schedule:daily", "group:allNonMajor"],
   "ignoreDeps": [],
   "rebaseWhen": "never",
   "dependencyDashboard": true,
