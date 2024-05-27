@@ -247,13 +247,13 @@ importers:
         specifier: ^11.1.6
         version: 11.1.6(rollup@4.18.0)(tslib@2.6.2)(typescript@5.4.5)
       '@types/react':
-        specifier: ^18.3.1
+        specifier: ^18.3.3
         version: 18.3.3
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
       '@vitejs/plugin-react':
-        specifier: ^4.2.1
+        specifier: ^4.3.0
         version: 4.3.0(vite@5.2.11(@types/node@20.12.12)(terser@5.31.0))
       react:
         specifier: '>= 18.3.1'
@@ -262,13 +262,13 @@ importers:
         specifier: '>= 18.3.1'
         version: 18.3.1(react@18.3.1)
       rollup-plugin-node-externals:
-        specifier: ^7.1.1
+        specifier: ^7.1.2
         version: 7.1.2(rollup@4.18.0)
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
       vite:
-        specifier: ^5.2.10
+        specifier: ^5.2.11
         version: 5.2.11(@types/node@20.12.12)(terser@5.31.0)
 
 packages:
