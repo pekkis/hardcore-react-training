@@ -54,7 +54,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^1.4.0",
+    "@chromatic-com/storybook": "^2.0.0",
     "@next/bundle-analyzer": "^14.2.3",
     "@playwright/test": "^1.44.1",
     "@storybook/addon-essentials": "^8.1.3",
