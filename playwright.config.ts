@@ -12,7 +12,7 @@ const config: PlaywrightTestConfig = {
   // Timeout per test
   timeout: 30 * 1000,
   // Test directory
-  testDir: path.join(__dirname, "e2e"),
+  testDir: path.join(".", "e2e"),
   // If a test fails, retry it additional 2 times
   retries: 2,
   // Artifacts folder where screenshots, videos, and traces are stored.

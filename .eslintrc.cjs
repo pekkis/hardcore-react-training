@@ -5,6 +5,8 @@ module.exports = {
     node: true
   },
   extends: [
+    "next/core-web-vitals",
+    "next/typescript",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:react/jsx-runtime",
@@ -12,7 +14,6 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:jsx-a11y/recommended",
-    "next/core-web-vitals",
     "plugin:storybook/recommended"
   ],
   plugins: ["@typescript-eslint", "jsx-a11y", "prettier"],

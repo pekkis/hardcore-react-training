@@ -2,8 +2,7 @@
 
 ## Introduction
 
-Welcome to my two day React Workshop. It is very important
-that you read and follow these instructions **carefully** and **before** the actual two training days begin.
+Welcome to my two day React Workshop. It is very important that you read and follow these instructions **carefully** and **before** the actual two training days begin.
 
 ## Human Requirements
 
@@ -16,7 +15,7 @@ that you read and follow these instructions **carefully** and **before** the act
 - MacOS, Linux or Windows all work.
   - In Windows, this works in **WSL 2**. I often use that myself when hobby coding.
   - If it doesn't work, just boot it up in some Linux virtual machine or docker or whatnot.
-- Current stable version of Node.js (20.x, 18.x) and a "normal" default version of `npm` that comes bundled with the Node version. This might work on older or newer Node versions too, but who knows! Use `nvm` (for example) to manage multiple Node versions.
+- Current stable version of Node.js (22.x, 20.x) and a "normal" default version of `npm` that comes bundled with the Node version. This might work on older or newer Node versions too, but who knows! Use `nvm` (for example) to manage multiple Node versions.
 - An editor / IDE that supports all the good stuff. I use [VSCode](https://code.visualstudio.com/) myself, and because of the LiveShare code sharing environment, you really probably should use it too during this training.
 
 ## Installation
@@ -26,8 +25,7 @@ Start by forking / cloning this repository.
 `main` is the default branch that contains the starting point for our course.
 
 There are lots of other branches too. These contain the code I've done
-in basically all of the previous courses I've teached and while preparing the material. Interesting stuff, at least if you're
-hungry for nostalgia and see how the scene has changed!
+in basically all of the previous courses I've teached and while preparing the material. Interesting stuff, at least if you're hungry for nostalgia and see how the scene has changed!
 
 ### Browser extensions
 
@@ -42,16 +40,8 @@ You should install at least the following extensions.
 - ESLint (dbaeumer.vscode-eslint)
 - Prettier - Code formatter (esbenp.prettier-vscode)
 - EditorConfig for VS Code (editorconfig.editorconfig)
-- Live Share (ms-vsliveshare.vsliveshare)
-- vscode-styled-components (styled-components.vscode-styled-components)
 - stylelint (stylelint.vscode-stylelint)
-- PostCSS language support (csstools.postcss)
-
-I also seem to have these maybe relevant ones, so if you want feature
-parity with me2 you should install them too.
-
-- Visual Studio IntelliCode (visualstudioexptteam.vscodeintellicode)
-- GitLens — Git supercharged (eamodio.gitlens)
+- Live Share (ms-vsliveshare.vsliveshare) - if you want to join a liveshare session
 
 Some extensions you might already have could conflict with these, so please
 try to check that everything is a-ok. Also if you have good extensions that
@@ -61,7 +51,10 @@ I should use in addition / replacing one of these, please holler!
 
 ### Develop
 
-- `npm i -g pnpm` (just once to install pnpm if you don't still have it)
+- `corepack enable` (just once, if you haven't run it before or it doesn't work)
+
+  - if this doesn't work for some reason, use the following:
+  - `npm i -g pnpm` (just once to install pnpm if you don't still have it)
 
 - `pnpm i`
 - `cp .env.example .env.local`
@@ -78,7 +71,7 @@ There should be more instructions / assertions on the screen. Please read them c
 
 - `pnpm run build`
 
-Goes to `.next/` folder.
+Builds to `.next/` folder.
 
 ## Licensing
 

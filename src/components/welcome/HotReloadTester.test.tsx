@@ -1,6 +1,6 @@
-import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import HotReloadTester from "./HotReloadTester";
+import { describe, it, expect } from "vitest";
 
 describe("<HotReloadTester />", () => {
   it("will render", async () => {
