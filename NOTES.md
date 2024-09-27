@@ -90,7 +90,7 @@
 ## Valuuttakurssit
 
 - service-kerros (src/services/person.js)
-- axios ja http-kirjastot vs fetch
+- axios ja http-kirjastot vs fetch. ky.
 - avaa promisen konsepti jos tarpeellista, then / catch
 - johdattele async / awaitiin (tehkää lopulta tällä, muista try/catch simppeli virheenhallinta!)
 - haetaan valuuttakurssit, tehdään komponentti
