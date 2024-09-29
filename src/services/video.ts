@@ -1,4 +1,4 @@
-import axios from "axios";
+import ky from "ky";
 import { getBaseUrl } from "./instance";
 
 export type QuackTubeVideo = {
@@ -10,6 +10,8 @@ export type QuackTubeVideo = {
 };
 
 export const getVideos = async (): Promise<QuackTubeVideo[]> => {
-  const ret = await axios.get<QuackTubeVideo[]>(`${getBaseUrl()}/video`);
-  return ret.data;
+  const ret = await ky.get<QuackTubeVideo[]>(`${getBaseUrl()}/video`, {
+    retry: 0
+  });
+  return ret.json();
 };

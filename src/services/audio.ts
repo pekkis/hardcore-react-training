@@ -1,5 +1,5 @@
-import axios from "axios";
 import { getBaseUrl } from "./instance";
+import ky from "ky";
 
 export type QuackCastAudio = {
   title: string;
@@ -9,6 +9,8 @@ export type QuackCastAudio = {
 };
 
 export const getQuackCast = async (): Promise<QuackCastAudio> => {
-  const ret = await axios.get<QuackCastAudio>(`${getBaseUrl()}/audio`);
-  return ret.data;
+  const ret = await ky.get<QuackCastAudio>(`${getBaseUrl()}/audio`, {
+    retry: 0
+  });
+  return ret.json();
 };

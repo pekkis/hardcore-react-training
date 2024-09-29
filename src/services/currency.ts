@@ -1,4 +1,4 @@
-import axios from "axios";
+import ky from "ky";
 import { getBaseUrl } from "./instance";
 
 import cc from "currency-codes";
@@ -24,11 +24,13 @@ export const getCurrencyRates = async (
   date: string
 ): Promise<EnrichedCurrencyRates> => {
   try {
-    const ret = await axios.get<CurrencyRates>(
-      `${getBaseUrl()}/currency/${date}`
+    const ret = await ky.get<CurrencyRates>(
+      `${getBaseUrl()}/currency/${date}`,
+      {
+        retry: 0
+      }
     );
-
-    const currencyRates = ret.data;
+    const currencyRates = await ret.json();
 
     const enriched: EnrichedCurrencyRates = {
       ...currencyRates,

@@ -1,4 +1,4 @@
-import axios from "axios";
+import ky from "ky";
 import { getBaseUrl } from "./instance";
 
 export type MarkdownBlockType = {
@@ -79,19 +79,17 @@ export const getQuarticles = async (
   offset = 0,
   limit = 0
 ): Promise<GetQuarticlesResponse> => {
-  const ret = await axios.get<GetQuarticlesResponse>(
-    `${getBaseUrl()}/quarticle`,
-    {
-      params: {
-        offset,
-        limit
-      }
+  const ret = await ky.get<GetQuarticlesResponse>(`${getBaseUrl()}/quarticle`, {
+    retry: 0,
+    searchParams: {
+      offset,
+      limit
     }
-  );
-  return ret.data;
+  });
+  return ret.json();
 };
 
 export const getQuarticle = async (id: string): Promise<QuarticleType> => {
-  const ret = await axios.get<QuarticleType>(`${getBaseUrl()}/quarticle/${id}`);
-  return ret.data;
+  const ret = await ky.get<QuarticleType>(`${getBaseUrl()}/quarticle/${id}`);
+  return ret.json();
 };

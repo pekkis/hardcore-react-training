@@ -1,4 +1,4 @@
-import axios from "axios";
+import ky from "ky";
 
 export const getAppId = (): string => {
   const predefinedAppId = process.env.NEXT_PUBLIC_APPID;
@@ -14,9 +14,9 @@ export const getBaseUrl = (): string =>
   `${process.env.NEXT_PUBLIC_API}/${getAppId()}`;
 
 export const cleanse = async (): Promise<boolean> => {
-  const ret = await axios.post<{ purged: boolean }>(`${getBaseUrl()}/cleanse`, {
+  const ret = await ky.post<{ purged: boolean }>(`${getBaseUrl()}/cleanse`, {
     method: "POST"
   });
 
-  return ret.data.purged;
+  return (await ret.json()).purged;
 };
