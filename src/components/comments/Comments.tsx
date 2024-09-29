@@ -1,12 +1,17 @@
 "use client";
 
-import { NewCommentType, getComments, postComment } from "@/services/comments";
+import {
+  CommentType,
+  NewCommentType,
+  getComments,
+  postComment
+} from "@/services/comments";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { FC } from "react";
 import Spinner from "../debug/Spinner";
 import * as styles from "./Comments.css";
 import CommentsForm from "./CommentsForm";
-import { reverse, sortBy } from "ramda";
+import { sortBy, reverse, pipe } from "remeda";
 import Comment from "./Comment";
 
 type Props = {
@@ -31,12 +36,14 @@ const Comments: FC<Props> = ({ quarticleId }) => {
     }
   });
 
-  console.log("MUTATION IDLE", mutation.isIdle);
+  const comments = data || ([] as CommentType[]);
 
-  const sorted = reverse(
-    sortBy((c) => {
-      return c.publishedAt;
-    }, data || [])
+  const sorted = pipe(
+    comments,
+    sortBy((comment) => {
+      return new Date(comment.publishedAt).getTime();
+    }),
+    reverse()
   );
 
   return (

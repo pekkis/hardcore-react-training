@@ -1,7 +1,7 @@
-import axios from "axios";
 import { getBaseUrl } from "./instance";
 
 import { z } from "zod";
+import ky from "ky";
 
 export const commentSchema = z.object({
   comment: z.string().min(10),
@@ -19,20 +19,25 @@ export const postComment = async (
   quarticleId: string,
   comment: NewCommentType
 ): Promise<CommentType> => {
-  const ret = await axios.post<CommentType>(
+  const ret = await ky.post<CommentType>(
     `${getBaseUrl()}/quarticle/${quarticleId}/comment`,
-    comment
+    {
+      json: comment
+    }
   );
 
-  return ret.data;
+  return ret.json();
 };
 
 export const getComments = async (
   quarticleId: string
 ): Promise<CommentType[]> => {
-  const ret = await axios.get<CommentType[]>(
-    `${getBaseUrl()}/quarticle/${quarticleId}/comment`
+  const ret = await ky.get<CommentType[]>(
+    `${getBaseUrl()}/quarticle/${quarticleId}/comment`,
+    {
+      retry: 0
+    }
   );
 
-  return ret.data;
+  return ret.json();
 };

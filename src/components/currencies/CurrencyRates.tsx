@@ -1,34 +1,63 @@
-import { cache } from "react";
-import * as currencyService from "@/services/currency";
+"use client";
+
+import { Controls } from "@/components/currencies/Controls";
+import Currencies from "@/components/currencies/Currencies";
+import Spinner from "@/components/debug/Spinner";
+import { EnrichedCurrencyRates, getCurrencyRates } from "@/services/currency";
 import { YEAR_MONTH_DAY } from "@/services/date";
+import { useQuery } from "@tanstack/react-query";
 import { DateTime } from "luxon";
-import Currencies from "./Currencies";
+import { useCallback, useState } from "react";
 
 type Props = {
   serverTime: string;
 };
 
-const fetchCurrencyRates = cache(
-  async (date: string): Promise<currencyService.EnrichedCurrencyRates> => {
-    try {
-      const rates = await currencyService.getCurrencyRates(date);
-      return rates;
-    } catch (e) {
-      return {
-        date: date,
-        rates: {}
-      };
-    }
+export const CurrencyRates = ({ serverTime }: Props) => {
+  const [date, setDate] = useState(
+    DateTime.fromISO(serverTime).toFormat(YEAR_MONTH_DAY)
+  );
+
+  const changeDate = useCallback(
+    async (date: string) => {
+      setDate(date);
+    },
+    [date]
+  );
+
+  console.log("DATE", date);
+
+  const { data, isLoading, isPending, isError } = useQuery({
+    queryKey: ["currency", date],
+    queryFn: () => {
+      return getCurrencyRates(date);
+    },
+    retry: 0
+  });
+
+  if (isError) {
+    return (
+      <div>
+        <Controls date={date} changeDate={changeDate} />
+
+        <p>Virhe haettaessa valuuttakursseja</p>
+      </div>
+    );
   }
-);
 
-const CurrencyRates = async ({ serverTime }: Props) => {
-  const now = DateTime.fromISO(serverTime);
-  const date = now.toFormat(YEAR_MONTH_DAY);
+  if (!data) {
+    return (
+      <div>
+        <Controls date={date} changeDate={changeDate} />
+        <Spinner /> Laddare...
+      </div>
+    );
+  }
 
-  const rates = await fetchCurrencyRates(date);
-
-  return <Currencies rates={rates} />;
+  return (
+    <div>
+      <Controls date={date} changeDate={changeDate} />
+      <Currencies date={date} rates={data} />
+    </div>
+  );
 };
-
-export default CurrencyRates;

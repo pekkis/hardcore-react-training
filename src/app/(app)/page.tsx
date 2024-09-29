@@ -9,28 +9,21 @@ import QuackTube from "@/components/quacktube/QuackTube";
 import { DateTime } from "luxon";
 import { Suspense } from "react";
 import * as styles from "./page.css";
-import CurrencyRates from "@/components/currencies/CurrencyRates";
+import { CurrencyRates } from "@/components/currencies/CurrencyRates";
 import SectionHeading from "@/components/duck-ui/SectionHeading";
 import MainHeading from "@/components/duck-ui/MainHeading";
 import Paragraph from "@/components/duck-ui/Paragraph";
-
-// import {} from "next-auth";
-
-// import { auth } from "@/auth";
 
 export const metadata: Metadata = {
   title: "Pääsivu - Ankkojen Talouselämä"
 };
 
 export default async function IndexPage() {
-  const now = DateTime.fromISO("2024-05-19-12T10:00:00.000+00:00");
+  const now = DateTime.now().minus({ days: 3 });
+
   const serverTime = now.toISO() as string;
 
   const latestQuarticles = await quarticleService.getQuarticles(0, 10);
-
-  //   const tussi = await auth();
-
-  //  console.log(tussi, "tussi");
 
   return (
     <div>
