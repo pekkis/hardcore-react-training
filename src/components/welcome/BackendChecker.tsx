@@ -34,7 +34,8 @@ const BackendChecker: FC = () => {
     return (
       <>
         <Spinner />
-        Hold your horses, I am initializing your imaginary backend!
+        Hold your horses, I am checking your imaginary backend! This might take
+        tens of seconds if it is the initial setup!
       </>
     );
   }

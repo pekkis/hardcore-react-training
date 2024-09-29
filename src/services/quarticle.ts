@@ -81,6 +81,7 @@ export const getQuarticles = async (
 ): Promise<GetQuarticlesResponse> => {
   const ret = await ky.get<GetQuarticlesResponse>(`${getBaseUrl()}/quarticle`, {
     retry: 0,
+    timeout: 60000,
     searchParams: {
       offset,
       limit

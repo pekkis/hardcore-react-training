@@ -41,22 +41,22 @@ You should install at least the following extensions.
 - Prettier - Code formatter (esbenp.prettier-vscode)
 - EditorConfig for VS Code (editorconfig.editorconfig)
 - stylelint (stylelint.vscode-stylelint)
-- Live Share (ms-vsliveshare.vsliveshare) - if you want to join a liveshare session
+- Live Share (ms-vsliveshare.vsliveshare) - super important in remote sessions
 
 Some extensions you might already have could conflict with these, so please
-try to check that everything is a-ok. Also if you have good extensions that
-I should use in addition / replacing one of these, please holler!
+try to check, to your best ability, that everything looks and feels normal.
 
 ## How to
 
 ### Develop
 
-- `corepack enable` (just once, if you haven't run it before or it doesn't work)
+- `corepack enable` (just one time, can be rerun at will if it breaks)
 
-  - if this doesn't work for some reason, use the following:
+  - if this doesn't work for some reason, try to debug or use the following:
   - `npm i -g pnpm` (just once to install pnpm if you don't still have it)
 
 - `pnpm i`
+  - it might ask "can i download PNPM" or stuff like that. Answer "yes".
 - `cp .env.example .env.local`
 - edit `.env.local`. Invent **NEXT_PUBLIC_APPID** to be an ALPHANUMERIC (no special characters, it will break!) string that you'd think would be unique for yourself. This is an unique id for your pre-built backend hosted in Firebase.
 - `pnpm run dev`
