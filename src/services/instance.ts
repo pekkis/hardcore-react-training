@@ -15,7 +15,7 @@ export const getBaseUrl = (): string =>
 
 export const cleanse = async (): Promise<boolean> => {
   const ret = await ky.post<{ purged: boolean }>(`${getBaseUrl()}/cleanse`, {
-    method: "POST"
+    timeout: 50000
   });
 
   return (await ret.json()).purged;
