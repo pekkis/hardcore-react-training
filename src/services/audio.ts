@@ -12,5 +12,10 @@ export const getQuackCast = async (): Promise<QuackCastAudio> => {
   const ret = await ky.get<QuackCastAudio>(`${getBaseUrl()}/audio`, {
     retry: 0
   });
-  return ret.json();
+
+  return new Promise((resolve) => {
+    setTimeout(async () => {
+      resolve(await ret.json());
+    }, 5000);
+  });
 };

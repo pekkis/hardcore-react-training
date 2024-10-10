@@ -1,0 +1,14 @@
+.clock {
+  border: 10px solid rgb(0 0 0);
+  margin-block: 1em;
+
+  padding: 2em;
+
+  background-color: rgb(255 255 255);
+  color: rgb(0 0 0);
+}
+
+.afterDark {
+  color: rgb(255 255 255);
+  background-color: rgb(0 0 0);
+}
