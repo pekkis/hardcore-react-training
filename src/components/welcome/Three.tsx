@@ -3,7 +3,7 @@
 "use client";
 
 import * as THREE from "three";
-import { FC, useRef, useState } from "react";
+import { FC, JSX, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { containerClass } from "./Three.css";
 

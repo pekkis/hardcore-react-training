@@ -4,15 +4,6 @@ import { FC } from "react";
 import BackendChecker from "./BackendChecker";
 import HotReloadTester from "./HotReloadTester";
 
-import dynamic from "next/dynamic";
-
-const Three = dynamic(() => import("./Three"), {
-  ssr: false,
-  loading() {
-    return <div>LADDARE...</div>;
-  }
-});
-
 import Form from "./Form";
 import VanillaExtractChecker from "./VanillaExtractChecker";
 import {
@@ -25,6 +16,7 @@ import {
   paddedClass,
   welcomeClass
 } from "./Welcome.css";
+import ThreeLoader from "@/components/welcome/ThreeLoader";
 
 const Welcome: FC = () => {
   if (!process.env.NEXT_PUBLIC_APPID) {
@@ -63,7 +55,7 @@ const Welcome: FC = () => {
           </div>
 
           <div>
-            <Three />
+            <ThreeLoader />
           </div>
 
           <div className={contentClass}>
