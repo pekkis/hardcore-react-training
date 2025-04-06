@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@hookform/resolvers':
-        specifier: ^3.9.0
-        version: 3.9.0(react-hook-form@7.53.0(react@18.3.1))
+        specifier: ^5.0.1
+        version: 5.0.1(react-hook-form@7.53.0(react@18.3.1))
       '@react-three/fiber':
         specifier: ^8.17.8
         version: 8.17.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(three@0.169.0)
@@ -1266,10 +1266,10 @@ packages:
     resolution: {integrity: sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  '@hookform/resolvers@3.9.0':
-    resolution: {integrity: sha512-bU0Gr4EepJ/EQsH/IwEzYLsT/PEj5C0ynLQ4m+GSHS+xKH4TfSelhluTgOaoc4kA5s7eCsQbM4wvZLzELmWzUg==}
+  '@hookform/resolvers@5.0.1':
+    resolution: {integrity: sha512-u/+Jp83luQNx9AdyW2fIPGY6Y7NG68eN2ZW8FOJYL+M0i4s49+refdJdOp/A9n9HFQtQs3HIDHQvX3ZET2o7YA==}
     peerDependencies:
-      react-hook-form: ^7.0.0
+      react-hook-form: ^7.55.0
 
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
@@ -1706,6 +1706,9 @@ packages:
 
   '@rushstack/eslint-patch@1.10.4':
     resolution: {integrity: sha512-WJgX9nzTqknM393q1QJDJmoW28kUfEnybeTfVNcNAPnIx210RXm2DiXiHzfNPJNIUUb1tJnz/l4QGtJ30PgWmA==}
+
+  '@standard-schema/utils@0.3.0':
+    resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
 
   '@storybook/addon-actions@8.3.3':
     resolution: {integrity: sha512-cbpksmld7iADwDGXgojZ4r8LGI3YA3NP68duAHg2n1dtnx1oUaFK5wd6dbNuz7GdjyhIOIy3OKU1dAuylYNGOQ==}
@@ -3353,6 +3356,7 @@ packages:
   eslint@8.57.1:
     resolution: {integrity: sha512-ypowyDxpVSYpkXr9WPv2PAZCtNip1Mv5KTW0SCurXv/9iOpcrH9PaqUElksqEB6pChqHGDRCFTyrZlGhnLNGiA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
@@ -7090,8 +7094,9 @@ snapshots:
 
   '@eslint/js@8.57.1': {}
 
-  '@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@18.3.1))':
+  '@hookform/resolvers@5.0.1(react-hook-form@7.53.0(react@18.3.1))':
     dependencies:
+      '@standard-schema/utils': 0.3.0
       react-hook-form: 7.53.0(react@18.3.1)
 
   '@humanwhocodes/config-array@0.13.0':
@@ -7433,6 +7438,8 @@ snapshots:
   '@rtsao/scc@1.1.0': {}
 
   '@rushstack/eslint-patch@1.10.4': {}
+
+  '@standard-schema/utils@0.3.0': {}
 
   '@storybook/addon-actions@8.3.3(storybook@8.3.3)':
     dependencies:
