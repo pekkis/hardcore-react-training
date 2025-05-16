@@ -34,7 +34,7 @@
     "@vanilla-extract/sprinkles": "^1.6.3",
     "clsx": "^2.1.1",
     "currency-codes": "^2.1.0",
-    "framer-motion": "^11.9.0",
+    "framer-motion": "^12.12.1",
     "immer": "^10.1.1",
     "ky": "^1.7.2",
     "luxon": "^3.5.0",
