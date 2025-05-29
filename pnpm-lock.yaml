@@ -85,8 +85,8 @@ importers:
         version: 4.5.5(@types/react@18.3.10)(immer@10.1.1)(react@18.3.1)
     devDependencies:
       '@chromatic-com/storybook':
-        specifier: ^2.0.2
-        version: 2.0.2(react@18.3.1)
+        specifier: ^4.0.0
+        version: 4.0.0(storybook@8.3.3)
       '@next/bundle-analyzer':
         specifier: ^14.2.13
         version: 14.2.13
@@ -926,9 +926,11 @@ packages:
   '@bundled-es-modules/tough-cookie@0.1.6':
     resolution: {integrity: sha512-dvMHbL464C0zI+Yqxbz6kZ5TOEp7GLW+pry/RWndAR8MJQAXZ2rPmIs8tziTZjeIyhSNZgZbCePtfSbdWqStJw==}
 
-  '@chromatic-com/storybook@2.0.2':
-    resolution: {integrity: sha512-7bPIliISedeIpnVKbzktysFYW5n56bN91kxuOj1XXKixmjbUHRUMvcXd4K2liN6MiR5ZqJtmtcPsZ6CebbGlEA==}
-    engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
+  '@chromatic-com/storybook@4.0.0':
+    resolution: {integrity: sha512-FfyMHK/lz/dHezWxwNZv4ReFORWVvv+bJx71NT2BSfLhOKOaoZnKJOe4QLyGxWAB7ynnedrM9V9qea3FPFj+rQ==}
+    engines: {node: '>=20.0.0', yarn: '>=1.22.18'}
+    peerDependencies:
+      storybook: ^0.0.0-0 || ^9.0.0 || ^9.1.0-0
 
   '@csstools/css-parser-algorithms@3.0.1':
     resolution: {integrity: sha512-lSquqZCHxDfuTg/Sk2hiS0mcSFCEBuj49JfzPHJogDBT0mGCyY5A1AQzBWngitrp7i1/HAZpIgzF/VjhOEIJIg==}
@@ -1443,6 +1445,9 @@ packages:
   '@mswjs/interceptors@0.35.9':
     resolution: {integrity: sha512-SSnyl/4ni/2ViHKkiZb8eajA/eN1DNFaHjhGiLUdZvDz6PKF4COSf/17xqSz64nOo2Ia29SA6B2KNCsyCbVmaQ==}
     engines: {node: '>=18'}
+
+  '@neoconfetti/react@1.0.0':
+    resolution: {integrity: sha512-klcSooChXXOzIm+SE5IISIAn3bYzYfPjbX7D7HoqZL84oAfgREeSg5vSIaSFH+DaGzzvImTyWe1OyrJ67vik4A==}
 
   '@next/bundle-analyzer@14.2.13':
     resolution: {integrity: sha512-CQOVKmfenD9HsG4AmyXG2ElMvtGKAT9TlS2JLgpL/EORi4WX+QMiQ8Ri6b+A7HRT+AiUGjsYnocIOET59i6Jfw==}
@@ -2722,8 +2727,8 @@ packages:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
 
-  chromatic@11.10.4:
-    resolution: {integrity: sha512-nfgDpW5gQ4FtgV1lZXXfqLjONKDCh2K4vwI3dbZrtU1ObOL9THyAzpIdnK9LRcNSeisDLX+XFCryfMg1Ql2U2g==}
+  chromatic@12.0.0:
+    resolution: {integrity: sha512-X7v26BLfAzHCU92nxPsCuvt+MazmA7S6cN7pCRRhnDYChDxHES48YvXarOybLdlH9kNP/3lMyknu6iseTh0T9A==}
     hasBin: true
     peerDependencies:
       '@chromatic-com/cypress': ^0.*.* || ^1.0.0
@@ -3353,6 +3358,7 @@ packages:
   eslint@8.57.1:
     resolution: {integrity: sha512-ypowyDxpVSYpkXr9WPv2PAZCtNip1Mv5KTW0SCurXv/9iOpcrH9PaqUElksqEB6pChqHGDRCFTyrZlGhnLNGiA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
@@ -4857,12 +4863,6 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  react-confetti@6.1.0:
-    resolution: {integrity: sha512-7Ypx4vz0+g8ECVxr88W9zhcQpbeujJAVqL14ZnXJ3I23mOI9/oBVTQ3dkJhUmB0D6XOtCZEM6N0Gm9PMngkORw==}
-    engines: {node: '>=10.18'}
-    peerDependencies:
-      react: ^16.3.0 || ^17.0.1 || ^18.0.0
-
   react-docgen-typescript@2.2.2:
     resolution: {integrity: sha512-tvg2ZtOpOi6QDwsb3GZhOjDkkX0h8Z2gipvTg6OVMUyoYoURhEiRNePT8NZItTVCDh39JJHnLdfCOkzoLbFnTg==}
     peerDependencies:
@@ -5567,9 +5567,6 @@ packages:
 
   tty-browserify@0.0.1:
     resolution: {integrity: sha512-C3TaO7K81YvjCgQH9Q1S3R3P3BtN3RIM8n+OvX4il1K1zgE8ZhI0op7kClgkxtutIE8hQrcrHBXvIheqKUUCxw==}
-
-  tween-functions@1.2.0:
-    resolution: {integrity: sha512-PZBtLYcCLtEcjL14Fzb1gSxPBeL7nWvGhO5ZFPGqziCcr8uvHp0NDmdjBchp6KHL+tExcg0m3NISmKxhU394dA==}
 
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
@@ -6888,17 +6885,17 @@ snapshots:
       '@types/tough-cookie': 4.0.5
       tough-cookie: 4.1.4
 
-  '@chromatic-com/storybook@2.0.2(react@18.3.1)':
+  '@chromatic-com/storybook@4.0.0(storybook@8.3.3)':
     dependencies:
-      chromatic: 11.10.4
+      '@neoconfetti/react': 1.0.0
+      chromatic: 12.0.0
       filesize: 10.1.6
       jsonfile: 6.1.0
-      react-confetti: 6.1.0(react@18.3.1)
+      storybook: 8.3.3
       strip-ansi: 7.1.0
     transitivePeerDependencies:
       - '@chromatic-com/cypress'
       - '@chromatic-com/playwright'
-      - react
 
   '@csstools/css-parser-algorithms@3.0.1(@csstools/css-tokenizer@3.0.1)':
     dependencies:
@@ -7256,6 +7253,8 @@ snapshots:
       is-node-process: 1.2.0
       outvariant: 1.4.3
       strict-event-emitter: 0.5.1
+
+  '@neoconfetti/react@1.0.0': {}
 
   '@next/bundle-analyzer@14.2.13':
     dependencies:
@@ -8876,7 +8875,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  chromatic@11.10.4: {}
+  chromatic@12.0.0: {}
 
   chrome-trace-event@1.0.4: {}
 
@@ -11389,11 +11388,6 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  react-confetti@6.1.0(react@18.3.1):
-    dependencies:
-      react: 18.3.1
-      tween-functions: 1.2.0
-
   react-docgen-typescript@2.2.2(typescript@5.6.2):
     dependencies:
       typescript: 5.6.2
@@ -12239,8 +12233,6 @@ snapshots:
       typescript: 5.6.2
 
   tty-browserify@0.0.1: {}
-
-  tween-functions@1.2.0: {}
 
   type-check@0.4.0:
     dependencies:
