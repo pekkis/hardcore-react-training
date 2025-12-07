@@ -13,12 +13,10 @@ const withBundleAnalyzer = bundleAnalyzer({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "standalone",
+  reactCompiler: true,
   reactStrictMode: true,
   typescript: {
     ignoreBuildErrors: false
-  },
-  eslint: {
-    ignoreDuringBuilds: false
   }
 };
 

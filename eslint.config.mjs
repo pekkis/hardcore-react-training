@@ -1,52 +1,25 @@
-import tseslint from "typescript-eslint";
-import jsxA11Y from "eslint-plugin-jsx-a11y";
-import js from "@eslint/js";
-import pluginReactHooks from "eslint-plugin-react-hooks";
-import reactPlugin from "eslint-plugin-react";
-import nextPlugin from "@next/eslint-plugin-next";
-import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+import prettier from "eslint-plugin-prettier/recommended";
 
-export default [
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
-
-  jsxA11Y.flatConfigs.recommended,
-
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  prettier,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts"
+  ]),
   {
-    files: ["**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}"],
-    ...reactPlugin.configs.flat.recommended,
-    languageOptions: {
-      ...reactPlugin.configs.flat.recommended.languageOptions
-    },
-    settings: {
-      react: {
-        version: "detect"
-      }
-    }
-  },
-
-  {
-    files: ["src/**/*.{js,ts,jsx,tsx}"],
-    ...reactPlugin.configs.flat.recommended,
-    plugins: {
-      "react-hooks": pluginReactHooks
-    },
     rules: {
-      ...pluginReactHooks.configs.recommended.rules,
-      "react/react-in-jsx-scope": "off",
-      "react/prop-types": "off"
+      "@next/next/no-img-element": "off"
     }
-  },
+  }
+]);
 
-  {
-    plugins: {
-      "@next/next": nextPlugin
-    },
-    rules: {
-      ...nextPlugin.configs.recommended.rules,
-      ...nextPlugin.configs["core-web-vitals"].rules
-    }
-  },
-
-  eslintPluginPrettierRecommended
-];
+export default eslintConfig;
