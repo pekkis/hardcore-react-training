@@ -50,11 +50,7 @@ try to check, to your best ability, that everything looks and feels normal.
 
 ### Develop
 
-- `corepack enable` (just one time, can be rerun at will if it breaks)
-
-  - if this doesn't work for some reason, try to debug or use the following:
-  - `npm i -g pnpm` (just once to install pnpm if you don't still have it)
-
+- `npm -g i pnpm`
 - `pnpm i`
   - it might ask "can i download PNPM" or stuff like that. Answer "yes".
 - `cp .env.example .env.local`
