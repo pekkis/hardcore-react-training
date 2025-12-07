@@ -69,6 +69,7 @@
     "@vanilla-extract/next-plugin": "^2.4.16",
     "@vanilla-extract/webpack-plugin": "^2.3.24",
     "@vitejs/plugin-react": "^5.1.1",
+    "babel-plugin-react-compiler": "^1.0.0",
     "css-loader": "^7.1.2",
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.0.7",
