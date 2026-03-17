@@ -80,7 +80,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
     "identity-obj-proxy": "^3.0.0",
-    "jsdom": "^27.3.0",
+    "jsdom": "^29.0.0",
     "mini-css-extract-plugin": "^2.9.4",
     "msw": "^2.12.4",
     "prettier": "^3.7.4",
