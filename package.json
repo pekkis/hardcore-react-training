@@ -34,7 +34,7 @@
     "currency-codes": "^2.2.0",
     "framer-motion": "^12.23.25",
     "immer": "^11.0.1",
-    "ky": "^1.14.1",
+    "ky": "^2.0.0",
     "luxon": "^3.7.2",
     "next": "^16.0.10",
     "normalize.css": "^8.0.1",
