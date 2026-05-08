@@ -9,6 +9,7 @@ minimumReleaseAgeExclude:
   - "eslint-config-next"
   - "@next/eslint-plugin-next"
   - "@next/env"
+  - "@next/swc-*"
 
 onlyBuiltDependencies:
   - "@swc/core"
