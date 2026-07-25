@@ -10,6 +10,8 @@ minimumReleaseAgeExclude:
   - "@next/eslint-plugin-next"
   - "@next/env"
   - "@next/swc-*"
+  # Renovate security update: sharp@0.35.0
+  - sharp@0.35.0
 
 onlyBuiltDependencies:
   - "@swc/core"
