@@ -1,4 +1,11 @@
-git/
+.git
 .git*
 node_modules
+.next
 /docker
+.env
+.env.*
+!.env.example
+e2e
+test-results
+docs

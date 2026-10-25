@@ -2,10 +2,19 @@ services:
   next:
     build:
       dockerfile: docker/next/Dockerfile
+      # Inlined into the client bundle at build time; read from .env.
+      args:
+        NEXT_PUBLIC_API: ${NEXT_PUBLIC_API:-}
+        NEXT_PUBLIC_APPID: ${NEXT_PUBLIC_APPID:-}
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
     networks:
       - web
+    # Caddy proxies to it; Docker bypasses ufw, so bind to localhost only.
     ports:
-      - 3300:3000
+      - "127.0.0.1:3300:3000"
 networks:
   web:
     driver: bridge

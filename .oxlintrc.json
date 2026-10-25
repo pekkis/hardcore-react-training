@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "eslint",
+    "typescript",
+    "unicorn",
+    "oxc",
+    "react",
+    "jsx-a11y",
+    "nextjs"
+  ],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "rules": {
+    "eslint/curly": ["error", "all"],
+    "react/rules-of-hooks": "error",
+    "react/exhaustive-deps": "error",
+    "react/no-direct-mutation-state": "error",
+    "react/jsx-key": "error",
+    "react/react-in-jsx-scope": "off",
+    "nextjs/no-img-element": "off"
+  },
+  "ignorePatterns": ["**/.next/**", "public/**", "test-results/**"]
+}

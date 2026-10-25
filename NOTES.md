@@ -24,7 +24,7 @@
 - Käy läpi se että clientin juuressa sijaitsee konffiripulit. Avaa (fyysisesti) mielenkiintoiset tiedostot.
 
   - .env.local
-  - .eslintc.js ja .prettierrc
+  - .oxlintrc.json ja .oxfmtrc.json
   - Next.js pysyy mustana laatikkona, jaa vähän ajatuksiasi siitä.
 
 ## Oma koodi src:ssä

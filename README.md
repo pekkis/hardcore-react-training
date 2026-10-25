@@ -15,7 +15,7 @@ Welcome to my two day React Workshop. It is very important that you read and fol
 - MacOS, Linux or Windows all work.
   - In Windows, this works in **WSL 2**. I often use that myself when hobby coding.
   - If it doesn't work, just boot it up in some Linux virtual machine or docker or whatnot.
-- Current stable version of Node.js (22.x, 20.x) and a "normal" default version of `npm` that comes bundled with the Node version. This might work on older or newer Node versions too, but who knows! Use `nvm` (for example) to manage multiple Node versions.
+- [pnpm](https://pnpm.io/installation) 12. It downloads and uses the right Node.js version (26) for this project by itself, whatever Node you have installed (see `devEngines` in `package.json`).
 - An editor / IDE that supports all the good stuff. I use [VSCode](https://code.visualstudio.com/) myself, and because of the LiveShare code sharing environment, you really probably should use it too during this training.
 
 ## Installation
@@ -37,10 +37,8 @@ You should install these Chrome extensions, or similar ones for your browser of 
 
 You should install at least the following extensions.
 
-- ESLint (dbaeumer.vscode-eslint)
-- Prettier - Code formatter (esbenp.prettier-vscode)
+- Oxc (oxc.oxc-vscode): linting (oxlint) and formatting (oxfmt)
 - EditorConfig for VS Code (editorconfig.editorconfig)
-- stylelint (stylelint.vscode-stylelint)
 - Live Share (ms-vsliveshare.vsliveshare) - super important in remote sessions
 
 Some extensions you might already have could conflict with these, so please

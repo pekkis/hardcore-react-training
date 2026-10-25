@@ -13,10 +13,10 @@ const BackendChecker: FC = () => {
 
   useEffect(() => {
     const initializer = async () => {
-      const { quarticles } = await getQuarticles();
+      const { quarticles: existing } = await getQuarticles();
 
-      if (quarticles.length !== 0) {
-        setQuarticles(quarticles);
+      if (existing.length !== 0) {
+        setQuarticles(existing);
         setBackendIsChecked(true);
         return;
       }
@@ -63,6 +63,7 @@ const BackendChecker: FC = () => {
       {quarticles.length > 0 && (
         <iframe
           title="check-json"
+          sandbox=""
           width="100%"
           src={`${url}/quarticle`}
         ></iframe>

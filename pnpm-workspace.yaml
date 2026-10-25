@@ -1,18 +1,12 @@
+allowBuilds:
+  "@swc/core": true
+  esbuild: true
+  msw: true
+  sharp: true
+  unrs-resolver: true
+
 disallowWorkspaceCycles: true
 
 minimumReleaseAge: 3320
 
 minimumReleaseAgeExclude:
-  - "@next/third-parties"
-  - "next"
-  - "@next/bundle-analyzer"
-  - "eslint-config-next"
-  - "@next/eslint-plugin-next"
-  - "@next/env"
-  - "@next/swc-*"
-
-onlyBuiltDependencies:
-  - "@swc/core"
-  - esbuild
-  - sharp
-  - unrs-resolver
